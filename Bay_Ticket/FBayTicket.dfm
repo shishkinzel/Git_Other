@@ -51,6 +51,7 @@ object frmBayTicket: TfrmBayTicket
     Height = 25
     Caption = #1042#1099#1081#1090#1080
     TabOrder = 0
+    OnClick = btnExitClick
   end
   object btnStart: TButton
     Left = 338
@@ -59,6 +60,7 @@ object frmBayTicket: TfrmBayTicket
     Height = 25
     Caption = #1042#1099#1087#1086#1083#1085#1080#1090#1100
     TabOrder = 1
+    OnClick = btnStartClick
   end
   object edtDate: TEdit
     Left = 203

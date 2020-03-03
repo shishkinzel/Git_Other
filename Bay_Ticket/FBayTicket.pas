@@ -3,8 +3,9 @@ unit FBayTicket;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.WinXCalendars, Vcl.StdCtrls;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.WinXCalendars, Vcl.StdCtrls;
 
 type
   TfrmBayTicket = class(TForm)
@@ -17,6 +18,8 @@ type
     edtDate: TEdit;
     clndrpckrDeparture: TCalendarPicker;
     clndrpckrBay: TCalendarPicker;
+    procedure btnStartClick(Sender: TObject);
+    procedure btnExitClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,4 +33,24 @@ implementation
 
 {$R *.dfm}
 
+procedure TfrmBayTicket.btnExitClick(Sender: TObject);
+begin
+frmBayTicket.Close;
+end;
+
+procedure TfrmBayTicket.btnStartClick(Sender: TObject);
+var
+  day: Integer;
+begin
+day := StrToIntDef(edtDate.Text,0);
+  if day <> 0 then
+  begin
+    day := StrToInt(edtDate.Text);
+    clndrpckrBay.Date := clndrpckrDeparture.Date - (day - 1);
+  end
+  else
+    ShowMessage('Введите корректные данные в поле ' + #10 + '"За какое количество суток"');
+end;
+
 end.
+
