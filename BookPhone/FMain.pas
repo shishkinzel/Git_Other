@@ -1,4 +1,4 @@
-unit PhoneBook;
+unit FMain;
 
 interface
 
@@ -7,7 +7,13 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
 
 type
-  TfrmLogin = class(TForm)
+  TfrmMain = class(TForm)
+    procedure FormShow(Sender: TObject);
+
+
+
+
+
   private
     { Private declarations }
   public
@@ -15,10 +21,16 @@ type
   end;
 
 var
-  frmLogin: TfrmLogin;
+  frmMain: TfrmMain;
 
 implementation
 
+
 {$R *.dfm}
+
+procedure TfrmMain.FormShow(Sender: TObject);
+begin
+ SHowMessage ('On Show');
+end;
 
 end.
