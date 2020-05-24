@@ -42,7 +42,6 @@ object frmAuthorization: TfrmAuthorization
     Top = 120
   end
   object fdqryLogAuthorization: TFDQuery
-    Active = True
     Connection = dtmdlPhoneBook.conAuthorization
     Transaction = dtmdlPhoneBook.fdtrnsctnReadAuth
     UpdateTransaction = dtmdlPhoneBook.fdtrnsctnWriteAuth

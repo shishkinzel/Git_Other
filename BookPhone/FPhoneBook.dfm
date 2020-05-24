@@ -55,7 +55,7 @@ object frmPhoneBook: TfrmPhoneBook
     Top = 120
   end
   object fdqryLogPhone: TFDQuery
-    Active = True
+    IndexesActive = False
     Connection = dtmdlPhoneBook.conPhoneBook
     Transaction = dtmdlPhoneBook.fdtrnsctnReadPhone
     UpdateTransaction = dtmdlPhoneBook.fdtrnsctnWritePhone

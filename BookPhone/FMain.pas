@@ -37,12 +37,14 @@ procedure TfrmMain.btnPhoneClick(Sender: TObject);
 begin
   frmMain.Visible := False;
   frmPhoneBook.Show;
+  frmPhoneBook.fdqryLogPhone.Active := True;
 end;
 
 procedure TfrmMain.btnResClick(Sender: TObject);
 begin
   frmMain.Visible := False;
   frmAuthorization.Show;
+  frmAuthorization.fdqryLogAuthorization.Active := True;
 end;
 
 end.

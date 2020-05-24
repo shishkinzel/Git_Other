@@ -12,11 +12,14 @@ object dtmdlPhoneBook: TdtmdlPhoneBook
         'Database=E:\Embarcadero\Studio\Projects\Git_Other\BookPhone\Win3' +
         '2\Debug\FBLib\DBPHONEBOOK.FDB'
       'Protocol=TCPIP'
-      'Server=Localhost'
+      'Server=localhost'
       'DriverID=FB')
     TxOptions.Isolation = xiSnapshot
     TxOptions.EnableNested = False
+    Connected = True
     LoginPrompt = False
+    Transaction = fdtrnsctnReadPhone
+    UpdateTransaction = fdtrnsctnWritePhone
     Left = 48
     Top = 40
   end
@@ -28,9 +31,12 @@ object dtmdlPhoneBook: TdtmdlPhoneBook
         'Database=E:\Embarcadero\Studio\Projects\Git_Other\BookPhone\Win3' +
         '2\Debug\FBLib\DBAUTHORIZATIONBOOK.FDB'
       'Protocol=TCPIP'
-      'Server=Localhost'
+      'Server=localhost'
       'DriverID=FB')
+    Connected = True
     LoginPrompt = False
+    Transaction = fdtrnsctnReadAuth
+    UpdateTransaction = fdtrnsctnWriteAuth
     Left = 168
     Top = 40
   end
