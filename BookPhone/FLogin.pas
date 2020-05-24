@@ -3,15 +3,23 @@ unit FLogin;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls;
 
 type
   TfrmLog = class(TForm)
-    btn1: TButton;
+    lblTitle: TLabel;
+    lblLog: TLabel;
+    lblPass: TLabel;
+    edtLog: TEdit;
+    edtPass: TEdit;
+    btnCancel: TButton;
+    btnOK: TButton;
     procedure btn1Click(Sender: TObject);
-
-    private
+    procedure btnCancelClick(Sender: TObject);
+    procedure btnOKClick(Sender: TObject);
+  private
     { Private declarations }
   public
     { Public declarations }
@@ -29,8 +37,21 @@ uses
 
 procedure TfrmLog.btn1Click(Sender: TObject);
 begin
+  frmMain.Show;
+  Self.close;
+end;
+
+procedure TfrmLog.btnCancelClick(Sender: TObject);
+begin
+  frmLog.Close;
+  frmMain.Close;
+end;
+
+procedure TfrmLog.btnOKClick(Sender: TObject);
+begin
 frmMain.Show;
-Self.close;
+frmLog.Close;
 end;
 
 end.
+

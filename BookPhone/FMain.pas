@@ -3,17 +3,19 @@ unit FMain;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls;
 
 type
   TfrmMain = class(TForm)
-    procedure FormShow(Sender: TObject);
-
-
-
-
-
+    lblTitle: TLabel;
+    lblPhone: TLabel;
+    lblAuthrisation: TLabel;
+    btnPhone: TButton;
+    btnRes: TButton;
+    procedure btnPhoneClick(Sender: TObject);
+    procedure btnResClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -25,12 +27,23 @@ var
 
 implementation
 
+uses
+  FPhoneBook, FAuthorization;
+
 
 {$R *.dfm}
 
-procedure TfrmMain.FormShow(Sender: TObject);
+procedure TfrmMain.btnPhoneClick(Sender: TObject);
 begin
- SHowMessage ('On Show');
+  frmMain.Visible := False;
+  frmPhoneBook.Show;
+end;
+
+procedure TfrmMain.btnResClick(Sender: TObject);
+begin
+  frmMain.Visible := False;
+  frmAuthorization.Show;
 end;
 
 end.
+
