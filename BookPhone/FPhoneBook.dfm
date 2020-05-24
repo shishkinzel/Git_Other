@@ -40,6 +40,54 @@ object frmPhoneBook: TfrmPhoneBook
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'ID'
+        Title.Alignment = taCenter
+        Width = 40
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FNAME'
+        Title.Alignment = taCenter
+        Title.Caption = #1048#1084#1103
+        Width = 220
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'MOBPHONE'
+        Title.Alignment = taCenter
+        Title.Caption = #1052#1086#1073'_'#1090#1077#1083#1077#1092#1086#1085
+        Width = 120
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'HOMEPHONE'
+        Title.Alignment = taCenter
+        Title.Caption = #1044#1086#1084'_'#1090#1077#1083#1077#1092#1086#1085
+        Width = 120
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'OTHERS'
+        Title.Alignment = taCenter
+        Title.Caption = #1055#1088#1086#1095#1077#1077
+        Width = 250
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FCOMMENT'
+        Title.Alignment = taCenter
+        Title.Caption = #1050#1086#1084#1084#1077#1085#1090#1072#1088#1080#1080
+        Width = 320
+        Visible = True
+      end>
   end
   object dbnvgrPhone: TDBNavigator
     Left = 8
