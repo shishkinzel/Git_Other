@@ -102,6 +102,11 @@
             <Form>frmListBD</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="FDataModule.pas">
+            <Form>dmAccessBD</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
