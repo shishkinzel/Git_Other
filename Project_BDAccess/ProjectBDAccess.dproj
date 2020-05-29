@@ -107,6 +107,22 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="FPhoneBook.pas">
+            <Form>frmPhoneBook</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="FAuthorization.pas">
+            <Form>frmAuthorization</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="FElectricity.pas">
+            <Form>frmElectricity</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="FWaterMeter.pas">
+            <Form>frmWaterMeterReadings</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

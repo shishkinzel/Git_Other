@@ -3,14 +3,191 @@ object dmAccessBD: TdmAccessBD
   Height = 455
   Width = 542
   object conBDAccess: TADOConnection
+    Connected = True
     ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=E:\Embarcadero\Stud' +
-      'io\Projects\Git_Other\Project_BDAccess\BD_Access\DataBase_All.md' +
-      'b;Persist Security Info=False'
+      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=E:\Em' +
+      'barcadero\Studio\Projects\Git_Other\Project_BDAccess\Win32\Debug' +
+      '\DB_Access\DataBaseForJob.mdb;Mode=Share Deny None;Persist Secur' +
+      'ity Info=False;Jet OLEDB:System database="";Jet OLEDB:Registry P' +
+      'ath="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Type=5;Je' +
+      't OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Op' +
+      's=2;Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database ' +
+      'Password="";Jet OLEDB:Create System Database=False;Jet OLEDB:Enc' +
+      'rypt Database=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False' +
+      ';Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=Fa' +
+      'lse'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
     Left = 40
     Top = 32
+  end
+  object tblPhoneBook: TADOTable
+    Connection = conBDAccess
+    CursorType = ctStatic
+    TableName = 'Phone Directory'
+    Left = 104
+    Top = 103
+    object tblPhoneBookID: TAutoIncField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'ID'
+      KeyFields = 'ID'
+    end
+    object tblPhoneBookFName: TWideStringField
+      FieldName = 'FName'
+      Size = 50
+    end
+    object tblPhoneBookMobTel: TWideStringField
+      FieldName = 'MobTel'
+      EditMask = '8(999\)000-00-00;1;_'
+      Size = 30
+    end
+    object tblPhoneBookAddress: TWideStringField
+      FieldName = 'Address'
+      Size = 50
+    end
+    object tblPhoneBookOthers: TWideMemoField
+      FieldName = 'Others'
+      BlobType = ftWideMemo
+    end
+    object tblPhoneBookFComment: TWideMemoField
+      FieldName = 'FComment'
+      BlobType = ftWideMemo
+    end
+  end
+  object dsPhoneBook: TDataSource
+    DataSet = tblPhoneBook
+    Left = 32
+    Top = 103
+  end
+  object dsAuthoriz: TDataSource
+    DataSet = tblAuthoriz
+    Left = 32
+    Top = 159
+  end
+  object tblAuthoriz: TADOTable
+    Connection = conBDAccess
+    CursorType = ctStatic
+    TableName = 'Authorization directory'
+    Left = 104
+    Top = 159
+    object tblAuthorizID: TAutoIncField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'ID'
+      ReadOnly = True
+    end
+    object tblAuthorizFName: TWideStringField
+      FieldName = 'FName'
+      Size = 50
+    end
+    object tblAuthorizFRecource: TWideStringField
+      FieldName = 'FRecource'
+      Size = 60
+    end
+    object tblAuthorizFLogin: TWideStringField
+      FieldName = 'FLogin'
+      Size = 50
+    end
+    object tblAuthorizFPassword: TWideStringField
+      FieldName = 'FPassword'
+      Size = 50
+    end
+    object tblAuthorizOthers: TWideMemoField
+      FieldName = 'Others'
+      BlobType = ftWideMemo
+    end
+    object tblAuthorizFComment: TWideMemoField
+      FieldName = 'FComment'
+      BlobType = ftWideMemo
+    end
+  end
+  object tblElectricitt: TADOTable
+    Connection = conBDAccess
+    CursorType = ctStatic
+    OnCalcFields = tblElectricittCalcFields
+    TableName = 'Electricity metering book'
+    Left = 96
+    Top = 215
+    object tblElectricittID: TAutoIncField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'ID'
+      ReadOnly = True
+    end
+    object tblElectricittFData: TDateTimeField
+      FieldName = 'FData'
+      EditMask = '!99/99/0000;1;_'
+    end
+    object tblElectricittCounterReadingsPrevious: TSmallintField
+      FieldName = 'CounterReadingsPrevious'
+    end
+    object tblElectricittCounterReadingsNow: TSmallintField
+      FieldName = 'CounterReadingsNow'
+    end
+    object tblElectricittConsumption: TIntegerField
+      FieldKind = fkCalculated
+      FieldName = 'Consumption'
+      Calculated = True
+    end
+    object tblElectricittTariff: TFloatField
+      FieldName = 'Tariff'
+      Precision = 3
+    end
+    object tblElectricittTotal: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'Total'
+      Precision = 6
+      Calculated = True
+    end
+    object tblElectricittFComment: TWideMemoField
+      FieldName = 'FComment'
+      BlobType = ftWideMemo
+    end
+  end
+  object dsElectricitt: TDataSource
+    DataSet = tblElectricitt
+    Left = 32
+    Top = 215
+  end
+  object tblWater: TADOTable
+    Connection = conBDAccess
+    CursorType = ctStatic
+    TableName = 'Water meter readings book'
+    Left = 96
+    Top = 271
+    object tblWaterID: TAutoIncField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'ID'
+      ReadOnly = True
+    end
+    object tblWaterFDate: TDateTimeField
+      FieldName = 'FDate'
+    end
+    object tblWaterCounterReadingsHotPrevious: TSmallintField
+      FieldName = 'CounterReadingsHotPrevious'
+    end
+    object tblWaterCounterReadingsHotNow: TSmallintField
+      FieldName = 'CounterReadingsHotNow'
+    end
+    object tblWaterConsumptionHot: TSmallintField
+      FieldName = 'ConsumptionHot'
+    end
+    object tblWaterCounterReadingsColdPrevious: TSmallintField
+      FieldName = 'CounterReadingsColdPrevious'
+    end
+    object tblWaterCounterReadingsColdNow: TSmallintField
+      FieldName = 'CounterReadingsColdNow'
+    end
+    object tblWaterConsumptionCold: TIntegerField
+      FieldName = 'ConsumptionCold'
+    end
+    object tblWaterFComment: TWideMemoField
+      FieldName = 'FComment'
+      BlobType = ftWideMemo
+    end
+  end
+  object dsWater: TDataSource
+    DataSet = tblWater
+    Left = 32
+    Top = 271
   end
 end
