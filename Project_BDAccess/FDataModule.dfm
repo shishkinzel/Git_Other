@@ -23,15 +23,16 @@ object dmAccessBD: TdmAccessBD
     Top = 32
   end
   object tblPhoneBook: TADOTable
+    Active = True
     Connection = conBDAccess
     CursorType = ctStatic
     TableName = 'Phone Directory'
     Left = 104
     Top = 103
     object tblPhoneBookID: TAutoIncField
-      AutoGenerateValue = arAutoInc
       FieldName = 'ID'
       KeyFields = 'ID'
+      ReadOnly = True
     end
     object tblPhoneBookFName: TWideStringField
       FieldName = 'FName'
@@ -109,7 +110,7 @@ object dmAccessBD: TdmAccessBD
     Left = 96
     Top = 215
     object tblElectricittID: TAutoIncField
-      AutoGenerateValue = arAutoInc
+      AutoGenerateValue = arDefault
       FieldName = 'ID'
       ReadOnly = True
     end

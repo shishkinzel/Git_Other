@@ -56,7 +56,6 @@ object frmPhoneBook: TfrmPhoneBook
         item
           Expanded = False
           FieldName = 'ID'
-          ReadOnly = True
           Title.Alignment = taCenter
           Title.Caption = #8470
           Width = 40
@@ -160,6 +159,7 @@ object frmPhoneBook: TfrmPhoneBook
       Height = 25
       Caption = 'btnSearch'
       TabOrder = 3
+      OnClick = btnSearchClick
     end
     object btnOne: TButton
       Left = 344

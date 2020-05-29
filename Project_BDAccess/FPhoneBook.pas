@@ -24,6 +24,7 @@ type
     lblOne: TLabel;
     lblTwo: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnSearchClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,9 +37,14 @@ var
 implementation
 
 uses
-  FDataModule, FMainAccess;
+  FDataModule, FMainAccess, FEditPhoneBook;
 
 {$R *.dfm}
+
+procedure TfrmPhoneBook.btnSearchClick(Sender: TObject);
+begin
+frmEditPhoneBook.ShowModal;
+end;
 
 procedure TfrmPhoneBook.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
