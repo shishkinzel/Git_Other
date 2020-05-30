@@ -22,6 +22,7 @@ type
     procedure mniAuthorizClick(Sender: TObject);
     procedure mniElectricClick(Sender: TObject);
     procedure mniWaterClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,8 +42,29 @@ uses
 
 procedure TfrmListBD.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-dmAccessBD.conBDAccess.Connected := False;
+ with dmAccessBD do
+ begin
+   conBDAccess.Connected := False;
+   tblPhoneBook.Active := False;
+   tblAuthoriz.Active := False;
+   tblElectricitt.Active := False;
+   tblWater.Active := False;
+ end;
+
 frmPhoneBook.Close;
+
+end;
+
+procedure TfrmListBD.FormCreate(Sender: TObject);
+begin
+ with dmAccessBD do
+ begin
+   conBDAccess.Connected := True;
+   tblPhoneBook.Active := True;
+   tblAuthoriz.Active := True;
+   tblElectricitt.Active := True;
+   tblWater.Active := True;
+ end;
 
 end;
 

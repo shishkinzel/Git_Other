@@ -19,7 +19,6 @@ type
     tblPhoneBookFName: TWideStringField;
     tblPhoneBookMobTel: TWideStringField;
     tblPhoneBookAddress: TWideStringField;
-    tblPhoneBookOthers: TWideMemoField;
     tblPhoneBookFComment: TWideMemoField;
     tblAuthorizID: TAutoIncField;
     tblAuthorizFName: TWideStringField;
@@ -46,11 +45,12 @@ type
     tblElectricittConsumption: TIntegerField;
     tblElectricittTotal: TFloatField;
     tblPhoneBookID: TAutoIncField;
+    strngfldOthers: TStringField;
     procedure tblElectricittCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure MyLocate(s : string);
   end;
 
 var
@@ -58,8 +58,16 @@ var
 
 implementation
 
+uses
+  FPhoneBook;
+
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 {$R *.dfm}
+
+procedure TdmAccessBD.MyLocate(s: string);
+begin
+tblPhoneBook.Locate('FName', s, [loPartialKey]);
+end;
 
 procedure TdmAccessBD.tblElectricittCalcFields(DataSet: TDataSet);
 begin

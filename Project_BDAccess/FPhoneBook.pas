@@ -14,17 +14,16 @@ type
     pnlNav: TPanel;
     pnlTabPhone: TPanel;
     pnlDown: TPanel;
-    dbedtSearch: TDBEdit;
-    dbedtOne: TDBEdit;
-    dbedtTwo: TDBEdit;
-    btnSearch: TButton;
-    btnOne: TButton;
+    btnEdit: TButton;
     btnTwo: TButton;
     lblSearch: TLabel;
     lblOne: TLabel;
-    lblTwo: TLabel;
+    lblScan: TLabel;
+    edtSearch: TEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure btnSearchClick(Sender: TObject);
+    procedure btnTwoClick(Sender: TObject);
+    procedure btnEditClick(Sender: TObject);
+    procedure edtSearchChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,9 +40,37 @@ uses
 
 {$R *.dfm}
 
-procedure TfrmPhoneBook.btnSearchClick(Sender: TObject);
+procedure TfrmPhoneBook.btnEditClick(Sender: TObject);
 begin
+frmEditPhoneBook.grpEditPhone.Caption := 'Запись нового абонента';
+with frmEditPhoneBook.dbnvgrPhone do
+begin
+  VisibleButtons := VisibleButtons + [nbInsert]  + [nbDelete] + [nbEdit] + [nbPost] +
+                      [nbCancel] + [nbRefresh];
+end;
 frmEditPhoneBook.ShowModal;
+
+
+end;
+
+
+
+procedure TfrmPhoneBook.btnTwoClick(Sender: TObject);
+begin
+frmEditPhoneBook.grpEditPhone.Caption := 'Просмотр телефонной книги';
+with frmEditPhoneBook.dbnvgrPhone do
+begin
+  VisibleButtons := VisibleButtons - [nbInsert]  - [nbDelete] - [nbEdit] - [nbPost] -
+                      [nbCancel] - [nbRefresh];
+end;
+frmEditPhoneBook.ShowModal;
+end;
+
+
+
+procedure TfrmPhoneBook.edtSearchChange(Sender: TObject);
+begin
+dmAccessBD.MyLocate(edtSearch.Text);
 end;
 
 procedure TfrmPhoneBook.FormClose(Sender: TObject; var Action: TCloseAction);

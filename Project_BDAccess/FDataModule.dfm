@@ -3,7 +3,6 @@ object dmAccessBD: TdmAccessBD
   Height = 455
   Width = 542
   object conBDAccess: TADOConnection
-    Connected = True
     ConnectionString = 
       'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=E:\Em' +
       'barcadero\Studio\Projects\Git_Other\Project_BDAccess\Win32\Debug' +
@@ -15,7 +14,7 @@ object dmAccessBD: TdmAccessBD
       'Password="";Jet OLEDB:Create System Database=False;Jet OLEDB:Enc' +
       'rypt Database=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False' +
       ';Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=Fa' +
-      'lse'
+      'lse;'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
@@ -23,7 +22,6 @@ object dmAccessBD: TdmAccessBD
     Top = 32
   end
   object tblPhoneBook: TADOTable
-    Active = True
     Connection = conBDAccess
     CursorType = ctStatic
     TableName = 'Phone Directory'
@@ -47,9 +45,10 @@ object dmAccessBD: TdmAccessBD
       FieldName = 'Address'
       Size = 50
     end
-    object tblPhoneBookOthers: TWideMemoField
+    object strngfldOthers: TStringField
+      DisplayWidth = 50
       FieldName = 'Others'
-      BlobType = ftWideMemo
+      Size = 255
     end
     object tblPhoneBookFComment: TWideMemoField
       FieldName = 'FComment'

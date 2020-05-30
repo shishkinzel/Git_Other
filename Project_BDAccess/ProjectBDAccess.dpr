@@ -16,7 +16,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmListBD, frmListBD);
-  Application.CreateForm(TdmAccessBD, dmAccessBD);
   Application.CreateForm(TfrmPhoneBook, frmPhoneBook);
   Application.CreateForm(TfrmAuthorization, frmAuthorization);
   Application.CreateForm(TfrmElectricity, frmElectricity);

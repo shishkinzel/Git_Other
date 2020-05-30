@@ -11,6 +11,7 @@ object frmPhoneBook: TfrmPhoneBook
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
@@ -27,6 +28,7 @@ object frmPhoneBook: TfrmPhoneBook
       Width = 1189
       Height = 23
       DataSource = dmAccessBD.dsPhoneBook
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       Align = alClient
       TabOrder = 0
     end
@@ -110,72 +112,54 @@ object frmPhoneBook: TfrmPhoneBook
     Height = 210
     Align = alClient
     TabOrder = 2
+    ExplicitLeft = 1
+    ExplicitTop = 590
     object lblSearch: TLabel
-      Left = 72
-      Top = 24
-      Width = 43
+      Left = 400
+      Top = 19
+      Width = 124
       Height = 13
-      Caption = 'lblSearch'
+      Caption = #1042#1074#1077#1076#1080#1090#1077' '#1080#1084#1103' '#1076#1083#1103' '#1087#1086#1080#1089#1082#1072
     end
     object lblOne: TLabel
-      Left = 72
-      Top = 59
-      Width = 43
+      Left = 32
+      Top = 21
+      Width = 124
       Height = 13
-      Caption = 'lblSearch'
+      Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100' '#1090#1072#1073#1083#1080#1094#1091
     end
-    object lblTwo: TLabel
-      Left = 72
-      Top = 88
-      Width = 43
+    object lblScan: TLabel
+      Left = 32
+      Top = 84
+      Width = 95
       Height = 13
-      Caption = 'lblSearch'
+      Caption = #1055#1088#1086#1089#1084#1086#1090#1088' '#1090#1072#1073#1083#1080#1094#1099
     end
-    object dbedtSearch: TDBEdit
-      Left = 169
-      Top = 24
-      Width = 121
-      Height = 21
+    object btnEdit: TButton
+      Left = 194
+      Top = 17
+      Width = 127
+      Height = 25
+      Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
       TabOrder = 0
+      OnClick = btnEditClick
     end
-    object dbedtOne: TDBEdit
-      Left = 169
-      Top = 51
-      Width = 121
-      Height = 21
+    object btnTwo: TButton
+      Left = 194
+      Top = 72
+      Width = 127
+      Height = 25
+      Caption = #1055#1088#1086#1089#1084#1086#1090#1088
       TabOrder = 1
+      OnClick = btnTwoClick
     end
-    object dbedtTwo: TDBEdit
-      Left = 169
-      Top = 88
+    object edtSearch: TEdit
+      Left = 544
+      Top = 16
       Width = 121
       Height = 21
       TabOrder = 2
-    end
-    object btnSearch: TButton
-      Left = 344
-      Top = 18
-      Width = 75
-      Height = 25
-      Caption = 'btnSearch'
-      TabOrder = 3
-      OnClick = btnSearchClick
-    end
-    object btnOne: TButton
-      Left = 344
-      Top = 49
-      Width = 75
-      Height = 25
-      Caption = 'btnSearch'
-      TabOrder = 4
-    end
-    object btnTwo: TButton
-      Left = 344
-      Top = 80
-      Width = 75
-      Height = 25
-      Caption = 'btnSearch'
-      TabOrder = 5
+      OnChange = edtSearchChange
     end
   end
 end
