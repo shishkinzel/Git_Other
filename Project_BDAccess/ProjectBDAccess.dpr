@@ -15,6 +15,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TdmAccessBD, dmAccessBD);
   Application.CreateForm(TfrmListBD, frmListBD);
   Application.CreateForm(TfrmPhoneBook, frmPhoneBook);
   Application.CreateForm(TfrmAuthorization, frmAuthorization);

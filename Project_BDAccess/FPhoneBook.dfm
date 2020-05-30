@@ -1,9 +1,10 @@
 object frmPhoneBook: TfrmPhoneBook
   Left = 0
   Top = 0
+  AutoSize = True
   Caption = #1058#1077#1083#1077#1092#1086#1085#1085#1099#1081' '#1089#1087#1088#1072#1074#1086#1095#1085#1080#1082
-  ClientHeight = 795
-  ClientWidth = 1191
+  ClientHeight = 624
+  ClientWidth = 1189
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,38 +16,53 @@ object frmPhoneBook: TfrmPhoneBook
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
+  object splTabPhone: TSplitter
+    Left = 0
+    Top = 486
+    Width = 1189
+    Height = 2
+    Cursor = crVSplit
+    Align = alBottom
+    ExplicitLeft = 1
+    ExplicitTop = 462
+    ExplicitWidth = 1187
+  end
   object pnlNav: TPanel
     Left = 0
     Top = 0
-    Width = 1191
+    Width = 1189
     Height = 25
     Align = alTop
     TabOrder = 0
+    ExplicitWidth = 1191
     object dbnvgrPhoneBook: TDBNavigator
       Left = 1
       Top = 1
-      Width = 1189
+      Width = 1187
       Height = 23
       DataSource = dmAccessBD.dsPhoneBook
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       Align = alClient
       TabOrder = 0
+      ExplicitWidth = 1095
     end
   end
   object pnlTabPhone: TPanel
     Left = 0
     Top = 25
-    Width = 1191
-    Height = 560
-    Align = alTop
+    Width = 1189
+    Height = 461
+    Align = alClient
     Caption = 'pnlTabPhone'
     TabOrder = 1
+    ExplicitLeft = 1
+    ExplicitTop = 27
+    ExplicitHeight = 390
     object dbgrdPhoneBook: TDBGrid
       Left = 1
-      Top = 1
+      Top = 0
       Width = 1189
-      Height = 558
-      Align = alClient
+      Height = 457
       DataSource = dmAccessBD.dsPhoneBook
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -107,37 +123,68 @@ object frmPhoneBook: TfrmPhoneBook
   end
   object pnlDown: TPanel
     Left = 0
-    Top = 585
-    Width = 1191
-    Height = 210
-    Align = alClient
+    Top = 488
+    Width = 1189
+    Height = 136
+    Align = alBottom
+    Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 2
     ExplicitLeft = 1
-    ExplicitTop = 590
+    DesignSize = (
+      1189
+      136)
     object lblSearch: TLabel
-      Left = 400
-      Top = 19
-      Width = 124
-      Height = 13
-      Caption = #1042#1074#1077#1076#1080#1090#1077' '#1080#1084#1103' '#1076#1083#1103' '#1087#1086#1080#1089#1082#1072
+      Left = 388
+      Top = 35
+      Width = 105
+      Height = 38
+      Alignment = taCenter
+      AutoSize = False
+      Caption = #1042#1074#1077#1076#1080#1090#1077' '#1080#1084#1103' '#1076#1083#1103#13#10#1073#1099#1089#1090#1088#1086#1075#1086' '#1087#1086#1080#1089#1082#1072
+      WordWrap = True
     end
     object lblOne: TLabel
       Left = 32
-      Top = 21
+      Top = 37
       Width = 124
       Height = 13
       Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100' '#1090#1072#1073#1083#1080#1094#1091
     end
     object lblScan: TLabel
       Left = 32
-      Top = 84
+      Top = 100
       Width = 95
       Height = 13
       Caption = #1055#1088#1086#1089#1084#1086#1090#1088' '#1090#1072#1073#1083#1080#1094#1099
     end
+    object lblSearchTwo: TLabel
+      Left = 383
+      Top = 95
+      Width = 105
+      Height = 18
+      Alignment = taCenter
+      AutoSize = False
+      Caption = #1055#1086#1080#1089#1082#13#10
+      WordWrap = True
+    end
+    object bvlDown: TBevel
+      Left = 353
+      Top = 0
+      Width = 7
+      Height = 136
+      Anchors = [akLeft, akTop, akBottom]
+      ExplicitHeight = 137
+    end
+    object bvlDownTwo: TBevel
+      Left = 841
+      Top = 0
+      Width = 7
+      Height = 137
+      Anchors = [akLeft, akTop, akBottom]
+    end
     object btnEdit: TButton
       Left = 194
-      Top = 17
+      Top = 33
       Width = 127
       Height = 25
       Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
@@ -146,7 +193,7 @@ object frmPhoneBook: TfrmPhoneBook
     end
     object btnTwo: TButton
       Left = 194
-      Top = 72
+      Top = 88
       Width = 127
       Height = 25
       Caption = #1055#1088#1086#1089#1084#1086#1090#1088
@@ -154,12 +201,28 @@ object frmPhoneBook: TfrmPhoneBook
       OnClick = btnTwoClick
     end
     object edtSearch: TEdit
-      Left = 544
-      Top = 16
-      Width = 121
+      Left = 512
+      Top = 36
+      Width = 161
       Height = 21
       TabOrder = 2
       OnChange = edtSearchChange
+    end
+    object edtSearchTwo: TEdit
+      Left = 512
+      Top = 88
+      Width = 161
+      Height = 21
+      TabOrder = 3
+      OnChange = edtSearchChange
+    end
+    object btnSearc: TButton
+      Left = 712
+      Top = 88
+      Width = 75
+      Height = 21
+      Caption = #1053#1072#1081#1090#1080
+      TabOrder = 4
     end
   end
 end

@@ -20,6 +20,12 @@ type
     lblOne: TLabel;
     lblScan: TLabel;
     edtSearch: TEdit;
+    lblSearchTwo: TLabel;
+    edtSearchTwo: TEdit;
+    splTabPhone: TSplitter;
+    bvlDown: TBevel;
+    bvlDownTwo: TBevel;
+    btnSearc: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnTwoClick(Sender: TObject);
     procedure btnEditClick(Sender: TObject);
