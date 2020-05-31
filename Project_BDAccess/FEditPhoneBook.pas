@@ -27,9 +27,12 @@ type
     lblReference: TLabel;
     dbedtReference: TDBEdit;
     dlgOpenPicPhoto: TOpenPictureDialog;
+    btnApply: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnPhotoClick(Sender: TObject);
-    procedure dbedtReferenceChange(Sender: TObject);
+    procedure btnApplyClick(Sender: TObject);
+
+
   private
     { Private declarations }
   public
@@ -46,6 +49,14 @@ uses
 
 {$R *.dfm}
 
+procedure TfrmEditPhoneBook.btnApplyClick(Sender: TObject);
+var
+s : PWideChar;
+begin
+ s := PWideChar(dbedtReference.Text);
+ ShellExecute(Handle,'Open',s, nil, nil, SW_SHOW);
+end;
+
 procedure TfrmEditPhoneBook.btnPhotoClick(Sender: TObject);
 begin
   dmAccessBD.tblPhoneBook.Edit;
@@ -56,10 +67,9 @@ begin
   end;
 end;
 
-procedure TfrmEditPhoneBook.dbedtReferenceChange(Sender: TObject);
-begin
-ShellExecute(Handle,'Open',PWideChar('dbedtReference.Text'), nil, nil, SW_SHOW);
-end;
+
+
+
 
 procedure TfrmEditPhoneBook.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -69,3 +79,5 @@ end;
 
 end.
 
+
+//ShellExecute(Handle,'Open',PWideChar('dbedtReference.Text'), nil, nil, SW_SHOW);

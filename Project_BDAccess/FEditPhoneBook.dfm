@@ -2,7 +2,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
   Left = 0
   Top = 0
   Caption = #1058#1077#1083#1077#1092#1086#1085#1085#1099#1081' '#1089#1087#1088#1072#1074#1086#1095#1085#1080#1082
-  ClientHeight = 487
+  ClientHeight = 489
   ClientWidth = 755
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -109,7 +109,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
     end
     object lblReference: TLabel
       Left = 408
-      Top = 379
+      Top = 372
       Width = 89
       Height = 13
       Caption = #1057#1089#1099#1083#1082#1072' '#1072#1073#1086#1085#1077#1085#1090#1072
@@ -185,7 +185,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       Left = 132
       Top = 235
       Width = 230
-      Height = 190
+      Height = 206
       DataField = 'FComment'
       DataSource = dmAccessBD.dsPhoneBook
       Font.Charset = DEFAULT_CHARSET
@@ -239,7 +239,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
     end
     object dbedtReference: TDBEdit
       Left = 408
-      Top = 404
+      Top = 391
       Width = 313
       Height = 21
       DataField = 'Reference'
@@ -251,7 +251,21 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       Font.Style = []
       ParentFont = False
       TabOrder = 8
-      OnChange = dbedtReferenceChange
+    end
+    object btnApply: TButton
+      Left = 646
+      Top = 418
+      Width = 75
+      Height = 25
+      Caption = #1055#1077#1088#1077#1081#1090#1080
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 9
+      OnClick = btnApplyClick
     end
   end
   object dlgOpenPicPhoto: TOpenPictureDialog
