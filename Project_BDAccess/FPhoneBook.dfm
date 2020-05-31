@@ -34,7 +34,6 @@ object frmPhoneBook: TfrmPhoneBook
     Height = 25
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 1191
     object dbnvgrPhoneBook: TDBNavigator
       Left = 1
       Top = 1
@@ -44,7 +43,6 @@ object frmPhoneBook: TfrmPhoneBook
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 1095
     end
   end
   object pnlTabPhone: TPanel
@@ -55,9 +53,6 @@ object frmPhoneBook: TfrmPhoneBook
     Align = alClient
     Caption = 'pnlTabPhone'
     TabOrder = 1
-    ExplicitLeft = 1
-    ExplicitTop = 27
-    ExplicitHeight = 390
     object dbgrdPhoneBook: TDBGrid
       Left = 1
       Top = 0
@@ -116,7 +111,19 @@ object frmPhoneBook: TfrmPhoneBook
           FieldName = 'FComment'
           Title.Alignment = taCenter
           Title.Caption = #1050#1086#1084#1084#1077#1085#1090#1072#1088#1080#1080
-          Width = 407
+          Width = -1
+          Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'Photo'
+          Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'Reference'
+          Title.Alignment = taCenter
+          Title.Caption = #1057#1089#1099#1083#1082#1072
           Visible = True
         end>
     end
@@ -129,7 +136,6 @@ object frmPhoneBook: TfrmPhoneBook
     Align = alBottom
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 2
-    ExplicitLeft = 1
     DesignSize = (
       1189
       136)

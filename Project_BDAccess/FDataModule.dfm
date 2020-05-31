@@ -4,17 +4,16 @@ object dmAccessBD: TdmAccessBD
   Width = 542
   object conBDAccess: TADOConnection
     ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=E:\Em' +
-      'barcadero\Studio\Projects\Git_Other\Project_BDAccess\Win32\Debug' +
-      '\DB_Access\DataBaseForJob.mdb;Mode=Share Deny None;Persist Secur' +
-      'ity Info=False;Jet OLEDB:System database="";Jet OLEDB:Registry P' +
-      'ath="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Type=5;Je' +
-      't OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Op' +
-      's=2;Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database ' +
-      'Password="";Jet OLEDB:Create System Database=False;Jet OLEDB:Enc' +
-      'rypt Database=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False' +
-      ';Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=Fa' +
-      'lse;'
+      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=C:\DB' +
+      '_Access\DataBaseForJob.mdb;Mode=Share Deny None;Persist Security' +
+      ' Info=False;Jet OLEDB:System database="";Jet OLEDB:Registry Path' +
+      '="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Type=5;Jet O' +
+      'LEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2' +
+      ';Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Pas' +
+      'sword="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encryp' +
+      't Database=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False;Je' +
+      't OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False' +
+      ';'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
@@ -53,6 +52,13 @@ object dmAccessBD: TdmAccessBD
     object tblPhoneBookFComment: TWideMemoField
       FieldName = 'FComment'
       BlobType = ftWideMemo
+    end
+    object tblPhoneBookPhoto: TBlobField
+      FieldName = 'Photo'
+    end
+    object tblPhoneBookReference: TWideStringField
+      FieldName = 'Reference'
+      Size = 255
     end
   end
   object dsPhoneBook: TDataSource

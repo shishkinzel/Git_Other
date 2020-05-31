@@ -46,6 +46,8 @@ type
     tblElectricittTotal: TFloatField;
     tblPhoneBookID: TAutoIncField;
     strngfldOthers: TStringField;
+    tblPhoneBookPhoto: TBlobField;
+    tblPhoneBookReference: TWideStringField;
     procedure tblElectricittCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
