@@ -68,8 +68,10 @@ uses
 
 procedure TdmAccessBD.MyLocate(s: string);
 begin
-tblPhoneBook.Locate('FName', s, [loPartialKey]);
+tblPhoneBook.Locate('FName', s, [loCaseInsensitive, loPartialKey]);
 end;
+
+
 
 procedure TdmAccessBD.tblElectricittCalcFields(DataSet: TDataSet);
 begin

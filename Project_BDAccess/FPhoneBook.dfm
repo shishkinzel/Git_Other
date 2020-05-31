@@ -228,6 +228,7 @@ object frmPhoneBook: TfrmPhoneBook
       Height = 21
       Caption = #1053#1072#1081#1090#1080
       TabOrder = 4
+      OnClick = btnSearcClick
     end
   end
 end

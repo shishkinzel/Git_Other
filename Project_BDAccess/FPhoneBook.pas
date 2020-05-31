@@ -30,6 +30,7 @@ type
     procedure btnTwoClick(Sender: TObject);
     procedure btnEditClick(Sender: TObject);
     procedure edtSearchChange(Sender: TObject);
+    procedure btnSearcClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -61,28 +62,36 @@ end;
 
 
 
+procedure TfrmPhoneBook.btnSearcClick(Sender: TObject);
+var
+  res: Variant;
+begin
+  res := dmAccessBD.tblPhoneBook.Lookup('FName', edtSearchTwo.Text, 'MobTel');
+  if res = Null then
+  ShowMessage('Данная запись не найдена')
+  else
+  ShowMessage('Номер телефона = '+ string(res));
+end;
+
 procedure TfrmPhoneBook.btnTwoClick(Sender: TObject);
 begin
-frmEditPhoneBook.btnPhoto.Enabled := False;
-frmEditPhoneBook.grpEditPhone.Caption := 'Просмотр телефонной книги';
-with frmEditPhoneBook.dbnvgrPhone do
-begin
-  VisibleButtons := VisibleButtons - [nbInsert]  - [nbDelete] - [nbEdit] - [nbPost] -
-                      [nbCancel] - [nbRefresh];
+  frmEditPhoneBook.btnPhoto.Enabled := False;
+  frmEditPhoneBook.grpEditPhone.Caption := 'Просмотр телефонной книги';
+  with frmEditPhoneBook.dbnvgrPhone do
+  begin
+    VisibleButtons := VisibleButtons - [nbInsert] - [nbDelete] - [nbEdit] - [nbPost] - [nbCancel] - [nbRefresh];
+  end;
+  frmEditPhoneBook.ShowModal;
 end;
-frmEditPhoneBook.ShowModal;
-end;
-
-
 
 procedure TfrmPhoneBook.edtSearchChange(Sender: TObject);
 begin
-dmAccessBD.MyLocate(edtSearch.Text);
+  dmAccessBD.MyLocate(edtSearch.Text);
 end;
 
 procedure TfrmPhoneBook.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-frmListBD.Show;
+  frmListBD.Show;
 end;
 
 
