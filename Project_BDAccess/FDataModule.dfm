@@ -3,6 +3,7 @@ object dmAccessBD: TdmAccessBD
   Height = 455
   Width = 542
   object conBDAccess: TADOConnection
+    Connected = True
     ConnectionString = 
       'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=C:\DB' +
       '_Access\DataBaseForJob.mdb;Mode=Share Deny None;Persist Security' +
@@ -12,8 +13,7 @@ object dmAccessBD: TdmAccessBD
       ';Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Pas' +
       'sword="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encryp' +
       't Database=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False;Je' +
-      't OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False' +
-      ';'
+      't OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
@@ -21,6 +21,7 @@ object dmAccessBD: TdmAccessBD
     Top = 32
   end
   object tblPhoneBook: TADOTable
+    Active = True
     Connection = conBDAccess
     CursorType = ctStatic
     TableName = 'Phone Directory'
@@ -58,6 +59,7 @@ object dmAccessBD: TdmAccessBD
     end
     object tblPhoneBookReference: TWideStringField
       FieldName = 'Reference'
+      KeyFields = 'Reference'
       Size = 255
     end
   end

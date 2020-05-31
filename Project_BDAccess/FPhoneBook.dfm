@@ -111,7 +111,6 @@ object frmPhoneBook: TfrmPhoneBook
           FieldName = 'FComment'
           Title.Alignment = taCenter
           Title.Caption = #1050#1086#1084#1084#1077#1085#1090#1072#1088#1080#1080
-          Width = -1
           Visible = False
         end
         item

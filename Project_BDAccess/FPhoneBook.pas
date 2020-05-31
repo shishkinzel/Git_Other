@@ -63,6 +63,7 @@ end;
 
 procedure TfrmPhoneBook.btnTwoClick(Sender: TObject);
 begin
+frmEditPhoneBook.btnPhoto.Enabled := False;
 frmEditPhoneBook.grpEditPhone.Caption := 'Просмотр телефонной книги';
 with frmEditPhoneBook.dbnvgrPhone do
 begin
