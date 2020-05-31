@@ -31,8 +31,6 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnPhotoClick(Sender: TObject);
     procedure btnApplyClick(Sender: TObject);
-
-
   private
     { Private declarations }
   public
@@ -45,16 +43,17 @@ var
 implementation
 
 uses
-  FPhoneBook, FDataModule;
+  FPhoneBook, FDataModule, FMainAccess;
 
 {$R *.dfm}
 
 procedure TfrmEditPhoneBook.btnApplyClick(Sender: TObject);
 var
-s : PWideChar;
+  s: PWideChar;
 begin
- s := PWideChar(dbedtReference.Text);
- ShellExecute(Handle,'Open',s, nil, nil, SW_SHOW);
+  s := PWideChar(dbedtReference.Text);
+  ShellExecute(Handle, 'Open', s, nil, nil, SW_SHOW);
+//  frmListBD.Close;
 end;
 
 procedure TfrmEditPhoneBook.btnPhotoClick(Sender: TObject);
