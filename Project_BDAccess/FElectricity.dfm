@@ -17,12 +17,12 @@ object frmElectricity: TfrmElectricity
   TextHeight = 13
   object splTabElectricity: TSplitter
     Left = 0
-    Top = 460
+    Top = 459
     Width = 1184
-    Height = 1
+    Height = 2
     Cursor = crVSplit
     Align = alBottom
-    ExplicitTop = 458
+    ExplicitTop = 460
   end
   object pnlNav: TPanel
     Left = 0
@@ -39,27 +39,22 @@ object frmElectricity: TfrmElectricity
       DataSource = dmAccessBD.dsPhoneBook
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 1202
-      ExplicitHeight = 23
     end
   end
   object pnlTabElectricity: TPanel
     Left = 0
     Top = 20
     Width = 1184
-    Height = 440
+    Height = 439
     Align = alClient
     Caption = 'pnlTabElectricity'
     TabOrder = 1
-    ExplicitLeft = 24
-    ExplicitTop = 83
-    ExplicitWidth = 1204
-    ExplicitHeight = 262
+    ExplicitHeight = 440
     object dbgrdElectricity: TDBGrid
       Left = 1
       Top = 1
       Width = 1182
-      Height = 438
+      Height = 437
       Align = alClient
       DataSource = dmAccessBD.dsElectricitt
       TabOrder = 0
@@ -130,8 +125,8 @@ object frmElectricity: TfrmElectricity
           FieldName = 'FComment'
           Title.Alignment = taCenter
           Title.Caption = #1050#1086#1084#1084#1077#1085#1090#1072#1088#1080#1080
-          Width = 444
-          Visible = True
+          Width = -1
+          Visible = False
         end>
     end
   end
@@ -142,8 +137,6 @@ object frmElectricity: TfrmElectricity
     Height = 150
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 460
-    ExplicitWidth = 1200
     DesignSize = (
       1184
       150)

@@ -30,7 +30,6 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
     Height = 20
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 1202
     object dbnvgrWater: TDBNavigator
       Left = 1
       Top = 1
@@ -39,21 +38,16 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
       DataSource = dmAccessBD.dsPhoneBook
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 1200
-      ExplicitHeight = 23
     end
   end
-  object pnlTabPhone: TPanel
+  object pnlTabWater: TPanel
     Left = 0
     Top = 20
     Width = 1184
     Height = 439
     Align = alClient
-    Caption = 'pnlTabPhone'
+    Caption = 'pnlTabWater'
     TabOrder = 1
-    ExplicitTop = 25
-    ExplicitWidth = 1202
-    ExplicitHeight = 280
     object dbgrdWater: TDBGrid
       Left = 1
       Top = 1
@@ -136,8 +130,8 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
           FieldName = 'FComment'
           Title.Alignment = taCenter
           Title.Caption = #1050#1086#1084#1084#1077#1085#1090#1072#1088#1080#1080
-          Width = 263
-          Visible = True
+          Width = -1
+          Visible = False
         end>
     end
   end

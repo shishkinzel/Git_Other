@@ -16,13 +16,12 @@ object frmAuthorization: TfrmAuthorization
   TextHeight = 13
   object splAutorization: TSplitter
     Left = 0
-    Top = 438
+    Top = 439
     Width = 1184
-    Height = 3
+    Height = 2
     Cursor = crVSplit
     Align = alBottom
-    ExplicitTop = 25
-    ExplicitWidth = 436
+    ExplicitTop = 438
   end
   object pnlNav: TPanel
     Left = 0
@@ -45,15 +44,16 @@ object frmAuthorization: TfrmAuthorization
     Left = 0
     Top = 25
     Width = 1184
-    Height = 413
+    Height = 414
     Align = alClient
     Caption = 'pnlTabPhone'
     TabOrder = 1
+    ExplicitHeight = 413
     object dbgrdAuthorization: TDBGrid
       Left = 1
       Top = 1
       Width = 1182
-      Height = 411
+      Height = 412
       Align = alClient
       DataSource = dmAccessBD.dsAuthoriz
       TabOrder = 0

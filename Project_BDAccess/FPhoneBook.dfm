@@ -17,12 +17,12 @@ object frmPhoneBook: TfrmPhoneBook
   TextHeight = 13
   object splTabPhone: TSplitter
     Left = 0
-    Top = 460
+    Top = 459
     Width = 1184
-    Height = 1
+    Height = 2
     Cursor = crVSplit
     Align = alBottom
-    ExplicitTop = 461
+    ExplicitTop = 460
   end
   object pnlNav: TPanel
     Left = 0
@@ -31,7 +31,6 @@ object frmPhoneBook: TfrmPhoneBook
     Height = 20
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 1200
     object dbnvgrPhoneBook: TDBNavigator
       Left = 1
       Top = 1
@@ -41,26 +40,22 @@ object frmPhoneBook: TfrmPhoneBook
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       Align = alClient
       TabOrder = 0
-      ExplicitHeight = 20
     end
   end
   object pnlTabPhone: TPanel
     Left = 0
     Top = 20
     Width = 1184
-    Height = 440
+    Height = 439
     Align = alClient
     Caption = 'pnlTabPhone'
     TabOrder = 1
-    ExplicitLeft = 1
-    ExplicitTop = 0
-    ExplicitWidth = 1189
-    ExplicitHeight = 461
+    ExplicitHeight = 440
     object dbgrdPhoneBook: TDBGrid
       Left = 1
       Top = 1
       Width = 1182
-      Height = 438
+      Height = 437
       Align = alClient
       DataSource = dmAccessBD.dsPhoneBook
       TabOrder = 0
@@ -139,8 +134,6 @@ object frmPhoneBook: TfrmPhoneBook
     Height = 150
     Align = alBottom
     TabOrder = 2
-    ExplicitLeft = -8
-    ExplicitTop = 467
     DesignSize = (
       1184
       150)

@@ -11,7 +11,7 @@ type
   TfrmWaterMeterReadings = class(TForm)
     pnlNav: TPanel;
     dbnvgrWater: TDBNavigator;
-    pnlTabPhone: TPanel;
+    pnlTabWater: TPanel;
     dbgrdWater: TDBGrid;
     pnlDown: TPanel;
     lblSearch: TLabel;
