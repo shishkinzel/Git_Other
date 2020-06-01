@@ -29,7 +29,6 @@ object frmEditPhoneBook: TfrmEditPhoneBook
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 755
     object lblName: TLabel
       Left = 16
       Top = 56
@@ -135,6 +134,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       Font.Style = []
       ParentFont = False
       TabOrder = 0
+      OnKeyPress = dbedtNameKeyPress
     end
     object dbedtMobTel: TDBEdit
       Left = 132
@@ -151,6 +151,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       MaxLength = 15
       ParentFont = False
       TabOrder = 1
+      OnKeyPress = dbedtMobTelKeyPress
     end
     object dbedtAddress: TDBEdit
       Left = 132
@@ -166,6 +167,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnKeyPress = dbedtAddressKeyPress
     end
     object dbedtOther: TDBEdit
       Left = 132
@@ -181,6 +183,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       Font.Style = []
       ParentFont = False
       TabOrder = 3
+      OnKeyPress = dbedtOtherKeyPress
     end
     object dbmmoComment: TDBMemo
       Left = 132
@@ -204,7 +207,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       Height = 25
       DataSource = dmAccessBD.dsPhoneBook
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
-      TabOrder = 5
+      TabOrder = 9
     end
     object dbimgPhoto: TDBImage
       Left = 408
@@ -221,7 +224,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       ParentFont = False
       Proportional = True
       Stretch = True
-      TabOrder = 6
+      TabOrder = 5
     end
     object btnPhoto: TButton
       Left = 646
@@ -235,7 +238,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 7
+      TabOrder = 6
       OnClick = btnPhotoClick
     end
     object dbedtReference: TDBEdit
@@ -251,7 +254,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 8
+      TabOrder = 7
     end
     object btnApply: TButton
       Left = 646
@@ -265,7 +268,7 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 9
+      TabOrder = 8
       OnClick = btnApplyClick
     end
   end

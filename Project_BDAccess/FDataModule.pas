@@ -25,7 +25,6 @@ type
     tblAuthorizFRecource: TWideStringField;
     tblAuthorizFLogin: TWideStringField;
     tblAuthorizFPassword: TWideStringField;
-    tblAuthorizOthers: TWideMemoField;
     tblAuthorizFComment: TWideMemoField;
     tblElectricittID: TAutoIncField;
     tblElectricittFData: TDateTimeField;
@@ -48,6 +47,9 @@ type
     strngfldOthers: TStringField;
     tblPhoneBookPhoto: TBlobField;
     tblPhoneBookReference: TWideStringField;
+    tblAuthorizPhoto: TBlobField;
+    tblAuthorizReference: TWideStringField;
+    tblAuthorizOthers: TWideStringField;
     procedure tblElectricittCalcFields(DataSet: TDataSet);
   private
     { Private declarations }

@@ -1,9 +1,9 @@
 object frmEditAuthorization: TfrmEditAuthorization
   Left = 0
   Top = 0
-  Caption = #1044#1072#1085#1085#1085#1099#1077' '#1076#1083#1103' '#1072#1074#1090#1086#1088#1080#1079#1072#1094#1080#1080' '#1085#1072' '#1088#1077#1089#1091#1088#1089#1072
+  Caption = #1044#1072#1085#1085#1085#1099#1077' '#1076#1083#1103' '#1072#1074#1090#1086#1088#1080#1079#1072#1094#1080#1080' '#1085#1072' '#1088#1077#1089#1091#1088#1089#1072#1093
   ClientHeight = 491
-  ClientWidth = 734
+  ClientWidth = 733
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,12 +13,12 @@ object frmEditAuthorization: TfrmEditAuthorization
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object grpEditPhone: TGroupBox
+  object grpEditAuth: TGroupBox
     Left = 0
     Top = 0
-    Width = 734
-    Height = 489
-    Align = alTop
+    Width = 733
+    Height = 491
+    Align = alClient
     Caption = #1047#1072#1087#1080#1089#1100' '#1085#1086#1074#1086#1075#1086' '#1072#1073#1086#1085#1077#1085#1090#1072
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -27,11 +27,9 @@ object frmEditAuthorization: TfrmEditAuthorization
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitLeft = -16
-    ExplicitWidth = 750
     object lblName: TLabel
       Left = 16
-      Top = 56
+      Top = 44
       Width = 74
       Height = 13
       Caption = #1060#1072#1084#1080#1083#1080#1103' '#1080' '#1080#1084#1103
@@ -42,12 +40,12 @@ object frmEditAuthorization: TfrmEditAuthorization
       Font.Style = []
       ParentFont = False
     end
-    object lblMobTel: TLabel
+    object lblRecource: TLabel
       Left = 16
-      Top = 91
-      Width = 105
+      Top = 83
+      Width = 34
       Height = 13
-      Caption = #1052#1086#1073#1080#1083#1100#1085#1099#1081' '#1090#1077#1083#1077#1092#1086#1085
+      Caption = #1056#1077#1089#1091#1088#1089
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -55,12 +53,12 @@ object frmEditAuthorization: TfrmEditAuthorization
       Font.Style = []
       ParentFont = False
     end
-    object lblAddress: TLabel
+    object lblPassword: TLabel
       Left = 16
-      Top = 147
-      Width = 31
+      Top = 163
+      Width = 37
       Height = 13
-      Caption = #1040#1076#1088#1077#1089
+      Caption = #1055#1072#1088#1086#1083#1100
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -70,7 +68,7 @@ object frmEditAuthorization: TfrmEditAuthorization
     end
     object lblOther: TLabel
       Left = 16
-      Top = 195
+      Top = 203
       Width = 37
       Height = 13
       Caption = #1055#1088#1086#1095#1077#1077
@@ -83,7 +81,7 @@ object frmEditAuthorization: TfrmEditAuthorization
     end
     object lblComment: TLabel
       Left = 16
-      Top = 238
+      Top = 246
       Width = 67
       Height = 13
       Caption = #1050#1086#1084#1084#1077#1085#1090#1072#1088#1080#1080
@@ -96,7 +94,7 @@ object frmEditAuthorization: TfrmEditAuthorization
     end
     object lblPhoto: TLabel
       Left = 408
-      Top = 29
+      Top = 24
       Width = 77
       Height = 13
       Caption = #1060#1086#1090#1086' '#1072#1073#1086#1085#1077#1085#1090#1072
@@ -110,9 +108,22 @@ object frmEditAuthorization: TfrmEditAuthorization
     object lblReference: TLabel
       Left = 408
       Top = 372
-      Width = 89
+      Width = 90
       Height = 13
-      Caption = #1057#1089#1099#1083#1082#1072' '#1072#1073#1086#1085#1077#1085#1090#1072
+      Caption = #1057#1089#1099#1083#1082#1072' '#1085#1072' '#1088#1077#1089#1091#1088#1089
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLogin: TLabel
+      Left = 16
+      Top = 121
+      Width = 30
+      Height = 13
+      Caption = #1051#1086#1075#1080#1085
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -122,11 +133,11 @@ object frmEditAuthorization: TfrmEditAuthorization
     end
     object dbedtName: TDBEdit
       Left = 132
-      Top = 48
+      Top = 40
       Width = 230
       Height = 21
       DataField = 'FName'
-      DataSource = dmAccessBD.dsPhoneBook
+      DataSource = dmAccessBD.dsAuthoriz
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -134,30 +145,31 @@ object frmEditAuthorization: TfrmEditAuthorization
       Font.Style = []
       ParentFont = False
       TabOrder = 0
+      OnKeyPress = dbedtNameKeyPress
     end
-    object dbedtMobTel: TDBEdit
+    object dbedtRecource: TDBEdit
       Left = 132
-      Top = 88
+      Top = 80
       Width = 230
       Height = 21
-      DataField = 'MobTel'
-      DataSource = dmAccessBD.dsPhoneBook
+      DataField = 'FRecource'
+      DataSource = dmAccessBD.dsAuthoriz
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
-      MaxLength = 15
       ParentFont = False
       TabOrder = 1
+      OnKeyPress = dbedtRecourceKeyPress
     end
-    object dbedtAddress: TDBEdit
+    object dbedtPassword: TDBEdit
       Left = 132
-      Top = 144
+      Top = 160
       Width = 230
       Height = 21
-      DataField = 'Address'
-      DataSource = dmAccessBD.dsPhoneBook
+      DataField = 'FPassword'
+      DataSource = dmAccessBD.dsAuthoriz
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -165,14 +177,15 @@ object frmEditAuthorization: TfrmEditAuthorization
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnKeyPress = dbedtPasswordKeyPress
     end
     object dbedtOther: TDBEdit
       Left = 132
-      Top = 192
+      Top = 200
       Width = 230
       Height = 21
       DataField = 'Others'
-      DataSource = dmAccessBD.dsPhoneBook
+      DataSource = dmAccessBD.dsAuthoriz
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -180,14 +193,15 @@ object frmEditAuthorization: TfrmEditAuthorization
       Font.Style = []
       ParentFont = False
       TabOrder = 3
+      OnKeyPress = dbedtOtherKeyPress
     end
     object dbmmoComment: TDBMemo
       Left = 132
-      Top = 235
+      Top = 243
       Width = 230
       Height = 206
       DataField = 'FComment'
-      DataSource = dmAccessBD.dsPhoneBook
+      DataSource = dmAccessBD.dsAuthoriz
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -196,22 +210,22 @@ object frmEditAuthorization: TfrmEditAuthorization
       ParentFont = False
       TabOrder = 4
     end
-    object dbnvgrPhone: TDBNavigator
+    object dbnvgrAuth: TDBNavigator
       Left = 0
-      Top = 456
-      Width = 752
+      Top = 455
+      Width = 736
       Height = 25
-      DataSource = dmAccessBD.dsPhoneBook
+      DataSource = dmAccessBD.dsAuthoriz
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       TabOrder = 5
     end
     object dbimgPhoto: TDBImage
       Left = 408
-      Top = 48
+      Top = 43
       Width = 313
       Height = 273
       DataField = 'Photo'
-      DataSource = dmAccessBD.dsPhoneBook
+      DataSource = dmAccessBD.dsAuthoriz
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -235,6 +249,7 @@ object frmEditAuthorization: TfrmEditAuthorization
       Font.Style = []
       ParentFont = False
       TabOrder = 7
+      OnClick = btnPhotoClick
     end
     object dbedtReference: TDBEdit
       Left = 408
@@ -242,7 +257,7 @@ object frmEditAuthorization: TfrmEditAuthorization
       Width = 313
       Height = 21
       DataField = 'Reference'
-      DataSource = dmAccessBD.dsPhoneBook
+      DataSource = dmAccessBD.dsAuthoriz
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -264,6 +279,27 @@ object frmEditAuthorization: TfrmEditAuthorization
       Font.Style = []
       ParentFont = False
       TabOrder = 9
+      OnClick = btnApplyClick
     end
+    object dbedtLogin: TDBEdit
+      Left = 132
+      Top = 118
+      Width = 230
+      Height = 21
+      DataField = 'FLogin'
+      DataSource = dmAccessBD.dsAuthoriz
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 10
+      OnKeyPress = dbedtLoginKeyPress
+    end
+  end
+  object dlgOpenPicPhoto: TOpenPictureDialog
+    Left = 424
+    Top = 64
   end
 end

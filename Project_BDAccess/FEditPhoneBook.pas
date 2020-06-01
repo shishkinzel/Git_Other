@@ -31,6 +31,10 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnPhotoClick(Sender: TObject);
     procedure btnApplyClick(Sender: TObject);
+    procedure dbedtNameKeyPress(Sender: TObject; var Key: Char);
+    procedure dbedtMobTelKeyPress(Sender: TObject; var Key: Char);
+    procedure dbedtAddressKeyPress(Sender: TObject; var Key: Char);
+    procedure dbedtOtherKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -66,9 +70,29 @@ begin
   end;
 end;
 
+procedure TfrmEditPhoneBook.dbedtAddressKeyPress(Sender: TObject; var Key: Char);
+begin
+ if key = #13 then
+ dbedtOther.SetFocus;
+end;
 
+procedure TfrmEditPhoneBook.dbedtMobTelKeyPress(Sender: TObject; var Key: Char);
+begin
+ if key = #13 then
+ dbedtAddress.SetFocus;
+end;
 
+procedure TfrmEditPhoneBook.dbedtNameKeyPress(Sender: TObject; var Key: Char);
+begin
+ if key = #13 then
+ dbedtMobTel.SetFocus;
+end;
 
+procedure TfrmEditPhoneBook.dbedtOtherKeyPress(Sender: TObject; var Key: Char);
+begin
+ if key = #13 then
+ dbmmoComment.SetFocus;
+end;
 
 procedure TfrmEditPhoneBook.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -78,5 +102,3 @@ end;
 
 end.
 
-
-//ShellExecute(Handle,'Open',PWideChar('dbedtReference.Text'), nil, nil, SW_SHOW);

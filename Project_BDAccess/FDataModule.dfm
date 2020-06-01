@@ -99,13 +99,23 @@ object dmAccessBD: TdmAccessBD
       FieldName = 'FPassword'
       Size = 50
     end
-    object tblAuthorizOthers: TWideMemoField
-      FieldName = 'Others'
-      BlobType = ftWideMemo
-    end
     object tblAuthorizFComment: TWideMemoField
       FieldName = 'FComment'
       BlobType = ftWideMemo
+    end
+    object tblAuthorizPhoto: TBlobField
+      FieldName = 'Photo'
+      KeyFields = 'Photo'
+    end
+    object tblAuthorizReference: TWideStringField
+      FieldName = 'Reference'
+      KeyFields = 'Reference'
+      Size = 255
+    end
+    object tblAuthorizOthers: TWideStringField
+      FieldName = 'Others'
+      KeyFields = 'Others'
+      Size = 255
     end
   end
   object tblElectricitt: TADOTable

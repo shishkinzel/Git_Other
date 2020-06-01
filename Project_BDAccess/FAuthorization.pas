@@ -14,19 +14,25 @@ type
     pnlTabPhone: TPanel;
     dbgrdAuthorization: TDBGrid;
     pnlDown: TPanel;
-    lblSearch: TLabel;
-    lblOne: TLabel;
-    lblScan: TLabel;
+    lblEdit: TLabel;
+    lblReview: TLabel;
     lblSearchTwo: TLabel;
     bvlDown: TBevel;
     bvlDownTwo: TBevel;
     btnEdit: TButton;
-    btnTwo: TButton;
-    edtSearch: TEdit;
+    btnReview: TButton;
     edtSearchTwo: TEdit;
     btnSearc: TButton;
     splAutorization: TSplitter;
+    pnlSearch: TPanel;
+    edtSearch: TEdit;
+    lblSearhResource: TLabel;
+    lblSearch: TLabel;
+    edtSearchResource: TEdit;
+    lblTitle: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnReviewClick(Sender: TObject);
+    procedure btnEditClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,9 +45,32 @@ var
 implementation
 
 uses
-  FMainAccess, FDataModule;
+  FMainAccess, FDataModule, FEditAuthorization;
 
 {$R *.dfm}
+
+procedure TfrmAuthorization.btnEditClick(Sender: TObject);
+begin
+ frmEditAuthorization.grpEditAuth.Caption := 'Новая запись списка авторизации';
+with frmEditAuthorization.dbnvgrAuth do
+begin
+  VisibleButtons := VisibleButtons + [nbInsert]  + [nbDelete] + [nbEdit] + [nbPost] +
+                      [nbCancel] + [nbRefresh];
+end;
+frmEditAuthorization.ShowModal;
+end;
+
+procedure TfrmAuthorization.btnReviewClick(Sender: TObject);
+begin
+frmEditAuthorization.btnPhoto.Enabled := False;
+frmEditAuthorization.grpEditAuth.Caption := 'Просмотр списка авторизации';
+with frmEditAuthorization.dbnvgrAuth do
+begin
+  VisibleButtons := VisibleButtons - [nbInsert]  - [nbDelete] - [nbEdit] - [nbPost] -
+                      [nbCancel] - [nbRefresh];
+end;
+frmEditAuthorization.ShowModal;
+end;
 
 procedure TfrmAuthorization.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
