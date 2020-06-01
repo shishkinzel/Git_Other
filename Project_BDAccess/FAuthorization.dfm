@@ -2,8 +2,8 @@ object frmAuthorization: TfrmAuthorization
   Left = 0
   Top = 0
   Caption = #1041#1072#1079#1072' '#1072#1074#1090#1086#1088#1080#1079#1072#1094#1080#1080
-  ClientHeight = 806
-  ClientWidth = 1204
+  ClientHeight = 611
+  ClientWidth = 1184
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,113 +14,50 @@ object frmAuthorization: TfrmAuthorization
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
-  object pnlDown: TPanel
+  object splAutorization: TSplitter
     Left = 0
-    Top = 576
-    Width = 1204
-    Height = 230
+    Top = 458
+    Width = 1184
+    Height = 3
+    Cursor = crVSplit
     Align = alBottom
-    TabOrder = 0
-    object lblSearch: TLabel
-      Left = 72
-      Top = 24
-      Width = 43
-      Height = 13
-      Caption = 'lblSearch'
-    end
-    object lblOne: TLabel
-      Left = 72
-      Top = 59
-      Width = 43
-      Height = 13
-      Caption = 'lblSearch'
-    end
-    object lblTwo: TLabel
-      Left = 72
-      Top = 88
-      Width = 43
-      Height = 13
-      Caption = 'lblSearch'
-    end
-    object dbedtSearch: TDBEdit
-      Left = 169
-      Top = 24
-      Width = 121
-      Height = 21
-      TabOrder = 0
-    end
-    object dbedtOne: TDBEdit
-      Left = 169
-      Top = 51
-      Width = 121
-      Height = 21
-      TabOrder = 1
-    end
-    object dbedtTwo: TDBEdit
-      Left = 169
-      Top = 88
-      Width = 121
-      Height = 21
-      TabOrder = 2
-    end
-    object btnSearch: TButton
-      Left = 344
-      Top = 18
-      Width = 75
-      Height = 25
-      Caption = 'btnSearch'
-      TabOrder = 3
-    end
-    object btnOne: TButton
-      Left = 344
-      Top = 49
-      Width = 75
-      Height = 25
-      Caption = 'btnSearch'
-      TabOrder = 4
-    end
-    object btnTwo: TButton
-      Left = 344
-      Top = 80
-      Width = 75
-      Height = 25
-      Caption = 'btnSearch'
-      TabOrder = 5
-    end
+    ExplicitTop = 25
+    ExplicitWidth = 436
   end
   object pnlNav: TPanel
     Left = 0
     Top = 0
-    Width = 1204
+    Width = 1184
     Height = 25
     Align = alTop
-    TabOrder = 1
-    ExplicitWidth = 1191
+    TabOrder = 0
+    ExplicitWidth = 1204
     object dbnvgrAuthorization: TDBNavigator
       Left = 1
       Top = 1
-      Width = 1202
+      Width = 1182
       Height = 23
       DataSource = dmAccessBD.dsAuthoriz
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 1189
+      ExplicitWidth = 1202
     end
   end
   object pnlTabPhone: TPanel
     Left = 0
     Top = 25
-    Width = 1204
-    Height = 560
-    Align = alTop
+    Width = 1184
+    Height = 433
+    Align = alClient
     Caption = 'pnlTabPhone'
-    TabOrder = 2
-    ExplicitWidth = 1191
+    TabOrder = 1
+    ExplicitWidth = 1204
+    ExplicitHeight = 352
     object dbgrdAuthorization: TDBGrid
       Left = 1
       Top = 1
-      Width = 1202
-      Height = 558
+      Width = 1182
+      Height = 431
       Align = alClient
       DataSource = dmAccessBD.dsAuthoriz
       TabOrder = 0
@@ -186,6 +123,103 @@ object frmAuthorization: TfrmAuthorization
           Width = 323
           Visible = True
         end>
+    end
+  end
+  object pnlDown: TPanel
+    Left = 0
+    Top = 461
+    Width = 1184
+    Height = 150
+    Align = alBottom
+    TabOrder = 2
+    DesignSize = (
+      1184
+      150)
+    object lblSearch: TLabel
+      Left = 388
+      Top = 36
+      Width = 105
+      Height = 38
+      Alignment = taCenter
+      AutoSize = False
+      Caption = #1042#1074#1077#1076#1080#1090#1077' '#1080#1084#1103' '#1076#1083#1103#13#10#1073#1099#1089#1090#1088#1086#1075#1086' '#1087#1086#1080#1089#1082#1072
+      WordWrap = True
+    end
+    object lblOne: TLabel
+      Left = 32
+      Top = 38
+      Width = 124
+      Height = 13
+      Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100' '#1090#1072#1073#1083#1080#1094#1091
+    end
+    object lblScan: TLabel
+      Left = 32
+      Top = 101
+      Width = 95
+      Height = 13
+      Caption = #1055#1088#1086#1089#1084#1086#1090#1088' '#1090#1072#1073#1083#1080#1094#1099
+    end
+    object lblSearchTwo: TLabel
+      Left = 383
+      Top = 96
+      Width = 105
+      Height = 18
+      Alignment = taCenter
+      AutoSize = False
+      Caption = #1055#1086#1080#1089#1082#13#10
+      WordWrap = True
+    end
+    object bvlDown: TBevel
+      Left = 353
+      Top = 1
+      Width = 7
+      Height = 150
+      Anchors = [akLeft, akTop, akBottom]
+    end
+    object bvlDownTwo: TBevel
+      Left = 841
+      Top = 1
+      Width = 7
+      Height = 151
+      Anchors = [akLeft, akTop, akBottom]
+    end
+    object btnEdit: TButton
+      Left = 194
+      Top = 34
+      Width = 127
+      Height = 25
+      Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
+      TabOrder = 0
+    end
+    object btnTwo: TButton
+      Left = 194
+      Top = 89
+      Width = 127
+      Height = 25
+      Caption = #1055#1088#1086#1089#1084#1086#1090#1088
+      TabOrder = 1
+    end
+    object edtSearch: TEdit
+      Left = 512
+      Top = 37
+      Width = 161
+      Height = 21
+      TabOrder = 2
+    end
+    object edtSearchTwo: TEdit
+      Left = 512
+      Top = 89
+      Width = 161
+      Height = 21
+      TabOrder = 3
+    end
+    object btnSearc: TButton
+      Left = 712
+      Top = 89
+      Width = 75
+      Height = 21
+      Caption = #1053#1072#1081#1090#1080
+      TabOrder = 4
     end
   end
 end

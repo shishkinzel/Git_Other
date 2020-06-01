@@ -9,20 +9,23 @@ uses
 
 type
   TfrmAuthorization = class(TForm)
-    pnlDown: TPanel;
-    lblSearch: TLabel;
-    lblOne: TLabel;
-    lblTwo: TLabel;
-    dbedtSearch: TDBEdit;
-    dbedtOne: TDBEdit;
-    dbedtTwo: TDBEdit;
-    btnSearch: TButton;
-    btnOne: TButton;
-    btnTwo: TButton;
     pnlNav: TPanel;
     dbnvgrAuthorization: TDBNavigator;
     pnlTabPhone: TPanel;
     dbgrdAuthorization: TDBGrid;
+    pnlDown: TPanel;
+    lblSearch: TLabel;
+    lblOne: TLabel;
+    lblScan: TLabel;
+    lblSearchTwo: TLabel;
+    bvlDown: TBevel;
+    bvlDownTwo: TBevel;
+    btnEdit: TButton;
+    btnTwo: TButton;
+    edtSearch: TEdit;
+    edtSearchTwo: TEdit;
+    btnSearc: TButton;
+    splAutorization: TSplitter;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }

@@ -2,8 +2,8 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
   Left = 0
   Top = 0
   Caption = #1059#1095#1105#1090' '#1087#1086#1090#1088#1077#1073#1083#1077#1085#1080#1103' '#1074#1086#1076#1099
-  ClientHeight = 828
-  ClientWidth = 1202
+  ClientHeight = 611
+  ClientWidth = 1184
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,39 +14,51 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
+  object splWater: TSplitter
+    Left = 0
+    Top = 459
+    Width = 1184
+    Height = 2
+    Cursor = crVSplit
+    Align = alBottom
+    ExplicitTop = 458
+  end
   object pnlNav: TPanel
     Left = 0
     Top = 0
-    Width = 1202
-    Height = 25
+    Width = 1184
+    Height = 20
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 1191
+    ExplicitWidth = 1202
     object dbnvgrWater: TDBNavigator
       Left = 1
       Top = 1
-      Width = 1200
-      Height = 23
+      Width = 1182
+      Height = 18
       DataSource = dmAccessBD.dsPhoneBook
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 1189
+      ExplicitWidth = 1200
+      ExplicitHeight = 23
     end
   end
   object pnlTabPhone: TPanel
     Left = 0
-    Top = 25
-    Width = 1202
-    Height = 560
-    Align = alTop
+    Top = 20
+    Width = 1184
+    Height = 439
+    Align = alClient
     Caption = 'pnlTabPhone'
     TabOrder = 1
-    ExplicitWidth = 1191
+    ExplicitTop = 25
+    ExplicitWidth = 1202
+    ExplicitHeight = 280
     object dbgrdWater: TDBGrid
       Left = 1
       Top = 1
-      Width = 1200
-      Height = 558
+      Width = 1182
+      Height = 437
       Align = alClient
       DataSource = dmAccessBD.dsWater
       TabOrder = 0
@@ -131,80 +143,99 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
   end
   object pnlDown: TPanel
     Left = 0
-    Top = 585
-    Width = 1202
-    Height = 243
-    Align = alClient
+    Top = 461
+    Width = 1184
+    Height = 150
+    Align = alBottom
     TabOrder = 2
-    ExplicitLeft = -8
-    ExplicitTop = 590
-    ExplicitWidth = 1191
-    ExplicitHeight = 210
+    DesignSize = (
+      1184
+      150)
     object lblSearch: TLabel
-      Left = 72
-      Top = 24
-      Width = 43
-      Height = 13
-      Caption = 'lblSearch'
+      Left = 388
+      Top = 36
+      Width = 105
+      Height = 38
+      Alignment = taCenter
+      AutoSize = False
+      Caption = #1042#1074#1077#1076#1080#1090#1077' '#1080#1084#1103' '#1076#1083#1103#13#10#1073#1099#1089#1090#1088#1086#1075#1086' '#1087#1086#1080#1089#1082#1072
+      WordWrap = True
     end
     object lblOne: TLabel
-      Left = 72
-      Top = 59
-      Width = 43
+      Left = 32
+      Top = 38
+      Width = 124
       Height = 13
-      Caption = 'lblSearch'
+      Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100' '#1090#1072#1073#1083#1080#1094#1091
     end
-    object lblTwo: TLabel
-      Left = 72
-      Top = 88
-      Width = 43
+    object lblScan: TLabel
+      Left = 32
+      Top = 101
+      Width = 95
       Height = 13
-      Caption = 'lblSearch'
+      Caption = #1055#1088#1086#1089#1084#1086#1090#1088' '#1090#1072#1073#1083#1080#1094#1099
     end
-    object dbedtSearch: TDBEdit
-      Left = 169
-      Top = 24
-      Width = 121
-      Height = 21
+    object lblSearchTwo: TLabel
+      Left = 383
+      Top = 96
+      Width = 105
+      Height = 18
+      Alignment = taCenter
+      AutoSize = False
+      Caption = #1055#1086#1080#1089#1082#13#10
+      WordWrap = True
+    end
+    object bvlDown: TBevel
+      Left = 353
+      Top = 1
+      Width = 7
+      Height = 150
+      Anchors = [akLeft, akTop, akBottom]
+    end
+    object bvlDownTwo: TBevel
+      Left = 841
+      Top = 1
+      Width = 7
+      Height = 151
+      Anchors = [akLeft, akTop, akBottom]
+    end
+    object btnEdit: TButton
+      Left = 194
+      Top = 34
+      Width = 127
+      Height = 25
+      Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
       TabOrder = 0
     end
-    object dbedtOne: TDBEdit
-      Left = 169
-      Top = 51
-      Width = 121
-      Height = 21
+    object btnTwo: TButton
+      Left = 194
+      Top = 89
+      Width = 127
+      Height = 25
+      Caption = #1055#1088#1086#1089#1084#1086#1090#1088
       TabOrder = 1
     end
-    object dbedtTwo: TDBEdit
-      Left = 169
-      Top = 88
-      Width = 121
+    object edtSearch: TEdit
+      Left = 512
+      Top = 37
+      Width = 161
       Height = 21
       TabOrder = 2
     end
-    object btnSearch: TButton
-      Left = 344
-      Top = 18
-      Width = 75
-      Height = 25
-      Caption = 'btnSearch'
+    object edtSearchTwo: TEdit
+      Left = 512
+      Top = 89
+      Width = 161
+      Height = 21
       TabOrder = 3
     end
-    object btnOne: TButton
-      Left = 344
-      Top = 49
+    object btnSearc: TButton
+      Left = 712
+      Top = 89
       Width = 75
-      Height = 25
-      Caption = 'btnSearch'
+      Height = 21
+      Caption = #1053#1072#1081#1090#1080
       TabOrder = 4
-    end
-    object btnTwo: TButton
-      Left = 344
-      Top = 80
-      Width = 75
-      Height = 25
-      Caption = 'btnSearch'
-      TabOrder = 5
     end
   end
 end

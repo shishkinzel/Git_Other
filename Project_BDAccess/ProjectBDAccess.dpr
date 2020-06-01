@@ -8,7 +8,8 @@ uses
   FAuthorization in 'FAuthorization.pas' {frmAuthorization},
   FElectricity in 'FElectricity.pas' {frmElectricity},
   FWaterMeter in 'FWaterMeter.pas' {frmWaterMeterReadings},
-  FEditPhoneBook in 'FEditPhoneBook.pas' {frmEditPhoneBook};
+  FEditPhoneBook in 'FEditPhoneBook.pas' {frmEditPhoneBook},
+  FEditAuthorization in 'FEditAuthorization.pas' {frmEditAuthorization};
 
 {$R *.res}
 
@@ -22,5 +23,6 @@ begin
   Application.CreateForm(TfrmElectricity, frmElectricity);
   Application.CreateForm(TfrmWaterMeterReadings, frmWaterMeterReadings);
   Application.CreateForm(TfrmEditPhoneBook, frmEditPhoneBook);
+  Application.CreateForm(TfrmEditAuthorization, frmEditAuthorization);
   Application.Run;
 end.

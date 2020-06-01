@@ -16,13 +16,16 @@ type
     pnlDown: TPanel;
     lblSearch: TLabel;
     lblOne: TLabel;
-    lblTwo: TLabel;
-    dbedtSearch: TDBEdit;
-    dbedtOne: TDBEdit;
-    dbedtTwo: TDBEdit;
-    btnSearch: TButton;
-    btnOne: TButton;
+    lblScan: TLabel;
+    lblSearchTwo: TLabel;
+    bvlDown: TBevel;
+    bvlDownTwo: TBevel;
+    btnEdit: TButton;
     btnTwo: TButton;
+    edtSearch: TEdit;
+    edtSearchTwo: TEdit;
+    btnSearc: TButton;
+    splWater: TSplitter;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }

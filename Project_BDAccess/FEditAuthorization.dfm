@@ -1,9 +1,9 @@
-object frmEditPhoneBook: TfrmEditPhoneBook
+object frmEditAuthorization: TfrmEditAuthorization
   Left = 0
   Top = 0
-  Caption = #1058#1077#1083#1077#1092#1086#1085#1085#1099#1081' '#1089#1087#1088#1072#1074#1086#1095#1085#1080#1082
+  Caption = #1044#1072#1085#1085#1085#1099#1077' '#1076#1083#1103' '#1072#1074#1090#1086#1088#1080#1079#1072#1094#1080#1080' '#1085#1072' '#1088#1077#1089#1091#1088#1089#1072
   ClientHeight = 491
-  ClientWidth = 750
+  ClientWidth = 734
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,14 +11,12 @@ object frmEditPhoneBook: TfrmEditPhoneBook
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poScreenCenter
-  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object grpEditPhone: TGroupBox
     Left = 0
     Top = 0
-    Width = 750
+    Width = 734
     Height = 489
     Align = alTop
     Caption = #1047#1072#1087#1080#1089#1100' '#1085#1086#1074#1086#1075#1086' '#1072#1073#1086#1085#1077#1085#1090#1072
@@ -29,7 +27,8 @@ object frmEditPhoneBook: TfrmEditPhoneBook
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 755
+    ExplicitLeft = -16
+    ExplicitWidth = 750
     object lblName: TLabel
       Left = 16
       Top = 56
@@ -236,7 +235,6 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       Font.Style = []
       ParentFont = False
       TabOrder = 7
-      OnClick = btnPhotoClick
     end
     object dbedtReference: TDBEdit
       Left = 408
@@ -266,11 +264,6 @@ object frmEditPhoneBook: TfrmEditPhoneBook
       Font.Style = []
       ParentFont = False
       TabOrder = 9
-      OnClick = btnApplyClick
     end
-  end
-  object dlgOpenPicPhoto: TOpenPictureDialog
-    Left = 424
-    Top = 72
   end
 end
