@@ -15,9 +15,9 @@ type
     lbl4: TLabel;
     btnExit: TButton;
     btnStart: TButton;
-    edtDate: TEdit;
     clndrpckrDeparture: TCalendarPicker;
     clndrpckrBay: TCalendarPicker;
+    cbbDay: TComboBox;
     procedure btnStartClick(Sender: TObject);
     procedure btnExitClick(Sender: TObject);
     procedure clndrpckrDepartureChange(Sender: TObject);
@@ -44,26 +44,26 @@ procedure TfrmBayTicket.btnStartClick(Sender: TObject);
 var
   day: Integer;
 begin
-  day := StrToIntDef(edtDate.Text, 0);
+  day := StrToIntDef(cbbDay.Text, 0);
   if day <> 0 then
   begin
     lbl4.Visible := True;
     clndrpckrBay.Visible := True;
-    day := StrToInt(edtDate.Text);
+    day := StrToInt(cbbDay.Text);
     clndrpckrBay.Date := clndrpckrDeparture.Date - (day - 1);
   end
   else
   begin
-    edtDate.Clear;
+    cbbDay.Clear;
     ShowMessage('Введите корректные данные в поле ' + #10 + '"За какое количество суток"');
-    edtDate.SetFocus;
+    cbbDay.SetFocus;
   end;
 end;
 
 procedure TfrmBayTicket.clndrpckrDepartureChange(Sender: TObject);
 begin
-  edtDate.Clear;
-  edtDate.SetFocus;
+  cbbDay.Text := '';
+  cbbDay.SetFocus;
 end;
 
 procedure TfrmBayTicket.edtDateKeyPress(Sender: TObject; var Key: Char);

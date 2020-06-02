@@ -87,21 +87,6 @@ object frmBayTicket: TfrmBayTicket
     TabOrder = 1
     OnClick = btnStartClick
   end
-  object edtDate: TEdit
-    Left = 184
-    Top = 106
-    Width = 65
-    Height = 24
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 2
-    Text = #1057#1091#1090#1082#1080
-    OnKeyPress = edtDateKeyPress
-  end
   object clndrpckrDeparture: TCalendarPicker
     Left = 112
     Top = 48
@@ -124,7 +109,7 @@ object frmBayTicket: TfrmBayTicket
     Font.Style = []
     OnChange = clndrpckrDepartureChange
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 2
     TextHint = #1042#1074#1077#1076#1080#1090#1077' '#1076#1072#1090#1091
   end
   object clndrpckrBay: TCalendarPicker
@@ -148,8 +133,22 @@ object frmBayTicket: TfrmBayTicket
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 3
     TextHint = 'select a date'
     Visible = False
+  end
+  object cbbDay: TComboBox
+    Left = 174
+    Top = 108
+    Width = 75
+    Height = 21
+    AutoDropDown = True
+    TabOrder = 4
+    Text = #1044#1085#1080
+    Items.Strings = (
+      '45'
+      '60'
+      '90'
+      '120')
   end
 end
