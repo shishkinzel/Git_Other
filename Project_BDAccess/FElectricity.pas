@@ -21,12 +21,13 @@ type
     bvlDown: TBevel;
     bvlDownTwo: TBevel;
     btnEdit: TButton;
-    btnTwo: TButton;
+    btnReview: TButton;
     edtSearch: TEdit;
     edtSearchTwo: TEdit;
     btnSearc: TButton;
     splTabElectricity: TSplitter;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnReviewClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,9 +40,14 @@ var
 implementation
 
 uses
-  FMainAccess, FDataModule;
+  FMainAccess, FDataModule, FEditElectricity;
 
 {$R *.dfm}
+
+procedure TfrmElectricity.btnReviewClick(Sender: TObject);
+begin
+frmEditElectriity.ShowModal;
+end;
 
 procedure TfrmElectricity.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

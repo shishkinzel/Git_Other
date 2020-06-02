@@ -21,12 +21,13 @@ type
     bvlDown: TBevel;
     bvlDownTwo: TBevel;
     btnEdit: TButton;
-    btnTwo: TButton;
+    btnReview: TButton;
     edtSearch: TEdit;
     edtSearchTwo: TEdit;
     btnSearc: TButton;
     splWater: TSplitter;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnReviewClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,9 +40,14 @@ var
 implementation
 
 uses
-  FDataModule, FMainAccess;
+  FDataModule, FMainAccess, FEditWater;
 
 {$R *.dfm}
+
+procedure TfrmWaterMeterReadings.btnReviewClick(Sender: TObject);
+begin
+frmEditWater.ShowModal;
+end;
 
 procedure TfrmWaterMeterReadings.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
