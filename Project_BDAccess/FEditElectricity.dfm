@@ -12,6 +12,7 @@ object frmEditElectriity: TfrmEditElectriity
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -162,6 +163,7 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      OnKeyPress = dbedtNowKeyPress
     end
     object dbedtlTotal: TDBEdit
       Left = 452
@@ -217,7 +219,7 @@ object frmEditElectriity: TfrmEditElectriity
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       TabOrder = 5
     end
-    object btnPhoto: TButton
+    object btnEnter: TButton
       Left = 646
       Top = 224
       Width = 73
@@ -230,7 +232,7 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       ParentFont = False
       TabOrder = 6
-      OnClick = btnPhotoClick
+      OnClick = btnEnterClick
     end
     object dbedtReference: TDBEdit
       Left = 408
@@ -291,6 +293,7 @@ object frmEditElectriity: TfrmEditElectriity
       MaxLength = 10
       ParentFont = False
       TabOrder = 10
+      OnKeyPress = dbedtTariffKeyPress
     end
   end
 end

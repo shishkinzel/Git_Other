@@ -22,14 +22,17 @@ type
     dbedtPrior: TDBEdit;
     dbmmoComment: TDBMemo;
     dbnvgrAuth: TDBNavigator;
-    btnPhoto: TButton;
+    btnEnter: TButton;
     dbedtReference: TDBEdit;
     btnApply: TButton;
     dbedtDate: TDBEdit;
     dbedtTariff: TDBEdit;
     lblDate: TLabel;
-    procedure btnPhotoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure dbedtNowKeyPress(Sender: TObject; var Key: Char);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure dbedtTariffKeyPress(Sender: TObject; var Key: Char);
+    procedure btnEnterClick(Sender: TObject);
 
 
   private
@@ -52,16 +55,38 @@ uses
 
 
 
-procedure TfrmEditElectriity.btnPhotoClick(Sender: TObject);
+procedure TfrmEditElectriity.btnEnterClick(Sender: TObject);
 begin
-dbedtConsumption.EditText := IntToStr(StrToInt(dbedtNow.EditText) - StrToInt(dbedtPrior.EditText));
-dbedtlTotal.EditText := IntToStr(StrToInt(dbedtConsumption.EditText) * StrToInt(dbedtTariff.EditText));
 dmAccessBD.tblElectricitt.Post;
 dmAccessBD.tblElectricitt.Refresh;
+ frmElectricity.fFlagEdit := False;
 Self.Close;
 end;
 
 
+procedure TfrmEditElectriity.dbedtNowKeyPress(Sender: TObject; var Key: Char);
+begin
+ if key = #13 then
+ begin
+ dbedtConsumption.EditText := IntToStr(StrToInt(dbedtNow.EditText) - StrToInt(dbedtPrior.EditText));
+ dbedtTariff.SetFocus;
+ end;
+end;
+
+procedure TfrmEditElectriity.dbedtTariffKeyPress(Sender: TObject; var Key: Char);
+begin
+ if key = #13 then
+ begin
+ dbedtlTotal.EditText := FloatToStr(StrToInt(dbedtConsumption.EditText) * StrToFloat(dbedtTariff.EditText));
+ btnEnter.SetFocus;
+ end;
+end;
+
+procedure TfrmEditElectriity.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+if frmElectricity.fFlagEdit then
+dmAccessBD.tblElectricitt.Delete;
+end;
 
 procedure TfrmEditElectriity.FormShow(Sender: TObject);
 begin
