@@ -3,8 +3,9 @@ unit FEditElectricity;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Mask, DateUtils;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Mask, DateUtils;
 
 type
   TfrmEditElectriity = class(TForm)
@@ -33,12 +34,10 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure dbedtTariffKeyPress(Sender: TObject; var Key: Char);
     procedure btnEnterClick(Sender: TObject);
-
-
   private
     { Private declarations }
     var
-       fPriorReading : Integer;
+      fPriorReading: Integer;
   public
     { Public declarations }
   end;
@@ -53,75 +52,91 @@ uses
 
 {$R *.dfm}
 
-
-
 procedure TfrmEditElectriity.btnEnterClick(Sender: TObject);
 begin
-dmAccessBD.tblElectricitt.Post;
-dmAccessBD.tblElectricitt.Refresh;
- frmElectricity.fFlagEdit := False;
-Self.Close;
+  dmAccessBD.tblElectricitt.Post;
+  dmAccessBD.tblElectricitt.Refresh;
+  frmElectricity.fFlagEdit := False;
+  Self.Close;
 end;
-
 
 procedure TfrmEditElectriity.dbedtNowKeyPress(Sender: TObject; var Key: Char);
 begin
- if key = #13 then
- begin
- dbedtConsumption.EditText := IntToStr(StrToInt(dbedtNow.EditText) - StrToInt(dbedtPrior.EditText));
- dbedtTariff.SetFocus;
- end;
+  if Key = #13 then
+  begin
+    dbedtConsumption.EditText := IntToStr(StrToInt(dbedtNow.EditText) - StrToInt(dbedtPrior.EditText));
+    dbedtTariff.SetFocus;
+  end;
 end;
 
 procedure TfrmEditElectriity.dbedtTariffKeyPress(Sender: TObject; var Key: Char);
 begin
- if key = #13 then
- begin
- dbedtlTotal.EditText := FloatToStr(StrToInt(dbedtConsumption.EditText) * StrToFloat(dbedtTariff.EditText));
- btnEnter.SetFocus;
- end;
+  if Key = #13 then
+  begin
+    dbedtlTotal.EditText := FloatToStr(StrToInt(dbedtConsumption.EditText) * StrToFloat(dbedtTariff.EditText));
+    btnEnter.SetFocus;
+  end;
 end;
 
 procedure TfrmEditElectriity.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-if frmElectricity.fFlagEdit then
-dmAccessBD.tblElectricitt.Delete;
+  if frmElectricity.fFlagEdit then
+    dmAccessBD.tblElectricitt.Delete;
 end;
 
 procedure TfrmEditElectriity.FormShow(Sender: TObject);
 var
   fnow: TDate;
   s: string;
+  fError : Boolean;
 begin
+  fError := True;
   dbedtConsumption.Enabled := False;
   dbedtlTotal.Enabled := False;
   dmAccessBD.tblElectricitt.edit;
   dmAccessBD.tblElectricitt.Last;
-  if dbedtPrior.EditText = '' then
+  if (dbedtPrior.EditText = '') and frmElectricity.fFlagEdit then
   begin
-    s := InputBox('Введите начальные показания счётчика', 'CounterReadingsPrevious', '-1');
-    if StrToInt(s) < 0 then
+    while fError do
     begin
-      ShowMessage('Вы ввели недопустимое значение');
-
+      s := InputBox('Введите начальные показания счётчика', 'CounterReadingsPrevious', '-1');
+      if StrToInt(s) < 0 then
+        ShowMessage('Вы ввели недопустимое значение')
+      else
+        fError := False;
     end;
 
-  end;
-  if frmElectricity.fFlagEdit then
-  begin
-
-    fPriorReading := dmAccessBD.tblElectricitt.FieldByName('CounterReadingsNow').AsInteger;
+    fPriorReading := StrToInt(s);
     dmAccessBD.tblElectricitt.Insert;
     dmAccessBD.tblElectricitt.FieldByName('CounterReadingsPrevious').AsInteger := fPriorReading;
     fnow := Now;
 
     dbedtNow.Enabled := True;
-    dbedtPrior.Enabled := True;
     dbedtTariff.Enabled := True;
     dbedtDate.Enabled := True;
     dbedtNow.SetFocus;
     dbedtDate.EditText := DateToStr(fnow);
+  end
+
+  else
+  begin
+    if frmElectricity.fFlagEdit then
+    begin
+
+      dbedtPrior.Enabled := True;
+      fPriorReading := dmAccessBD.tblElectricitt.FieldByName('CounterReadingsNow').AsInteger;
+      dmAccessBD.tblElectricitt.Insert;
+      dmAccessBD.tblElectricitt.FieldByName('CounterReadingsPrevious').AsInteger := fPriorReading;
+      fnow := Now;
+
+      dbedtNow.Enabled := True;
+      dbedtTariff.Enabled := True;
+      dbedtDate.Enabled := True;
+      dbedtNow.SetFocus;
+      dbedtDate.EditText := DateToStr(fnow);
+    end;
   end;
+
 
 end;
 
