@@ -26,6 +26,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnAddClick(Sender: TObject);
     procedure btnReviewClick(Sender: TObject);
+    procedure btnEditClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -33,6 +34,7 @@ type
     { Public declarations }
     var
       fFlagEdit: Boolean;
+      fFlagAdd : Boolean;
   end;
 
 var
@@ -50,6 +52,12 @@ begin
     fFlagEdit := True;
   frmEditElectriity.ShowModal;
 
+end;
+
+procedure TfrmElectricity.btnEditClick(Sender: TObject);
+begin
+fFlagAdd := True;
+frmEditElectriity.ShowModal;
 end;
 
 procedure TfrmElectricity.btnReviewClick(Sender: TObject);

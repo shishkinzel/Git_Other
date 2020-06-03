@@ -37,6 +37,7 @@ object frmElectricity: TfrmElectricity
       Width = 1182
       Height = 18
       DataSource = dmAccessBD.dsElectricitt
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       Align = alClient
       TabOrder = 0
     end
@@ -182,6 +183,7 @@ object frmElectricity: TfrmElectricity
       Height = 25
       Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
       TabOrder = 0
+      OnClick = btnEditClick
     end
     object btnAdd: TButton
       Left = 186

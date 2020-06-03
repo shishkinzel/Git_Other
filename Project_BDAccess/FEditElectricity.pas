@@ -22,7 +22,7 @@ type
     dbedtlTotal: TDBEdit;
     dbedtPrior: TDBEdit;
     dbmmoComment: TDBMemo;
-    dbnvgrAuth: TDBNavigator;
+    dbnvgrElectricity: TDBNavigator;
     btnEnter: TButton;
     dbedtReference: TDBEdit;
     btnApply: TButton;
@@ -54,8 +54,11 @@ uses
 
 procedure TfrmEditElectriity.btnEnterClick(Sender: TObject);
 begin
-  dmAccessBD.tblElectricitt.Post;
-  dmAccessBD.tblElectricitt.Refresh;
+  if dmAccessBD.tblElectricitt.Modified then
+  begin
+    dmAccessBD.tblElectricitt.Post;
+    dmAccessBD.tblElectricitt.Refresh;
+  end;
   frmElectricity.fFlagEdit := False;
   Self.Close;
 end;
@@ -80,22 +83,31 @@ end;
 
 procedure TfrmEditElectriity.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  dbnvgrElectricity.Visible := True;
+  dbedtNow.Enabled := False;
+  dbedtTariff.Enabled := False;
+  dbedtDate.Enabled := False;
+  btnEnter.Enabled := False;
+  dbmmoComment.Enabled := False;
+  grpEditElectricity.Caption := 'Просмотр показаний электросчётчика';
   if frmElectricity.fFlagEdit then
     dmAccessBD.tblElectricitt.Delete;
+  frmElectricity.fFlagEdit := False;
+  frmElectricity.fFlagAdd := False;
 end;
 
 procedure TfrmEditElectriity.FormShow(Sender: TObject);
 var
   fnow: TDate;
   s: string;
-  fError : Boolean;
+  fError: Boolean;
 begin
   fError := True;
   dbedtConsumption.Enabled := False;
   dbedtlTotal.Enabled := False;
   dmAccessBD.tblElectricitt.edit;
   dmAccessBD.tblElectricitt.Last;
-  if (dbedtPrior.EditText = '') and frmElectricity.fFlagEdit then
+  if (dbedtPrior.EditText = '') and frmElectricity.fFlagEdit and not(frmElectricity.fFlagAdd) then
   begin
     while fError do
     begin
@@ -110,33 +122,42 @@ begin
     dmAccessBD.tblElectricitt.Insert;
     dmAccessBD.tblElectricitt.FieldByName('CounterReadingsPrevious').AsInteger := fPriorReading;
     fnow := Now;
-
     dbedtNow.Enabled := True;
     dbedtTariff.Enabled := True;
     dbedtDate.Enabled := True;
     dbedtNow.SetFocus;
     dbedtDate.EditText := DateToStr(fnow);
   end
-
   else
   begin
-    if frmElectricity.fFlagEdit then
+    if frmElectricity.fFlagEdit and not (frmElectricity.fFlagAdd) then
     begin
-
-      dbedtPrior.Enabled := True;
+      grpEditElectricity.Caption := 'Ввод показаний электросчётчика';
       fPriorReading := dmAccessBD.tblElectricitt.FieldByName('CounterReadingsNow').AsInteger;
       dmAccessBD.tblElectricitt.Insert;
       dmAccessBD.tblElectricitt.FieldByName('CounterReadingsPrevious').AsInteger := fPriorReading;
-      fnow := Now;
-
+      dbnvgrElectricity.Visible := False;
       dbedtNow.Enabled := True;
       dbedtTariff.Enabled := True;
       dbedtDate.Enabled := True;
+      btnEnter.Enabled := True;
+      dbmmoComment.Enabled := True;
       dbedtNow.SetFocus;
+      fnow := Now;
       dbedtDate.EditText := DateToStr(fnow);
     end;
   end;
 
+  if not (frmElectricity.fFlagEdit) and frmElectricity.fFlagAdd then
+  begin
+    grpEditElectricity.Caption := 'Редактирование показаний электросчётчика';
+    dbedtPrior.Enabled := True;
+    dbedtNow.Enabled := True;
+    dbedtTariff.Enabled := True;
+    dbedtDate.Enabled := True;
+    btnEnter.Enabled := True;
+    dbmmoComment.Enabled := True;
+  end;
 
 end;
 

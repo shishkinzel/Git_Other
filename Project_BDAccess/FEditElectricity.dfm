@@ -215,14 +215,13 @@ object frmEditElectriity: TfrmEditElectriity
       ParentFont = False
       TabOrder = 4
     end
-    object dbnvgrAuth: TDBNavigator
+    object dbnvgrElectricity: TDBNavigator
       Left = 0
       Top = 455
       Width = 736
       Height = 25
       DataSource = dmAccessBD.dsElectricitt
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
-      Enabled = False
       TabOrder = 5
     end
     object btnEnter: TButton
@@ -231,6 +230,7 @@ object frmEditElectriity: TfrmEditElectriity
       Width = 73
       Height = 25
       Caption = #1047#1072#1075#1088#1091#1079#1080#1090#1100
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
