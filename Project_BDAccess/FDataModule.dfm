@@ -121,10 +121,9 @@ object dmAccessBD: TdmAccessBD
   object tblElectricitt: TADOTable
     Connection = conBDAccess
     CursorType = ctStatic
-    OnCalcFields = tblElectricittCalcFields
     TableName = 'Electricity metering book'
     Left = 96
-    Top = 215
+    Top = 223
     object tblElectricittID: TAutoIncField
       AutoGenerateValue = arDefault
       FieldName = 'ID'
@@ -141,19 +140,15 @@ object dmAccessBD: TdmAccessBD
       FieldName = 'CounterReadingsNow'
     end
     object tblElectricittConsumption: TIntegerField
-      FieldKind = fkCalculated
       FieldName = 'Consumption'
-      Calculated = True
     end
     object tblElectricittTariff: TFloatField
       FieldName = 'Tariff'
       Precision = 3
     end
     object tblElectricittTotal: TFloatField
-      FieldKind = fkCalculated
       FieldName = 'Total'
       Precision = 6
-      Calculated = True
     end
     object tblElectricittFComment: TWideMemoField
       FieldName = 'FComment'

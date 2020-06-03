@@ -11,15 +11,17 @@ object frmEditElectriity: TfrmEditElectriity
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object grpEditAuth: TGroupBox
+  object grpEditElectricity: TGroupBox
     Left = 0
     Top = 0
     Width = 734
     Height = 491
     Align = alClient
-    Caption = #1047#1072#1087#1080#1089#1100' '#1085#1086#1074#1086#1075#1086' '#1072#1073#1086#1085#1077#1085#1090#1072
+    Caption = #1055#1088#1086#1089#1084#1086#1090#1088' '#1087#1086#1082#1072#1079#1072#1085#1080#1081' '#1101#1083#1077#1082#1090#1088#1086#1089#1095#1105#1090#1095#1080#1082#1072
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -27,13 +29,12 @@ object frmEditElectriity: TfrmEditElectriity
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 733
-    object lblName: TLabel
-      Left = 16
-      Top = 44
-      Width = 74
+    object lblPrior: TLabel
+      Left = 24
+      Top = 29
+      Width = 124
       Height = 13
-      Caption = #1060#1072#1084#1080#1083#1080#1103' '#1080' '#1080#1084#1103
+      Caption = #1055#1088#1077#1076#1099#1076#1091#1097#1080#1077' '#1087#1086#1082#1072#1079#1072#1085#1080#1103
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -41,12 +42,12 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       ParentFont = False
     end
-    object lblRecource: TLabel
-      Left = 16
-      Top = 83
-      Width = 34
+    object lblNow: TLabel
+      Left = 27
+      Top = 67
+      Width = 36
       Height = 13
-      Caption = #1056#1077#1089#1091#1088#1089
+      Caption = #1057#1077#1081#1095#1072#1089
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -54,12 +55,12 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       ParentFont = False
     end
-    object lblPassword: TLabel
-      Left = 16
-      Top = 163
-      Width = 37
+    object lblTariff: TLabel
+      Left = 27
+      Top = 125
+      Width = 32
       Height = 13
-      Caption = #1055#1072#1088#1086#1083#1100
+      Caption = #1058#1072#1088#1080#1092
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -67,12 +68,12 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       ParentFont = False
     end
-    object lblOther: TLabel
-      Left = 16
-      Top = 203
-      Width = 37
+    object lblTotal: TLabel
+      Left = 357
+      Top = 141
+      Width = 31
       Height = 13
-      Caption = #1055#1088#1086#1095#1077#1077
+      Caption = #1057#1091#1084#1084#1072
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -81,24 +82,11 @@ object frmEditElectriity: TfrmEditElectriity
       ParentFont = False
     end
     object lblComment: TLabel
-      Left = 16
-      Top = 246
+      Left = 24
+      Top = 187
       Width = 67
       Height = 13
       Caption = #1050#1086#1084#1084#1077#1085#1090#1072#1088#1080#1080
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object lblPhoto: TLabel
-      Left = 408
-      Top = 24
-      Width = 77
-      Height = 13
-      Caption = #1060#1086#1090#1086' '#1072#1073#1086#1085#1077#1085#1090#1072
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -119,12 +107,12 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       ParentFont = False
     end
-    object lblLogin: TLabel
-      Left = 16
-      Top = 121
-      Width = 30
+    object lblConsumption: TLabel
+      Left = 307
+      Top = 83
+      Width = 113
       Height = 13
-      Caption = #1051#1086#1075#1080#1085
+      Caption = #1055#1086#1090#1088#1077#1073#1083#1077#1085#1080#1077' '#1079#1072' '#1084#1077#1089#1103#1094
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -132,13 +120,26 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       ParentFont = False
     end
-    object dbedtName: TDBEdit
-      Left = 132
-      Top = 40
-      Width = 230
+    object lblDate: TLabel
+      Left = 477
+      Top = 29
+      Width = 26
+      Height = 13
+      Caption = #1044#1072#1090#1072
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object dbedtConsumption: TDBEdit
+      Left = 452
+      Top = 80
+      Width = 77
       Height = 21
-      DataField = 'FName'
-      DataSource = dmAccessBD.dsAuthoriz
+      DataField = 'Consumption'
+      DataSource = dmAccessBD.dsElectricitt
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -147,13 +148,13 @@ object frmEditElectriity: TfrmEditElectriity
       ParentFont = False
       TabOrder = 0
     end
-    object dbedtRecource: TDBEdit
-      Left = 132
-      Top = 80
-      Width = 230
+    object dbedtNow: TDBEdit
+      Left = 172
+      Top = 64
+      Width = 77
       Height = 21
-      DataField = 'FRecource'
-      DataSource = dmAccessBD.dsAuthoriz
+      DataField = 'CounterReadingsNow'
+      DataSource = dmAccessBD.dsElectricitt
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -162,13 +163,13 @@ object frmEditElectriity: TfrmEditElectriity
       ParentFont = False
       TabOrder = 1
     end
-    object dbedtPassword: TDBEdit
-      Left = 132
-      Top = 160
-      Width = 230
+    object dbedtlTotal: TDBEdit
+      Left = 452
+      Top = 138
+      Width = 77
       Height = 21
-      DataField = 'FPassword'
-      DataSource = dmAccessBD.dsAuthoriz
+      DataField = 'Total'
+      DataSource = dmAccessBD.dsElectricitt
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -177,13 +178,13 @@ object frmEditElectriity: TfrmEditElectriity
       ParentFont = False
       TabOrder = 2
     end
-    object dbedtOther: TDBEdit
-      Left = 132
-      Top = 200
-      Width = 230
+    object dbedtPrior: TDBEdit
+      Left = 172
+      Top = 26
+      Width = 77
       Height = 21
-      DataField = 'Others'
-      DataSource = dmAccessBD.dsAuthoriz
+      DataField = 'CounterReadingsPrevious'
+      DataSource = dmAccessBD.dsElectricitt
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -193,12 +194,12 @@ object frmEditElectriity: TfrmEditElectriity
       TabOrder = 3
     end
     object dbmmoComment: TDBMemo
-      Left = 132
-      Top = 243
+      Left = 19
+      Top = 206
       Width = 230
-      Height = 206
+      Height = 237
       DataField = 'FComment'
-      DataSource = dmAccessBD.dsAuthoriz
+      DataSource = dmAccessBD.dsElectricitt
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -218,8 +219,8 @@ object frmEditElectriity: TfrmEditElectriity
     end
     object btnPhoto: TButton
       Left = 646
-      Top = 336
-      Width = 75
+      Top = 224
+      Width = 73
       Height = 25
       Caption = #1047#1072#1075#1088#1091#1079#1080#1090#1100
       Font.Charset = DEFAULT_CHARSET
@@ -229,6 +230,7 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       ParentFont = False
       TabOrder = 6
+      OnClick = btnPhotoClick
     end
     object dbedtReference: TDBEdit
       Left = 408
@@ -259,13 +261,13 @@ object frmEditElectriity: TfrmEditElectriity
       ParentFont = False
       TabOrder = 8
     end
-    object dbedtLogin: TDBEdit
-      Left = 132
-      Top = 118
-      Width = 230
+    object dbedtDate: TDBEdit
+      Left = 549
+      Top = 26
+      Width = 68
       Height = 21
-      DataField = 'FLogin'
-      DataSource = dmAccessBD.dsAuthoriz
+      DataField = 'FData'
+      DataSource = dmAccessBD.dsElectricitt
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -273,6 +275,22 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       ParentFont = False
       TabOrder = 9
+    end
+    object dbedtTariff: TDBEdit
+      Left = 172
+      Top = 122
+      Width = 77
+      Height = 21
+      DataField = 'Tariff'
+      DataSource = dmAccessBD.dsElectricitt
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      MaxLength = 10
+      ParentFont = False
+      TabOrder = 10
     end
   end
 end

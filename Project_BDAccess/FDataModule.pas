@@ -50,7 +50,6 @@ type
     tblAuthorizPhoto: TBlobField;
     tblAuthorizReference: TWideStringField;
     tblAuthorizOthers: TWideStringField;
-    procedure tblElectricittCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -73,14 +72,6 @@ begin
 tblPhoneBook.Locate('FName', s, [loCaseInsensitive, loPartialKey]);
 end;
 
-
-
-procedure TdmAccessBD.tblElectricittCalcFields(DataSet: TDataSet);
-begin
-  tblElectricittConsumption.AsInteger :=
-    tblElectricittCounterReadingsNow.AsInteger - tblElectricittCounterReadingsPrevious.AsInteger;
-  tblElectricittTotal.AsFloat := tblElectricittConsumption.AsInteger * tblElectricittTariff.AsFloat;
-end;
 
 
 
