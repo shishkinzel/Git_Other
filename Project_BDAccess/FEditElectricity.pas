@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Mask;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Mask, DateUtils;
 
 type
   TfrmEditElectriity = class(TForm)
@@ -89,20 +89,40 @@ dmAccessBD.tblElectricitt.Delete;
 end;
 
 procedure TfrmEditElectriity.FormShow(Sender: TObject);
+var
+  fnow: TDate;
+  s: string;
 begin
   dbedtConsumption.Enabled := False;
   dbedtlTotal.Enabled := False;
   dmAccessBD.tblElectricitt.edit;
   dmAccessBD.tblElectricitt.Last;
+  if dbedtPrior.EditText = '' then
+  begin
+    s := InputBox('Введите начальные показания счётчика', 'CounterReadingsPrevious', '-1');
+    if StrToInt(s) < 0 then
+    begin
+      ShowMessage('Вы ввели недопустимое значение');
 
+    end;
+
+  end;
   if frmElectricity.fFlagEdit then
   begin
+
     fPriorReading := dmAccessBD.tblElectricitt.FieldByName('CounterReadingsNow').AsInteger;
     dmAccessBD.tblElectricitt.Insert;
     dmAccessBD.tblElectricitt.FieldByName('CounterReadingsPrevious').AsInteger := fPriorReading;
+    fnow := Now;
+
+    dbedtNow.Enabled := True;
+    dbedtPrior.Enabled := True;
+    dbedtTariff.Enabled := True;
+    dbedtDate.Enabled := True;
+    dbedtNow.SetFocus;
+    dbedtDate.EditText := DateToStr(fnow);
   end;
-//  dbedtDate := date.Now;
-  dbedtNow.SetFocus;
+
 end;
 
 end.

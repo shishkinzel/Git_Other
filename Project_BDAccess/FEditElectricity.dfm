@@ -141,6 +141,7 @@ object frmEditElectriity: TfrmEditElectriity
       Height = 21
       DataField = 'Consumption'
       DataSource = dmAccessBD.dsElectricitt
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -156,6 +157,7 @@ object frmEditElectriity: TfrmEditElectriity
       Height = 21
       DataField = 'CounterReadingsNow'
       DataSource = dmAccessBD.dsElectricitt
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -172,6 +174,7 @@ object frmEditElectriity: TfrmEditElectriity
       Height = 21
       DataField = 'Total'
       DataSource = dmAccessBD.dsElectricitt
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -187,6 +190,7 @@ object frmEditElectriity: TfrmEditElectriity
       Height = 21
       DataField = 'CounterReadingsPrevious'
       DataSource = dmAccessBD.dsElectricitt
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -202,6 +206,7 @@ object frmEditElectriity: TfrmEditElectriity
       Height = 237
       DataField = 'FComment'
       DataSource = dmAccessBD.dsElectricitt
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -215,8 +220,9 @@ object frmEditElectriity: TfrmEditElectriity
       Top = 455
       Width = 736
       Height = 25
-      DataSource = dmAccessBD.dsAuthoriz
+      DataSource = dmAccessBD.dsElectricitt
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+      Enabled = False
       TabOrder = 5
     end
     object btnEnter: TButton
@@ -270,6 +276,7 @@ object frmEditElectriity: TfrmEditElectriity
       Height = 21
       DataField = 'FData'
       DataSource = dmAccessBD.dsElectricitt
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -285,6 +292,7 @@ object frmEditElectriity: TfrmEditElectriity
       Height = 21
       DataField = 'Tariff'
       DataSource = dmAccessBD.dsElectricitt
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
