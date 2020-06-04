@@ -56,8 +56,16 @@ procedure TfrmEditElectriity.btnEnterClick(Sender: TObject);
 begin
   if dmAccessBD.tblElectricitt.Modified then
   begin
+  try
     dmAccessBD.tblElectricitt.Post;
     dmAccessBD.tblElectricitt.Refresh;
+  except
+    on E : Exception do
+    begin
+    ShowMessage('Проверти заполнение всех обязательных полей!');
+    dmAccessBD.tblElectricitt.Cancel;
+    end;
+  end;
   end;
   frmElectricity.fFlagEdit := False;
   Self.Close;
@@ -91,7 +99,7 @@ begin
   dbmmoComment.Enabled := False;
   grpEditElectricity.Caption := 'Просмотр показаний электросчётчика';
   if frmElectricity.fFlagEdit then
-    dmAccessBD.tblElectricitt.Delete;
+    dmAccessBD.tblElectricitt.Cancel;
   frmElectricity.fFlagEdit := False;
   frmElectricity.fFlagAdd := False;
 end;

@@ -16,7 +16,7 @@ type
     mniWater: TMenuItem;
     mniHelp: TMenuItem;
     mniReference: TMenuItem;
-    imgIgor: TImage;
+    imgBD: TImage;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure mniPhoneBookClick(Sender: TObject);
     procedure mniAuthorizClick(Sender: TObject);
