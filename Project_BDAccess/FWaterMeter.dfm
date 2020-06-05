@@ -16,7 +16,7 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
   TextHeight = 13
   object splWater: TSplitter
     Left = 0
-    Top = 459
+    Top = 534
     Width = 1184
     Height = 2
     Cursor = crVSplit
@@ -44,15 +44,16 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
     Left = 0
     Top = 20
     Width = 1184
-    Height = 439
+    Height = 514
     Align = alClient
     Caption = 'pnlTabWater'
     TabOrder = 1
+    ExplicitHeight = 285
     object dbgrdWater: TDBGrid
       Left = 1
       Top = 1
       Width = 1182
-      Height = 437
+      Height = 512
       Align = alClient
       DataSource = dmAccessBD.dsWater
       TabOrder = 0
@@ -136,100 +137,75 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
   end
   object pnlDown: TPanel
     Left = 0
-    Top = 461
+    Top = 536
     Width = 1184
-    Height = 150
+    Height = 75
     Align = alBottom
     TabOrder = 2
     DesignSize = (
       1184
-      150)
-    object lblSearch: TLabel
-      Left = 388
-      Top = 36
-      Width = 105
-      Height = 38
-      Alignment = taCenter
-      AutoSize = False
-      Caption = #1042#1074#1077#1076#1080#1090#1077' '#1080#1084#1103' '#1076#1083#1103#13#10#1073#1099#1089#1090#1088#1086#1075#1086' '#1087#1086#1080#1089#1082#1072
-      WordWrap = True
-    end
-    object lblOne: TLabel
-      Left = 32
-      Top = 38
-      Width = 124
+      75)
+    object lblEdit: TLabel
+      Left = 432
+      Top = 33
+      Width = 121
       Height = 13
-      Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100' '#1090#1072#1073#1083#1080#1094#1091
+      Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100' '#1076#1072#1085#1085#1099#1077
     end
-    object lblScan: TLabel
-      Left = 32
-      Top = 101
+    object bvlDown: TBevel
+      Left = 353
+      Top = 0
+      Width = 7
+      Height = 75
+      Anchors = [akLeft, akTop, akBottom]
+      ExplicitHeight = 137
+    end
+    object bvlDownTwo: TBevel
+      Left = 769
+      Top = 6
+      Width = 7
+      Height = 76
+      Anchors = [akLeft, akTop, akBottom]
+      ExplicitHeight = 151
+    end
+    object lblAdd: TLabel
+      Left = 56
+      Top = 33
+      Width = 77
+      Height = 13
+      Caption = #1042#1085#1077#1089#1090#1080' '#1076#1072#1085#1085#1099#1077
+    end
+    object Label1: TLabel
+      Left = 800
+      Top = 33
       Width = 95
       Height = 13
       Caption = #1055#1088#1086#1089#1084#1086#1090#1088' '#1090#1072#1073#1083#1080#1094#1099
     end
-    object lblSearchTwo: TLabel
-      Left = 383
-      Top = 96
-      Width = 105
-      Height = 18
-      Alignment = taCenter
-      AutoSize = False
-      Caption = #1055#1086#1080#1089#1082#13#10
-      WordWrap = True
-    end
-    object bvlDown: TBevel
-      Left = 353
-      Top = 1
-      Width = 7
-      Height = 150
-      Anchors = [akLeft, akTop, akBottom]
-    end
-    object bvlDownTwo: TBevel
-      Left = 841
-      Top = 1
-      Width = 7
-      Height = 151
-      Anchors = [akLeft, akTop, akBottom]
-    end
     object btnEdit: TButton
-      Left = 194
-      Top = 34
+      Left = 610
+      Top = 25
       Width = 127
       Height = 25
       Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
       TabOrder = 0
     end
+    object btnAdd: TButton
+      Left = 186
+      Top = 27
+      Width = 127
+      Height = 25
+      Caption = #1042#1074#1077#1089#1090#1080
+      TabOrder = 1
+    end
     object btnReview: TButton
-      Left = 194
-      Top = 89
+      Left = 954
+      Top = 25
       Width = 127
       Height = 25
       Caption = #1055#1088#1086#1089#1084#1086#1090#1088
-      TabOrder = 1
-      OnClick = btnReviewClick
-    end
-    object edtSearch: TEdit
-      Left = 512
-      Top = 37
-      Width = 161
-      Height = 21
       TabOrder = 2
-    end
-    object edtSearchTwo: TEdit
-      Left = 512
-      Top = 89
-      Width = 161
-      Height = 21
-      TabOrder = 3
-    end
-    object btnSearc: TButton
-      Left = 712
-      Top = 89
-      Width = 75
-      Height = 21
-      Caption = #1053#1072#1081#1090#1080
-      TabOrder = 4
+      OnClick = btnReviewClick
     end
   end
 end

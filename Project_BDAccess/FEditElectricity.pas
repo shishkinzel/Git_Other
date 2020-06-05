@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Mask, DateUtils;
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Mask, DateUtils, ShellApi;
 
 type
   TfrmEditElectriity = class(TForm)
@@ -15,7 +15,6 @@ type
     lblTariff: TLabel;
     lblTotal: TLabel;
     lblComment: TLabel;
-    lblReference: TLabel;
     lblConsumption: TLabel;
     dbedtConsumption: TDBEdit;
     dbedtNow: TDBEdit;
@@ -24,16 +23,18 @@ type
     dbmmoComment: TDBMemo;
     dbnvgrElectricity: TDBNavigator;
     btnEnter: TButton;
-    dbedtReference: TDBEdit;
-    btnApply: TButton;
     dbedtDate: TDBEdit;
     dbedtTariff: TDBEdit;
     lblDate: TLabel;
+    Label1: TLabel;
+    btnCancel: TButton;
     procedure FormShow(Sender: TObject);
     procedure dbedtNowKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure dbedtTariffKeyPress(Sender: TObject; var Key: Char);
     procedure btnEnterClick(Sender: TObject);
+    procedure Label1Click(Sender: TObject);
+    procedure btnCancelClick(Sender: TObject);
   private
     { Private declarations }
     var
@@ -51,6 +52,13 @@ uses
   FElectricity, FDataModule;
 
 {$R *.dfm}
+
+procedure TfrmEditElectriity.btnCancelClick(Sender: TObject);
+begin
+if dmAccessBD.tblElectricitt.Modified then
+   dmAccessBD.tblElectricitt.Cancel;
+   self.Close;
+end;
 
 procedure TfrmEditElectriity.btnEnterClick(Sender: TObject);
 begin
@@ -97,6 +105,7 @@ begin
   dbedtDate.Enabled := False;
   btnEnter.Enabled := False;
   dbmmoComment.Enabled := False;
+   btnCancel.Enabled := False;
   grpEditElectricity.Caption := 'Просмотр показаний электросчётчика';
   if frmElectricity.fFlagEdit then
     dmAccessBD.tblElectricitt.Cancel;
@@ -150,6 +159,7 @@ begin
       dbedtDate.Enabled := True;
       btnEnter.Enabled := True;
       dbmmoComment.Enabled := True;
+      btnCancel.Enabled := True;
       dbedtNow.SetFocus;
       fnow := Now;
       dbedtDate.EditText := DateToStr(fnow);
@@ -164,10 +174,16 @@ begin
     dbedtTariff.Enabled := True;
     dbedtDate.Enabled := True;
     btnEnter.Enabled := True;
+    btnCancel.Enabled := True;
     dbmmoComment.Enabled := True;
   end;
 
 end;
+ procedure TfrmEditElectriity.Label1Click(Sender: TObject);
+begin
+  ShellExecute(Handle, 'Open', 'https://my.mosenergosbyt.ru/accounts/1168438/events/all-events', nil, nil, SW_SHOW);
+end;
 
+//https://my.mosenergosbyt.ru/accounts/1168438/events/all-events
 end.
 

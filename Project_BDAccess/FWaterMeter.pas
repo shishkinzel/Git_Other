@@ -13,21 +13,19 @@ type
     dbnvgrWater: TDBNavigator;
     pnlTabWater: TPanel;
     dbgrdWater: TDBGrid;
+    splWater: TSplitter;
     pnlDown: TPanel;
-    lblSearch: TLabel;
-    lblOne: TLabel;
-    lblScan: TLabel;
-    lblSearchTwo: TLabel;
+    lblEdit: TLabel;
     bvlDown: TBevel;
     bvlDownTwo: TBevel;
+    lblAdd: TLabel;
+    Label1: TLabel;
     btnEdit: TButton;
+    btnAdd: TButton;
     btnReview: TButton;
-    edtSearch: TEdit;
-    edtSearchTwo: TEdit;
-    btnSearc: TButton;
-    splWater: TSplitter;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnReviewClick(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -43,6 +41,8 @@ uses
   FDataModule, FMainAccess, FEditWater;
 
 {$R *.dfm}
+
+
 
 procedure TfrmWaterMeterReadings.btnReviewClick(Sender: TObject);
 begin

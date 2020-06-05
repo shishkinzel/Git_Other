@@ -8,25 +8,25 @@ uses
 
 type
   TfrmEditWater = class(TForm)
-    grpEditAuth: TGroupBox;
-    lblName: TLabel;
-    lblRecource: TLabel;
-    lblPassword: TLabel;
-    lblOther: TLabel;
+    grpEditElectricity: TGroupBox;
+    lblPrior: TLabel;
+    lblNow: TLabel;
+    lblTariff: TLabel;
+    lblTotal: TLabel;
     lblComment: TLabel;
-    lblPhoto: TLabel;
-    lblReference: TLabel;
-    lblLogin: TLabel;
-    dbedtName: TDBEdit;
-    dbedtRecource: TDBEdit;
-    dbedtPassword: TDBEdit;
-    dbedtOther: TDBEdit;
+    lblConsumption: TLabel;
+    lblDate: TLabel;
+    Label1: TLabel;
+    dbedtConsumption: TDBEdit;
+    dbedtNow: TDBEdit;
+    dbedtlTotal: TDBEdit;
+    dbedtPrior: TDBEdit;
     dbmmoComment: TDBMemo;
-    dbnvgrAuth: TDBNavigator;
-    btnPhoto: TButton;
-    dbedtReference: TDBEdit;
-    btnApply: TButton;
-    dbedtLogin: TDBEdit;
+    dbnvgrElectricity: TDBNavigator;
+    btnEnter: TButton;
+    dbedtDate: TDBEdit;
+    dbedtTariff: TDBEdit;
+    btnCancel: TButton;
   private
     { Private declarations }
   public

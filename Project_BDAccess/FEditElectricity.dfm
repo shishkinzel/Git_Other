@@ -95,19 +95,6 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       ParentFont = False
     end
-    object lblReference: TLabel
-      Left = 408
-      Top = 372
-      Width = 90
-      Height = 13
-      Caption = #1057#1089#1099#1083#1082#1072' '#1085#1072' '#1088#1077#1089#1091#1088#1089
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
     object lblConsumption: TLabel
       Left = 307
       Top = 83
@@ -133,6 +120,22 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+    end
+    object Label1: TLabel
+      Left = 564
+      Top = 344
+      Width = 155
+      Height = 16
+      Caption = #1057#1089#1099#1083#1082#1072' '#1085#1072' '#1089#1072#1081#1090' '#1084#1086#1089#1101#1085#1077#1088#1075#1086
+      Color = clActiveCaption
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHotLight
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+      OnClick = Label1Click
     end
     object dbedtConsumption: TDBEdit
       Left = 452
@@ -240,35 +243,6 @@ object frmEditElectriity: TfrmEditElectriity
       TabOrder = 6
       OnClick = btnEnterClick
     end
-    object dbedtReference: TDBEdit
-      Left = 408
-      Top = 391
-      Width = 313
-      Height = 21
-      DataField = 'Reference'
-      DataSource = dmAccessBD.dsAuthoriz
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 7
-    end
-    object btnApply: TButton
-      Left = 646
-      Top = 418
-      Width = 75
-      Height = 25
-      Caption = #1055#1077#1088#1077#1081#1090#1080
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 8
-    end
     object dbedtDate: TDBEdit
       Left = 549
       Top = 26
@@ -283,7 +257,7 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 9
+      TabOrder = 7
     end
     object dbedtTariff: TDBEdit
       Left = 172
@@ -300,8 +274,24 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       MaxLength = 10
       ParentFont = False
-      TabOrder = 10
+      TabOrder = 8
       OnKeyPress = dbedtTariffKeyPress
+    end
+    object btnCancel: TButton
+      Left = 646
+      Top = 272
+      Width = 73
+      Height = 25
+      Caption = #1054#1090#1084#1077#1085#1080#1090#1100
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 9
+      OnClick = btnCancelClick
     end
   end
 end
