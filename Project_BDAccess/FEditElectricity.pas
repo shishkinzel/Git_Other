@@ -118,8 +118,11 @@ var
   fnow: TDate;
   s: string;
   fError: Boolean;
+  flagCancel : Boolean;
 begin
+s := '-1';
   fError := True;
+  flagCancel := False;
   dbedtConsumption.Enabled := False;
   dbedtlTotal.Enabled := False;
   dmAccessBD.tblElectricitt.edit;
@@ -128,7 +131,12 @@ begin
   begin
     while fError do
     begin
-      s := InputBox('Введите начальные показания счётчика', 'CounterReadingsPrevious', '-1');
+      flagCancel := InputQuery('Начальное показание счётчика', 'Введите начальные показания счётчика', s);
+      if not(flagCancel) then
+      begin
+      btnCancel.Enabled := True;
+       Exit;
+      end;
       if StrToInt(s) < 0 then
         ShowMessage('Вы ввели недопустимое значение')
       else
@@ -142,6 +150,8 @@ begin
     dbedtNow.Enabled := True;
     dbedtTariff.Enabled := True;
     dbedtDate.Enabled := True;
+     btnCancel.Enabled := True;
+     btnEnter.Enabled := True;
     dbedtNow.SetFocus;
     dbedtDate.EditText := DateToStr(fnow);
   end
@@ -169,6 +179,9 @@ begin
   if not (frmElectricity.fFlagEdit) and frmElectricity.fFlagAdd then
   begin
     grpEditElectricity.Caption := 'Редактирование показаний электросчётчика';
+    with dbnvgrElectricity do
+     VisibleButtons := VisibleButtons + [nbDelete];
+
     dbedtPrior.Enabled := True;
     dbedtNow.Enabled := True;
     dbedtTariff.Enabled := True;

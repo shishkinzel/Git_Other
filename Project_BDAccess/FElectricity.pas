@@ -39,7 +39,6 @@ type
 
 var
   frmElectricity: TfrmElectricity;
-
 implementation
 
 uses
@@ -49,20 +48,30 @@ uses
 
 procedure TfrmElectricity.btnAddClick(Sender: TObject);
 begin
-    fFlagEdit := True;
+  fFlagEdit := True;
   frmEditElectriity.ShowModal;
 
 end;
-
 procedure TfrmElectricity.btnEditClick(Sender: TObject);
 begin
-fFlagAdd := True;
-frmEditElectriity.ShowModal;
+  if dmAccessBD.tblElectricitt.RecordCount > 0 then
+  begin
+    fFlagAdd := True;
+    frmEditElectriity.ShowModal;
+  end
+  else
+    ShowMessage('База данных пуста');
 end;
 
 procedure TfrmElectricity.btnReviewClick(Sender: TObject);
 begin
-  frmEditElectriity.ShowModal;
+  if dmAccessBD.tblElectricitt.RecordCount > 0 then
+  begin
+    frmEditElectriity.dbedtPrior.Enabled := False;
+    frmEditElectriity.ShowModal;
+  end
+  else
+  ShowMessage('База данных пуста');
 end;
 
 procedure TfrmElectricity.FormClose(Sender: TObject; var Action: TCloseAction);
