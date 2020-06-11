@@ -11,7 +11,9 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnClose = FormClose
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object splWater: TSplitter
@@ -48,7 +50,6 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
     Align = alClient
     Caption = 'pnlTabWater'
     TabOrder = 1
-    ExplicitHeight = 285
     object dbgrdWater: TDBGrid
       Left = 1
       Top = 1
@@ -189,6 +190,7 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
       Height = 25
       Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
       TabOrder = 0
+      OnClick = btnEditClick
     end
     object btnAdd: TButton
       Left = 186
@@ -197,6 +199,7 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
       Height = 25
       Caption = #1042#1074#1077#1089#1090#1080
       TabOrder = 1
+      OnClick = btnAddClick
     end
     object btnReview: TButton
       Left = 954

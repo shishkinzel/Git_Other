@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls, Vcl.Imaging.jpeg;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls, Vcl.Imaging.jpeg, IniFiles;
 
 type
   TfrmListBD = class(TForm)
@@ -14,9 +14,13 @@ type
     mniAuthoriz: TMenuItem;
     mniElectric: TMenuItem;
     mniWater: TMenuItem;
+    mniJobDB: TMenuItem;
     mniHelp: TMenuItem;
-    mniReference: TMenuItem;
     imgBD: TImage;
+    mniIinformation: TMenuItem;
+    mniConnection: TMenuItem;
+    mniAccess: TMenuItem;
+    mniEmpty: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure mniPhoneBookClick(Sender: TObject);
     procedure mniAuthorizClick(Sender: TObject);
@@ -25,8 +29,14 @@ type
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    const
+      fconfigIni = 'configDB.ini';
   public
     { Public declarations }
+
+    fEmpytPath: string;
+    fBDAccessPath: string;
+    fconfigPath: string;
   end;
 
 var
@@ -57,14 +67,15 @@ end;
 
 procedure TfrmListBD.FormCreate(Sender: TObject);
 begin
- with dmAccessBD do
- begin
-   conBDAccess.Connected := True;
-   tblPhoneBook.Active := True;
-   tblAuthoriz.Active := True;
-   tblElectricitt.Active := True;
-   tblWater.Active := True;
- end;
+  with dmAccessBD do
+  begin
+    fconfigPath := extractfilepath(application.ExeName) + 'configDB.ini';
+    conBDAccess.Connected := True;
+    tblPhoneBook.Active := True;
+    tblAuthoriz.Active := True;
+    tblElectricitt.Active := True;
+    tblWater.Active := True;
+  end;
 
 end;
 

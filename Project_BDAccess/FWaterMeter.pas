@@ -3,9 +3,9 @@ unit FWaterMeter;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Vcl.Grids,
-  Vcl.DBGrids, Vcl.ExtCtrls;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB,
+  Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls;
 
 type
   TfrmWaterMeterReadings = class(TForm)
@@ -25,11 +25,14 @@ type
     btnReview: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnReviewClick(Sender: TObject);
-
+    procedure FormCreate(Sender: TObject);
+    procedure btnEditClick(Sender: TObject);
+    procedure btnAddClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    flagAdd, flagEdit: Boolean;
   end;
 
 var
@@ -42,16 +45,41 @@ uses
 
 {$R *.dfm}
 
+procedure TfrmWaterMeterReadings.btnAddClick(Sender: TObject);
+begin
+  frmEditWater.ShowModal;
+end;
 
+procedure TfrmWaterMeterReadings.btnEditClick(Sender: TObject);
+begin
+  if dmAccessBD.tblWater.RecordCount > 0 then
+  begin
+    frmEditWater.ShowModal;
+  end
+  else
+    ShowMessage('База данных пуста');
+end;
 
 procedure TfrmWaterMeterReadings.btnReviewClick(Sender: TObject);
 begin
-frmEditWater.ShowModal;
+  if dmAccessBD.tblWater.RecordCount > 0 then
+  begin
+
+    frmEditWater.ShowModal;
+  end
+  else
+    ShowMessage('База данных пуста');
 end;
 
 procedure TfrmWaterMeterReadings.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-frmListBD.Show;
+  frmListBD.Show;
+end;
+
+procedure TfrmWaterMeterReadings.FormCreate(Sender: TObject);
+begin
+  flagAdd := False;
+  flagEdit := False;
 end;
 
 end.
