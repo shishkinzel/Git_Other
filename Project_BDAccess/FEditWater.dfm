@@ -23,6 +23,7 @@ object frmEditWater: TfrmEditWater
     Height = 555
     Align = alClient
     Caption = #1055#1086#1082#1072#1079#1072#1085#1080#1077' '#1089#1095#1077#1090#1095#1080#1082#1072
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -77,7 +78,7 @@ object frmEditWater: TfrmEditWater
       Width = 231
       Height = 213
       DataField = 'FComment'
-      DataSource = dmAccessBD.dsElectricitt
+      DataSource = dmAccessBD.dsWater
       Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -99,7 +100,7 @@ object frmEditWater: TfrmEditWater
     end
     object btnEnter: TButton
       Left = 290
-      Top = 299
+      Top = 302
       Width = 75
       Height = 25
       Caption = #1047#1072#1075#1088#1091#1079#1080#1090#1100
@@ -117,8 +118,8 @@ object frmEditWater: TfrmEditWater
       Top = 29
       Width = 68
       Height = 21
-      DataField = 'FData'
-      DataSource = dmAccessBD.dsElectricitt
+      DataField = 'FDate'
+      DataSource = dmAccessBD.dsWater
       Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -149,6 +150,7 @@ object frmEditWater: TfrmEditWater
       Top = 67
       Width = 120
       Height = 190
+      Enabled = False
       TabOrder = 5
       object lblHot: TLabel
         Left = 25
@@ -208,6 +210,9 @@ object frmEditWater: TfrmEditWater
         Top = 100
         Width = 80
         Height = 21
+        DataField = 'CounterReadingsHotNow'
+        DataSource = dmAccessBD.dsWater
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -221,6 +226,9 @@ object frmEditWater: TfrmEditWater
         Top = 50
         Width = 80
         Height = 21
+        DataField = 'CounterReadingsHotPrevious'
+        DataSource = dmAccessBD.dsWater
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -234,6 +242,9 @@ object frmEditWater: TfrmEditWater
         Top = 150
         Width = 80
         Height = 21
+        DataField = 'ConsumptionHot'
+        DataSource = dmAccessBD.dsWater
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -248,6 +259,7 @@ object frmEditWater: TfrmEditWater
       Top = 67
       Width = 120
       Height = 190
+      Enabled = False
       TabOrder = 6
       object lblCold: TLabel
         Left = 22
@@ -306,6 +318,9 @@ object frmEditWater: TfrmEditWater
         Top = 50
         Width = 80
         Height = 21
+        DataField = 'CounterReadingsColdPrevious'
+        DataSource = dmAccessBD.dsWater
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -319,6 +334,9 @@ object frmEditWater: TfrmEditWater
         Top = 100
         Width = 80
         Height = 21
+        DataField = 'CounterReadingsColdNow'
+        DataSource = dmAccessBD.dsWater
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -332,6 +350,9 @@ object frmEditWater: TfrmEditWater
         Top = 150
         Width = 80
         Height = 21
+        DataField = 'ConsumptionCold'
+        DataSource = dmAccessBD.dsWater
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11

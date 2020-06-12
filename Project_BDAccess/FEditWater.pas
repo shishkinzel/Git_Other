@@ -56,35 +56,95 @@ procedure TfrmEditWater.btnCancelClick(Sender: TObject);
 begin
  Close;
 end;
-
 procedure TfrmEditWater.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  frmWaterMeterReadings.flagAdd := False;
-  frmWaterMeterReadings.flagEdit := False;
+
   if frmWaterMeterReadings.flagEdit then
     dmAccessBD.tblWater.Cancel;
+
+  frmWaterMeterReadings.flagAdd := False;
+  frmWaterMeterReadings.flagEdit := False;
+
+  frmEditWater.Enabled := False;
+  pnlHot.Enabled := False;
+  pnlCold.Enabled := False;
 end;
 
 procedure TfrmEditWater.FormShow(Sender: TObject);
 var
-  i: Integer;
+{Объявляем переменные для вычисляемых полей}
+  fPriorHot, fPriorCold: Integer;    // переменные для начальных значений счётчиков холодной и горячей воды
+  fPriorWaterHot, fPriorWaterCold: string;     // default значение счётчика
+  flagCancelHot, flagCancelCold: Boolean;
+    fError: Boolean;
+    fnow : TDate;
 begin
-  if not(frmWaterMeterReadings.flagAdd) and not(frmWaterMeterReadings.flagEdit) then
+  fPriorWaterHot := '-1';
+  fPriorWaterCold := '-1';
+  flagCancelHot := False;
+  flagCancelCold := False;
+    fError := False;
+// Открываем базу для редактирования и ставим маркер на последнюю строчку таблицы
+  dmAccessBD.tblWater.edit;
+  dmAccessBD.tblWater.Last;
+  if not (frmWaterMeterReadings.flagAdd) and not (frmWaterMeterReadings.flagEdit) then
   begin
    // Написать код
-   ShowMessage('Код просмотра');
+    ShowMessage('Код просмотра');
   end
-  else
-  if frmWaterMeterReadings.flagAdd and not(frmWaterMeterReadings.flagEdit) then
-   begin
+  else if frmWaterMeterReadings.flagAdd and not (frmWaterMeterReadings.flagEdit) then
+  begin
    // Написать код
-   btnCancel.Enabled := True;
-      ShowMessage('Код вставки');
+    repeat
+      begin
+        flagCancelHot := InputQuery('Начальное показание счётчика горячей воды', 'Введите начальные показания счётчика', fPriorWaterHot);
+        if not(flagCancelHot) then
+           begin
+             btnCancel.Enabled := True;
+             Break;
+           end;
+
+        flagCancelCold := InputQuery('Начальное показание счётчика холодной воды', 'Введите начальные показания счётчика', fPriorWaterCold);
+         if not(flagCancelCold) then
+           begin
+             btnCancel.Enabled := True;
+             Break;
+           end;
+
+
+        if (StrToInt(fPriorWaterHot) < 0) and (StrToInt(fPriorWaterCold) < 0) then
+          ShowMessage('Вы ввели недопустимое значение')
+        else
+          fError := True;
+      end;
+    until fError;
+// Все проверки прошли успешно следующий код
+   {Инициализация переменных}
+    fPriorHot := StrToIntDef(fPriorWaterHot, 0);
+    fPriorCold := StrToIntDef(fPriorWaterCold, 0);
+    dmAccessBD.tblWater.Insert;
+    dmAccessBD.tblWater.FieldByName('CounterReadingsHotPrevious').AsInteger := fPriorHot;
+    dmAccessBD.tblWater.FieldByName('CounterReadingsColdPrevious').AsInteger := fPriorCold;
+    {Разблокировка панелей}
+    grpEditElectricity.Enabled := True;
+    pnlHot.Enabled := True;
+    pnlCold.Enabled := True;
+    fnow := Now;
+    dbedtHotPrior.EditText := IntToStr(fPriorHot);
+    dbedtColdPrior.EditText := IntToStr(fPriorCold);
+    dbedtHotNow.Enabled := True;
+    dbedtColdNow.Enabled := True;
+    dbmmoComment.Enabled := True;
+//    dbedtDate.Enabled := True;
+    btnCancel.Enabled := True;
+    btnEnter.Enabled := True;
+    dbedtHotNow.SetFocus;
+    dbedtDate.EditText := DateToStr(fnow);
   end
   else
   begin
     // Написать код
-       ShowMessage('Код редактирования');
+    ShowMessage('Код редактирования');
   end;
 end;
 
