@@ -72,19 +72,20 @@ begin
     on E : Exception do
     begin
     ShowMessage('Проверти заполнение всех обязательных полей!');
-    dmAccessBD.tblElectricitt.Cancel;
+        dmAccessBD.tblElectricitt.Cancel;
+      end;
     end;
-  end;
   end;
   frmElectricity.fFlagEdit := False;
   Self.Close;
 end;
 
 procedure TfrmEditElectriity.dbedtNowExit(Sender: TObject);
-var Key: Char;
+var
+  Key: Char;
 begin
- key :=  #13;
- self.dbedtNowKeyPress (nil, KEy);
+  Key := #13;
+  self.dbedtNowKeyPress(nil, Key);
 end;
 
 procedure TfrmEditElectriity.dbedtNowKeyPress(Sender: TObject; var Key: Char);
@@ -101,9 +102,9 @@ begin
     end
     else
     begin
-     ShowMessage('Проверте введёное значение');
-     dbedtNow.SetFocus;
-     Exit;
+      ShowMessage('Проверте введёное значение');
+      dbedtNow.SetFocus;
+      Exit;
     end;
   end;
 end;
@@ -131,6 +132,8 @@ begin
     dmAccessBD.tblElectricitt.Cancel;
   frmElectricity.fFlagEdit := False;
   frmElectricity.fFlagAdd := False;
+     with dbnvgrElectricity do
+     VisibleButtons := VisibleButtons - [nbDelete];
 end;
 
 procedure TfrmEditElectriity.FormShow(Sender: TObject);

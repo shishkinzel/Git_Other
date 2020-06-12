@@ -144,6 +144,7 @@ object dmAccessBD: TdmAccessBD
     end
     object tblElectricittTariff: TFloatField
       FieldName = 'Tariff'
+      Precision = 6
     end
     object tblElectricittTotal: TFloatField
       FieldName = 'Total'
