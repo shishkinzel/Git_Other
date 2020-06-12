@@ -3,6 +3,7 @@ object dmAccessBD: TdmAccessBD
   Height = 455
   Width = 542
   object conBDAccess: TADOConnection
+    Connected = True
     ConnectionString = 
       'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=C:\DB' +
       '_Access\DataBaseForJob.mdb;Mode=Share Deny None;Persist Security' +
@@ -119,36 +120,33 @@ object dmAccessBD: TdmAccessBD
     end
   end
   object tblElectricitt: TADOTable
+    Active = True
     Connection = conBDAccess
     CursorType = ctStatic
     TableName = 'Electricity metering book'
     Left = 96
     Top = 223
     object tblElectricittID: TAutoIncField
-      AutoGenerateValue = arDefault
       FieldName = 'ID'
       ReadOnly = True
     end
     object tblElectricittFData: TDateTimeField
       FieldName = 'FData'
-      EditMask = '!99/99/0000;1;_'
     end
-    object tblElectricittCounterReadingsPrevious: TSmallintField
+    object tblElectricittCounterReadingsPrevious: TIntegerField
       FieldName = 'CounterReadingsPrevious'
     end
-    object tblElectricittCounterReadingsNow: TSmallintField
+    object tblElectricittCounterReadingsNow: TIntegerField
       FieldName = 'CounterReadingsNow'
     end
-    object tblElectricittConsumption: TIntegerField
+    object tblElectricittConsumption: TSmallintField
       FieldName = 'Consumption'
     end
     object tblElectricittTariff: TFloatField
       FieldName = 'Tariff'
-      Precision = 3
     end
     object tblElectricittTotal: TFloatField
       FieldName = 'Total'
-      Precision = 6
     end
     object tblElectricittFComment: TWideMemoField
       FieldName = 'FComment'
@@ -167,29 +165,28 @@ object dmAccessBD: TdmAccessBD
     Left = 96
     Top = 271
     object tblWaterID: TAutoIncField
-      AutoGenerateValue = arAutoInc
       FieldName = 'ID'
       ReadOnly = True
     end
     object tblWaterFDate: TDateTimeField
       FieldName = 'FDate'
     end
-    object tblWaterCounterReadingsHotPrevious: TSmallintField
+    object tblWaterCounterReadingsHotPrevious: TIntegerField
       FieldName = 'CounterReadingsHotPrevious'
     end
-    object tblWaterCounterReadingsHotNow: TSmallintField
+    object tblWaterCounterReadingsHotNow: TIntegerField
       FieldName = 'CounterReadingsHotNow'
     end
     object tblWaterConsumptionHot: TSmallintField
       FieldName = 'ConsumptionHot'
     end
-    object tblWaterCounterReadingsColdPrevious: TSmallintField
+    object tblWaterCounterReadingsColdPrevious: TIntegerField
       FieldName = 'CounterReadingsColdPrevious'
     end
-    object tblWaterCounterReadingsColdNow: TSmallintField
+    object tblWaterCounterReadingsColdNow: TIntegerField
       FieldName = 'CounterReadingsColdNow'
     end
-    object tblWaterConsumptionCold: TIntegerField
+    object tblWaterConsumptionCold: TSmallintField
       FieldName = 'ConsumptionCold'
     end
     object tblWaterFComment: TWideMemoField

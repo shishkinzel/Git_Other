@@ -156,7 +156,7 @@ object frmEditElectriity: TfrmEditElectriity
     object dbedtNow: TDBEdit
       Left = 172
       Top = 64
-      Width = 77
+      Width = 75
       Height = 21
       DataField = 'CounterReadingsNow'
       DataSource = dmAccessBD.dsElectricitt
@@ -168,6 +168,7 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      OnExit = dbedtNowExit
       OnKeyPress = dbedtNowKeyPress
     end
     object dbedtlTotal: TDBEdit

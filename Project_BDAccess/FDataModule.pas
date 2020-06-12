@@ -26,23 +26,6 @@ type
     tblAuthorizFLogin: TWideStringField;
     tblAuthorizFPassword: TWideStringField;
     tblAuthorizFComment: TWideMemoField;
-    tblElectricittID: TAutoIncField;
-    tblElectricittFData: TDateTimeField;
-    tblElectricittCounterReadingsPrevious: TSmallintField;
-    tblElectricittCounterReadingsNow: TSmallintField;
-    tblElectricittTariff: TFloatField;
-    tblElectricittFComment: TWideMemoField;
-    tblWaterID: TAutoIncField;
-    tblWaterFDate: TDateTimeField;
-    tblWaterCounterReadingsHotPrevious: TSmallintField;
-    tblWaterCounterReadingsHotNow: TSmallintField;
-    tblWaterConsumptionHot: TSmallintField;
-    tblWaterCounterReadingsColdPrevious: TSmallintField;
-    tblWaterCounterReadingsColdNow: TSmallintField;
-    tblWaterConsumptionCold: TIntegerField;
-    tblWaterFComment: TWideMemoField;
-    tblElectricittConsumption: TIntegerField;
-    tblElectricittTotal: TFloatField;
     tblPhoneBookID: TAutoIncField;
     strngfldOthers: TStringField;
     tblPhoneBookPhoto: TBlobField;
@@ -50,6 +33,23 @@ type
     tblAuthorizPhoto: TBlobField;
     tblAuthorizReference: TWideStringField;
     tblAuthorizOthers: TWideStringField;
+    tblElectricittID: TAutoIncField;
+    tblElectricittFData: TDateTimeField;
+    tblElectricittCounterReadingsPrevious: TIntegerField;
+    tblElectricittCounterReadingsNow: TIntegerField;
+    tblElectricittConsumption: TSmallintField;
+    tblElectricittTariff: TFloatField;
+    tblElectricittTotal: TFloatField;
+    tblElectricittFComment: TWideMemoField;
+    tblWaterID: TAutoIncField;
+    tblWaterFDate: TDateTimeField;
+    tblWaterCounterReadingsHotPrevious: TIntegerField;
+    tblWaterCounterReadingsHotNow: TIntegerField;
+    tblWaterConsumptionHot: TSmallintField;
+    tblWaterCounterReadingsColdPrevious: TIntegerField;
+    tblWaterCounterReadingsColdNow: TIntegerField;
+    tblWaterConsumptionCold: TSmallintField;
+    tblWaterFComment: TWideMemoField;
   private
     { Private declarations }
   public

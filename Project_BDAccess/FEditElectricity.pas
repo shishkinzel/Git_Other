@@ -35,6 +35,7 @@ type
     procedure btnEnterClick(Sender: TObject);
     procedure Label1Click(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
+    procedure dbedtNowExit(Sender: TObject);
   private
     { Private declarations }
     var
@@ -79,12 +80,31 @@ begin
   Self.Close;
 end;
 
+procedure TfrmEditElectriity.dbedtNowExit(Sender: TObject);
+var Key: Char;
+begin
+ key :=  #13;
+ self.dbedtNowKeyPress (nil, KEy);
+end;
+
 procedure TfrmEditElectriity.dbedtNowKeyPress(Sender: TObject; var Key: Char);
+var
+  fValue: Integer;
 begin
   if Key = #13 then
   begin
-    dbedtConsumption.EditText := IntToStr(StrToInt(dbedtNow.EditText) - StrToInt(dbedtPrior.EditText));
-    dbedtTariff.SetFocus;
+    fValue := StrToIntDef(dbedtNow.EditText, -1);
+    if (fValue <= 99999) and (fValue > 0) then
+    begin
+      dbedtConsumption.EditText := IntToStr(fValue - StrToInt(dbedtPrior.EditText));
+      dbedtTariff.SetFocus;
+    end
+    else
+    begin
+     ShowMessage('Проверте введёное значение');
+     dbedtNow.SetFocus;
+     Exit;
+    end;
   end;
 end;
 
