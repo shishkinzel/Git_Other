@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D68A2841-7BFA-4A38-9EC6-7D5EB8101DAC}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Project_BDAccess\ProjectBDAccess.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="BookPhone\BookBD.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Bay_Ticket\MainBayTicket.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ProjectBDAccess">
+        <MSBuild Projects="Project_BDAccess\ProjectBDAccess.dproj"/>
+    </Target>
+    <Target Name="ProjectBDAccess:Clean">
+        <MSBuild Projects="Project_BDAccess\ProjectBDAccess.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProjectBDAccess:Make">
+        <MSBuild Projects="Project_BDAccess\ProjectBDAccess.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="BookBD">
+        <MSBuild Projects="BookPhone\BookBD.dproj"/>
+    </Target>
+    <Target Name="BookBD:Clean">
+        <MSBuild Projects="BookPhone\BookBD.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BookBD:Make">
+        <MSBuild Projects="BookPhone\BookBD.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MainBayTicket">
+        <MSBuild Projects="Bay_Ticket\MainBayTicket.dproj"/>
+    </Target>
+    <Target Name="MainBayTicket:Clean">
+        <MSBuild Projects="Bay_Ticket\MainBayTicket.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MainBayTicket:Make">
+        <MSBuild Projects="Bay_Ticket\MainBayTicket.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ProjectBDAccess;BookBD;MainBayTicket"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ProjectBDAccess:Clean;BookBD:Clean;MainBayTicket:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ProjectBDAccess:Make;BookBD:Make;MainBayTicket:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

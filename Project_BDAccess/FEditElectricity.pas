@@ -118,31 +118,31 @@ var
   fnow: TDate;
   s: string;
   fError: Boolean;
-  flagCancel : Boolean;
+  flagCancel: Boolean;
 begin
-s := '-1';
+  s := '-1';
   fError := True;
   flagCancel := False;
   dbedtConsumption.Enabled := False;
   dbedtlTotal.Enabled := False;
   dmAccessBD.tblElectricitt.edit;
   dmAccessBD.tblElectricitt.Last;
-  if (dbedtPrior.EditText = '') and frmElectricity.fFlagEdit and not(frmElectricity.fFlagAdd) then
+  if (dbedtPrior.EditText = '') and frmElectricity.fFlagEdit and not (frmElectricity.fFlagAdd) then
   begin
-    while fError do
-    begin
-      flagCancel := InputQuery('Начальное показание счётчика', 'Введите начальные показания счётчика', s);
-      if not(flagCancel) then
+    repeat
       begin
-      btnCancel.Enabled := True;
-       Exit;
+        flagCancel := InputQuery('Начальное показание счётчика', 'Введите начальные показания счётчика', s);
+        if not (flagCancel) then
+        begin
+          btnCancel.Enabled := True;
+          Exit;
+        end;
+        if StrToInt(s) < 0 then
+          ShowMessage('Вы ввели недопустимое значение')
+        else
+          fError := False;
       end;
-      if StrToInt(s) < 0 then
-        ShowMessage('Вы ввели недопустимое значение')
-      else
-        fError := False;
-    end;
-
+    until not (fError);
     fPriorReading := StrToInt(s);
     dmAccessBD.tblElectricitt.Insert;
     dmAccessBD.tblElectricitt.FieldByName('CounterReadingsPrevious').AsInteger := fPriorReading;
@@ -150,8 +150,8 @@ s := '-1';
     dbedtNow.Enabled := True;
     dbedtTariff.Enabled := True;
     dbedtDate.Enabled := True;
-     btnCancel.Enabled := True;
-     btnEnter.Enabled := True;
+    btnCancel.Enabled := True;
+    btnEnter.Enabled := True;
     dbedtNow.SetFocus;
     dbedtDate.EditText := DateToStr(fnow);
   end

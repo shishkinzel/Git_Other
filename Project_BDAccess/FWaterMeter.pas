@@ -45,13 +45,25 @@ uses
 
 {$R *.dfm}
 
+// ******************************  Открытие формы  *************************************************
+procedure TfrmWaterMeterReadings.FormCreate(Sender: TObject);
+begin
+  flagAdd := False;
+  flagEdit := False;
+end;
+// *************************************************************************************************
+
+// ***************************  Обработка кнопок  **************************************************
+
 procedure TfrmWaterMeterReadings.btnAddClick(Sender: TObject);
 begin
+  flagAdd := True;
   frmEditWater.ShowModal;
 end;
 
 procedure TfrmWaterMeterReadings.btnEditClick(Sender: TObject);
 begin
+  flagEdit := True;
   if dmAccessBD.tblWater.RecordCount > 0 then
   begin
     frmEditWater.ShowModal;
@@ -70,16 +82,15 @@ begin
   else
     ShowMessage('База данных пуста');
 end;
+// *************************************************************************************************
+
+// ******************************  Закрытие формы  *************************************************
 
 procedure TfrmWaterMeterReadings.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   frmListBD.Show;
 end;
-
-procedure TfrmWaterMeterReadings.FormCreate(Sender: TObject);
-begin
-  flagAdd := False;
-  flagEdit := False;
-end;
+// *************************************************************************************************
 
 end.
+
