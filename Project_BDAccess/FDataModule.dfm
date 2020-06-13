@@ -132,6 +132,7 @@ object dmAccessBD: TdmAccessBD
     end
     object tblElectricittFData: TDateTimeField
       FieldName = 'FData'
+      EditMask = '!99/99/0000;1;_'
     end
     object tblElectricittCounterReadingsPrevious: TIntegerField
       FieldName = 'CounterReadingsPrevious'

@@ -202,6 +202,8 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Style = []
       ParentFont = False
       TabOrder = 3
+      OnExit = dbedtPriorExit
+      OnKeyPress = dbedtPriorKeyPress
     end
     object dbmmoComment: TDBMemo
       Left = 19
@@ -247,7 +249,7 @@ object frmEditElectriity: TfrmEditElectriity
     object dbedtDate: TDBEdit
       Left = 549
       Top = 26
-      Width = 68
+      Width = 66
       Height = 21
       DataField = 'FData'
       DataSource = dmAccessBD.dsElectricitt
@@ -257,8 +259,11 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
+      MaxLength = 10
       ParentFont = False
       TabOrder = 7
+      OnExit = dbedtDateExit
+      OnKeyPress = dbedtDateKeyPress
     end
     object dbedtTariff: TDBEdit
       Left = 172

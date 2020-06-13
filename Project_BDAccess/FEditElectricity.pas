@@ -36,6 +36,10 @@ type
     procedure Label1Click(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure dbedtNowExit(Sender: TObject);
+    procedure dbedtDateKeyPress(Sender: TObject; var Key: Char);
+    procedure dbedtDateExit(Sender: TObject);
+    procedure dbedtPriorKeyPress(Sender: TObject; var Key: Char);
+    procedure dbedtPriorExit(Sender: TObject);
   private
     { Private declarations }
     var
@@ -80,6 +84,22 @@ begin
   Self.Close;
 end;
 
+procedure TfrmEditElectriity.dbedtDateExit(Sender: TObject);
+var
+  Key: Char;
+begin
+  Key := #13;
+  self.dbedtDateKeyPress(nil, Key);
+end;
+
+procedure TfrmEditElectriity.dbedtDateKeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #13 then
+  begin
+    dbedtPrior.SetFocus;
+  end;
+end;
+
 procedure TfrmEditElectriity.dbedtNowExit(Sender: TObject);
 var
   Key: Char;
@@ -106,6 +126,22 @@ begin
       dbedtNow.SetFocus;
       Exit;
     end;
+  end;
+end;
+
+procedure TfrmEditElectriity.dbedtPriorExit(Sender: TObject);
+var
+  Key: Char;
+begin
+  Key := #13;
+  self.dbedtPriorKeyPress(nil, Key);
+end;
+
+procedure TfrmEditElectriity.dbedtPriorKeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #13 then
+  begin
+    dbedtNow.SetFocus;
   end;
 end;
 
@@ -209,9 +245,11 @@ begin
     dbedtNow.Enabled := True;
     dbedtTariff.Enabled := True;
     dbedtDate.Enabled := True;
+    dbedtDate.SetFocus;
     btnEnter.Enabled := True;
     btnCancel.Enabled := True;
     dbmmoComment.Enabled := True;
+
   end;
 
 end;
