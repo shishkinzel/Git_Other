@@ -144,7 +144,7 @@ begin
     dbedtNow.SetFocus;
   end;
 end;
-
+{$REGION 'Процедура нажатие кнопки Тариф'}
 procedure TfrmEditElectriity.dbedtTariffKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
@@ -153,7 +153,8 @@ begin
     btnEnter.SetFocus;
   end;
 end;
-
+{$ENDREGION}
+{$REGION 'Процедура закрытия формы'}
 procedure TfrmEditElectriity.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   dbnvgrElectricity.Visible := True;
@@ -171,7 +172,7 @@ begin
      with dbnvgrElectricity do
      VisibleButtons := VisibleButtons - [nbDelete];
 end;
-
+{$ENDREGION}
 procedure TfrmEditElectriity.FormShow(Sender: TObject);
 var
   fnow: TDate;
