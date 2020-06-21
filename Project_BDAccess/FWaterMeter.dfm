@@ -37,7 +37,7 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
       Top = 1
       Width = 1182
       Height = 18
-      DataSource = dmAccessBD.dsPhoneBook
+      DataSource = dmAccessBD.dsWater
       Align = alClient
       TabOrder = 0
     end

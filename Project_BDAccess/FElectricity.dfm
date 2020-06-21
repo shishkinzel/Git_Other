@@ -196,7 +196,7 @@ object frmElectricity: TfrmElectricity
     end
     object btnReview: TButton
       Left = 954
-      Top = 25
+      Top = 26
       Width = 127
       Height = 25
       Caption = #1055#1088#1086#1089#1084#1086#1090#1088

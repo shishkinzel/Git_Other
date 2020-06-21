@@ -16,7 +16,7 @@ object frmEditWater: TfrmEditWater
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object grpEditElectricity: TGroupBox
+  object grpEditWater: TGroupBox
     Left = 0
     Top = 0
     Width = 380
@@ -218,6 +218,7 @@ object frmEditWater: TfrmEditWater
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
+        MaxLength = 5
         ParentFont = False
         TabOrder = 0
       end
@@ -234,6 +235,7 @@ object frmEditWater: TfrmEditWater
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
+        MaxLength = 5
         ParentFont = False
         TabOrder = 1
       end
@@ -250,6 +252,7 @@ object frmEditWater: TfrmEditWater
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
+        MaxLength = 5
         ParentFont = False
         TabOrder = 2
       end
@@ -326,6 +329,7 @@ object frmEditWater: TfrmEditWater
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
+        MaxLength = 5
         ParentFont = False
         TabOrder = 0
       end
@@ -342,6 +346,7 @@ object frmEditWater: TfrmEditWater
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
+        MaxLength = 5
         ParentFont = False
         TabOrder = 1
       end
@@ -358,6 +363,7 @@ object frmEditWater: TfrmEditWater
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
+        MaxLength = 5
         ParentFont = False
         TabOrder = 2
       end

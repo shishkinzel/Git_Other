@@ -76,7 +76,6 @@ procedure TfrmWaterMeterReadings.btnReviewClick(Sender: TObject);
 begin
   if dmAccessBD.tblWater.RecordCount > 0 then
   begin
-
     frmEditWater.ShowModal;
   end
   else

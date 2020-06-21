@@ -120,7 +120,6 @@ object dmAccessBD: TdmAccessBD
     end
   end
   object tblElectricitt: TADOTable
-    Active = True
     Connection = conBDAccess
     CursorType = ctStatic
     TableName = 'Electricity metering book'
@@ -135,15 +134,18 @@ object dmAccessBD: TdmAccessBD
       EditMask = '!99/99/0000;1;_'
     end
     object tblElectricittCounterReadingsPrevious: TIntegerField
+      DisplayWidth = 5
       FieldName = 'CounterReadingsPrevious'
     end
     object tblElectricittCounterReadingsNow: TIntegerField
+      DisplayWidth = 5
       FieldName = 'CounterReadingsNow'
     end
     object tblElectricittConsumption: TSmallintField
       FieldName = 'Consumption'
     end
     object tblElectricittTariff: TFloatField
+      DisplayWidth = 6
       FieldName = 'Tariff'
       Precision = 6
     end
@@ -172,6 +174,7 @@ object dmAccessBD: TdmAccessBD
     end
     object tblWaterFDate: TDateTimeField
       FieldName = 'FDate'
+      EditMask = '!99/99/0000;1;_'
     end
     object tblWaterCounterReadingsHotPrevious: TIntegerField
       FieldName = 'CounterReadingsHotPrevious'

@@ -8,7 +8,7 @@ uses
 
 type
   TfrmEditWater = class(TForm)
-    grpEditElectricity: TGroupBox;
+    grpEditWater: TGroupBox;
     lblComment: TLabel;
     lblDate: TLabel;
     Label1: TLabel;
@@ -54,18 +54,23 @@ uses
 
 procedure TfrmEditWater.btnCancelClick(Sender: TObject);
 begin
- Close;
+//  if dmAccessBD.tblWater.Modified then
+//    dmAccessBD.tblWater.Cancel;
+  btnCancel.Enabled := False;
+  grpEditWater.Enabled := False;
+  btnEnter.Visible := True;
+  btnCancel.Caption := 'Отменить';
+  Close;
 end;
+
 procedure TfrmEditWater.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
 
-  if frmWaterMeterReadings.flagEdit then
+  if frmWaterMeterReadings.flagEdit  or dmAccessBD.tblWater.Modified then
     dmAccessBD.tblWater.Cancel;
 
   frmWaterMeterReadings.flagAdd := False;
   frmWaterMeterReadings.flagEdit := False;
-
-  frmEditWater.Enabled := False;
   pnlHot.Enabled := False;
   pnlCold.Enabled := False;
 end;
@@ -89,57 +94,78 @@ begin
   dmAccessBD.tblWater.Last;
   if not (frmWaterMeterReadings.flagAdd) and not (frmWaterMeterReadings.flagEdit) then
   begin
-   // Написать код
-    ShowMessage('Код просмотра');
+  //  Просмотр показания счётчика
+   // Расширеный просмотр таблицы
+    btnEnter.Visible := False;
+    grpEditWater.Enabled := True;
+    btnCancel.Enabled := True;
+    btnCancel.Caption := 'Закрыть';
+    ShowMessage('Открыт расширенный режим просмотра, без возможности редактирования');
   end
   else if frmWaterMeterReadings.flagAdd and not (frmWaterMeterReadings.flagEdit) then
   begin
-   // Написать код
+   // Код ввода показаний
+   if (dbedtHotPrior.EditText = '') and (dbedtColdPrior.EditText = '') then
+    begin
     repeat
       begin
         flagCancelHot := InputQuery('Начальное показание счётчика горячей воды', 'Введите начальные показания счётчика', fPriorWaterHot);
-        if not(flagCancelHot) then
-           begin
-             btnCancel.Enabled := True;
-             Break;
-           end;
+        if not (flagCancelHot) then
+        begin
+          grpEditWater.Enabled := True;
+          btnCancel.Enabled := True;
+          Break;
+        end;
 
         flagCancelCold := InputQuery('Начальное показание счётчика холодной воды', 'Введите начальные показания счётчика', fPriorWaterCold);
-         if not(flagCancelCold) then
-           begin
-             btnCancel.Enabled := True;
-             Break;
-           end;
+        if not (flagCancelCold) then
+        begin
+          grpEditWater.Enabled := True;
+          btnCancel.Enabled := True;
+          Break;
+        end;
 
 
-        if (StrToInt(fPriorWaterHot) < 0) and (StrToInt(fPriorWaterCold) < 0) then
-          ShowMessage('Вы ввели недопустимое значение')
-        else
-          fError := True;
-      end;
-    until fError;
-// Все проверки прошли успешно следующий код
-   {Инициализация переменных}
-    fPriorHot := StrToIntDef(fPriorWaterHot, 0);
-    fPriorCold := StrToIntDef(fPriorWaterCold, 0);
-    dmAccessBD.tblWater.Insert;
-    dmAccessBD.tblWater.FieldByName('CounterReadingsHotPrevious').AsInteger := fPriorHot;
-    dmAccessBD.tblWater.FieldByName('CounterReadingsColdPrevious').AsInteger := fPriorCold;
-    {Разблокировка панелей}
-    grpEditElectricity.Enabled := True;
-    pnlHot.Enabled := True;
-    pnlCold.Enabled := True;
-    fnow := Now;
-    dbedtHotPrior.EditText := IntToStr(fPriorHot);
-    dbedtColdPrior.EditText := IntToStr(fPriorCold);
-    dbedtHotNow.Enabled := True;
-    dbedtColdNow.Enabled := True;
-    dbmmoComment.Enabled := True;
+          if (StrToInt(fPriorWaterHot) < 0) and (StrToInt(fPriorWaterCold) < 0) then
+            ShowMessage('Вы ввели недопустимое значение')
+          else
+            fError := True;
+        end;
+      until fError;
+    end
+    else
+    begin
+      flagCancelCold := True;
+      flagCancelHot := True;
+      fPriorWaterHot  := dmAccessBD.tblWater.FieldByName('CounterReadingsHotNow').AsString;
+      fPriorWaterCold := dmAccessBD.tblWater.FieldByName('CounterReadingsColdNow').AsString;
+    end;
+    if flagCancelCold and flagCancelHot then
+    begin
+          // Все проверки прошли успешно следующий код
+      {Инициализация переменных}
+      fPriorHot := StrToIntDef(fPriorWaterHot, 0);
+      fPriorCold := StrToIntDef(fPriorWaterCold, 0);
+      dmAccessBD.tblWater.Insert;
+      dmAccessBD.tblWater.FieldByName('CounterReadingsHotPrevious').AsInteger := fPriorHot;
+      dmAccessBD.tblWater.FieldByName('CounterReadingsColdPrevious').AsInteger := fPriorCold;
+      {Разблокировка панелей}
+      grpEditWater.Enabled := True;
+      pnlHot.Enabled := True;
+      pnlCold.Enabled := True;
+      fnow := Now;
+      dbedtHotPrior.EditText := IntToStr(fPriorHot);
+      dbedtColdPrior.EditText := IntToStr(fPriorCold);
+      dbedtHotNow.Enabled := True;
+      dbedtColdNow.Enabled := True;
+      dbmmoComment.Enabled := True;
 //    dbedtDate.Enabled := True;
-    btnCancel.Enabled := True;
-    btnEnter.Enabled := True;
-    dbedtHotNow.SetFocus;
-    dbedtDate.EditText := DateToStr(fnow);
+      btnCancel.Enabled := True;
+      btnEnter.Enabled := True;
+      dbedtHotNow.SetFocus;
+      dbedtDate.EditText := DateToStr(fnow);
+    end;
+
   end
   else
   begin

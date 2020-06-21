@@ -60,22 +60,28 @@ uses
 
 procedure TfrmEditElectriity.btnCancelClick(Sender: TObject);
 begin
-if dmAccessBD.tblElectricitt.Modified then
-   dmAccessBD.tblElectricitt.Cancel;
-   self.Close;
+  if dmAccessBD.tblElectricitt.Modified then
+    dmAccessBD.tblElectricitt.Cancel;
+  self.Close;
 end;
 
 procedure TfrmEditElectriity.btnEnterClick(Sender: TObject);
 begin
+
+  if dbedtlTotal.EditText = '' then
+  begin
+    ShowMessage('Поле сумма - пустое');
+    Exit;
+  end;
   if dmAccessBD.tblElectricitt.Modified then
   begin
-  try
-    dmAccessBD.tblElectricitt.Post;
-    dmAccessBD.tblElectricitt.Refresh;
-  except
-    on E : Exception do
-    begin
-    ShowMessage('Проверти заполнение всех обязательных полей!');
+    try
+      dmAccessBD.tblElectricitt.Post;
+      dmAccessBD.tblElectricitt.Refresh;
+    except
+      on E: Exception do
+      begin
+        ShowMessage('Проверти заполнение всех обязательных полей!');
         dmAccessBD.tblElectricitt.Cancel;
       end;
     end;
@@ -94,9 +100,15 @@ end;
 
 procedure TfrmEditElectriity.dbedtDateKeyPress(Sender: TObject; var Key: Char);
 begin
-   if Key = #13 then
+  if Key = #13 then
   begin
-    dbedtPrior.SetFocus;
+    if dmAccessBD.tblElectricitt.Modified then
+    begin
+      btnEnter.Enabled := True;
+      btnCancel.Enabled := True;
+    end;
+
+//    dbedtPrior.SetFocus;
   end;
 end;
 
@@ -114,16 +126,31 @@ var
 begin
   if Key = #13 then
   begin
+    if dmAccessBD.tblElectricitt.Modified then
+    begin
+      btnEnter.Enabled := True;
+      btnCancel.Enabled := True;
+    end;
+
     fValue := StrToIntDef(dbedtNow.EditText, -1);
     if (fValue <= 99999) and (fValue > 0) then
     begin
-      dbedtConsumption.EditText := IntToStr(fValue - StrToInt(dbedtPrior.EditText));
-      dbedtTariff.SetFocus;
+      if fValue < StrToInt(dbedtPrior.EditText) then
+      begin
+       ShowMessage('Проверти введённые значения');
+       Exit;
+      end
+      else
+      begin
+        dbedtConsumption.EditText := IntToStr(fValue - StrToInt(dbedtPrior.EditText));
+        dbedtlTotal.Clear;
+//        dbedtTariff.SetFocus;
+      end;
     end
     else
     begin
-      ShowMessage('Проверте введёное значение');
-      dbedtNow.SetFocus;
+      ShowMessage('Проверти введённое значение');
+//      dbedtNow.SetFocus;
       Exit;
     end;
   end;
@@ -138,23 +165,49 @@ begin
 end;
 
 procedure TfrmEditElectriity.dbedtPriorKeyPress(Sender: TObject; var Key: Char);
+var
+  fValue: Integer;
 begin
-   if Key = #13 then
+  if Key = #13 then
   begin
-    dbedtNow.SetFocus;
+    if dmAccessBD.tblElectricitt.Modified then
+    begin
+      btnEnter.Enabled := True;
+      btnCancel.Enabled := True;
+    end;
+
+    fValue := StrToIntDef(dbedtPrior.EditText, -1);
+    if (fValue <= 99999) and (fValue >= 0) then
+    begin
+//      dbedtNow.SetFocus;
+    end
+    else
+    begin
+      ShowMessage('Проверте введёное значение');
+//      dbedtPrior.SetFocus;
+      Exit;
+    end;
   end;
 end;
 {$REGION 'Процедура нажатие кнопки Тариф'}
+
 procedure TfrmEditElectriity.dbedtTariffKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
   begin
+    if dmAccessBD.tblElectricitt.Modified then
+    begin
+      btnEnter.Enabled := True;
+      btnCancel.Enabled := True;
+    end;
+
     dbedtlTotal.EditText := FloatToStr(StrToInt(dbedtConsumption.EditText) * StrToFloat(dbedtTariff.EditText));
-    btnEnter.SetFocus;
+//    btnEnter.SetFocus;
   end;
 end;
 {$ENDREGION}
 {$REGION 'Процедура закрытия формы'}
+
 procedure TfrmEditElectriity.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   dbnvgrElectricity.Visible := True;
@@ -163,17 +216,20 @@ begin
   dbedtDate.Enabled := False;
   btnEnter.Enabled := False;
   dbmmoComment.Enabled := False;
-   btnCancel.Enabled := False;
+  btnCancel.Enabled := False;
   grpEditElectricity.Caption := 'Просмотр показаний электросчётчика';
   if frmElectricity.fFlagEdit then
     dmAccessBD.tblElectricitt.Cancel;
   frmElectricity.fFlagEdit := False;
   frmElectricity.fFlagAdd := False;
-     with dbnvgrElectricity do
-     VisibleButtons := VisibleButtons - [nbDelete];
+  with dbnvgrElectricity do
+    VisibleButtons := VisibleButtons - [nbDelete];
 end;
 {$ENDREGION}
+
+
 procedure TfrmEditElectriity.FormShow(Sender: TObject);
+{$REGION 'Проверка заполнения таблицы начальными значениями и расширенный просмотр'}
 var
   fnow: TDate;
   s: string;
@@ -212,11 +268,13 @@ begin
     dbedtDate.Enabled := True;
     btnCancel.Enabled := True;
     btnEnter.Enabled := True;
-    dbedtNow.SetFocus;
+//    dbedtNow.SetFocus;
     dbedtDate.EditText := DateToStr(fnow);
+{$ENDREGION}
   end
   else
   begin
+  {$REGION 'Ввод показаний счетчика'}
     if frmElectricity.fFlagEdit and not (frmElectricity.fFlagAdd) then
     begin
       grpEditElectricity.Caption := 'Ввод показаний электросчётчика';
@@ -230,31 +288,33 @@ begin
       btnEnter.Enabled := True;
       dbmmoComment.Enabled := True;
       btnCancel.Enabled := True;
-      dbedtNow.SetFocus;
+//      dbedtNow.SetFocus;
       fnow := Now;
       dbedtDate.EditText := DateToStr(fnow);
+      {$ENDREGION}
     end;
   end;
-
+  {$REGION 'Редактирование показания счётчика'}
   if not (frmElectricity.fFlagEdit) and frmElectricity.fFlagAdd then
   begin
     grpEditElectricity.Caption := 'Редактирование показаний электросчётчика';
     with dbnvgrElectricity do
-     VisibleButtons := VisibleButtons + [nbDelete];
+      VisibleButtons := VisibleButtons + [nbDelete];
 
     dbedtPrior.Enabled := True;
     dbedtNow.Enabled := True;
     dbedtTariff.Enabled := True;
     dbedtDate.Enabled := True;
-    dbedtDate.SetFocus;
-    btnEnter.Enabled := True;
-    btnCancel.Enabled := True;
+//    dbedtDate.SetFocus;
+//    btnEnter.Enabled := True;
+//    btnCancel.Enabled := True;
     dbmmoComment.Enabled := True;
-
+   {$ENDREGION}
   end;
 
 end;
- procedure TfrmEditElectriity.Label1Click(Sender: TObject);
+
+procedure TfrmEditElectriity.Label1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'Open', 'https://my.mosenergosbyt.ru/accounts/1168438/events/all-events', nil, nil, SW_SHOW);
 end;

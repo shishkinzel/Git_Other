@@ -166,6 +166,7 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
+      MaxLength = 5
       ParentFont = False
       TabOrder = 1
       OnExit = dbedtNowExit
@@ -200,6 +201,7 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
+      MaxLength = 5
       ParentFont = False
       TabOrder = 3
       OnExit = dbedtPriorExit
@@ -278,7 +280,7 @@ object frmEditElectriity: TfrmEditElectriity
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
-      MaxLength = 10
+      MaxLength = 6
       ParentFont = False
       TabOrder = 8
       OnKeyPress = dbedtTariffKeyPress
