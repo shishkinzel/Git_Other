@@ -5,7 +5,7 @@
         <FrameworkType>VCL</FrameworkType>
         <MainSource>ProjectBDAccess.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -139,6 +139,10 @@
         </DCCReference>
         <DCCReference Include="FEditWater.pas">
             <Form>frmEditWater</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="FPathDB.pas">
+            <Form>frmPathDB</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

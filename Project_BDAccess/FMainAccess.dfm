@@ -3067,6 +3067,7 @@ object frmListBD: TfrmListBD
       Caption = #1056#1072#1073#1086#1090#1072' '#1089' '#1041#1044
       object mniConnection: TMenuItem
         Caption = #1055#1088#1086#1074#1077#1088#1082#1072' '#1089#1086#1077#1076#1080#1085#1077#1085#1080#1103' '#1089' '#1041#1044
+        OnClick = mniConnectionClick
       end
       object mniSeparator: TMenuItem
         Caption = '-'
@@ -3075,13 +3076,16 @@ object frmListBD: TfrmListBD
         Caption = #1044#1086#1089#1090#1091#1087#1085#1099#1077' '#1041#1044
         object mniAll: TMenuItem
           Caption = #1057#1087#1080#1089#1086#1082
+          OnClick = mniAllClick
         end
         object mniAction: TMenuItem
           Caption = #1040#1082#1090#1080#1074#1085#1072#1103
+          OnClick = mniActionClick
         end
       end
       object mniEmpty: TMenuItem
         Caption = #1055#1091#1089#1090#1072#1103' '#1041#1044' - '#1076#1086#1073#1072#1074#1080#1090#1100
+        OnClick = mniEmptyClick
       end
     end
     object mniHelp: TMenuItem

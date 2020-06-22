@@ -30,18 +30,22 @@ type
     procedure mniElectricClick(Sender: TObject);
     procedure mniWaterClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure mniAllClick(Sender: TObject);
+    procedure mniActionClick(Sender: TObject);
+    procedure mniConnectionClick(Sender: TObject);
+    procedure mniEmptyClick(Sender: TObject);
   private
     { Private declarations }
     const
       fProvider = 'Microsoft.Jet.OLEDB.4.0;User ID=Admin';
       fconfigIni = 'configDB.ini';
     var
-      fStringList: TStringList;
       fIni: TIniFile;
       fPathCount: Integer; // количество записей путей к БД
   public
     { Public declarations }
-
+    fStringList: TStringList;
+    fCountPath: Integer;
     fEmpytPath: string;
     fBDAccessPath: string;
     fconfigPath: string;
@@ -53,15 +57,20 @@ var
 implementation
 
 uses
-  FPhoneBook, FDataModule, FAuthorization, FElectricity, FWaterMeter;
+  FPhoneBook, FDataModule, FAuthorization, FElectricity, FWaterMeter, FPathDB;
 
 {$R *.dfm}
 
 
 procedure TfrmListBD.FormClose(Sender: TObject; var Action: TCloseAction);
+var
+i : Integer;
 begin
   fIni := TIniFile.Create(fconfigPath);
-  fIni.WriteString('PathDB', 'path', 'empty');
+  for I := 0 to fCountPath -1 do
+  begin
+  fIni.WriteString('PathDB', 'path' + IntToStr(i), 'empty' + IntToStr(i));
+  end;
   with dmAccessBD do
   begin
     conBDAccess.Connected := False;
@@ -72,8 +81,8 @@ begin
   end;
 
   frmPhoneBook.Close;
-  fIni.Free;
   fStringList.Free;
+  fIni.Free;
 end;
 
 procedure TfrmListBD.FormCreate(Sender: TObject);
@@ -81,9 +90,12 @@ begin
     fStringList := TStringList.Create;
     fconfigPath := extractfilepath(application.ExeName) + fconfigIni;
     fIni := TIniFile.Create(fconfigPath);
-    fBDAccessPath := fIni.ReadString('PathDB', 'path', 'empty');
-    fStringList.Clear;
-    fStringList.Add(fBDAccessPath);
+    fIni.ReadSectionValues('PathDB',fStringList); // прочтение всех значений секции  PathDB
+    fCountPath := fStringList.Count;  // количество ключей
+    fini.EraseSection('PathDB');   // очистка секции файла ini
+//    fBDAccessPath := fIni.ReadString('PathDB', 'path', 'empty');
+//    fStringList.Clear;
+//    fStringList.Add(fBDAccessPath);
 
   with dmAccessBD do
   begin
@@ -94,6 +106,17 @@ begin
     tblWater.Active := True;
   end;
   fIni.Free;
+
+end;
+
+procedure TfrmListBD.mniActionClick(Sender: TObject);
+begin
+ShowMessage('Показать активную базу данных');
+end;
+
+procedure TfrmListBD.mniAllClick(Sender: TObject);
+begin
+frmPathDB.ShowModal;
 end;
 
 procedure TfrmListBD.mniAuthorizClick(Sender: TObject);
@@ -102,10 +125,20 @@ frmAuthorization.Show;
 self.Hide;
 end;
 
+procedure TfrmListBD.mniConnectionClick(Sender: TObject);
+begin
+ ShowMessage('Проверка подключения к базе данных');
+end;
+
 procedure TfrmListBD.mniElectricClick(Sender: TObject);
 begin
 frmElectricity.Show;
 self.Hide;
+end;
+
+procedure TfrmListBD.mniEmptyClick(Sender: TObject);
+begin
+ ShowMessage('Добавить пустую базу данных');
 end;
 
 procedure TfrmListBD.mniPhoneBookClick(Sender: TObject);
