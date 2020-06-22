@@ -13,7 +13,7 @@ type
     lblDate: TLabel;
     Label1: TLabel;
     dbmmoComment: TDBMemo;
-    dbnvgrElectricity: TDBNavigator;
+    dbnvgrWater: TDBNavigator;
     btnEnter: TButton;
     dbedtDate: TDBEdit;
     btnCancel: TButton;
@@ -36,6 +36,15 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnCancelClick(Sender: TObject);
+    procedure dbedtHotNowKeyPress(Sender: TObject; var Key: Char);
+    procedure dbedtColdNowKeyPress(Sender: TObject; var Key: Char);
+    procedure dbedtHotNowExit(Sender: TObject);
+    procedure dbedtColdNowExit(Sender: TObject);
+    procedure btnEnterClick(Sender: TObject);
+    procedure dbedtHotPriorKeyPress(Sender: TObject; var Key: Char);
+    procedure dbedtColdPriorKeyPress(Sender: TObject; var Key: Char);
+    procedure dbedtHotPriorExit(Sender: TObject);
+    procedure dbedtColdPriorExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -54,25 +63,115 @@ uses
 
 procedure TfrmEditWater.btnCancelClick(Sender: TObject);
 begin
-//  if dmAccessBD.tblWater.Modified then
-//    dmAccessBD.tblWater.Cancel;
+  if dmAccessBD.tblWater.Modified then
+    dmAccessBD.tblWater.Cancel;
   btnCancel.Enabled := False;
+  btnEnter.Enabled := False;
   grpEditWater.Enabled := False;
   btnEnter.Visible := True;
   btnCancel.Caption := 'Отменить';
-  Close;
+  self.Close;
 end;
+
+procedure TfrmEditWater.btnEnterClick(Sender: TObject);
+begin
+  if dmAccessBD.tblWater.Modified then
+  begin
+    try
+      dmAccessBD.tblWater.Post;
+      dmAccessBD.tblWater.Refresh;
+    except
+      on E: Exception do
+      begin
+        ShowMessage('Проверте заполнение всех обязательных полей!');
+        dmAccessBD.tblWater.Cancel;
+      end;
+    end;
+  end;
+  frmWaterMeterReadings.flagEdit := False;
+  Self.Close;
+end;
+
+procedure TfrmEditWater.dbedtColdNowExit(Sender: TObject);
+var
+  key: char;
+begin
+  key := #13;
+  Self.dbedtColdNowKeyPress(nil, key);
+end;
+
+procedure TfrmEditWater.dbedtColdNowKeyPress(Sender: TObject; var Key: Char);
+var
+  fValue: Integer;
+begin
+  if Key = #13 then
+  begin
+    fValue := StrToIntDef(dbedtColdNow.EditText, -1);
+    if (fValue <= 99999) and (fValue > 0) then
+    begin
+      if fValue < StrToInt(dbedtColdPrior.EditText) then
+      begin
+        ShowMessage('Проверте введённые значения');
+        Exit;
+      end
+      else
+      begin
+        dbedtColdResult.EditText := IntToStr(fValue - StrToInt(dbedtColdPrior.EditText));
+        btnEnter.Enabled := True;
+        btnCancel.Enabled := True;
+      end;
+    end;
+  end;
+end;
+
+
+
+procedure TfrmEditWater.dbedtHotNowExit(Sender: TObject);
+var
+  key: char;
+begin
+  key := #13;
+  Self.dbedtHotNowKeyPress(nil, key);
+end;
+
+procedure TfrmEditWater.dbedtHotNowKeyPress(Sender: TObject; var Key: Char);
+var
+  fValue: Integer;
+begin
+  if Key = #13 then
+  begin
+    fValue := StrToIntDef(dbedtHotNow.EditText, -1);
+    if (fValue <= 99999) and (fValue > 0) then
+    begin
+      if fValue < StrToInt(dbedtHotPrior.EditText) then
+      begin
+        ShowMessage('Проверте введённые значения');
+        Exit;
+      end
+      else
+      begin
+        dbedtHotResult.EditText := IntToStr(fValue - StrToInt(dbedtHotPrior.EditText));
+        btnEnter.Enabled := True;
+        btnCancel.Enabled := True;
+      end;
+    end;
+  end;
+end;
+
 
 procedure TfrmEditWater.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
 
-  if frmWaterMeterReadings.flagEdit  or dmAccessBD.tblWater.Modified then
+  if frmWaterMeterReadings.flagEdit or dmAccessBD.tblWater.Modified then
     dmAccessBD.tblWater.Cancel;
 
   frmWaterMeterReadings.flagAdd := False;
   frmWaterMeterReadings.flagEdit := False;
   pnlHot.Enabled := False;
   pnlCold.Enabled := False;
+
+  btnEnter.Enabled := False;
+  btnCancel.Enabled := False;
 end;
 
 procedure TfrmEditWater.FormShow(Sender: TObject);
@@ -124,8 +223,6 @@ begin
           btnCancel.Enabled := True;
           Break;
         end;
-
-
           if (StrToInt(fPriorWaterHot) < 0) and (StrToInt(fPriorWaterCold) < 0) then
             ShowMessage('Вы ввели недопустимое значение')
           else
@@ -170,9 +267,61 @@ begin
   else
   begin
     // Написать код
-    ShowMessage('Код редактирования');
+    grpEditWater.Enabled := True;
+    pnlHot.Enabled := True;
+    pnlCold.Enabled := True;
+    grpEditWater.Caption := 'Редактирование показаний счётчика';
+
+    with dbnvgrWater do
+      VisibleButtons := VisibleButtons + [nbDelete];
+
+    dbedtHotPrior.Enabled := True;
+    dbedtColdPrior.Enabled := True;
+    dbedtHotNow.Enabled := True;
+    dbedtColdNow.Enabled := True;
+    dbedtDate.Enabled := True;
+    dbmmoComment.Enabled := True;
   end;
 end;
+{$REGION 'Обработка кнопки HotPrior'}
+procedure TfrmEditWater.dbedtHotPriorExit(Sender: TObject);
+var
+  key: Char;
+begin
+  key := #13;
+  Self.dbedtHotPriorKeyPress(nil, key);
+end;
+
+procedure TfrmEditWater.dbedtHotPriorKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+//    btnEnter.Enabled := True;
+//    btnCancel.Enabled := True;
+    dbedtHotResult.Clear;
+  end;
+end;
+{$ENDREGION}
+{$REGION 'Обработка кнопки ColdPrior'}
+
+procedure TfrmEditWater.dbedtColdPriorExit(Sender: TObject);
+var
+  key: Char;
+begin
+  key := #13;
+  Self.dbedtColdPriorKeyPress(nil, key);
+end;
+
+procedure TfrmEditWater.dbedtColdPriorKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+//    btnEnter.Enabled := True;
+//    btnCancel.Enabled := True;
+    dbedtColdResult.Clear;
+  end;
+end;
+{$ENDREGION}
 
 end.
 

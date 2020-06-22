@@ -38,6 +38,7 @@ object frmWaterMeterReadings: TfrmWaterMeterReadings
       Width = 1182
       Height = 18
       DataSource = dmAccessBD.dsWater
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       Align = alClient
       TabOrder = 0
     end

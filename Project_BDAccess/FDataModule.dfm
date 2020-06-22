@@ -177,21 +177,27 @@ object dmAccessBD: TdmAccessBD
       EditMask = '!99/99/0000;1;_'
     end
     object tblWaterCounterReadingsHotPrevious: TIntegerField
+      DisplayWidth = 5
       FieldName = 'CounterReadingsHotPrevious'
     end
     object tblWaterCounterReadingsHotNow: TIntegerField
+      DisplayWidth = 5
       FieldName = 'CounterReadingsHotNow'
     end
     object tblWaterConsumptionHot: TSmallintField
+      DisplayWidth = 5
       FieldName = 'ConsumptionHot'
     end
     object tblWaterCounterReadingsColdPrevious: TIntegerField
+      DisplayWidth = 5
       FieldName = 'CounterReadingsColdPrevious'
     end
     object tblWaterCounterReadingsColdNow: TIntegerField
+      DisplayWidth = 5
       FieldName = 'CounterReadingsColdNow'
     end
     object tblWaterConsumptionCold: TSmallintField
+      DisplayWidth = 5
       FieldName = 'ConsumptionCold'
     end
     object tblWaterFComment: TWideMemoField

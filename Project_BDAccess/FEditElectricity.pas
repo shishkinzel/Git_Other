@@ -81,7 +81,7 @@ begin
     except
       on E: Exception do
       begin
-        ShowMessage('Проверти заполнение всех обязательных полей!');
+        ShowMessage('Проверте заполнение всех обязательных полей!');
         dmAccessBD.tblElectricitt.Cancel;
       end;
     end;
@@ -137,7 +137,7 @@ begin
     begin
       if fValue < StrToInt(dbedtPrior.EditText) then
       begin
-       ShowMessage('Проверти введённые значения');
+       ShowMessage('Проверте введённые значения');
        Exit;
       end
       else
@@ -149,7 +149,7 @@ begin
     end
     else
     begin
-      ShowMessage('Проверти введённое значение');
+      ShowMessage('Проверте введённое значение');
 //      dbedtNow.SetFocus;
       Exit;
     end;

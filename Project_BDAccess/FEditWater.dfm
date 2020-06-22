@@ -88,12 +88,12 @@ object frmEditWater: TfrmEditWater
       ParentFont = False
       TabOrder = 0
     end
-    object dbnvgrElectricity: TDBNavigator
+    object dbnvgrWater: TDBNavigator
       Left = 2
       Top = 528
       Width = 376
       Height = 25
-      DataSource = dmAccessBD.dsElectricitt
+      DataSource = dmAccessBD.dsWater
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       Align = alBottom
       TabOrder = 1
@@ -112,6 +112,7 @@ object frmEditWater: TfrmEditWater
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnClick = btnEnterClick
     end
     object dbedtDate: TDBEdit
       Left = 93
@@ -221,10 +222,12 @@ object frmEditWater: TfrmEditWater
         MaxLength = 5
         ParentFont = False
         TabOrder = 0
+        OnExit = dbedtHotNowExit
+        OnKeyPress = dbedtHotNowKeyPress
       end
       object dbedtHotPrior: TDBEdit
         Left = 20
-        Top = 50
+        Top = 51
         Width = 80
         Height = 21
         DataField = 'CounterReadingsHotPrevious'
@@ -238,6 +241,8 @@ object frmEditWater: TfrmEditWater
         MaxLength = 5
         ParentFont = False
         TabOrder = 1
+        OnExit = dbedtHotPriorExit
+        OnKeyPress = dbedtHotPriorKeyPress
       end
       object dbedtHotResult: TDBEdit
         Left = 20
@@ -317,7 +322,7 @@ object frmEditWater: TfrmEditWater
         ParentFont = False
       end
       object dbedtColdPrior: TDBEdit
-        Left = 20
+        Left = 21
         Top = 50
         Width = 80
         Height = 21
@@ -332,6 +337,8 @@ object frmEditWater: TfrmEditWater
         MaxLength = 5
         ParentFont = False
         TabOrder = 0
+        OnExit = dbedtColdPriorExit
+        OnKeyPress = dbedtColdPriorKeyPress
       end
       object dbedtColdNow: TDBEdit
         Left = 20
@@ -349,6 +356,8 @@ object frmEditWater: TfrmEditWater
         MaxLength = 5
         ParentFont = False
         TabOrder = 1
+        OnExit = dbedtColdNowExit
+        OnKeyPress = dbedtColdNowKeyPress
       end
       object dbedtColdResult: TDBEdit
         Left = 20
