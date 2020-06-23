@@ -3087,6 +3087,10 @@ object frmListBD: TfrmListBD
         Caption = #1055#1091#1089#1090#1072#1103' '#1041#1044' - '#1076#1086#1073#1072#1074#1080#1090#1100
         OnClick = mniEmptyClick
       end
+      object mniFind: TMenuItem
+        Caption = #1053#1072#1081#1090#1080' '#1041#1044
+        OnClick = mniFindClick
+      end
     end
     object mniHelp: TMenuItem
       Caption = #1055#1086#1084#1086#1097#1100
@@ -3094,5 +3098,13 @@ object frmListBD: TfrmListBD
     object mniIinformation: TMenuItem
       Caption = #1057#1087#1088#1072#1074#1082#1072
     end
+  end
+  object dlgOpenFind: TOpenDialog
+    Left = 378
+    Top = 17
+  end
+  object dlgSaveFind: TSaveDialog
+    Left = 381
+    Top = 79
   end
 end

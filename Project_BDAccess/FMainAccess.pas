@@ -24,6 +24,9 @@ type
     mniSeparator: TMenuItem;
     mniAll: TMenuItem;
     mniAction: TMenuItem;
+    mniFind: TMenuItem;
+    dlgOpenFind: TOpenDialog;
+    dlgSaveFind: TSaveDialog;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure mniPhoneBookClick(Sender: TObject);
     procedure mniAuthorizClick(Sender: TObject);
@@ -34,43 +37,90 @@ type
     procedure mniActionClick(Sender: TObject);
     procedure mniConnectionClick(Sender: TObject);
     procedure mniEmptyClick(Sender: TObject);
+    procedure mniFindClick(Sender: TObject);
   private
     { Private declarations }
     const
-      fProvider = 'Microsoft.Jet.OLEDB.4.0;User ID=Admin';
-      fconfigIni = 'configDB.ini';
-    var
-      fIni: TIniFile;
-      fPathCount: Integer; // количество записей путей к БД
+//      fProvider = 'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source='; // параметры строки ConnectionString
+//      fPathBD = 'C:\DB_Access\DataBaseForJob.mdb;';  // параметры строки ConnectionString
+//      fParam = ';Persist Security Info=False;'; //
+      fconfigIni = 'configDB.ini';   // имя файла конфигурации
   public
     { Public declarations }
-    fStringList: TStringList;
-    fCountPath: Integer;
-    fEmpytPath: string;
-    fBDAccessPath: string;
-    fconfigPath: string;
+    fIni: TIniFile;            // переменная типа  TIniFile
+//    fStringList: TStringList; // хранилище ключей секции  PathDB
+    fCountPath: Integer;     // количество ключей в секции PathDB
+    fEmpytPath: string;     // путь к пустой БД - "заготовка"
+//    fBDAccessPath: string;  // путь к БД
+    fconfigPath: string;    // путь к файлу ini
+//    fPathCount: Integer;    // количество записей путей к БД
   end;
-
+    const
+      fProvider = 'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=';
+      fPathBD = 'C:\DB_Access\DataBaseForJob.mdb;';
+      fParam = ';Persist Security Info=False;';
 var
   frmListBD: TfrmListBD;
-
+  fStringList: TStringList;
+  fBDAccessPath: string;
 implementation
 
 uses
-  FPhoneBook, FDataModule, FAuthorization, FElectricity, FWaterMeter, FPathDB;
+  FPhoneBook, FDataModule, FAuthorization, FElectricity, FWaterMeter, FPathDB, IdGlobal;
 
 {$R *.dfm}
 
+
+
+
+procedure TfrmListBD.FormCreate(Sender: TObject);
+var
+  tmp: string;
+  I: Integer;
+begin
+  fStringList := TStringList.Create;
+  fconfigPath := extractfilepath(application.ExeName) + fconfigIni;
+  fIni := TIniFile.Create(fconfigPath);
+  fIni.ReadSectionValues('PathDB', fStringList); // прочтение всех значений секции  PathDB
+  fCountPath := fStringList.Count;  // количество ключей
+
+  for I := 0 to fStringList.Count - 1 do
+  begin
+    tmp := fStringList.Strings[I];
+    Fetch(tmp, '=');
+    fStringList.Strings[I] := tmp;
+  end;
+
+  if fCountPath = 0 then
+    fStringList.Add(fPathBD);
+
+    fBDAccessPath := fIni.ReadString('PathDB', 'path', fStringList.Strings[0]);
+
+//  fini.EraseSection('PathDB');   // очистка секции файла ini
+
+  with dmAccessBD do
+  begin
+    conBDAccess.Connected := False;
+    conBDAccess.ConnectionString := fProvider + fBDAccessPath + fParam;
+
+    conBDAccess.Connected := True;    // Подключение БД
+    {Активация ADOTable}
+    tblPhoneBook.Active := True;
+    tblAuthoriz.Active := True;
+    tblElectricitt.Active := True;
+    tblWater.Active := True;
+  end;
+  fIni.Free;
+end;
 
 procedure TfrmListBD.FormClose(Sender: TObject; var Action: TCloseAction);
 var
 i : Integer;
 begin
   fIni := TIniFile.Create(fconfigPath);
-  for I := 0 to fCountPath -1 do
-  begin
-  fIni.WriteString('PathDB', 'path' + IntToStr(i), 'empty' + IntToStr(i));
-  end;
+  for I := 0 to fStringList.Count -1 do
+  fIni.WriteString('PathDB', 'path' + IntToStr(i), fStringList.Strings[i]);
+
   with dmAccessBD do
   begin
     conBDAccess.Connected := False;
@@ -85,29 +135,8 @@ begin
   fIni.Free;
 end;
 
-procedure TfrmListBD.FormCreate(Sender: TObject);
-begin
-    fStringList := TStringList.Create;
-    fconfigPath := extractfilepath(application.ExeName) + fconfigIni;
-    fIni := TIniFile.Create(fconfigPath);
-    fIni.ReadSectionValues('PathDB',fStringList); // прочтение всех значений секции  PathDB
-    fCountPath := fStringList.Count;  // количество ключей
-    fini.EraseSection('PathDB');   // очистка секции файла ini
-//    fBDAccessPath := fIni.ReadString('PathDB', 'path', 'empty');
-//    fStringList.Clear;
-//    fStringList.Add(fBDAccessPath);
 
-  with dmAccessBD do
-  begin
-    conBDAccess.Connected := True;
-    tblPhoneBook.Active := True;
-    tblAuthoriz.Active := True;
-    tblElectricitt.Active := True;
-    tblWater.Active := True;
-  end;
-  fIni.Free;
 
-end;
 
 procedure TfrmListBD.mniActionClick(Sender: TObject);
 begin
@@ -141,6 +170,16 @@ begin
  ShowMessage('Добавить пустую базу данных');
 end;
 
+procedure TfrmListBD.mniFindClick(Sender: TObject);
+begin
+ if dlgOpenFind.Execute then
+ begin
+ fBDAccessPath := dlgOpenFind.FileName;
+ fStringList.Add(fBDAccessPath);
+ end;
+
+end;
+
 procedure TfrmListBD.mniPhoneBookClick(Sender: TObject);
 begin
 frmPhoneBook.Show;
@@ -155,4 +194,14 @@ end;
 
 end.
 
-//Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=C:\DB_Access\DataBaseForJob.mdb;Mode=Share Deny None;Jet OLEDB:System database="";Jet OLEDB:Registry Path="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Password="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don't Copy Locale on Compact=False;Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False;
+//Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;
+//Data Source=C:\DB_Access\DataBaseForJob.mdb;
+//Mode=Share Deny None;Jet OLEDB:System database="";
+//Jet OLEDB:Registry Path="";Jet OLEDB:Database Password="";
+//Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;
+//Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Transactions=1;
+//Jet OLEDB:New Database Password="";Jet OLEDB:Create System Database=False;
+//Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don't Copy Locale on Compact=False;
+//Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False;
+
+// 'Persist Security Info=False;'

@@ -4,14 +4,17 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
   TfrmPathDB = class(TForm)
-    mmoPathDB: TMemo;
     btnCancel: TButton;
-    btn2: TButton;
+    btnStart: TButton;
+    lbledtChoice: TLabeledEdit;
+    lstPath: TListBox;
     procedure FormShow(Sender: TObject);
+    procedure lstPathDblClick(Sender: TObject);
+    procedure btnStartClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -20,22 +23,58 @@ type
 
 var
   frmPathDB: TfrmPathDB;
-
+  numbetStr : Integer;
 implementation
 
 uses
-  FMainAccess;
+  FMainAccess, FDataModule;
 
 {$R *.dfm}
 
+
+procedure TfrmPathDB.btnStartClick(Sender: TObject);
+begin
+  fStringList.Delete(numbetStr);
+  fStringList.Insert(0, lbledtChoice.Text);
+  fBDAccessPath := fStringList.Strings[0];
+  with dmAccessBD do
+  begin
+    conBDAccess.Connected := False;
+    tblPhoneBook.Active := False;
+    tblAuthoriz.Active := False;
+    tblElectricitt.Active := False;
+    tblWater.Active := False;
+    conBDAccess.ConnectionString := fProvider + fBDAccessPath + fParam;
+
+    conBDAccess.Connected := True;    // Подключение БД
+    tblPhoneBook.Active := True;
+    tblAuthoriz.Active := True;
+    tblElectricitt.Active := True;
+    tblWater.Active := True;
+
+  end;
+  ModalResult := mrClose;
+end;
 procedure TfrmPathDB.FormShow(Sender: TObject);
 var
 i : Integer;
 begin
-mmoPathDB.Clear;
-for I := 0 to frmListBD.fCountPath - 1 do
-mmoPathDB.Lines.Add(frmListBD.fStringList.Strings[i]);
+lstPath.Clear;
+for I := 0 to fStringList.Count - 1 do
+lstPath.Items.Add(fStringList.Strings[i]);
 
+end;
+
+
+
+
+
+
+
+procedure TfrmPathDB.lstPathDblClick(Sender: TObject);
+begin
+numbetStr := lstPath.ItemIndex;
+lbledtChoice.Text := lstPath.Items.Strings[numbetStr];
 end;
 
 end.
