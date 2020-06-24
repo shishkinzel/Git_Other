@@ -52,6 +52,7 @@ type
     fCountPath: Integer;     // количество ключей в секции PathDB
     fEmpytPath: string;     // путь к пустой БД - "заготовка"
 //    fBDAccessPath: string;  // путь к БД
+     fPathExe : string;      // путь к файлу exe
     fconfigPath: string;    // путь к файлу ini
 //    fPathCount: Integer;    // количество записей путей к БД
   end;
@@ -79,7 +80,8 @@ var
   I: Integer;
 begin
   fStringList := TStringList.Create;
-  fconfigPath := extractfilepath(application.ExeName) + fconfigIni;
+  fPathExe := extractfilepath(application.ExeName);
+  fconfigPath := fPathExe + fconfigIni;
   fIni := TIniFile.Create(fconfigPath);
   fIni.ReadSectionValues('PathDB', fStringList); // прочтение всех значений секции  PathDB
   fCountPath := fStringList.Count;  // количество ключей
@@ -166,8 +168,16 @@ self.Hide;
 end;
 
 procedure TfrmListBD.mniEmptyClick(Sender: TObject);
+var
+newFile : string;
+flagNewFile : Integer;
 begin
- ShowMessage('Добавить пустую базу данных');
+newFile := InputBox('Ввод имени файла','Пожалуйста введите имя нового файла','-1');
+ flagNewFile := StrToIntDef(newFile,0);
+ newFile := newFile + '.mdb';
+ if flagNewFile < 0 then
+  Exit;
+ CopyFile(PChar(fPathExe + 'Access_Empty.mdb'), PChar(fPathExe + 'DB_Access/' + newFile), True);
 end;
 
 procedure TfrmListBD.mniFindClick(Sender: TObject);
