@@ -12,7 +12,8 @@ uses
   FEditAuthorization in 'FEditAuthorization.pas' {frmEditAuthorization},
   FEditElectricity in 'FEditElectricity.pas' {frmEditElectriity},
   FEditWater in 'FEditWater.pas' {frmEditWater},
-  FPathDB in 'FPathDB.pas' {frmPathDB};
+  FPathDB in 'FPathDB.pas' {frmPathDB},
+  FEditIni in 'FEditIni.pas' {frmEditIni};
 
 {$R *.res}
 
@@ -30,5 +31,6 @@ begin
   Application.CreateForm(TfrmEditElectriity, frmEditElectriity);
   Application.CreateForm(TfrmEditWater, frmEditWater);
   Application.CreateForm(TfrmPathDB, frmPathDB);
+  Application.CreateForm(TfrmEditIni, frmEditIni);
   Application.Run;
 end.

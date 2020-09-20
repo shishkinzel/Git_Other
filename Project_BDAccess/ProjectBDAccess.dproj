@@ -145,6 +145,10 @@
             <Form>frmPathDB</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="FEditIni.pas">
+            <Form>frmEditIni</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

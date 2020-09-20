@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls, Vcl.Imaging.jpeg, IniFiles;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls, Vcl.Imaging.jpeg, IniFiles,
+  System.ImageList, Vcl.ImgList, System.Actions, Vcl.ActnList;
 
 type
   TfrmListBD = class(TForm)
@@ -27,6 +28,8 @@ type
     mniFind: TMenuItem;
     dlgOpenFind: TOpenDialog;
     dlgSaveFind: TSaveDialog;
+    actlstBD: TActionList;
+    ilBD: TImageList;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure mniPhoneBookClick(Sender: TObject);
     procedure mniAuthorizClick(Sender: TObject);
@@ -67,7 +70,7 @@ var
 implementation
 
 uses
-  FPhoneBook, FDataModule, FAuthorization, FElectricity, FWaterMeter, FPathDB, IdGlobal;
+  FPhoneBook, FDataModule, FAuthorization, FElectricity, FWaterMeter, FPathDB, IdGlobal, FEditIni;
 
 {$R *.dfm}
 
@@ -78,6 +81,7 @@ procedure TfrmListBD.FormCreate(Sender: TObject);
 var
   tmp: string;
   I: Integer;
+  fDialog : Integer;
 begin
   fStringList := TStringList.Create;
   fPathExe := extractfilepath(application.ExeName);
@@ -92,26 +96,34 @@ begin
     Fetch(tmp, '=');
     fStringList.Strings[I] := tmp;
   end;
-
   if fCountPath = 0 then
     fStringList.Add(fPathBD);
 
-    fBDAccessPath := fIni.ReadString('PathDB', 'path', fStringList.Strings[0]);
+  fBDAccessPath := fIni.ReadString('PathDB', 'path', fStringList.Strings[0]);
 
-//  fini.EraseSection('PathDB');   // очистка секции файла ini
+  fini.EraseSection('PathDB');   // очистка секции файла ini
+  try
+    with dmAccessBD do
+    begin
+      conBDAccess.Connected := False;
+      conBDAccess.ConnectionString := fProvider + fBDAccessPath + fParam;
 
-  with dmAccessBD do
-  begin
-    conBDAccess.Connected := False;
-    conBDAccess.ConnectionString := fProvider + fBDAccessPath + fParam;
-
-    conBDAccess.Connected := True;    // Подключение БД
+      conBDAccess.Connected := True;    // Подключение БД
     {Активация ADOTable}
-    tblPhoneBook.Active := True;
-    tblAuthoriz.Active := True;
-    tblElectricitt.Active := True;
-    tblWater.Active := True;
+      tblPhoneBook.Active := True;
+      tblAuthoriz.Active := True;
+      tblElectricitt.Active := True;
+      tblWater.Active := True;
+    end;
+  except
+    on E: Exception do
+    begin
+     ShowMessage('База данных не обнаружена');
+     fStringList.Delete(0);
+     fDialog := MessageDlg('Закрыть приложение', mtError, mbYesNo,0);
+    end;
   end;
+
   fIni.Free;
 end;
 
@@ -157,8 +169,10 @@ self.Hide;
 end;
 
 procedure TfrmListBD.mniConnectionClick(Sender: TObject);
+var
+i : Integer;
 begin
- ShowMessage('Проверка подключения к базе данных');
+ frmEditIni.ShowModal;
 end;
 
 procedure TfrmListBD.mniElectricClick(Sender: TObject);
@@ -166,18 +180,19 @@ begin
 frmElectricity.Show;
 self.Hide;
 end;
-
 procedure TfrmListBD.mniEmptyClick(Sender: TObject);
 var
-newFile : string;
-flagNewFile : Integer;
+  newFile: string;
+  flagNewFile: Integer;
 begin
-newFile := InputBox('Ввод имени файла','Пожалуйста введите имя нового файла','-1');
- flagNewFile := StrToIntDef(newFile,0);
- newFile := newFile + '.mdb';
- if flagNewFile < 0 then
-  Exit;
- CopyFile(PChar(fPathExe + 'Access_Empty.mdb'), PChar(fPathExe + 'DB_Access/' + newFile), True);
+  newFile := InputBox('Ввод имени файла', 'Пожалуйста введите имя нового файла', '-1');
+  flagNewFile := StrToIntDef(newFile, 0);
+  newFile := newFile + '.mdb';
+  if flagNewFile < 0 then
+    Exit;
+  CopyFile(PChar(fPathExe + 'Access_Empty.mdb'), PChar(fPathExe + 'DB_Access\' + newFile), True);
+  fStringList.Add(fPathExe + 'DB_Access\' + newFile);
+  mniAllClick(nil);
 end;
 
 procedure TfrmListBD.mniFindClick(Sender: TObject);
@@ -204,14 +219,3 @@ end;
 
 end.
 
-//Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;
-//Data Source=C:\DB_Access\DataBaseForJob.mdb;
-//Mode=Share Deny None;Jet OLEDB:System database="";
-//Jet OLEDB:Registry Path="";Jet OLEDB:Database Password="";
-//Jet OLEDB:Engine Type=5;Jet OLEDB:Database Locking Mode=1;
-//Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global Bulk Transactions=1;
-//Jet OLEDB:New Database Password="";Jet OLEDB:Create System Database=False;
-//Jet OLEDB:Encrypt Database=False;Jet OLEDB:Don't Copy Locale on Compact=False;
-//Jet OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False;
-
-// 'Persist Security Info=False;'

@@ -3066,7 +3066,7 @@ object frmListBD: TfrmListBD
     object mniJobDB: TMenuItem
       Caption = #1056#1072#1073#1086#1090#1072' '#1089' '#1041#1044
       object mniConnection: TMenuItem
-        Caption = #1055#1088#1086#1074#1077#1088#1082#1072' '#1089#1086#1077#1076#1080#1085#1077#1085#1080#1103' '#1089' '#1041#1044
+        Caption = #1055#1088#1086#1089#1084#1086#1090#1088' '#1092#1072#1081#1083#1072' '#1082#1086#1085#1092#1080#1075#1091#1088#1072#1094#1080#1080
         OnClick = mniConnectionClick
       end
       object mniSeparator: TMenuItem
@@ -3106,5 +3106,13 @@ object frmListBD: TfrmListBD
   object dlgSaveFind: TSaveDialog
     Left = 381
     Top = 79
+  end
+  object actlstBD: TActionList
+    Left = 26
+    Top = 259
+  end
+  object ilBD: TImageList
+    Left = 99
+    Top = 268
   end
 end

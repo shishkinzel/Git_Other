@@ -40,10 +40,10 @@ begin
   with dmAccessBD do
   begin
     conBDAccess.Connected := False;
-    tblPhoneBook.Active := False;
-    tblAuthoriz.Active := False;
-    tblElectricitt.Active := False;
-    tblWater.Active := False;
+//    tblPhoneBook.Active := False;
+//    tblAuthoriz.Active := False;
+//    tblElectricitt.Active := False;
+//    tblWater.Active := False;
     conBDAccess.ConnectionString := fProvider + fBDAccessPath + fParam;
 
     conBDAccess.Connected := True;    // Подключение БД
