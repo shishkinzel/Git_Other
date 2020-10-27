@@ -17,11 +17,12 @@ object frmBayTicket: TfrmBayTicket
   PixelsPerInch = 96
   TextHeight = 13
   object lbl1: TLabel
-    Left = 8
+    Left = 32
     Top = 8
-    Width = 245
+    Width = 220
     Height = 19
-    Caption = #1056#1072#1089#1095#1105#1090' '#1074#1088#1077#1084#1077#1085#1080' '#1087#1086#1082#1091#1087#1082#1080' '#1073#1080#1083#1077#1090#1086#1074
+    Alignment = taCenter
+    Caption = #1056#1072#1089#1095#1105#1090' '#1074#1088#1077#1084#1077#1085#1080'  '#1087#1088#1086#1078#1080#1074#1072#1085#1080#1103
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16

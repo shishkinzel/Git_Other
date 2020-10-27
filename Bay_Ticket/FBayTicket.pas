@@ -55,7 +55,7 @@ begin
   else
   begin
     cbbDay.Clear;
-    ShowMessage('Введите корректные данные в поле ' + #10 + '"За какое количество суток"');
+    ShowMessage('Введите корректные данные в поле ' + #10 + '"Количество ночей"');
     cbbDay.SetFocus;
   end;
 end;
