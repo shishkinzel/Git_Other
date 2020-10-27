@@ -50,7 +50,7 @@ begin
     lbl4.Visible := True;
     clndrpckrBay.Visible := True;
     day := StrToInt(cbbDay.Text);
-    clndrpckrBay.Date := clndrpckrDeparture.Date - (day - 1);
+    clndrpckrBay.Date := clndrpckrDeparture.Date + day;
   end
   else
   begin
