@@ -7,7 +7,8 @@ uses
   Fmodal in 'Fmodal.pas' {FMod},
   FParam in 'FParam.pas' {frmParm},
   settings in 'settings.pas',
-  FInfo in 'FInfo.pas' {frmInfo};
+  FInfo in 'FInfo.pas' {frmInfo},
+  settings_one in 'settings_one.pas';
 
 {$R *.res}
 
