@@ -2,7 +2,7 @@ object Fdb: TFdb
   Left = 0
   Top = 0
   Caption = 'Fdb'
-  ClientHeight = 661
+  ClientHeight = 662
   ClientWidth = 980
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -30,23 +30,30 @@ object Fdb: TFdb
       Height = 16
       Align = alTop
       Alignment = taCenter
-      Caption = #1050#1083#1080#1077#1085#1090#1089#1082#1080#1077' '#1087#1086#1076#1082#1083#1102#1095#1077#1085#1080#1103' '#1072#1082#1090#1080#1074#1085#1099#1077' '#1087#1086#1089#1083#1077#1076#1085#1080#1077' 60 '#1089#1091#1090#1086#1082'.'
+      Caption = #1040#1082#1090#1080#1074#1085#1099#1077' '#1082#1083#1080#1077#1085#1089#1082#1080#1077' '#1087#1086#1076#1082#1083#1102#1095#1077#1085#1080#1103' , '#1082#1086#1083#1080#1095#1077#1089#1090#1074#1086' '#1089#1091#1090#1086#1082' - '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      ExplicitWidth = 333
+      ExplicitWidth = 331
+    end
+    object lblDate: TLabel
+      Left = 657
+      Top = 4
+      Width = 3
+      Height = 13
     end
   end
   object pnlDown: TPanel
     Left = 0
-    Top = 544
+    Top = 514
     Width = 980
-    Height = 117
+    Height = 129
     Align = alBottom
     TabOrder = 2
+    ExplicitTop = 498
     object lblCountClient: TLabel
       Left = 307
       Top = 27
@@ -124,7 +131,7 @@ object Fdb: TFdb
       EditLabel.Font.Name = 'Tahoma'
       EditLabel.Font.Style = []
       EditLabel.ParentFont = False
-      TabOrder = 4
+      TabOrder = 3
     end
     object btnVer: TButton
       Left = 840
@@ -132,7 +139,7 @@ object Fdb: TFdb
       Width = 110
       Height = 25
       Caption = #1042#1077#1088#1089#1080#1080' SCADA '
-      TabOrder = 3
+      TabOrder = 5
       OnClick = btnVerClick
     end
     object edtDate: TEdit
@@ -141,7 +148,7 @@ object Fdb: TFdb
       Width = 90
       Height = 21
       Alignment = taRightJustify
-      TabOrder = 5
+      TabOrder = 6
     end
     object btnRefresh: TBitBtn
       Left = 709
@@ -149,7 +156,7 @@ object Fdb: TFdb
       Width = 110
       Height = 25
       Caption = #1054#1073#1085#1086#1074#1080#1090#1100
-      TabOrder = 6
+      TabOrder = 4
       OnClick = btnRefreshClick
     end
   end
@@ -157,15 +164,16 @@ object Fdb: TFdb
     Left = 0
     Top = 25
     Width = 980
-    Height = 519
+    Height = 489
     Align = alClient
     AutoSize = True
     TabOrder = 1
+    ExplicitHeight = 519
     object dbgrd_IDS: TDBGrid
       Left = 1
       Top = 1
       Width = 978
-      Height = 517
+      Height = 487
       Align = alClient
       DataSource = ds_db
       ReadOnly = True
@@ -208,10 +216,21 @@ object Fdb: TFdb
         item
           Expanded = False
           FieldName = 'SCADAVERSION'
-          Width = 64
+          Width = 112
           Visible = True
         end>
     end
+  end
+  object stat1: TStatusBar
+    Left = 0
+    Top = 643
+    Width = 980
+    Height = 19
+    Panels = <>
+    SimplePanel = True
+    ExplicitLeft = 270
+    ExplicitTop = 635
+    ExplicitWidth = 0
   end
   object ds_db: TDataSource
     DataSet = DM_fireDAC.fdqryLog_db

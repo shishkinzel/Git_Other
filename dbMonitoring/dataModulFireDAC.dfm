@@ -12,7 +12,6 @@ object DM_fireDAC: TDM_fireDAC
       'CharacterSet=UTF8'
       'DriverID=FB')
     TxOptions.ReadOnly = True
-    Connected = True
     LoginPrompt = False
     Transaction = fdtrnsctnOne_db
     Left = 38
@@ -207,8 +206,8 @@ object DM_fireDAC: TDM_fireDAC
       'SELECT  DISTINCT REC_TIME "'#1042#1056#1045#1052#1071'", VALUE_STR "VERSION"  '
       'FROM EVENTS '
       
-        'WHERE  CL_ID = :P AND REC_TIME BETWEEN :TBEGIN AND :TEND AND VAL' +
-        'UE_STR  <> '#39#39
+        'WHERE  CL_ID = :P AND PARAM = '#39'version'#39' and  REC_TIME BETWEEN :T' +
+        'BEGIN AND :TEND AND VALUE_STR  <> '#39#39
       'ORDER BY REC_TIME')
     Left = 335
     Top = 135
