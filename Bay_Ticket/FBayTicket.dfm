@@ -3,7 +3,7 @@ object frmBayTicket: TfrmBayTicket
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = #1056#1072#1089#1095#1077#1090' '#1089#1091#1090#1086#1082' '#1087#1088#1086#1078#1080#1074#1072#1085#1080#1103' ('#1085#1086#1095#1077#1081')'
+  Caption = #1044#1072#1090#1072' '#1087#1086#1082#1091#1087#1082#1080' '#1073#1080#1083#1077#1090#1072
   ClientHeight = 235
   ClientWidth = 260
   Color = clBtnFace
@@ -17,12 +17,12 @@ object frmBayTicket: TfrmBayTicket
   PixelsPerInch = 96
   TextHeight = 13
   object lbl1: TLabel
-    Left = 32
+    Left = 24
     Top = 8
-    Width = 220
+    Width = 211
     Height = 19
     Alignment = taCenter
-    Caption = #1056#1072#1089#1095#1105#1090' '#1074#1088#1077#1084#1077#1085#1080'  '#1087#1088#1086#1078#1080#1074#1072#1085#1080#1103
+    Caption = #1056#1072#1089#1095#1105#1090' '#1076#1072#1090#1099' '#1087#1086#1082#1091#1087#1082#1080' '#1073#1080#1083#1077#1090#1072
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -35,7 +35,7 @@ object frmBayTicket: TfrmBayTicket
     Top = 48
     Width = 73
     Height = 16
-    Caption = #1044#1072#1090#1072' '#1079#1072#1077#1079#1076#1072
+    Caption = #1044#1072#1090#1072' '#1086#1090#1077#1079#1076#1072
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -46,9 +46,9 @@ object frmBayTicket: TfrmBayTicket
   object lbl3: TLabel
     Left = 8
     Top = 109
-    Width = 107
+    Width = 103
     Height = 16
-    Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086' '#1085#1086#1095#1077#1081
+    Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086' '#1089#1091#1090#1086#1082
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -59,9 +59,9 @@ object frmBayTicket: TfrmBayTicket
   object lbl4: TLabel
     Left = 8
     Top = 152
-    Width = 76
+    Width = 79
     Height = 16
-    Caption = #1044#1072#1090#1072' '#1074#1099#1077#1079#1076#1072
+    Caption = #1044#1072#1090#1072' '#1087#1086#1082#1091#1087#1082#1080
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -139,7 +139,7 @@ object frmBayTicket: TfrmBayTicket
     Visible = False
   end
   object cbbDay: TComboBox
-    Left = 174
+    Left = 177
     Top = 108
     Width = 75
     Height = 21
@@ -147,6 +147,11 @@ object frmBayTicket: TfrmBayTicket
     TabOrder = 4
     Text = #1044#1085#1080
     Items.Strings = (
-      '')
+      '15'
+      '30'
+      '45'
+      '60'
+      '90'
+      '120')
   end
 end

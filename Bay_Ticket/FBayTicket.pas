@@ -50,12 +50,12 @@ begin
     lbl4.Visible := True;
     clndrpckrBay.Visible := True;
     day := StrToInt(cbbDay.Text);
-    clndrpckrBay.Date := clndrpckrDeparture.Date + day;
+    clndrpckrBay.Date := clndrpckrDeparture.Date - (day - 1);
   end
   else
   begin
     cbbDay.Clear;
-    ShowMessage('Введите корректные данные в поле ' + #10 + '"Количество ночей"');
+    ShowMessage('Введите корректные данные в поле ' + #10 + '"Количество cуток"');
     cbbDay.SetFocus;
   end;
 end;
