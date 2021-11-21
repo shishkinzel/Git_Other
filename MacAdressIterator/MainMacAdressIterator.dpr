@@ -2,13 +2,13 @@ program MainMacAdressIterator;
 
 uses
   Vcl.Forms,
-  MacAdressIterator in 'MacAdressIterator.pas' {Form1};
+  MacAdressIterator in 'MacAdressIterator.pas' {frmMAC};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmMAC, frmMAC);
   Application.Run;
 end.
