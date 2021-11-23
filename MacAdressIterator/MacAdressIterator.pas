@@ -1,4 +1,4 @@
-unit MacAdressIterator;
+﻿unit MacAdressIterator;
 
 interface
 
@@ -51,8 +51,10 @@ type
     fileId : TextFile;
   public
   { Public declarations }
+      type
+      TOutArray = array[0 .. 2] of Byte;
     const
-    idFile = 'id_mac_iterator.txt';
+    nameFile = 'id_mac_iterator.txt';
 
   var
     idMAC: array [0 .. 2] of Byte;
@@ -69,7 +71,7 @@ var
 i : Integer;
 s : String;
 begin
-s := '';
+s := ' -> ';
 stepIteration :=StrToIntDef(seStepIterator.Text, 0);
 quantity := StrToIntDef(seQuantity.Text, 0);
 
@@ -81,15 +83,26 @@ idMAC[0] :=  DataModuleMacIterator.HexStrToInt(medtBit_6.Text);
 idMAC[1] :=  DataModuleMacIterator.HexStrToInt(medtBit_5.Text);
 idMAC[2] :=  DataModuleMacIterator.HexStrToInt(medtBit_4.Text);
 
- for I := 0 to 2 do
-   begin
-     s := s + ' ' + idMAC[i].ToHexString;
-   end;
+// for I := 0 to 2 do
+//   begin
+//     s := s + ' : ' + idMAC[i].ToHexString;
+//   end;
 
 idModule := StrToIntDef(medtModule.Text,0);
 idDate := StrToIntDef(medtDate.Text,0);
 idGroup := StrToIntDef(medtGroup.Text,0);
 idNumber := StrToIntDef(medtNumber.Text,0);
+
+  Rewrite(fileId);
+  for i := 0 to 9 do
+  begin
+
+
+    Write(fileId, DataModuleMacIterator.ArrayToString(idMAC));       // ??? Не соответствие типов
+  end;
+  Writeln(fileId);
+  CloseFile(fileId);
+
 
 
 end;
@@ -98,9 +111,9 @@ procedure TfrmMAC.FormCreate(Sender: TObject);
 var
   i: Integer;
 begin
-  AssignFile(fileId, idFile);
+  AssignFile(fileId, nameFile);
 
-  if not FileExists(idFile) then
+  if not FileExists(nameFile) then
   begin
     Rewrite(fileId);
     CloseFile(fileId);
