@@ -5,23 +5,24 @@ interface
 uses
   System.SysUtils, System.Classes;
 
-
 type
   TDataModuleMacIterator = class(TDataModule)
   private
     { Private declarations }
   public
     { Public declarations }
-    type
-      TOutArray = array[0 .. 2] of Byte;
 
     function HexStrToInt(const str: string): Integer;
-    function IncArrayOne(const inArray : TOutArray) : TOutArray;
-    function ArrayToString(const inArray : TOutArray) : string;
+    procedure IncArrayOne(var inArray: array of Byte);
+    function ArrayToString(var inArray: array of Byte): string;
 
   end;
+
+
+
 var
   DataModuleMacIterator: TDataModuleMacIterator;
+
 implementation
 
 uses
@@ -30,57 +31,55 @@ uses
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 {$R *.dfm}
 
+
 function TDataModuleMacIterator.HexStrToInt(const str: string): Integer;
 begin
   Result := StrToIntDef('$' + str, 0);
 end;
 
-function TDataModuleMacIterator.ArrayToString(const inArray: TOutArray): string;
+function TDataModuleMacIterator.ArrayToString(var inArray: array of Byte): string;
 var
 s : string;
 i : Integer;
 begin
+s := ' -> ';
    for I := 0 to 2 do
    begin
-     s := s + ' : ' + inArray[i].ToHexString;
+     s := s  + inArray[i].ToHexString + ' : ';
+
    end;
+        s.Substring(5);
    Result := s;
 end;
 
-
-function TDataModuleMacIterator.IncArrayOne(const inArray: TOutArray)
-  : TOutArray;
+ procedure TDataModuleMacIterator.IncArrayOne(var inArray: array of Byte);
+const
+  arrByte = 256;
 var
   T0, T1, T2: Integer;
 begin
-  T0 := inArray[0];
+  T0 := inArray[2];
   T1 := inArray[1];
-  T2 := inArray[2];
+  T2 := inArray[0];
 
-  if T2 <= 255 then
+  Inc(T0);
+  if T0 = arrByte then
   begin
-    if T1 <= 255 then
+    Inc(T1);
+    T0 := 0;
+    if T1 = arrByte then
     begin
-      if T0 <= 255 then
-      begin
-         Inc(T0);
-         if T0 = 256 then
-         begin
-         Inc(T1);
-         T0 := 0;
-         end;
-      end;
-      if T1 = 256 then
-      begin
-        Inc(T2);
-        T1 := 0;
-      end;
+      Inc(T2);
+      T1 := 0;
     end;
-    if T2 = 256 then
-     raise
-     Exception.Create('Недопустимое значение массива');
+    if T2 = arrByte then
+      raise Exception.Create('Недопустимое значение массива');
   end;
-
+  inArray[2] := T0;
+  inArray[1] := T1;
+  inArray[0] := T2;
 end;
 
+
 end.
+

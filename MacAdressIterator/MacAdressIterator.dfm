@@ -4,7 +4,7 @@ object frmMAC: TfrmMAC
   Caption = 'MacAdress'
   ClientHeight = 402
   ClientWidth = 561
-  Color = clHighlight
+  Color = clMenuHighlight
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -597,9 +597,9 @@ object frmMAC: TfrmMAC
   object lblHighOrderBit: TLabel
     Left = 16
     Top = 157
-    Width = 96
+    Width = 103
     Height = 19
-    Caption = 'FF : FF : FF : '
+    Caption = '68 : EB : C5 : '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -739,7 +739,7 @@ object frmMAC: TfrmMAC
   object medtBit_4: TMaskEdit
     Left = 116
     Top = 153
-    Width = 22
+    Width = 25
     Height = 27
     EditMask = 'AA;0;_'
     Font.Charset = DEFAULT_CHARSET
@@ -755,7 +755,7 @@ object frmMAC: TfrmMAC
   object medtBit_5: TMaskEdit
     Left = 152
     Top = 153
-    Width = 22
+    Width = 25
     Height = 27
     EditMask = 'AA;0;_'
     Font.Charset = DEFAULT_CHARSET
@@ -771,7 +771,7 @@ object frmMAC: TfrmMAC
   object medtBit_6: TMaskEdit
     Left = 188
     Top = 153
-    Width = 22
+    Width = 25
     Height = 27
     EditMask = 'AA;0;_'
     Font.Charset = DEFAULT_CHARSET
