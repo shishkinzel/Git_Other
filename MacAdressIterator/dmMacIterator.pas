@@ -48,8 +48,8 @@ s := ' -> ';
      s := s  + inArray[i].ToHexString + ' : ';
 
    end;
-        s.Substring(5);
-   Result := s;
+        Delete(s, 18, 1);
+   Result := s + '   ->';
 end;
 
  procedure TDataModuleMacIterator.IncArrayOne(var inArray: array of Byte);
