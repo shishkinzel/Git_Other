@@ -34,7 +34,7 @@ uses
 
 function TDataModuleMacIterator.HexStrToInt(const str: string): Integer;
 begin
-  Result := StrToIntDef('$' + str, 0);
+  Result := StrToIntDef('$' + str, -1);
 end;
 
 function TDataModuleMacIterator.ArrayToString(var inArray: array of Byte): string;
