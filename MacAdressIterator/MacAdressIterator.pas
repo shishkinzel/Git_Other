@@ -5,7 +5,9 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.Samples.Spin, dmMacIterator,
-   frmFastReportMac , Vcl.Menus;
+   frmFastReportMac , Vcl.Menus, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.Stan.StorageBin, FireDAC.Stan.StorageJSON;
 type
   TfrmMAC = class(TForm)
     lblTitle: TLabel;
@@ -49,9 +51,15 @@ type
     N2: TMenuItem;
     N8: TMenuItem;
     N10: TMenuItem;
+    fdmtblMac: TFDMemTable;
+    fdmtblMacNumber: TStringField;
+    fdmtblMacMACadress: TStringField;
+    fdmtblMacidnumber: TStringField;
+    fdstnstrgjsnlnkMac: TFDStanStorageJSONLink;
     procedure btnApplayClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure N4Click(Sender: TObject);
+    procedure btnRestartClick(Sender: TObject);
 
 
   private
@@ -76,14 +84,14 @@ type
 var
   frmMAC: TfrmMAC;
 implementation
-
+Uses IdGlobal;
 {$R *.dfm}
 procedure TfrmMAC.btnApplayClick(Sender: TObject);
 var
 i, stepMac, stepNubmer : Integer;
 s,numberS : String;
 begin
-s := ' -> ';
+s := ' | ';
 stepMac := 1;
 stepIteration :=StrToIntDef(seStepIterator.Text, 0);
 quantity := StrToIntDef(seQuantity.Text, 0);
@@ -120,6 +128,28 @@ idNumber := StrToIntDef(medtNumber.Text,0);
 
 
 
+end;
+
+procedure TfrmMAC.btnRestartClick(Sender: TObject);
+var
+  s, tmp, tmp1, tmp2: string;
+begin
+  fdmtblMac.Open;
+  fdmtblMac.Append;
+  Reset(fileId);
+  while (not EOF(fileId)) do
+  begin
+    Readln(fileId, s);
+    tmp := Trim(Fetch(s, '|'));
+    tmp1 := Trim(Fetch(s, '|'));
+
+    fdmtblMac.FieldByName('Number').AsString := tmp;
+    fdmtblMac.FieldByName('MAC - adress').AsString := tmp1;
+    fdmtblMac.FieldByName('id - number').AsString := s;
+  end;
+
+  CloseFile(fileId);
+  fdmtblMac.SaveToFile('client.FDS', sfJSON)
 end;
 
 procedure TfrmMAC.FormCreate(Sender: TObject);
