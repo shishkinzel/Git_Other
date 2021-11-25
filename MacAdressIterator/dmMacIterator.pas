@@ -48,7 +48,7 @@ s := ' | ';
      s := s  + inArray[i].ToHexString + ' : ';
 
    end;
-        Delete(s, 18, 1);
+        Delete(s, 17, 1);
    Result := s + ' | ';
 end;
 

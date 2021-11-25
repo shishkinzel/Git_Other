@@ -7408,6 +7408,7 @@ object frmMAC: TfrmMAC
   Menu = mmMAC
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -7821,9 +7822,22 @@ object frmMAC: TfrmMAC
       end
       object N5: TMenuItem
         Caption = #1069#1082#1089#1087#1086#1088#1090' '#1086#1090#1095#1077#1090#1072
+        object pdf1: TMenuItem
+          Caption = #1069#1082#1089#1087#1086#1088#1090' '#1074' pdf'
+          OnClick = pdf1Click
+        end
+        object xml1: TMenuItem
+          Caption = #1069#1082#1089#1087#1086#1088#1090' '#1074' xml'
+          OnClick = xml1Click
+        end
+        object doc1: TMenuItem
+          Caption = #1069#1082#1089#1087#1086#1088#1090' '#1074' doc'
+          OnClick = doc1Click
+        end
       end
       object N6: TMenuItem
         Caption = #1055#1077#1095#1072#1090#1100
+        OnClick = N6Click
       end
       object N9: TMenuItem
         Caption = '-'

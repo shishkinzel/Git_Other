@@ -15,6 +15,7 @@ type
     frxpdfxprtMac: TfrxPDFExport;
     frxdcxprtMac: TfrxDOCXExport;
     frxdbdtstMac: TfrxDBDataset;
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,5 +31,12 @@ uses
   MacAdressIterator;
 
 {$R *.dfm}
+
+procedure TfrmFReport.FormCreate(Sender: TObject);
+ var
+ i : Integer;
+begin
+
+end;
 
 end.

@@ -12,6 +12,7 @@ object frmFReport: TfrmFReport
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object frxprvwMac: TfrxPreview
@@ -27,28 +28,27 @@ object frmFReport: TfrmFReport
     UseReportHints = True
     OutlineTreeSortType = dtsUnsorted
     HideScrolls = False
-    ExplicitLeft = 152
-    ExplicitTop = 8
   end
   object frxrprtMac: TfrxReport
     Version = '6.9.3'
     DotMatrixReport = False
+    EngineOptions.PrintIfEmpty = False
     IniFile = '\Software\Fast Reports'
     Preview = frxprvwMac
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 44524.704490381900000000
-    ReportOptions.LastChange = 44524.950942430560000000
+    ReportOptions.CreateDate = 44525.630604537000000000
+    ReportOptions.LastChange = 44525.720491099540000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
       'begin'
       ''
       'end.')
-    Left = 24
-    Top = 88
+    Left = 144
+    Top = 32
     Datasets = <
       item
         DataSet = frxdbdtstMac
@@ -61,6 +61,8 @@ object frmFReport: TfrmFReport
       Width = 1000.000000000000000000
     end
     object Page1: TfrxReportPage
+      VGuides.Strings = (
+        '29')
       PaperWidth = 210.000000000000000000
       PaperHeight = 297.000000000000000000
       PaperSize = 9
@@ -68,29 +70,70 @@ object frmFReport: TfrmFReport
       RightMargin = 10.000000000000000000
       TopMargin = 10.000000000000000000
       BottomMargin = 10.000000000000000000
+      ColumnWidth = 190.000000000000000000
+      ColumnPositions.Strings = (
+        '0')
       Frame.Typ = []
       MirrorMode = []
       object ReportTitle1: TfrxReportTitle
         FillType = ftBrush
         Frame.Typ = []
-        Height = 22.677180000000000000
+        Height = 71.811070000000000000
         Top = 18.897650000000000000
         Width = 718.110700000000000000
         object Memo5: TfrxMemoView
           AllowVectorExport = True
-          Left = 26.456710000000000000
-          Width = 253.228510000000000000
+          Left = 7.559060000000000000
+          Width = 158.740260000000000000
           Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
-            #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1091#1089#1090#1088#1086#1081#1089#1090#1074#1072)
+            #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1080#1079#1076#1077#1083#1080#1103)
+          ParentFont = False
+        end
+        object Memo7: TfrxMemoView
+          AllowVectorExport = True
+          Left = 7.559060000000000000
+          Top = 45.354360000000000000
+          Width = 260.787570000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            #1053#1072#1095#1072#1083#1100#1085#1099#1081' '#1089#1077#1088#1080#1081#1085#1099#1081' '#1085#1086#1084#1077#1088' '#1082#1086#1084#1087#1083#1077#1082#1090#1072':')
+          ParentFont = False
+        end
+        object Memo6: TfrxMemoView
+          AllowVectorExport = True
+          Left = 7.559060000000000000
+          Top = 22.677180000000000000
+          Width = 230.551330000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            #1053#1072#1095#1072#1083#1100#1085#1099#1081' MAC-'#1072#1076#1088#1077#1089' '#1082#1086#1084#1087#1083#1077#1082#1090#1072)
+          ParentFont = False
         end
       end
       object MasterData1: TfrxMasterData
         FillType = ftBrush
         Frame.Typ = []
-        Height = 653.858690000000000000
-        Top = 102.047310000000000000
+        Height = 22.677180000000000000
+        Top = 196.535560000000000000
         Width = 718.110700000000000000
         DataSet = frxdbdtstMac
         DataSetName = 'frxDBDataset1'
@@ -98,47 +141,71 @@ object frmFReport: TfrmFReport
         object frxDBDataset1Number: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Width = 151.181200000000000000
-          Height = 18.897650000000000000
+          Width = 113.385900000000000000
+          Height = 22.677180000000000000
           DataField = 'Number'
           DataSet = frxdbdtstMac
           DataSetName = 'frxDBDataset1'
-          Frame.Typ = []
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
           Memo.UTF8W = (
             '[frxDBDataset1."Number"]')
+          ParentFont = False
+          VAlign = vaCenter
         end
         object frxDBDataset1MACadress: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 151.181200000000000000
-          Width = 264.567100000000000000
-          Height = 18.897650000000000000
+          Left = 113.385900000000000000
+          Width = 302.362400000000000000
+          Height = 22.677180000000000000
           DataField = 'MAC - adress'
           DataSet = frxdbdtstMac
           DataSetName = 'frxDBDataset1'
-          Frame.Typ = []
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
           Memo.UTF8W = (
             '[frxDBDataset1."MAC - adress"]')
+          ParentFont = False
+          VAlign = vaCenter
         end
         object frxDBDataset1idnumber: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
           Left = 415.748300000000000000
-          Width = 294.803340000000000000
-          Height = 18.897650000000000000
+          Width = 302.362400000000000000
+          Height = 22.677180000000000000
           DataField = 'id - number'
           DataSet = frxdbdtstMac
           DataSetName = 'frxDBDataset1'
-          Frame.Typ = []
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
           Memo.UTF8W = (
             '[frxDBDataset1."id - number"]')
+          ParentFont = False
+          VAlign = vaCenter
         end
       end
       object PageFooter1: TfrxPageFooter
         FillType = ftBrush
         Frame.Typ = []
-        Height = 22.677180000000000000
-        Top = 816.378480000000000000
+        Height = 79.370130000000000000
+        Top = 279.685220000000000000
         Width = 718.110700000000000000
         object Memo1: TfrxMemoView
           AllowVectorExport = True
@@ -151,35 +218,62 @@ object frmFReport: TfrmFReport
             '[Page#]')
         end
       end
-      object Memo2: TfrxMemoView
-        AllowVectorExport = True
-        Left = 7.559060000000000000
-        Top = 56.692950000000000000
-        Width = 147.401670000000000000
-        Height = 18.897650000000000000
+      object Header1: TfrxHeader
+        FillType = ftBrush
         Frame.Typ = []
-        Memo.UTF8W = (
-          #1053#1086#1084#1077#1088)
-      end
-      object Memo3: TfrxMemoView
-        AllowVectorExport = True
-        Left = 154.960730000000000000
-        Top = 60.472480000000000000
-        Width = 264.567100000000000000
-        Height = 18.897650000000000000
-        Frame.Typ = []
-        Memo.UTF8W = (
-          'MAC-'#1072#1076#1088#1077#1089)
-      end
-      object Memo4: TfrxMemoView
-        AllowVectorExport = True
-        Left = 419.527830000000000000
-        Top = 60.472480000000000000
-        Width = 294.803340000000000000
-        Height = 18.897650000000000000
-        Frame.Typ = []
-        Memo.UTF8W = (
-          #1053#1086#1084#1077#1088' '#1082#1086#1084#1087#1083#1077#1082#1090#1072)
+        Height = 22.677180000000000000
+        Top = 151.181200000000000000
+        Width = 718.110700000000000000
+        object Memo2: TfrxMemoView
+          AllowVectorExport = True
+          Width = 113.385900000000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            #1053#1086#1084#1077#1088)
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo3: TfrxMemoView
+          AllowVectorExport = True
+          Left = 113.385900000000000000
+          Width = 302.362400000000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'MAC - '#1072#1076#1088#1077#1089)
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo4: TfrxMemoView
+          AllowVectorExport = True
+          Left = 415.748300000000000000
+          Width = 302.362400000000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            #1053#1086#1084#1077#1088' '#1082#1086#1084#1087#1083#1077#1082#1090#1072)
+          ParentFont = False
+          VAlign = vaCenter
+        end
       end
     end
   end
@@ -238,9 +332,13 @@ object frmFReport: TfrmFReport
   object frxdbdtstMac: TfrxDBDataset
     UserName = 'frxDBDataset1'
     CloseDataSource = False
+    FieldAliases.Strings = (
+      'Number=Number'
+      'MAC - adress=MAC - adress'
+      'id - number=id - number')
     DataSet = frmMAC.fdmtblMac
     BCDToCurrency = False
-    Left = 16
-    Top = 158
+    Left = 8
+    Top = 110
   end
 end
