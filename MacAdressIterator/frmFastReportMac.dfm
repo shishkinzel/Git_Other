@@ -40,7 +40,7 @@ object frmFReport: TfrmFReport
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44525.630604537000000000
-    ReportOptions.LastChange = 44525.720491099540000000
+    ReportOptions.LastChange = 44525.859693865740000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -138,6 +138,21 @@ object frmFReport: TfrmFReport
         DataSet = frxdbdtstMac
         DataSetName = 'frxDBDataset1'
         RowCount = 0
+        object Memo8: TfrxMemoView
+          AllowVectorExport = True
+          Width = 718.110700000000000000
+          Height = 22.677180000000000000
+          Frame.Typ = []
+          Highlight.Font.Charset = DEFAULT_CHARSET
+          Highlight.Font.Color = clBlack
+          Highlight.Font.Height = -13
+          Highlight.Font.Name = 'Arial'
+          Highlight.Font.Style = []
+          Highlight.Condition = '<Line> mod 5 = 1'
+          Highlight.FillType = ftBrush
+          Highlight.Fill.BackColor = clAqua
+          Highlight.Frame.Typ = []
+        end
         object frxDBDataset1Number: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
