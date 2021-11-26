@@ -7929,4 +7929,62 @@ object frmMAC: TfrmMAC
     Left = 16
     Top = 80
   end
+  object fdmtblTitle: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'nameDevice'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'firstOrderBit'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'stepIterator'
+        DataType = ftString
+        Size = 5
+      end
+      item
+        Name = 'firstIdDevice'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'quantityDevice'
+        DataType = ftString
+        Size = 10
+      end>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 528
+    Top = 16
+    object fdmtblTitlenameDevice: TStringField
+      FieldName = 'nameDevice'
+      Size = 50
+    end
+    object fdmtblTitlefirstOrderBit: TStringField
+      FieldName = 'firstOrderBit'
+    end
+    object fdmtblTitlestepIterator: TStringField
+      FieldName = 'stepIterator'
+      Size = 5
+    end
+    object fdmtblTitlefirstIdDevice: TStringField
+      FieldName = 'firstIdDevice'
+    end
+    object fdmtblTitlequantityDevice: TStringField
+      FieldName = 'quantityDevice'
+      Size = 10
+    end
+  end
 end

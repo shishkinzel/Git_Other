@@ -9,12 +9,13 @@ uses
 
 type
   TfrmFReport = class(TForm)
-    frxrprtMac: TfrxReport;
     frxprvwMac: TfrxPreview;
     frxmlxprtMac: TfrxXMLExport;
     frxpdfxprtMac: TfrxPDFExport;
     frxdcxprtMac: TfrxDOCXExport;
-    frxdbdtstMac: TfrxDBDataset;
+    frxdbdtstLast: TfrxDBDataset;
+    frxdbdtstTitle: TfrxDBDataset;
+    frxrprtMac: TfrxReport;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }

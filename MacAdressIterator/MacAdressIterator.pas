@@ -59,6 +59,12 @@ type
     pdf1: TMenuItem;
     xml1: TMenuItem;
     doc1: TMenuItem;
+    fdmtblTitle: TFDMemTable;
+    fdmtblTitlenameDevice: TStringField;
+    fdmtblTitlefirstOrderBit: TStringField;
+    fdmtblTitlestepIterator: TStringField;
+    fdmtblTitlefirstIdDevice: TStringField;
+    fdmtblTitlequantityDevice: TStringField;
     procedure btnApplayClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure N4Click(Sender: TObject);
@@ -80,6 +86,11 @@ type
     idGroup: Integer;
     idNumber: Integer;
     fileId : TextFile;
+    fnameDevice : string;          // наименование устройства
+    ffirstOrderBit : string;       // начальный МАС-адрес для итерации
+    fstepIterator : string;        // шаг итерации МАС-адреса
+    ffirstIdDevice : string;       // начальный серийный номер комплекта
+    fquantityDevice : string;      // количество устройств
 
   public
   { Public declarations }
@@ -100,16 +111,32 @@ var
 i, stepMac, stepNubmer : Integer;
 s,numberS : String;
 highOrderBit, highIdNumber : string;
+bit0, bit1, bit2 : string;
 begin
   stepMac := 1;
   stepIteration := StrToIntDef(seStepIterator.Text, 0);
   quantity := StrToIntDef(seQuantity.Text, 0);
 
-  highOrderBit := lblHighOrderBit.Caption;
-
+//  заполнение массива
   idMAC[0] := DataModuleMacIterator.HexStrToInt(medtBit_4.Text);
   idMAC[1] := DataModuleMacIterator.HexStrToInt(medtBit_5.Text);
   idMAC[2] := DataModuleMacIterator.HexStrToInt(medtBit_6.Text);
+  bit2 := IntToHex(idMAC[0]) + '';
+  bit1 := IntToHex(idMAC[1]) + '';
+  bit0 := IntToHex(idMAC[2]) + '';
+  bit2 := bit2 + ':' + bit1 + ':' + bit0;
+//************************************************************
+
+// установка системных переменных для формирования отчета
+  fnameDevice := edtDevice.Text;
+  ffirstOrderBit := '68:EB:C5:' + bit2;
+  fstepIterator := seStepIterator.Text;
+  ffirstIdDevice := medtModule.Text + ' ' + medtDate.Text + ' ' + medtGroup.Text + ' ' + medtNumber.Text;
+  fquantityDevice := seQuantity.Text;
+  //*******************************************************
+
+  highOrderBit := lblHighOrderBit.Caption;
+
 
   idModule := StrToIntDef(medtModule.Text, 0);
   idDate := StrToIntDef(medtDate.Text, 0);
@@ -143,12 +170,29 @@ procedure TfrmMAC.btnRestartClick(Sender: TObject);
 var
   s, tmp, tmp1, tmp2: string;
 begin
+  fdmtblTitle.Open;
+  fdmtblTitle.Table.Clear;
+  fdmtblTitle.Append;
+//  fdmtblMac.Post;
+//  fdmtblMac.Next;
+
+  fdmtblTitle.Insert;
+  fdmtblTitle.FieldByName('nameDevice').AsString := fnameDevice;
+  fdmtblTitle.FieldByName('firstOrderBit').AsString := ffirstOrderBit;
+  fdmtblTitle.FieldByName('stepIterator').AsString := fstepIterator;
+  fdmtblTitle.FieldByName('firstIdDevice').AsString := ffirstIdDevice;
+  fdmtblTitle.FieldByName('quantityDevice').AsString := fquantityDevice;
+
   fdmtblMac.Open;
   fdmtblMac.Table.Clear;
   fdmtblMac.Append;
-  fdmtblMac.Post;
-  fdmtblMac.Next;
+//
+       fdmtblMac.FieldByName('Number').AsString := '';
+    fdmtblMac.FieldByName('MAC - adress').AsString := '';
+    fdmtblMac.FieldByName('id - number').AsString := '';
+//
   Reset(fileId);
+   fdmtblMac.First;
   while (not EOF(fileId)) do
   begin
     fdmtblMac.Insert;
@@ -171,6 +215,7 @@ end;
 procedure TfrmMAC.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   fdmtblMac.Close;
+  fdmtblTitle.Close;
 end;
 
 procedure TfrmMAC.FormCreate(Sender: TObject);
