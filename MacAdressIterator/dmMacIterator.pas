@@ -15,6 +15,7 @@ type
     function HexStrToInt(const str: string): Integer;
     procedure IncArrayOne(var inArray: array of Byte);
     function ArrayToString(var inArray: array of Byte): string;
+    function ArrayToStringShort(var inArray: array of Byte): string;
 
   end;
 
@@ -48,8 +49,23 @@ s := ' | ';
      s := s  + inArray[i].ToHexString + ' : ';
 
    end;
-        Delete(s, 17, 1);
+        Delete(s, 16, 5);
    Result := s + ' | ';
+end;
+
+function TDataModuleMacIterator.ArrayToStringShort(var inArray: array of Byte): string;
+var
+s : string;
+i : Integer;
+begin
+s := '';
+   for I := 0 to 2 do
+   begin
+     s :=s + inArray[i].ToHexString + ':';
+
+   end;
+        Delete(s, 16, 5);
+   Result := s;
 end;
 
  procedure TDataModuleMacIterator.IncArrayOne(var inArray: array of Byte);

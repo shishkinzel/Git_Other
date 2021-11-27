@@ -7415,9 +7415,9 @@ object frmMAC: TfrmMAC
   object lblTitle: TLabel
     Left = 163
     Top = 32
-    Width = 203
+    Width = 194
     Height = 23
-    Caption = 'MAC - '#1072#1076#1088#1077#1089#1089' '#1080#1090#1077#1088#1072#1090#1086#1088
+    Caption = 'MAC - '#1072#1076#1088#1077#1089' '#1080#1090#1077#1088#1072#1090#1086#1088
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -7582,6 +7582,20 @@ object frmMAC: TfrmMAC
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+  end
+  object lblPrintMac: TLabel
+    Left = 178
+    Top = 52
+    Width = 159
+    Height = 19
+    Caption = #1055#1077#1095#1072#1090#1100' '#1052#1040#1057'- '#1072#1076#1088#1077#1089#1086#1074
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
   end
   object edtDevice: TEdit
     Left = 256
@@ -7778,6 +7792,7 @@ object frmMAC: TfrmMAC
     Width = 150
     Height = 25
     Caption = #1057#1073#1088#1086#1089#1080#1090#1100
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -7790,37 +7805,41 @@ object frmMAC: TfrmMAC
   object mmMAC: TMainMenu
     Left = 24
     Top = 8
-    object N1: TMenuItem
+    object mniChoice: TMenuItem
       Caption = #1042#1099#1073#1086#1088' '#1091#1090#1080#1083#1080#1090#1099
-      object N11: TMenuItem
+      object mniPrintMac: TMenuItem
         Caption = #1055#1077#1095#1072#1090#1100' '#1052#1040#1057'- '#1072#1076#1088#1077#1089#1086#1074
+        OnClick = mniPrintMacClick
       end
-      object N21: TMenuItem
+      object mniIterator: TMenuItem
         Caption = #1048#1090#1077#1088#1072#1090#1086#1088' '#1052#1040#1057'- '#1072#1076#1088#1077#1089#1086#1074
+        Enabled = False
+        OnClick = mniIteratorClick
       end
       object N8: TMenuItem
         Caption = '-'
       end
-      object N10: TMenuItem
+      object mniApply: TMenuItem
         Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
+        OnClick = mniApplyClick
       end
       object N2: TMenuItem
         Caption = '-'
       end
-      object N31: TMenuItem
+      object mniReset: TMenuItem
         Caption = #1057#1073#1088#1086#1089
       end
-      object N41: TMenuItem
+      object mniExit: TMenuItem
         Caption = ' '#1042#1099#1093#1086#1076
       end
     end
-    object N3: TMenuItem
+    object mniReport: TMenuItem
       Caption = #1054#1090#1095#1077#1090
-      object N4: TMenuItem
+      object mnifrView: TMenuItem
         Caption = #1055#1088#1086#1089#1084#1086#1090#1088' '#1086#1090#1095#1077#1090#1072
-        OnClick = N4Click
+        OnClick = mnifrViewClick
       end
-      object N5: TMenuItem
+      object mniExport: TMenuItem
         Caption = #1069#1082#1089#1087#1086#1088#1090' '#1086#1090#1095#1077#1090#1072
         object pdf1: TMenuItem
           Caption = #1069#1082#1089#1087#1086#1088#1090' '#1074' pdf'
@@ -7835,14 +7854,14 @@ object frmMAC: TfrmMAC
           OnClick = doc1Click
         end
       end
-      object N6: TMenuItem
+      object mnifrPrint: TMenuItem
         Caption = #1055#1077#1095#1072#1090#1100
-        OnClick = N6Click
+        OnClick = mnifrPrintClick
       end
       object N9: TMenuItem
         Caption = '-'
       end
-      object N7: TMenuItem
+      object mniQuit: TMenuItem
         Caption = #1042#1099#1093#1086#1076
       end
     end
@@ -7875,8 +7894,8 @@ object frmMAC: TfrmMAC
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 88
-    Top = 24
+    Left = 488
+    Top = 16
     Content = {
       414442530F000000CC010000FF00010001FF02FF03040012000000660064006D
       00740062006C004D006100630005000A0000005400610062006C006500060000
@@ -7926,8 +7945,8 @@ object frmMAC: TfrmMAC
     end
   end
   object fdstnstrgjsnlnkMac: TFDStanStorageJSONLink
-    Left = 16
-    Top = 80
+    Left = 520
+    Top = 368
   end
   object fdmtblTitle: TFDMemTable
     Active = True
