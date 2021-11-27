@@ -26,10 +26,6 @@ object frmFRList: TfrmFRList
     UseReportHints = True
     OutlineTreeSortType = dtsUnsorted
     HideScrolls = False
-    ExplicitLeft = 104
-    ExplicitTop = 192
-    ExplicitWidth = 100
-    ExplicitHeight = 100
   end
   object frxrprtList: TfrxReport
     Version = '6.9.3'
@@ -40,8 +36,8 @@ object frmFRList: TfrmFRList
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
-    ReportOptions.CreateDate = 44527.830455590280000000
-    ReportOptions.LastChange = 44527.832017141210000000
+    ReportOptions.CreateDate = 44527.830455590300000000
+    ReportOptions.LastChange = 44527.966241342590000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -62,13 +58,10 @@ object frmFRList: TfrmFRList
       Width = 1000.000000000000000000
     end
     object Page1: TfrxReportPage
-      PaperWidth = 210.000000000000000000
-      PaperHeight = 297.000000000000000000
-      PaperSize = 9
-      LeftMargin = 10.000000000000000000
-      RightMargin = 10.000000000000000000
-      TopMargin = 10.000000000000000000
-      BottomMargin = 10.000000000000000000
+      PaperWidth = 60.000000000000000000
+      PaperHeight = 9.000000000000000000
+      PaperSize = 256
+      TopMargin = 1.000000000000000000
       Frame.Typ = []
       MirrorMode = []
       object MasterData1: TfrxMasterData
@@ -76,22 +69,21 @@ object frmFRList: TfrmFRList
         Frame.Typ = []
         Height = 22.677180000000000000
         Top = 18.897650000000000000
-        Width = 718.110700000000000000
+        Width = 226.771800000000000000
         DataSet = frxdbdtstList
         DataSetName = 'frxDBDataset1'
         RowCount = 0
         object frxDBDataset1MACadress: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 151.181200000000000000
-          Width = 268.346630000000000000
-          Height = 18.897650000000000000
+          Width = 226.771800000000000000
+          Height = 22.677180000000000000
           DataField = 'MAC - adress'
           DataSet = frxdbdtstList
           DataSetName = 'frxDBDataset1'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -16
+          Font.Height = -19
           Font.Name = 'Tahoma'
           Font.Style = []
           Frame.Typ = []
