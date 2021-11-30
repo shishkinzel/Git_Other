@@ -116,7 +116,7 @@ object frmFReport: TfrmFReport
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44525.630604537000000000
-    ReportOptions.LastChange = 44526.699325532410000000
+    ReportOptions.LastChange = 44529.623948958330000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -184,7 +184,7 @@ object frmFReport: TfrmFReport
           AllowVectorExport = True
           Left = 272.126160000000000000
           Top = 37.795300000000000000
-          Width = 207.874150000000000000
+          Width = 408.189240000000000000
           Height = 18.897650000000000000
           DataField = 'firstOrderBit'
           DataSet = frxdbdtstTitle
@@ -204,7 +204,7 @@ object frmFReport: TfrmFReport
           AllowVectorExport = True
           Left = 313.700990000000000000
           Top = 71.811070000000000000
-          Width = 207.874150000000000000
+          Width = 366.614410000000000000
           Height = 18.897650000000000000
           DataField = 'firstIdDevice'
           DataSet = frxdbdtstTitle
@@ -224,7 +224,7 @@ object frmFReport: TfrmFReport
           AllowVectorExport = True
           Left = 185.196970000000000000
           Top = 7.559060000000000000
-          Width = 306.141930000000000000
+          Width = 495.118430000000000000
           Height = 18.897650000000000000
           DataField = 'nameDevice'
           DataSet = frxdbdtstTitle

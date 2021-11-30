@@ -7613,7 +7613,7 @@ object frmMAC: TfrmMAC
   object medtModule: TMaskEdit
     Left = 521
     Top = 174
-    Width = 32
+    Width = 35
     Height = 27
     EditMask = '000;1;*'
     Font.Charset = DEFAULT_CHARSET
@@ -7623,13 +7623,13 @@ object frmMAC: TfrmMAC
     Font.Style = []
     MaxLength = 3
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 6
     Text = '   '
   end
   object medtDate: TMaskEdit
     Left = 521
     Top = 216
-    Width = 32
+    Width = 35
     Height = 27
     EditMask = '000;1;*'
     Font.Charset = DEFAULT_CHARSET
@@ -7639,13 +7639,13 @@ object frmMAC: TfrmMAC
     Font.Style = []
     MaxLength = 3
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 7
     Text = '   '
   end
   object medtGroup: TMaskEdit
     Left = 521
     Top = 253
-    Width = 32
+    Width = 35
     Height = 27
     EditMask = '000;1;*'
     Font.Charset = DEFAULT_CHARSET
@@ -7655,13 +7655,13 @@ object frmMAC: TfrmMAC
     Font.Style = []
     MaxLength = 3
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 8
     Text = '   '
   end
   object medtNumber: TMaskEdit
     Left = 521
     Top = 295
-    Width = 32
+    Width = 35
     Height = 27
     EditMask = '000;1;*'
     Font.Charset = DEFAULT_CHARSET
@@ -7671,7 +7671,7 @@ object frmMAC: TfrmMAC
     Font.Style = []
     MaxLength = 3
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 9
     Text = '   '
   end
   object medtBit_4: TMaskEdit
@@ -7687,7 +7687,7 @@ object frmMAC: TfrmMAC
     Font.Style = []
     MaxLength = 2
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 1
     Text = ''
   end
   object medtBit_5: TMaskEdit
@@ -7703,7 +7703,7 @@ object frmMAC: TfrmMAC
     Font.Style = []
     MaxLength = 2
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 2
     Text = ''
   end
   object medtBit_6: TMaskEdit
@@ -7719,7 +7719,7 @@ object frmMAC: TfrmMAC
     Font.Style = []
     MaxLength = 2
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 3
     Text = ''
   end
   object btnStart: TButton
@@ -7735,9 +7735,10 @@ object frmMAC: TfrmMAC
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 11
+    OnClick = mnifrViewClick
   end
-  object btnApplay: TButton
+  object btnApply: TButton
     Left = 8
     Top = 336
     Width = 150
@@ -7749,8 +7750,8 @@ object frmMAC: TfrmMAC
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 9
-    OnClick = btnApplayClick
+    TabOrder = 10
+    OnClick = btnApplyClick
   end
   object seStepIterator: TSpinEdit
     Left = 227
@@ -7766,7 +7767,7 @@ object frmMAC: TfrmMAC
     MaxValue = 99
     MinValue = 1
     ParentFont = False
-    TabOrder = 10
+    TabOrder = 4
     Value = 1
   end
   object seQuantity: TSpinEdit
@@ -7783,7 +7784,7 @@ object frmMAC: TfrmMAC
     MaxValue = 999
     MinValue = 1
     ParentFont = False
-    TabOrder = 11
+    TabOrder = 5
     Value = 1
   end
   object btnRestart: TButton
@@ -7821,16 +7822,19 @@ object frmMAC: TfrmMAC
       end
       object mniApply: TMenuItem
         Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
-        OnClick = mniApplyClick
+        OnClick = btnApplyClick
       end
       object N2: TMenuItem
         Caption = '-'
       end
       object mniReset: TMenuItem
         Caption = #1057#1073#1088#1086#1089
+        Enabled = False
+        OnClick = btnRestartClick
       end
       object mniExit: TMenuItem
         Caption = ' '#1042#1099#1093#1086#1076
+        OnClick = mniExitClick
       end
     end
     object mniReport: TMenuItem
@@ -7863,6 +7867,7 @@ object frmMAC: TfrmMAC
       end
       object mniQuit: TMenuItem
         Caption = #1042#1099#1093#1086#1076
+        OnClick = mniExitClick
       end
     end
   end
@@ -7944,38 +7949,8 @@ object frmMAC: TfrmMAC
       Origin = 'id - number'
     end
   end
-  object fdstnstrgjsnlnkMac: TFDStanStorageJSONLink
-    Left = 520
-    Top = 368
-  end
   object fdmtblTitle: TFDMemTable
-    Active = True
-    FieldDefs = <
-      item
-        Name = 'nameDevice'
-        DataType = ftString
-        Size = 50
-      end
-      item
-        Name = 'firstOrderBit'
-        DataType = ftString
-        Size = 20
-      end
-      item
-        Name = 'stepIterator'
-        DataType = ftString
-        Size = 5
-      end
-      item
-        Name = 'firstIdDevice'
-        DataType = ftString
-        Size = 20
-      end
-      item
-        Name = 'quantityDevice'
-        DataType = ftString
-        Size = 10
-      end>
+    FieldDefs = <>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
@@ -7993,6 +7968,7 @@ object frmMAC: TfrmMAC
     end
     object fdmtblTitlefirstOrderBit: TStringField
       FieldName = 'firstOrderBit'
+      Size = 30
     end
     object fdmtblTitlestepIterator: TStringField
       FieldName = 'stepIterator'

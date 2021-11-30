@@ -3,12 +3,14 @@
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.Samples.Spin, dmMacIterator,
-   frmFastReportMac, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, Vcl.Mask, Vcl.Samples.Spin, dmMacIterator, frmFastReportMac,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error,
   FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.StorageBin,
-  FireDAC.Stan.StorageJSON, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, frmFastReportList,
-   Vcl.Menus ;
+  FireDAC.Stan.StorageJSON, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  frmFastReportList, Vcl.Menus;
+
 type
   TfrmMAC = class(TForm)
     lblTitle: TLabel;
@@ -33,7 +35,7 @@ type
     lblStepIterator: TLabel;
     lblQuantity: TLabel;
     btnStart: TButton;
-    btnApplay: TButton;
+    btnApply: TButton;
     seStepIterator: TSpinEdit;
     seQuantity: TSpinEdit;
     btnRestart: TButton;
@@ -56,7 +58,6 @@ type
     fdmtblMacNumber: TStringField;
     fdmtblMacMACadress: TStringField;
     fdmtblMacidnumber: TStringField;
-    fdstnstrgjsnlnkMac: TFDStanStorageJSONLink;
     pdf1: TMenuItem;
     xml1: TMenuItem;
     doc1: TMenuItem;
@@ -67,7 +68,7 @@ type
     fdmtblTitlefirstIdDevice: TStringField;
     fdmtblTitlequantityDevice: TStringField;
     lblPrintMac: TLabel;
-    procedure btnApplayClick(Sender: TObject);
+    procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mnifrViewClick(Sender: TObject);
     procedure btnRestartClick(Sender: TObject);
@@ -78,46 +79,47 @@ type
     procedure mnifrPrintClick(Sender: TObject);
     procedure mniPrintMacClick(Sender: TObject);
     procedure mniIteratorClick(Sender: TObject);
-    procedure mniApplyClick(Sender: TObject);
-
-
+    procedure mniExitClick(Sender: TObject);
   private
     { Private declarations }
-  var
-    stepIteration: Integer;
-    quantity: Integer;
-    idModule: Integer;
-    idDate: Integer;
-    idGroup: Integer;
-    idNumber: Integer;
-    fileId : TextFile;
-    untilMac : Boolean;
-    fnameDevice : string;          // наименование устройства
-    ffirstOrderBit : string;       // начальный МАС-адрес для итерации
-    fstepIterator : string;        // шаг итерации МАС-адреса
-    ffirstIdDevice : string;       // начальный серийный номер комплекта
-    fquantityDevice : string;      // количество устройств
+    var
+      stepIteration: Integer;
+      quantity: Integer;
+      idModule: Integer;
+      idDate: Integer;
+      idGroup: Integer;
+      idNumber: Integer;
+      fileId: TextFile;
+      utilityMAC: Boolean;
+      fnameDevice: string;          // наименование устройства
+      ffirstOrderBit: string;       // начальный МАС-адрес для итерации
+      fstepIterator: string;        // шаг итерации МАС-адреса
+      ffirstIdDevice: string;       // начальный серийный номер комплекта
+      fquantityDevice: string;      // количество устройств
 
   public
   { Public declarations }
     const
-    nameFile = 'id_mac_iterator.txt';
-  var
-    idMAC: array[0 .. 2] of Byte;
-
+      nameFile = 'id_mac_iterator.txt';
+    var
+      idMAC: array[0..2] of Byte;
   end;
+
 var
   frmMAC: TfrmMAC;
 
 implementation
-Uses IdGlobal;
+
+uses
+  IdGlobal;
 {$R *.dfm}
 // создание формы начальные настройки
+
 procedure TfrmMAC.FormCreate(Sender: TObject);
 var
   i: Integer;
 begin
-untilMac := True;
+  utilityMAC := True;
   AssignFile(fileId, nameFile);
 
   if not FileExists(nameFile) then
@@ -128,9 +130,10 @@ untilMac := True;
 
 end;
 // выбор утилиты
+
 procedure TfrmMAC.mniIteratorClick(Sender: TObject);
 begin
-  untilMac := True;
+  utilityMAC := True;
   mniPrintMac.Enabled := True;
   mniIterator.Enabled := False;
 // включение отключенных окон
@@ -147,13 +150,12 @@ begin
   medtDate.Enabled := True;
   medtGroup.Enabled := True;
   medtNumber.Enabled := True;
-  pdf1.Enabled := True;
-  xml1.Enabled := True;
+  mniExport.Visible := True;
 end;
 
 procedure TfrmMAC.mniPrintMacClick(Sender: TObject);
 begin
-  untilMac := False;
+  utilityMAC := False;
   mniPrintMac.Enabled := False;
   mniIterator.Enabled := True;
 
@@ -171,12 +173,12 @@ begin
   medtDate.Enabled := False;
   medtGroup.Enabled := False;
   medtNumber.Enabled := False;
-  pdf1.Enabled := False;
-  xml1.Enabled := False;
+  mniExport.Visible := False;
 end;
+
 // приминение выбора
 
-procedure TfrmMAC.btnApplayClick(Sender: TObject);
+procedure TfrmMAC.btnApplyClick(Sender: TObject);
 var
   i, stepMac, stepNubmer, range: Integer;
   s, numberS, rangeLast: string;
@@ -184,7 +186,11 @@ var
   highOrderBit, highIdNumber: string;
   bit0, bit1, bit2: string;
 begin
-
+  btnStart.Enabled := True;
+  mniApply.Enabled := False;
+  btnApply.Enabled := False;
+  btnRestart.Enabled := True;
+  mniReset.Enabled := True;
   stepMac := 1;
   stepIteration := StrToIntDef(seStepIterator.Text, 0);
   quantity := StrToIntDef(seQuantity.Text, 0);
@@ -197,7 +203,7 @@ begin
   bit2 := IntToHex(idMAC[0]) + '';
   bit1 := IntToHex(idMAC[1]) + '';
   bit0 := IntToHex(idMAC[2]) + '';
-  bit2 := bit2 + ':' + bit1 + ':' + bit0;
+  bit2 := bit2 + ' : ' + bit1 + ' : ' + bit0;
 //************************************************************
 // установка системных переменных для формирования отчета
   fnameDevice := edtDevice.Text;
@@ -214,7 +220,7 @@ begin
   idGroup := StrToIntDef(medtGroup.Text, 0);
   idNumber := StrToIntDef(medtNumber.Text, 0);
 
-  if untilMac then
+  if utilityMAC then
   begin
 //   формирование файла
     Rewrite(fileId);
@@ -328,21 +334,38 @@ begin
   end;
 end;
 
+// процедура сброса
 procedure TfrmMAC.btnRestartClick(Sender: TObject);
 begin
+  mniApply.Enabled := True;
+  btnApply.Enabled := True;
+  btnRestart.Enabled := False;
+  mniReset.Enabled := False;
+  btnStart.Enabled := False;
+// сбрасываем все окна
+  edtDevice.Clear;
+  medtBit_4.Clear;
+  medtBit_5.Clear;
+  medtBit_6.Clear;
+  medtModule.Clear;
+  medtDate.Clear;
+  medtGroup.Clear;
+  medtNumber.Clear;
 
-
+  seStepIterator.Value := 1;
+  seQuantity.Value := 1;
 end;
 
-
-// для FastReport
-procedure TfrmMAC.mniApplyClick(Sender: TObject);
+// процедура закрытия формы
+procedure TfrmMAC.mniExitClick(Sender: TObject);
 begin
-btnApplayClick(nil);
+  frmMAC.Close;
 end;
+
+// обработка кнопок главного меню
 procedure TfrmMAC.mnifrViewClick(Sender: TObject);
 begin
-  if untilMac then
+  if utilityMAC then
   begin
     frmFReport.Show;
     frmFReport.frxprvwMac.Clear;
@@ -358,42 +381,34 @@ end;
 
 procedure TfrmMAC.mnifrPrintClick(Sender: TObject);
 begin
- if untilMac then
+  if utilityMAC then
   begin
- frmFReport.frxrprtMac.ShowReport();
- frmFReport.frxrprtMac.Print;
- end
- else
- begin
-   frmFRList.frxrprtList.ShowReport();
-   frmFRList.frxrprtList.Print;
- end;
+    frmFReport.frxrprtMac.ShowReport();
+    frmFReport.frxrprtMac.Print;
+  end
+  else
+  begin
+    frmFRList.frxrprtList.ShowReport();
+    frmFRList.frxrprtList.Print;
+  end;
 end;
 
 procedure TfrmMAC.pdf1Click(Sender: TObject);
 begin
-frmFReport.frxrprtMac.ShowReport();
-frmFReport.frxrprtMac.Export(frmFReport.frxpdfxprtMac);
+  frmFReport.frxrprtMac.ShowReport();
+  frmFReport.frxrprtMac.Export(frmFReport.frxpdfxprtMac);
 end;
 
 procedure TfrmMAC.xml1Click(Sender: TObject);
 begin
-frmFReport.frxrprtMac.ShowReport();
-frmFReport.frxrprtMac.Export(frmFReport.frxmlxprtMac);
+  frmFReport.frxrprtMac.ShowReport();
+  frmFReport.frxrprtMac.Export(frmFReport.frxmlxprtMac);
 end;
 
 procedure TfrmMAC.doc1Click(Sender: TObject);
 begin
- if untilMac then
-  begin
-frmFReport.frxrprtMac.ShowReport();
-frmFReport.frxrprtMac.Export(frmFReport.frxdcxprtMac);
-  end
-   else
-   begin
-   frmFRList.frxrprtList.ShowReport();
-   frmFRList.frxrprtList.Export(frmFRList.frxdcxprtList);
- end;
+  frmFReport.frxrprtMac.ShowReport();
+  frmFReport.frxrprtMac.Export(frmFReport.frxdcxprtMac);
 end;
 
 // закрытие формы
@@ -402,4 +417,8 @@ begin
   fdmtblMac.Close;
   fdmtblTitle.Close;
 end;
+
 end.
+
+
+
