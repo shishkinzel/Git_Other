@@ -203,11 +203,19 @@ begin
   stepIteration := StrToIntDef(seStepIterator.Text, 0);
   quantity := StrToIntDef(seQuantity.Text, 0);
   range := stepIteration;
-
 //  заполнение массива
-  idMAC[0] := DataModuleMacIterator.HexStrToInt(medtBit_4.Text);
-  idMAC[1] := DataModuleMacIterator.HexStrToInt(medtBit_5.Text);
-  idMAC[2] := DataModuleMacIterator.HexStrToInt(medtBit_6.Text);
+  try
+    idMAC[0] := DataModuleMacIterator.HexStrToInt(medtBit_4.Text);
+    idMAC[1] := DataModuleMacIterator.HexStrToInt(medtBit_5.Text);
+    idMAC[2] := DataModuleMacIterator.HexStrToInt(medtBit_6.Text);
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Проверьте правильность заполнения полей MAC-адреса');
+      btnApplyClick(nil);
+    end;
+  end;
+
   bit2 := IntToHex(idMAC[0]) + '';
   bit1 := IntToHex(idMAC[1]) + '';
   bit0 := IntToHex(idMAC[2]) + '';
@@ -363,12 +371,16 @@ begin
   medtDate.Clear;
   medtGroup.Clear;
   medtNumber.Clear;
-
   seStepIterator.Value := 1;
   seQuantity.Value := 1;
   medtBit_4.Text := '00';
   medtBit_5.Text := '00';
   medtBit_6.Text := '00';
+
+  medtModule.Text := '000';
+  medtDate.Text := '000';
+  medtGroup.Text := '000';
+  medtNumber.Text := '000';
 end;
 
 // процедура закрытия формы

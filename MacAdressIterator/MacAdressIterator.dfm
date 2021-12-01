@@ -7440,7 +7440,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
   end
   object lblID: TLabel
-    Left = 361
+    Left = 358
     Top = 120
     Width = 150
     Height = 23
@@ -7467,7 +7467,7 @@ object frmMAC: TfrmMAC
     StyleName = 'lblName'
   end
   object lblModule: TLabel
-    Left = 361
+    Left = 358
     Top = 180
     Width = 141
     Height = 16
@@ -7480,7 +7480,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
   end
   object lblDate: TLabel
-    Left = 361
+    Left = 358
     Top = 222
     Width = 90
     Height = 16
@@ -7493,7 +7493,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
   end
   object lblNumber: TLabel
-    Left = 361
+    Left = 358
     Top = 301
     Width = 115
     Height = 16
@@ -7506,7 +7506,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
   end
   object lblGruop: TLabel
-    Left = 361
+    Left = 358
     Top = 259
     Width = 149
     Height = 16
@@ -7558,7 +7558,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
   end
   object lblStepIterator: TLabel
-    Left = 16
+    Left = 8
     Top = 253
     Width = 142
     Height = 16
@@ -7611,11 +7611,11 @@ object frmMAC: TfrmMAC
     TabOrder = 0
   end
   object medtModule: TMaskEdit
-    Left = 521
+    Left = 518
     Top = 174
     Width = 35
     Height = 27
-    EditMask = '000;1;*'
+    EditMask = '999;1; '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -7624,14 +7624,14 @@ object frmMAC: TfrmMAC
     MaxLength = 3
     ParentFont = False
     TabOrder = 6
-    Text = '   '
+    Text = '000'
   end
   object medtDate: TMaskEdit
-    Left = 521
+    Left = 518
     Top = 216
     Width = 35
     Height = 27
-    EditMask = '000;1;*'
+    EditMask = '999;1; '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -7640,14 +7640,14 @@ object frmMAC: TfrmMAC
     MaxLength = 3
     ParentFont = False
     TabOrder = 7
-    Text = '   '
+    Text = '000'
   end
   object medtGroup: TMaskEdit
-    Left = 521
+    Left = 518
     Top = 253
     Width = 35
     Height = 27
-    EditMask = '000;1;*'
+    EditMask = '999;1; '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -7656,14 +7656,14 @@ object frmMAC: TfrmMAC
     MaxLength = 3
     ParentFont = False
     TabOrder = 8
-    Text = '   '
+    Text = '000'
   end
   object medtNumber: TMaskEdit
-    Left = 521
+    Left = 518
     Top = 295
     Width = 35
     Height = 27
-    EditMask = '000;1;*'
+    EditMask = '999;1; '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -7672,14 +7672,14 @@ object frmMAC: TfrmMAC
     MaxLength = 3
     ParentFont = False
     TabOrder = 9
-    Text = '   '
+    Text = '000'
   end
   object medtBit_4: TMaskEdit
     Left = 116
     Top = 177
     Width = 24
     Height = 27
-    EditMask = 'AA;0;_'
+    EditMask = '<aa;0; '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -7695,7 +7695,7 @@ object frmMAC: TfrmMAC
     Top = 177
     Width = 24
     Height = 27
-    EditMask = 'AA;0;_'
+    EditMask = '<aa;0; '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -7711,7 +7711,7 @@ object frmMAC: TfrmMAC
     Top = 177
     Width = 24
     Height = 27
-    EditMask = 'AA;0;_'
+    EditMask = '<aa;0; '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
