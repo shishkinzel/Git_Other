@@ -7677,7 +7677,7 @@ object frmMAC: TfrmMAC
   object medtBit_4: TMaskEdit
     Left = 116
     Top = 177
-    Width = 25
+    Width = 24
     Height = 27
     EditMask = 'AA;0;_'
     Font.Charset = DEFAULT_CHARSET
@@ -7688,12 +7688,12 @@ object frmMAC: TfrmMAC
     MaxLength = 2
     ParentFont = False
     TabOrder = 1
-    Text = ''
+    Text = '00'
   end
   object medtBit_5: TMaskEdit
     Left = 152
     Top = 177
-    Width = 25
+    Width = 24
     Height = 27
     EditMask = 'AA;0;_'
     Font.Charset = DEFAULT_CHARSET
@@ -7704,12 +7704,12 @@ object frmMAC: TfrmMAC
     MaxLength = 2
     ParentFont = False
     TabOrder = 2
-    Text = ''
+    Text = '00'
   end
   object medtBit_6: TMaskEdit
     Left = 188
     Top = 177
-    Width = 25
+    Width = 24
     Height = 27
     EditMask = 'AA;0;_'
     Font.Charset = DEFAULT_CHARSET
@@ -7720,7 +7720,7 @@ object frmMAC: TfrmMAC
     MaxLength = 2
     ParentFont = False
     TabOrder = 3
-    Text = ''
+    Text = '00'
   end
   object btnStart: TButton
     Left = 403

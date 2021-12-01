@@ -133,6 +133,7 @@ end;
 
 procedure TfrmMAC.mniIteratorClick(Sender: TObject);
 begin
+
   utilityMAC := True;
   mniPrintMac.Enabled := True;
   mniIterator.Enabled := False;
@@ -151,11 +152,15 @@ begin
   medtGroup.Enabled := True;
   medtNumber.Enabled := True;
   mniExport.Visible := True;
+
+  btnRestartClick(nil);
 end;
 
 procedure TfrmMAC.mniPrintMacClick(Sender: TObject);
 begin
+
   utilityMAC := False;
+
   mniPrintMac.Enabled := False;
   mniIterator.Enabled := True;
 
@@ -174,7 +179,10 @@ begin
   medtGroup.Enabled := False;
   medtNumber.Enabled := False;
   mniExport.Visible := False;
+
+  btnRestartClick(nil);
 end;
+
 
 // приминение выбора
 
@@ -337,6 +345,10 @@ end;
 // процедура сброса
 procedure TfrmMAC.btnRestartClick(Sender: TObject);
 begin
+   if utilityMAC then
+   edtDevice.SetFocus
+   else
+    medtBit_4.SetFocus;
   mniApply.Enabled := True;
   btnApply.Enabled := True;
   btnRestart.Enabled := False;
@@ -354,6 +366,9 @@ begin
 
   seStepIterator.Value := 1;
   seQuantity.Value := 1;
+  medtBit_4.Text := '00';
+  medtBit_5.Text := '00';
+  medtBit_6.Text := '00';
 end;
 
 // процедура закрытия формы
