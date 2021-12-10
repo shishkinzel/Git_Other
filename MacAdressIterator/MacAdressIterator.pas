@@ -564,9 +564,10 @@ begin
   Reset(fileBarCode);
   fdmtblBarCode.Open;
   fdmtblBarCode.Table.Clear;
-  fdmtblBarCode.Append;
+
   while (not EOF(fileBarCode)) do
   begin
+    fdmtblBarCode.Append;
     Readln(fileBarCode, s1);
     tmp := Trim(Fetch(s1, '|'));
     tmp1 := Trim(Fetch(s1, '|'));
@@ -586,7 +587,7 @@ begin
     (fdmtblBarCode.FieldByName('BarCodeId') as TBlobField).LoadFromStream(barCodeStream);
     barCodeStream.Clear;
     fdmtblBarCode.Post;
-    fdmtblBarCode.Next;
+  //  fdmtblBarCode.Next;
   end;
   barCodeStream.Free;
 //

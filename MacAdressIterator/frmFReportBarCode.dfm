@@ -37,7 +37,7 @@ object frmFRBarCode: TfrmFRBarCode
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44539.637803541660000000
-    ReportOptions.LastChange = 44539.660787175930000000
+    ReportOptions.LastChange = 44540.954831990740000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -131,7 +131,7 @@ object frmFRBarCode: TfrmFRBarCode
         FillType = ftBrush
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 234.330860000000000000
+        Top = 309.921460000000000000
         Width = 718.110700000000000000
         object Page: TfrxMemoView
           AllowVectorExport = True
@@ -147,7 +147,7 @@ object frmFRBarCode: TfrmFRBarCode
       object DetailData1: TfrxDetailData
         FillType = ftBrush
         Frame.Typ = []
-        Height = 30.236220470000000000
+        Height = 105.826820470000000000
         Top = 143.622140000000000000
         Width = 718.110700000000000000
         DataSet = frxdbdtstBarCode
@@ -157,7 +157,7 @@ object frmFRBarCode: TfrmFRBarCode
           IndexTag = 1
           AllowVectorExport = True
           Width = 79.370130000000000000
-          Height = 30.236220470000000000
+          Height = 102.047290470000000000
           DataField = 'Number'
           DataSet = frxdbdtstBarCode
           DataSetName = 'frxDBDatasetBarCode'
@@ -173,9 +173,10 @@ object frmFRBarCode: TfrmFRBarCode
         end
         object BarCodeMAC: TfrxPictureView
           AllowVectorExport = True
-          Left = 79.370130000000000000
-          Width = 427.086890000000000000
-          Height = 30.236220472440940000
+          Left = 94.488250000000000000
+          Top = 18.897650000000000000
+          Width = 283.464750000000000000
+          Height = 56.692930470000000000
           Center = True
           DataField = 'BarCodeMAC'
           DataSet = frxdbdtstBarCode
@@ -188,8 +189,9 @@ object frmFRBarCode: TfrmFRBarCode
         object BarCodeId: TfrxPictureView
           AllowVectorExport = True
           Left = 506.457020000000000000
+          Top = 18.897650000000000000
           Width = 211.653680000000000000
-          Height = 30.236220472440940000
+          Height = 56.692930470000000000
           Center = True
           DataField = 'BarCodeId'
           DataSet = frxdbdtstBarCode
