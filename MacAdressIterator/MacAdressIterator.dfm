@@ -7571,7 +7571,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
   end
   object lblQuantity: TLabel
-    Left = 16
+    Left = 8
     Top = 301
     Width = 190
     Height = 16
@@ -7870,25 +7870,43 @@ object frmMAC: TfrmMAC
         OnClick = mniExitClick
       end
     end
+    object mniBarCode: TMenuItem
+      Caption = #1064#1090#1088#1080#1093'-'#1082#1086#1076
+      Enabled = False
+      object ApplyBarCode: TMenuItem
+        Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
+        OnClick = ApplyBarCodeClick
+      end
+      object mniPreview: TMenuItem
+        Caption = #1055#1088#1077#1076#1086#1089#1084#1086#1090#1088
+        Enabled = False
+        OnClick = mniPreviewClick
+      end
+      object mniSeparator5: TMenuItem
+        Caption = '-'
+      end
+      object mnExportBarCode: TMenuItem
+        Caption = #1069#1082#1089#1087#1086#1088#1090' '#1086#1090#1095#1077#1090#1072
+        Enabled = False
+        object mniDOCBarCode: TMenuItem
+          Caption = 'DOC'
+        end
+        object mniPDFBarCode: TMenuItem
+          Caption = 'PDF'
+        end
+        object mniXMLBarCode: TMenuItem
+          Caption = 'XML'
+        end
+      end
+      object mniPrintBarCode: TMenuItem
+        Caption = #1055#1077#1095#1072#1090#1100
+        Enabled = False
+        OnClick = mniPrintBarCodeClick
+      end
+    end
   end
   object fdmtblMac: TFDMemTable
-    Active = True
-    FieldDefs = <
-      item
-        Name = 'Number'
-        DataType = ftString
-        Size = 20
-      end
-      item
-        Name = 'MAC - adress'
-        DataType = ftString
-        Size = 20
-      end
-      item
-        Name = 'id - number'
-        DataType = ftString
-        Size = 20
-      end>
+    FieldDefs = <>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
@@ -7901,41 +7919,6 @@ object frmMAC: TfrmMAC
     StoreDefs = True
     Left = 488
     Top = 16
-    Content = {
-      414442530F000000CC010000FF00010001FF02FF03040012000000660064006D
-      00740062006C004D006100630005000A0000005400610062006C006500060000
-      000000070000080032000000090000FF0AFF0B04000C0000004E0075006D0062
-      006500720005000C0000004E0075006D006200650072000C00010000000E000D
-      000F001400000010000111000112000113000114000115000116000C0000004E
-      0075006D00620065007200170014000000FEFF0B0400180000004D0041004300
-      20002D0020006100640072006500730073000500180000004D00410043002000
-      2D0020006100640072006500730073000C00020000000E000D000F0014000000
-      1000011100011200011300011400011500011600180000004D00410043002000
-      2D002000610064007200650073007300170014000000FEFF0B04001600000069
-      00640020002D0020006E0075006D006200650072000500160000006900640020
-      002D0020006E0075006D006200650072000C00030000000E000D000F00140000
-      001000011100011200011300011400011500011600160000006900640020002D
-      0020006E0075006D00620065007200170014000000FEFEFF18FEFF19FEFF1AFE
-      FEFEFF1BFEFF1CFF1DFEFEFE0E004D0061006E0061006700650072001E005500
-      7000640061007400650073005200650067006900730074007200790012005400
-      610062006C0065004C006900730074000A005400610062006C00650008004E00
-      61006D006500140053006F0075007200630065004E0061006D0065000A005400
-      6100620049004400240045006E0066006F0072006300650043006F006E007300
-      74007200610069006E00740073001E004D0069006E0069006D0075006D004300
-      6100700061006300690074007900180043006800650063006B004E006F007400
-      4E0075006C006C00140043006F006C0075006D006E004C006900730074000C00
-      43006F006C0075006D006E00100053006F007500720063006500490044001800
-      6400740041006E007300690053007400720069006E0067001000440061007400
-      610054007900700065000800530069007A006500140053006500610072006300
-      6800610062006C006500120041006C006C006F0077004E0075006C006C000800
-      420061007300650014004F0041006C006C006F0077004E0075006C006C001200
-      4F0049006E0055007000640061007400650010004F0049006E00570068006500
-      720065001A004F0072006900670069006E0043006F006C004E0061006D006500
-      140053006F007500720063006500530069007A0065001C0043006F006E007300
-      74007200610069006E0074004C00690073007400100056006900650077004C00
-      6900730074000E0052006F0077004C006900730074001800520065006C006100
-      740069006F006E004C006900730074001C005500700064006100740065007300
-      4A006F00750072006E0061006C000E004300680061006E00670065007300}
     object fdmtblMacNumber: TStringField
       FieldName = 'Number'
       Origin = 'Number'
@@ -7950,7 +7933,37 @@ object frmMAC: TfrmMAC
     end
   end
   object fdmtblTitle: TFDMemTable
-    FieldDefs = <>
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'nameDevice'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'firstOrderBit'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'stepIterator'
+        DataType = ftString
+        Size = 5
+      end
+      item
+        Name = 'firstIdDevice'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'quantityDevice'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'StepPrintBarCode'
+        DataType = ftInteger
+      end>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
@@ -7963,23 +7976,78 @@ object frmMAC: TfrmMAC
     Left = 528
     Top = 16
     object fdmtblTitlenameDevice: TStringField
+      DisplayWidth = 9
       FieldName = 'nameDevice'
       Size = 50
     end
     object fdmtblTitlefirstOrderBit: TStringField
+      DisplayWidth = 11
       FieldName = 'firstOrderBit'
       Size = 30
     end
     object fdmtblTitlestepIterator: TStringField
+      DisplayWidth = 6
       FieldName = 'stepIterator'
       Size = 5
     end
     object fdmtblTitlefirstIdDevice: TStringField
+      DisplayWidth = 20
       FieldName = 'firstIdDevice'
     end
     object fdmtblTitlequantityDevice: TStringField
+      DisplayWidth = 9
       FieldName = 'quantityDevice'
       Size = 10
+    end
+    object intgrfldTitleStepPrintBarCode: TIntegerField
+      DisplayWidth = 2
+      FieldName = 'StepPrintBarCode'
+    end
+  end
+  object brcdMAC: TBarcode
+    Height = 20.000000000000000000
+    Symbology = syCode128
+    Left = 72
+    Top = 16
+  end
+  object fdmtblBarCode: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'Number'
+        DataType = ftSmallint
+      end
+      item
+        Name = 'BarCodeMAC'
+        DataType = ftBlob
+      end
+      item
+        Name = 'BarCodeId'
+        DataType = ftBlob
+      end>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 448
+    Top = 16
+    object smlntfldBarCodeNumber: TSmallintField
+      FieldName = 'Number'
+      MaxValue = 999
+      MinValue = 1
+    end
+    object fdmtblBarCodeBarCodeMAC: TBlobField
+      DisplayWidth = 41
+      FieldName = 'BarCodeMAC'
+    end
+    object fdmtblBarCodeBarCodeId: TBlobField
+      DisplayWidth = 41
+      FieldName = 'BarCodeId'
     end
   end
 end

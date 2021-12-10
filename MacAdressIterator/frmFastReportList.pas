@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, frxClass, frxDBSet, frxPreview, frxExportBaseDialog,
-  frxExportDOCX;
+  frxExportDOCX, frxBarcode;
 
 type
   TfrmFRList = class(TForm)
@@ -13,6 +13,7 @@ type
     frxprvwList: TfrxPreview;
     frxdbdtstList: TfrxDBDataset;
     frxdcxprtList: TfrxDOCXExport;
+    frxbrcdbjctList: TfrxBarCodeObject;
   private
     { Private declarations }
   public

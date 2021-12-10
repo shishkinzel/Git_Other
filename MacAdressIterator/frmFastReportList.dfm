@@ -26,7 +26,6 @@ object frmFRList: TfrmFRList
     UseReportHints = True
     OutlineTreeSortType = dtsUnsorted
     HideScrolls = False
-    ExplicitWidth = 635
   end
   object frxrprtList: TfrxReport
     Version = '6.9.3'
@@ -113,5 +112,9 @@ object frmFRList: TfrmFRList
     PictureType = gpPNG
     Left = 24
     Top = 166
+  end
+  object frxbrcdbjctList: TfrxBarCodeObject
+    Left = 32
+    Top = 254
   end
 end

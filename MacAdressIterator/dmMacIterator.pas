@@ -16,6 +16,7 @@ type
     procedure IncArrayOne(var inArray: array of Byte);
     function ArrayToString(var inArray: array of Byte): string;
     function ArrayToStringShort(var inArray: array of Byte): string;
+    function ArrayToStringLong(var inArray: array of Byte): string;
 
   end;
 
@@ -66,6 +67,21 @@ s := '';
    end;
         Delete(s, 16, 5);
    Result := s;
+end;
+
+function TDataModuleMacIterator.ArrayToStringLong(var inArray: array of Byte): string;
+var
+s : string;
+i : Integer;
+begin
+s := '';
+   for I := 0 to 2 do
+   begin
+     s :=s + inArray[i].ToHexString + ':';
+
+   end;
+        Delete(s, 9, 1);
+   Result := '68:EB:C5:' + s + '|';
 end;
 
  procedure TDataModuleMacIterator.IncArrayOne(var inArray: array of Byte);

@@ -5,11 +5,12 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls, Vcl.Mask, Vcl.Samples.Spin, dmMacIterator, frmFastReportMac,
-  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error,
-  FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.StorageBin,
-  FireDAC.Stan.StorageJSON, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  frmFastReportList, Vcl.Menus;
+  Vcl.StdCtrls, Vcl.Mask, Vcl.Samples.Spin, dmMacIterator, frmFastReportMac, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.StorageBin, Data.DB, Barcode, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Vcl.Menus, frmFReportBarCode ,
+  FireDAC.Stan.StorageJSON, frmFastReportList, fTest;
+
 
 type
   TfrmMAC = class(TForm)
@@ -68,6 +69,21 @@ type
     fdmtblTitlefirstIdDevice: TStringField;
     fdmtblTitlequantityDevice: TStringField;
     lblPrintMac: TLabel;
+    brcdMAC: TBarcode;
+    mniBarCode: TMenuItem;
+    ApplyBarCode: TMenuItem;
+    fdmtblBarCode: TFDMemTable;
+    fdmtblBarCodeBarCodeMAC: TBlobField;
+    fdmtblBarCodeBarCodeId: TBlobField;
+    smlntfldBarCodeNumber: TSmallintField;
+    mniPrintBarCode: TMenuItem;
+    mniPreview: TMenuItem;
+    mniSeparator5: TMenuItem;
+    mnExportBarCode: TMenuItem;
+    mniDOCBarCode: TMenuItem;
+    mniPDFBarCode: TMenuItem;
+    mniXMLBarCode: TMenuItem;
+    intgrfldTitleStepPrintBarCode: TIntegerField;
     procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mnifrViewClick(Sender: TObject);
@@ -80,29 +96,40 @@ type
     procedure mniPrintMacClick(Sender: TObject);
     procedure mniIteratorClick(Sender: TObject);
     procedure mniExitClick(Sender: TObject);
+    procedure ApplyBarCodeClick(Sender: TObject);
+    procedure mniPrintBarCodeClick(Sender: TObject);
+    procedure mniPreviewClick(Sender: TObject);
   private
     { Private declarations }
     var
-      stepIteration: Integer;
-      quantity: Integer;
+      stepIteration: Integer;       // шаг итерации mac адресов
+      quantity: Integer;            // количество устройств
       idModule: Integer;
       idDate: Integer;
       idGroup: Integer;
-      idNumber: Integer;
-      fileId: TextFile;
+      idNumber: Integer;             // начальный номер устройства
+      fileId: TextFile;              // для хранения данные двух утилит
+      fileBarCode : TextFile;        // для хранения данных формирования штрих-кода
       utilityMAC: Boolean;
-      fnameDevice: string;          // наименование устройства
-      ffirstOrderBit: string;       // начальный МАС-адрес для итерации
-      fstepIterator: string;        // шаг итерации МАС-адреса
-      ffirstIdDevice: string;       // начальный серийный номер комплекта
-      fquantityDevice: string;      // количество устройств
-
+      fnameDevice: string;           // наименование устройства
+      ffirstOrderBit: string;        // начальный МАС-адрес для итерации
+      fstepIterator: string;         // шаг итерации МАС-адреса
+      ffirstIdDevice: string;        // начальный серийный номер комплекта
+      fquantityDevice: string;       // количество устройств
+      stepPrintBarCode : Integer;     // шаг печати штрих-кода
+      numberDeviceHigh : string;     // три старших разряда серийного номера
+      fbitBarCode : string;           // для печати mac в barcode
+      ffirstIdDeviceBarCode : string; // для печати id в barcode
+//      rangeBarCode : Integer;         // шаг итерации mac адресов для BarCode
   public
   { Public declarations }
     const
       nameFile = 'id_mac_iterator.txt';
+      nameBarCodeFile = 'bar_code.txt';
     var
+      barCodeStream : TMemoryStream;
       idMAC: array[0..2] of Byte;
+      idMACBarCode : array[0..2] of Byte;
   end;
 
 var
@@ -116,24 +143,27 @@ uses
 // создание формы начальные настройки
 
 procedure TfrmMAC.FormCreate(Sender: TObject);
-var
-  i: Integer;
 begin
   utilityMAC := True;
   AssignFile(fileId, nameFile);
-
+  AssignFile(fileBarCode, nameBarCodeFile);
   if not FileExists(nameFile) then
   begin
     Rewrite(fileId);
     CloseFile(fileId);
   end;
 
+    if not FileExists(nameBarCodeFile) then
+  begin
+    Rewrite(fileBarCode);
+    CloseFile(fileBarCode);
+  end;
+
 end;
-// выбор утилиты
+// выбор утилиты *************************************************
 
 procedure TfrmMAC.mniIteratorClick(Sender: TObject);
 begin
-
   utilityMAC := True;
   mniPrintMac.Enabled := True;
   mniIterator.Enabled := False;
@@ -152,7 +182,7 @@ begin
   medtGroup.Enabled := True;
   medtNumber.Enabled := True;
   mniExport.Visible := True;
-
+  mniBarCode.Visible := True;
   btnRestartClick(nil);
 end;
 
@@ -165,6 +195,7 @@ begin
   mniIterator.Enabled := True;
 
 // отключение ненужных окон
+
   lblTitle.Visible := False;
   edtDevice.Visible := False;
   lblDevice.Visible := False;
@@ -179,21 +210,24 @@ begin
   medtGroup.Enabled := False;
   medtNumber.Enabled := False;
   mniExport.Visible := False;
+  mniBarCode.Visible := False;
 
   btnRestartClick(nil);
 end;
 
 
-// приминение выбора
+// приминение выбора  *********************************************
 
 procedure TfrmMAC.btnApplyClick(Sender: TObject);
 var
-  i, stepMac, stepNubmer, range: Integer;
+  i, stepMac, beginNumberDevice, range: Integer;
   s, numberS, rangeLast: string;
   s1, tmp, tmp1, tmp2: string;
-  highOrderBit, highIdNumber: string;
+//  highOrderBit, highIdNumber: string;
   bit0, bit1, bit2: string;
+  img: BITMAP;
 begin
+  mniBarCode.Enabled := True;
   btnStart.Enabled := True;
   mniApply.Enabled := False;
   btnApply.Enabled := False;
@@ -203,11 +237,17 @@ begin
   stepIteration := StrToIntDef(seStepIterator.Text, 0);
   quantity := StrToIntDef(seQuantity.Text, 0);
   range := stepIteration;
+//  rangeBarCode := stepIteration;
 //  заполнение массива
   try
     idMAC[0] := DataModuleMacIterator.HexStrToInt(medtBit_4.Text);
     idMAC[1] := DataModuleMacIterator.HexStrToInt(medtBit_5.Text);
     idMAC[2] := DataModuleMacIterator.HexStrToInt(medtBit_6.Text);
+// массив для печати штрих- кода
+    idMACBarCode[0] := DataModuleMacIterator.HexStrToInt(medtBit_4.Text);
+    idMACBarCode[1] := DataModuleMacIterator.HexStrToInt(medtBit_5.Text);
+    idMACBarCode[2] := DataModuleMacIterator.HexStrToInt(medtBit_6.Text);
+
   except
     on E: Exception do
     begin
@@ -220,6 +260,7 @@ begin
   bit1 := IntToHex(idMAC[1]) + '';
   bit0 := IntToHex(idMAC[2]) + '';
   bit2 := bit2 + ' : ' + bit1 + ' : ' + bit0;
+  fbitBarCode := '68:EB:C5:' + bit2 + ':' + bit1 + ':' + bit0;
 //************************************************************
 // установка системных переменных для формирования отчета
   fnameDevice := edtDevice.Text;
@@ -227,23 +268,26 @@ begin
   fstepIterator := seStepIterator.Text;
   ffirstIdDevice := medtModule.Text + ' ' + medtDate.Text + ' ' + medtGroup.Text + ' ' + medtNumber.Text;
   fquantityDevice := seQuantity.Text;
+  numberDeviceHigh :=  medtModule.Text + medtDate.Text + medtGroup.Text;
+  ffirstIdDeviceBarCode := numberDeviceHigh + medtNumber.Text;
 //*******************************************************
 
-  highOrderBit := lblHighOrderBit.Caption;
+//  highOrderBit := lblHighOrderBit.Caption;    ???????? - зачем нужен 68:EB:C5
 
   idModule := StrToIntDef(medtModule.Text, 0);
   idDate := StrToIntDef(medtDate.Text, 0);
   idGroup := StrToIntDef(medtGroup.Text, 0);
   idNumber := StrToIntDef(medtNumber.Text, 0);
 
+//
   if utilityMAC then
   begin
 //   формирование файла
     Rewrite(fileId);
     for i := 1 to quantity do
     begin
-      stepNubmer := idNumber + (i - 1);
-      numberS := Format('  ' + '%.3d', [stepNubmer]);
+      beginNumberDevice := idNumber + (i - 1);
+      numberS := Format('  ' + '%.3d', [beginNumberDevice]);
       s := Format('%.4d', [i]);
       Write(fileId, s);
       Write(fileId, DataModuleMacIterator.ArrayToString(idMAC));
@@ -266,7 +310,7 @@ begin
 //  fdmtblMac.Post;
 //  fdmtblMac.Next;
 
-    fdmtblTitle.Insert;
+//    fdmtblTitle.Insert;
     fdmtblTitle.FieldByName('nameDevice').AsString := fnameDevice;
     fdmtblTitle.FieldByName('firstOrderBit').AsString := ffirstOrderBit;
     fdmtblTitle.FieldByName('stepIterator').AsString := fstepIterator;
@@ -348,7 +392,9 @@ begin
     end;
     CloseFile(fileId);
   end;
+//   frmTestGrid.Show;
 end;
+// окончание блока выбора  **********************************************************
 
 // процедура сброса
 procedure TfrmMAC.btnRestartClick(Sender: TObject);
@@ -371,6 +417,7 @@ begin
   medtDate.Clear;
   medtGroup.Clear;
   medtNumber.Clear;
+  mniBarCode.Enabled := False;
   seStepIterator.Value := 1;
   seQuantity.Value := 1;
   medtBit_4.Text := '00';
@@ -438,14 +485,157 @@ begin
   frmFReport.frxrprtMac.Export(frmFReport.frxdcxprtMac);
 end;
 
+ // печать BarCode
+
+procedure TfrmMAC.mniPrintBarCodeClick(Sender: TObject);
+begin
+      frmFRBarCode.frxrprtBarCode.ShowReport;
+    frmFRBarCode.frxprvwBarCode.Print;
+end;
+
+ // печать штрих кода *******************************************************
+procedure TfrmMAC.ApplyBarCodeClick(Sender: TObject);
+var
+  beginNumberDevice, range, stepMac, stepBarCode, numberBarCode: Integer;
+  numBarCodeFR: Integer;
+  s, numberS, rangeLast: string;
+  s1, tmp, tmp1 : string;
+begin
+    // открываем таблицу для заполниния **************************************
+
+  range := stepIteration;
+   stepMac := 1;
+   stepBarCode := 1;
+   numberBarCode := 1;
+   numBarCodeFR := 1;
+ stepPrintBarCode := StrToIntDef (InputBox('Шаг печати штрих-кода','Введите шаг печати от 1 до 5','5'), 5);
+ if not(stepPrintBarCode in [1..5]) then
+ begin
+    ShowMessage('Введите корректное значение из диапазона 1-5');
+    ApplyBarCodeClick(nil);
+ end;
+  ShowMessage('Все хорошо');
+  fdmtblTitle.Close;
+  fdmtblTitle.Open;
+//  fdmtblTitle.Table.Clear;
+  fdmtblTitle.First;
+  fdmtblTitle.Append;
+  fdmtblTitle.FieldByName('nameDevice').AsString := fnameDevice;
+  fdmtblTitle.FieldByName('firstOrderBit').AsString := ffirstOrderBit;
+  fdmtblTitle.FieldByName('stepIterator').AsString := fstepIterator;
+  fdmtblTitle.FieldByName('firstIdDevice').AsString := ffirstIdDevice;
+  fdmtblTitle.FieldByName('quantityDevice').AsString := fquantityDevice;
+  fdmtblTitle.FieldByName('StepPrintBarCode').AsInteger := stepPrintBarCode;
+  fdmtblTitle.Post;
+  fdmtblTitle.Next;
+//блок выбора mac & id номеров ******************************************************
+
+//   формирование файла
+  Rewrite(fileBarCode);
+  while numberBarCode <= quantity do
+  begin
+    beginNumberDevice := idNumber + (numberBarCode - 1);
+    numberS := Format(numberDeviceHigh + '%.3d', [beginNumberDevice]);
+    s := Format('%.3d', [numBarCodeFR]) + '|';
+// запись в файл
+    Write(fileBarCode, s);
+    Write(fileBarCode, DataModuleMacIterator.ArrayToStringlong(idMACBarCode));
+    Write(fileBarCode, numberS);
+    while stepBarCode <= stepPrintBarCode do
+    begin
+      while stepMac <= stepIteration do
+      begin
+        DataModuleMacIterator.IncArrayOne(idMACBarCode);
+        Inc(stepMac);
+      end;
+      Inc(stepBarCode);
+      Inc(numberBarCode);
+      stepMac := 1;
+    end;
+    stepBarCode := 1;
+    Inc(numBarCodeFR);
+    Writeln(fileBarCode);
+  end;
+// закрытие файла
+  CloseFile(fileBarCode);
+
+// чтение из файла и получение BarCode и запись в таблицу ******************
+  barCodeStream := TMemoryStream.Create;
+  Reset(fileBarCode);
+  fdmtblBarCode.Open;
+  fdmtblBarCode.Table.Clear;
+  fdmtblBarCode.Append;
+  while (not EOF(fileBarCode)) do
+  begin
+    Readln(fileBarCode, s1);
+    tmp := Trim(Fetch(s1, '|'));
+    tmp1 := Trim(Fetch(s1, '|'));
+
+    fdmtblBarCode.FieldByName('Number').AsString := tmp;
+// создаем поток и трансоформируем в barcode
+
+    brcdMAC.InputText := tmp1;
+    brcdMAC.Bitmap.SaveToStream(barCodeStream);
+    barCodeStream.Position := 0;
+    (fdmtblBarCode.FieldByName('BarCodeMAC') as TBlobField).LoadFromStream(barCodeStream);
+    barCodeStream.Clear;
+
+    brcdMAC.InputText := s1;
+    brcdMAC.Bitmap.SaveToStream(barCodeStream);
+    barCodeStream.Position := 0;
+    (fdmtblBarCode.FieldByName('BarCodeId') as TBlobField).LoadFromStream(barCodeStream);
+    barCodeStream.Clear;
+    fdmtblBarCode.Post;
+    fdmtblBarCode.Next;
+  end;
+  barCodeStream.Free;
+//
+
+//***********************************************************************************
+//  fdmtblBarCode.Open;
+//  fdmtblBarCode.Table.Clear;
+//  fdmtblBarCode.Append;
+//  barCodeStream := TMemoryStream.Create;
+//  brcdMAC.InputText := '68:EB:C5:FF:12:32';
+//  brcdMAC.Bitmap.SaveToStream(barCodeStream);
+//  barCodeStream.Position := 0;
+//
+//  (fdmtblBarCode.FieldByName('BarCodeMAC') as TBlobField).LoadFromStream(barCodeStream);
+//  barCodeStream.Clear;
+//  brcdMAC.InputText := '123456781999';
+//  brcdMAC.Bitmap.SaveToStream(barCodeStream);
+//  barCodeStream.Position := 0;
+//  (fdmtblBarCode.FieldByName('BarCodeId') as TBlobField).LoadFromStream(barCodeStream);
+//  fdmtblBarCode.FieldByName('Number').AsInteger := 1;
+//  barCodeStream.Clear;
+//  fdmtblBarCode.Post;
+//  fdmtblBarCode.Next;
+//  barCodeStream.Free;
+// ****************************************************************************
+//   frmTestGrid.Show;
+mniPreview.Enabled := True;
+end;
+
+
+// предосмотр BarCode
+procedure TfrmMAC.mniPreviewClick(Sender: TObject);
+begin
+  frmFRBarCode.Show;
+  frmFRBarCode.frxprvwBarCode.Clear;
+  frmFRBarCode.frxrprtBarCode.ShowReport();
+end;
+//********************************************************************************
+
 // закрытие формы
 procedure TfrmMAC.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   fdmtblMac.Close;
   fdmtblTitle.Close;
+  fdmtblBarCode.Close;
 end;
 
 end.
+
 
 
 
