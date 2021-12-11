@@ -79,7 +79,7 @@ type
     mniPrintBarCode: TMenuItem;
     mniPreview: TMenuItem;
     mniSeparator5: TMenuItem;
-    mnExportBarCode: TMenuItem;
+    mniExportBarCode: TMenuItem;
     mniDOCBarCode: TMenuItem;
     mniPDFBarCode: TMenuItem;
     mniXMLBarCode: TMenuItem;
@@ -99,6 +99,9 @@ type
     procedure ApplyBarCodeClick(Sender: TObject);
     procedure mniPrintBarCodeClick(Sender: TObject);
     procedure mniPreviewClick(Sender: TObject);
+    procedure mniDOCBarCodeClick(Sender: TObject);
+    procedure mniPDFBarCodeClick(Sender: TObject);
+    procedure mniXMLBarCodeClick(Sender: TObject);
   private
     { Private declarations }
     var
@@ -307,8 +310,6 @@ begin
     fdmtblTitle.Open;
     fdmtblTitle.Table.Clear;
     fdmtblTitle.Append;
-//  fdmtblMac.Post;
-//  fdmtblMac.Next;
 
 //    fdmtblTitle.Insert;
     fdmtblTitle.FieldByName('nameDevice').AsString := fnameDevice;
@@ -337,7 +338,6 @@ begin
       fdmtblMac.FieldByName('MAC - adress').AsString := tmp1;
       fdmtblMac.FieldByName('id - number').AsString := s1;
       fdmtblMac.Post;
-      fdmtblMac.Next;
     end;
     CloseFile(fileId);
   end
@@ -388,7 +388,6 @@ begin
       Readln(fileId, s);
       fdmtblMac.FieldByName('MAC - adress').AsString := s;
       fdmtblMac.Post;
-      fdmtblMac.Next;
     end;
     CloseFile(fileId);
   end;
@@ -423,12 +422,17 @@ begin
   medtBit_4.Text := '00';
   medtBit_5.Text := '00';
   medtBit_6.Text := '00';
+// для barCode
+  mniPreview.Enabled := False;
+  mniExportBarCode.Enabled := False;
+  mniPrintBarCode.Enabled := False;
 
   medtModule.Text := '000';
   medtDate.Text := '000';
   medtGroup.Text := '000';
   medtNumber.Text := '000';
 end;
+
 
 // процедура закрытия формы
 procedure TfrmMAC.mniExitClick(Sender: TObject);
@@ -518,7 +522,6 @@ begin
   fdmtblTitle.Close;
   fdmtblTitle.Open;
 //  fdmtblTitle.Table.Clear;
-  fdmtblTitle.First;
   fdmtblTitle.Append;
   fdmtblTitle.FieldByName('nameDevice').AsString := fnameDevice;
   fdmtblTitle.FieldByName('firstOrderBit').AsString := ffirstOrderBit;
@@ -527,7 +530,6 @@ begin
   fdmtblTitle.FieldByName('quantityDevice').AsString := fquantityDevice;
   fdmtblTitle.FieldByName('StepPrintBarCode').AsInteger := stepPrintBarCode;
   fdmtblTitle.Post;
-  fdmtblTitle.Next;
 //блок выбора mac & id номеров ******************************************************
 
 //   формирование файла
@@ -591,31 +593,13 @@ begin
   end;
   barCodeStream.Free;
 //
-
-//***********************************************************************************
-//  fdmtblBarCode.Open;
-//  fdmtblBarCode.Table.Clear;
-//  fdmtblBarCode.Append;
-//  barCodeStream := TMemoryStream.Create;
-//  brcdMAC.InputText := '68:EB:C5:FF:12:32';
-//  brcdMAC.Bitmap.SaveToStream(barCodeStream);
-//  barCodeStream.Position := 0;
-//
-//  (fdmtblBarCode.FieldByName('BarCodeMAC') as TBlobField).LoadFromStream(barCodeStream);
-//  barCodeStream.Clear;
-//  brcdMAC.InputText := '123456781999';
-//  brcdMAC.Bitmap.SaveToStream(barCodeStream);
-//  barCodeStream.Position := 0;
-//  (fdmtblBarCode.FieldByName('BarCodeId') as TBlobField).LoadFromStream(barCodeStream);
-//  fdmtblBarCode.FieldByName('Number').AsInteger := 1;
-//  barCodeStream.Clear;
-//  fdmtblBarCode.Post;
-//  fdmtblBarCode.Next;
-//  barCodeStream.Free;
-// ****************************************************************************
 //   frmTestGrid.Show;
-mniPreview.Enabled := True;
+  mniPreview.Enabled := True;
+  mniExportBarCode.Enabled := True;
+  mniPrintBarCode.Enabled := True;
 end;
+
+
 
 
 // предосмотр BarCode
@@ -626,6 +610,31 @@ begin
   frmFRBarCode.frxrprtBarCode.ShowReport();
 end;
 //********************************************************************************
+
+// эспорт для barcode ************************************************************
+
+procedure TfrmMAC.mniXMLBarCodeClick(Sender: TObject);
+begin
+  frmFRBarCode.frxrprtBarCode.ShowReport();
+  frmFRBarCode.frxrprtBarCode.Export(frmFRBarCode.frexBarCodeXL);
+end;
+
+procedure TfrmMAC.mniPDFBarCodeClick(Sender: TObject);
+begin
+  frmFRBarCode.frxrprtBarCode.ShowReport();
+  frmFRBarCode.frxrprtBarCode.Export(frmFRBarCode.frexBarCodePDF);
+end;
+
+procedure TfrmMAC.mniDOCBarCodeClick(Sender: TObject);
+begin
+  frmFRBarCode.frxrprtBarCode.ShowReport();
+  frmFRBarCode.frxrprtBarCode.Export(frmFRBarCode.frexBarCodeDOC);
+end;
+
+// *******************************************************************************
+
+
+
 
 // закрытие формы
 procedure TfrmMAC.FormClose(Sender: TObject; var Action: TCloseAction);

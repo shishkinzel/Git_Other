@@ -37,7 +37,7 @@ object frmFRBarCode: TfrmFRBarCode
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44539.637803541660000000
-    ReportOptions.LastChange = 44540.954831990740000000
+    ReportOptions.LastChange = 44541.770616296290000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -173,10 +173,10 @@ object frmFRBarCode: TfrmFRBarCode
         end
         object BarCodeMAC: TfrxPictureView
           AllowVectorExport = True
-          Left = 94.488250000000000000
+          Left = 83.149660000000000000
           Top = 18.897650000000000000
-          Width = 283.464750000000000000
-          Height = 56.692930470000000000
+          Width = 245.669450000000000000
+          Height = 45.354340470000000000
           Center = True
           DataField = 'BarCodeMAC'
           DataSet = frxdbdtstBarCode
@@ -191,7 +191,7 @@ object frmFRBarCode: TfrmFRBarCode
           Left = 506.457020000000000000
           Top = 18.897650000000000000
           Width = 211.653680000000000000
-          Height = 56.692930470000000000
+          Height = 45.354330710000000000
           Center = True
           DataField = 'BarCodeId'
           DataSet = frxdbdtstBarCode
@@ -262,5 +262,54 @@ object frmFRBarCode: TfrmFRBarCode
     BCDToCurrency = False
     Left = 16
     Top = 128
+  end
+  object frexBarCodeDOC: TfrxDOCXExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    OpenAfterExport = False
+    PictureType = gpPNG
+    Left = 8
+    Top = 192
+  end
+  object frexBarCodeXL: TfrxXLSXExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    ChunkSize = 0
+    OpenAfterExport = False
+    PictureType = gpPNG
+    Left = 8
+    Top = 238
+  end
+  object frexBarCodePDF: TfrxPDFExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    InteractiveFormsFontSubset = 'A-Z,a-z,0-9,#43-#47 '
+    OpenAfterExport = False
+    PrintOptimized = False
+    Outline = False
+    Background = False
+    HTMLTags = True
+    Quality = 95
+    Transparency = False
+    Author = 'FastReport'
+    Subject = 'FastReport PDF export'
+    ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
+    HideToolbar = False
+    HideMenubar = False
+    HideWindowUI = False
+    FitWindow = False
+    CenterWindow = False
+    PrintScaling = False
+    PdfA = False
+    PDFStandard = psNone
+    PDFVersion = pv17
+    Left = 8
+    Top = 278
   end
 end

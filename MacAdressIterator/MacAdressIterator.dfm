@@ -7885,17 +7885,20 @@ object frmMAC: TfrmMAC
       object mniSeparator5: TMenuItem
         Caption = '-'
       end
-      object mnExportBarCode: TMenuItem
+      object mniExportBarCode: TMenuItem
         Caption = #1069#1082#1089#1087#1086#1088#1090' '#1086#1090#1095#1077#1090#1072
         Enabled = False
         object mniDOCBarCode: TMenuItem
           Caption = 'DOC'
+          OnClick = mniDOCBarCodeClick
         end
         object mniPDFBarCode: TMenuItem
           Caption = 'PDF'
+          OnClick = mniPDFBarCodeClick
         end
         object mniXMLBarCode: TMenuItem
           Caption = 'XML'
+          OnClick = mniXMLBarCodeClick
         end
       end
       object mniPrintBarCode: TMenuItem
