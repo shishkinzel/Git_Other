@@ -18,6 +18,9 @@ var
 
 implementation
 
+uses
+  FPaymentDocuments;
+
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}

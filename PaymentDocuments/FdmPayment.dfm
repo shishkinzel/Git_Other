@@ -1,5 +1,5 @@
 object dmPayment: TdmPayment
   OldCreateOrder = False
-  Height = 150
-  Width = 215
+  Height = 488
+  Width = 665
 end
