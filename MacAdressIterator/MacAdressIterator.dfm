@@ -8009,6 +8009,7 @@ object frmMAC: TfrmMAC
   end
   object brcdMAC: TBarcode
     Height = 20.000000000000000000
+    OutputOptions = [opBpp1, opStdout, opCompliantHeight]
     Symbology = syCode128
     Left = 72
     Top = 16
