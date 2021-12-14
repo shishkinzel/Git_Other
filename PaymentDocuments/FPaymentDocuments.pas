@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-   FdmPayment, funUntil, FTableAll, FTableMeteringDevice, FFRMeteringDevice, FFRTableAll;
+   FdmPayment, funUntil, FTableAll, FTableMeteringDevice, FFRMeteringDevice, FFRTableAll, FInputData;
 
 type
   TfrmPaymentDocuments = class(TForm)
@@ -19,11 +19,7 @@ type
     mniOpenDB: TMenuItem;
     mniFind: TMenuItem;
     mniShow: TMenuItem;
-    mniFormInput: TMenuItem;
-    mniWater: TMenuItem;
-    mniSupplyMeter: TMenuItem;
     mniAllTable: TMenuItem;
-    mniApplyPay: TMenuItem;
     mniReport: TMenuItem;
     dtpPay: TDateTimePicker;
     txtDate: TStaticText;
@@ -60,9 +56,14 @@ type
     pnlApplyRow: TPanel;
     pnlApplyDate: TPanel;
     mniPayAndRecord: TMenuItem;
+    mniForms: TMenuItem;
+    mniInputData: TMenuItem;
+    mniEditData: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure mniAllTableClick(Sender: TObject);
     procedure mniPayAndRecordClick(Sender: TObject);
+    procedure mniInputDataClick(Sender: TObject);
+    procedure mniEditDataClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -87,6 +88,18 @@ procedure TfrmPaymentDocuments.mniAllTableClick(Sender: TObject);
 begin
   frmTableAll := TfrmTableAll.Create(nil);
   frmTableAll.ShowModal;
+end;
+
+procedure TfrmPaymentDocuments.mniEditDataClick(Sender: TObject);
+begin
+  frmInputData := TfrmInputData.Create(nil);
+  frmInputData.ShowModal;
+end;
+
+procedure TfrmPaymentDocuments.mniInputDataClick(Sender: TObject);
+begin
+  frmInputData := TfrmInputData.Create(nil);
+  frmInputData.ShowModal;
 end;
 
 procedure TfrmPaymentDocuments.mniPayAndRecordClick(Sender: TObject);

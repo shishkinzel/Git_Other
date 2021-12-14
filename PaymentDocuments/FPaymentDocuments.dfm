@@ -24,7 +24,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
     Height = 472
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 465
     object pnlShow: TPanel
       Left = 1
       Top = 42
@@ -35,7 +34,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
       Color = 15767290
       ParentBackground = False
       TabOrder = 2
-      ExplicitHeight = 242
       object pnlShowDate: TPanel
         Left = 153
         Top = 89
@@ -47,7 +45,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Color = 449414
         ParentBackground = False
         TabOrder = 3
-        ExplicitHeight = 148
         object lblEprev: TLabel
           Left = 64
           Top = 8
@@ -177,7 +174,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Color = 5962490
         ParentBackground = False
         TabOrder = 2
-        ExplicitHeight = 148
         object lblElectric: TLabel
           Left = 12
           Top = 8
@@ -275,7 +271,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
           Left = 178
           Top = 10
           Width = 91
-          Height = 26
+          Height = 19
           Alignment = taCenter
           Caption = #1055#1088#1077#1076#1091#1076#1091#1097#1077#1077
           Font.Charset = DEFAULT_CHARSET
@@ -380,7 +376,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
       Color = 15767290
       ParentBackground = False
       TabOrder = 1
-      ExplicitTop = 284
       object pnlApplyTitle: TPanel
         Left = 1
         Top = 37
@@ -441,7 +436,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Color = 5962490
         ParentBackground = False
         TabOrder = 2
-        ExplicitTop = 72
         object lblDez: TLabel
           Left = 12
           Top = 10
@@ -642,18 +636,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
     end
     object mniShow: TMenuItem
       Caption = #1055#1086#1082#1072#1079#1072#1090#1100
-      object mniFormInput: TMenuItem
-        Caption = #1060#1086#1088#1084#1072' '#1074#1074#1086#1076#1072' '
-        object mniWater: TMenuItem
-          Caption = #1057#1095#1105#1090#1095#1080#1082#1080' '#1074#1086#1076#1099
-        end
-        object mniSupplyMeter: TMenuItem
-          Caption = #1069#1083#1077#1082#1090#1088#1086#1089#1095#1105#1090#1095#1080#1082
-        end
-        object mniApplyPay: TMenuItem
-          Caption = #1048#1089#1087#1086#1083#1085#1077#1085#1080#1077' '#1087#1083#1072#1090#1077#1078#1077#1081
-        end
-      end
       object mniAllTable: TMenuItem
         Caption = #1057#1074#1086#1076#1085#1072#1103' '#1090#1072#1073#1083#1080#1094#1072
         OnClick = mniAllTableClick
@@ -661,6 +643,17 @@ object frmPaymentDocuments: TfrmPaymentDocuments
       object mniPayAndRecord: TMenuItem
         Caption = #1051#1080#1089#1090#1086#1082' '#1091#1095#1105#1090#1072' '#1080' '#1086#1087#1083#1072#1090#1099
         OnClick = mniPayAndRecordClick
+      end
+    end
+    object mniForms: TMenuItem
+      Caption = #1060#1086#1088#1084#1099
+      object mniInputData: TMenuItem
+        Caption = #1042#1074#1086#1076' '#1076#1072#1085#1085#1099#1093
+        OnClick = mniInputDataClick
+      end
+      object mniEditData: TMenuItem
+        Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1077' '#1076#1072#1085#1085#1099#1093
+        OnClick = mniEditDataClick
       end
     end
     object mniReport: TMenuItem

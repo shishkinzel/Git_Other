@@ -8,7 +8,8 @@ uses
   FTableAll in 'FTableAll.pas' {frmTableAll},
   FTableMeteringDevice in 'FTableMeteringDevice.pas' {frmMeteringDevice},
   FFRMeteringDevice in 'FFRMeteringDevice.pas' {frmFRMeteringDevice},
-  FFRTableAll in 'FFRTableAll.pas' {frmFRTableAll};
+  FFRTableAll in 'FFRTableAll.pas' {frmFRTableAll},
+  FInputData in 'FInputData.pas' {frmInputData};
 
 {$R *.res}
 
