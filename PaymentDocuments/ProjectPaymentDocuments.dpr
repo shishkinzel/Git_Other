@@ -4,7 +4,11 @@ uses
   Vcl.Forms,
   FPaymentDocuments in 'FPaymentDocuments.pas' {frmPaymentDocuments},
   FdmPayment in 'FdmPayment.pas' {dmPayment: TDataModule},
-  funUntil in 'funUntil.pas';
+  funUntil in 'funUntil.pas',
+  FTableAll in 'FTableAll.pas' {frmTableAll},
+  FTableMeteringDevice in 'FTableMeteringDevice.pas' {frmMeteringDevice},
+  FFRMeteringDevice in 'FFRMeteringDevice.pas' {frmFRMeteringDevice},
+  FFRTableAll in 'FFRTableAll.pas' {frmFRTableAll};
 
 {$R *.res}
 

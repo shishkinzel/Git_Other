@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-   FdmPayment, funUntil;
+   FdmPayment, funUntil, FTableAll, FTableMeteringDevice, FFRMeteringDevice, FFRTableAll;
 
 type
   TfrmPaymentDocuments = class(TForm)
@@ -53,6 +53,16 @@ type
     lblMosEnApp: TLabel;
     lblOnLine: TLabel;
     StaticText1: TStaticText;
+    pnlShowTitle: TPanel;
+    pnlShowRow: TPanel;
+    pnlShowDate: TPanel;
+    pnlApplyTitle: TPanel;
+    pnlApplyRow: TPanel;
+    pnlApplyDate: TPanel;
+    mniPayAndRecord: TMenuItem;
+    procedure FormCreate(Sender: TObject);
+    procedure mniAllTableClick(Sender: TObject);
+    procedure mniPayAndRecordClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -66,4 +76,24 @@ implementation
 
 {$R *.dfm}
 
+
+
+procedure TfrmPaymentDocuments.FormCreate(Sender: TObject);
+begin
+//dtpPay.Date := Now;
+end;
+
+procedure TfrmPaymentDocuments.mniAllTableClick(Sender: TObject);
+begin
+  frmTableAll := TfrmTableAll.Create(nil);
+  frmTableAll.ShowModal;
+end;
+
+procedure TfrmPaymentDocuments.mniPayAndRecordClick(Sender: TObject);
+begin
+  frmMeteringDevice := TfrmMeteringDevice.Create(nil);
+  frmMeteringDevice.ShowModal;
+end;
+
 end.
+

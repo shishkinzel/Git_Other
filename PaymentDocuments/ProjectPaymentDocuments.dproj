@@ -83,6 +83,8 @@
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -108,6 +110,22 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="funUntil.pas"/>
+        <DCCReference Include="FTableAll.pas">
+            <Form>frmTableAll</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="FTableMeteringDevice.pas">
+            <Form>frmMeteringDevice</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="FFRMeteringDevice.pas">
+            <Form>frmFRMeteringDevice</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="FFRTableAll.pas">
+            <Form>frmFRTableAll</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -128,6 +146,13 @@
                 <Source>
                     <Source Name="MainSource">ProjectPaymentDocuments.dpr</Source>
                 </Source>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp270.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 6 VCL Enterprise\LibD27\dclfrxTee27.bpl">FastReport 6.0 Tee Components</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 6 VCL Enterprise\LibD27\dclfsTee27.bpl">FastScript 1.9 Tee Components</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\combit\LL27\Samples\Delphi\FireDAC\Component\ListLabel27Components.bpl">File C:\Program Files (x86)\combit\LL27\Samples\Delphi\FireDAC\Component\ListLabel27Components.bpl not found</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
                 <DeployFile LocalName="Win32\Debug\ProjectPaymentDocuments.exe" Configuration="Debug" Class="ProjectOutput">
