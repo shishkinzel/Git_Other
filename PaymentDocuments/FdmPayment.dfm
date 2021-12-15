@@ -1,5 +1,7 @@
 object dmPayment: TdmPayment
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   Height = 488
   Width = 665
   object fmTabPayAndRecord: TFDMemTable
@@ -73,7 +75,10 @@ object dmPayment: TdmPayment
     Left = 56
     Top = 8
     object fmTabPayAndRecordnumber: TIntegerField
+      DisplayWidth = 4
       FieldName = 'number'
+      MaxValue = 999
+      MinValue = 1
     end
     object fmTabPayAndRecorddate: TDateField
       FieldName = 'date'
@@ -185,5 +190,9 @@ object dmPayment: TdmPayment
     object fmTabSummaryTablewaterHotExpense: TIntegerField
       FieldName = 'waterHotExpense'
     end
+  end
+  object jsonFileDb: TFDStanStorageJSONLink
+    Left = 112
+    Top = 8
   end
 end

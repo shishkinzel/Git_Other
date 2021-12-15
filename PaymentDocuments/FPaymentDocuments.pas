@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-   FdmPayment, funUntil, FTableAll, FTableMeteringDevice, FFRMeteringDevice, FFRTableAll, FInputData;
+   FdmPayment, funUntil, FTableAll, FTableMeteringDevice, FFRMeteringDevice, FFRTableAll, FInputData,
+  FireDAC.Stan.StorageJSON;
 
 type
   TfrmPaymentDocuments = class(TForm)
@@ -59,6 +60,9 @@ type
     mniForms: TMenuItem;
     mniInputData: TMenuItem;
     mniEditData: TMenuItem;
+    mniSetting: TMenuItem;
+    mniFRPayAndRecord: TMenuItem;
+    mniFRTableAll: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure mniAllTableClick(Sender: TObject);
     procedure mniPayAndRecordClick(Sender: TObject);
@@ -66,22 +70,30 @@ type
     procedure mniEditDataClick(Sender: TObject);
   private
     { Private declarations }
+
   public
     { Public declarations }
   end;
+
+const
+  fJsonFile = 'payment_documents.fdc';
 
 var
   frmPaymentDocuments: TfrmPaymentDocuments;
 
 implementation
 
+
 {$R *.dfm}
 
 
 
 procedure TfrmPaymentDocuments.FormCreate(Sender: TObject);
+var
+i : Integer;
 begin
-//dtpPay.Date := Now;
+
+
 end;
 
 procedure TfrmPaymentDocuments.mniAllTableClick(Sender: TObject);

@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, FTableAll, FTableMeteringDevice, FFRMeteringDevice, FFRTableAll;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, FTableAll, FTableMeteringDevice, FFRMeteringDevice, FFRTableAll,
+  FireDAC.Stan.StorageJSON, FInputData;
 
 type
   TdmPayment = class(TDataModule)
@@ -33,6 +34,9 @@ type
     fmTabSummaryTablewaterColdExpense: TIntegerField;
     fmTabSummaryTablewaterHotMeterReading: TIntegerField;
     fmTabSummaryTablewaterHotExpense: TIntegerField;
+    jsonFileDb: TFDStanStorageJSONLink;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
   public
@@ -50,5 +54,18 @@ uses
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+procedure TdmPayment.DataModuleCreate(Sender: TObject);
+begin
+if FileExists(fJsonFile) then
+fmTabPayAndRecord.LoadFromFile(fJsonFile, sfJSON);
+end;
+
+procedure TdmPayment.DataModuleDestroy(Sender: TObject);
+var
+i : Integer;
+begin
+//fmTabPayAndRecord.SaveToFile(fJsonFile, sfJSON);
+end;
 
 end.
