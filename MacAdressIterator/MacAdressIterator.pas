@@ -577,13 +577,13 @@ begin
     fdmtblBarCode.FieldByName('Number').AsString := tmp;
 // создаем поток и трансоформируем в barcode
 
-    brcdMAC.InputText := tmp1;
+    brcdMAC.InputText := 'MAC:' + tmp1;
     brcdMAC.Bitmap.SaveToStream(barCodeStream);
     barCodeStream.Position := 0;
     (fdmtblBarCode.FieldByName('BarCodeMAC') as TBlobField).LoadFromStream(barCodeStream);
     barCodeStream.Clear;
 
-    brcdMAC.InputText := s1;
+    brcdMAC.InputText := 'S/N:' + s1;
     brcdMAC.Bitmap.SaveToStream(barCodeStream);
     barCodeStream.Position := 0;
     (fdmtblBarCode.FieldByName('BarCodeId') as TBlobField).LoadFromStream(barCodeStream);

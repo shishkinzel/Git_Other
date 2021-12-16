@@ -2,8 +2,8 @@ object frmInputData: TfrmInputData
   Left = 0
   Top = 0
   Caption = #1042#1074#1086#1076' '#1076#1072#1085#1085#1099#1093' '#1089#1095#1077#1090#1095#1080#1082#1086#1074
-  ClientHeight = 491
-  ClientWidth = 638
+  ClientHeight = 428
+  ClientWidth = 761
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,8 +18,8 @@ object frmInputData: TfrmInputData
   TextHeight = 13
   object spl1: TSplitter
     Left = 0
-    Top = 351
-    Width = 638
+    Top = 288
+    Width = 761
     Height = 1
     Cursor = crVSplit
     Align = alBottom
@@ -27,24 +27,28 @@ object frmInputData: TfrmInputData
     ExplicitWidth = 635
   end
   object spl2: TSplitter
-    Left = 320
+    Left = 449
     Top = 0
     Width = 1
-    Height = 351
+    Height = 288
     ExplicitLeft = 273
+    ExplicitHeight = 351
   end
   object pnlInData: TPanel
     Left = 0
     Top = 0
-    Width = 320
-    Height = 351
+    Width = 449
+    Height = 288
     Align = alLeft
+    Color = 15958140
+    ParentBackground = False
     TabOrder = 0
     ExplicitLeft = -5
     ExplicitTop = -5
+    ExplicitHeight = 294
     object lblEl: TLabel
       Left = 16
-      Top = 116
+      Top = 123
       Width = 119
       Height = 19
       Caption = #1069#1083#1077#1082#1090#1088#1086#1101#1085#1077#1088#1075#1080#1103
@@ -57,7 +61,7 @@ object frmInputData: TfrmInputData
     end
     object lblColdWater: TLabel
       Left = 16
-      Top = 176
+      Top = 179
       Width = 109
       Height = 19
       Caption = #1061#1086#1083#1086#1076#1085#1072#1103' '#1074#1086#1076#1072
@@ -70,7 +74,7 @@ object frmInputData: TfrmInputData
     end
     object lblHotWater: TLabel
       Left = 16
-      Top = 236
+      Top = 239
       Width = 98
       Height = 19
       Caption = #1043#1086#1088#1103#1095#1072#1103' '#1074#1086#1076#1072
@@ -94,8 +98,21 @@ object frmInputData: TfrmInputData
       Font.Style = []
       ParentFont = False
     end
+    object lblUse: TLabel
+      Left = 312
+      Top = 64
+      Width = 97
+      Height = 19
+      Caption = #1055#1086#1090#1088#1077#1073#1083#1077#1085#1080#1077
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
     object txtTitle: TStaticText
-      Left = 48
+      Left = 80
       Top = 8
       Width = 199
       Height = 23
@@ -110,7 +127,7 @@ object frmInputData: TfrmInputData
     end
     object dbedtEle: TDBEdit
       Left = 150
-      Top = 116
+      Top = 120
       Width = 120
       Height = 27
       DataField = 'lightNext'
@@ -170,15 +187,63 @@ object frmInputData: TfrmInputData
       ParentFont = False
       TabOrder = 1
     end
+    object dbedtUseEle: TDBEdit
+      Left = 312
+      Top = 120
+      Width = 80
+      Height = 27
+      DataField = 'lightExpense'
+      DataSource = dsPayAndRecord
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+    end
+    object dbedtUseColdWater: TDBEdit
+      Left = 312
+      Top = 176
+      Width = 80
+      Height = 27
+      DataField = 'WaterColdExpense'
+      DataSource = dsPayAndRecord
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 6
+    end
+    object dbedtUseHotWater: TDBEdit
+      Left = 312
+      Top = 236
+      Width = 80
+      Height = 27
+      DataField = 'WaterHotExpense'
+      DataSource = dsPayAndRecord
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 7
+    end
   end
   object pnldown: TPanel
     Left = 0
-    Top = 352
-    Width = 638
+    Top = 289
+    Width = 761
     Height = 139
     Align = alBottom
+    Color = 6091532
+    ParentBackground = False
     TabOrder = 1
-    ExplicitTop = 357
+    ExplicitTop = 352
+    ExplicitWidth = 638
     object lblDez: TLabel
       Left = 16
       Top = 24
@@ -264,7 +329,7 @@ object frmInputData: TfrmInputData
       TabOrder = 2
     end
     object btnApply: TButton
-      Left = 479
+      Left = 608
       Top = 96
       Width = 120
       Height = 27
@@ -280,16 +345,22 @@ object frmInputData: TfrmInputData
     end
   end
   object pnlRight: TPanel
-    Left = 321
+    Left = 450
     Top = 0
-    Width = 317
-    Height = 351
+    Width = 311
+    Height = 288
     Align = alClient
+    Color = 16759225
     Enabled = False
+    ParentBackground = False
     TabOrder = 2
+    ExplicitLeft = 455
+    ExplicitTop = -11
+    ExplicitWidth = 350
+    ExplicitHeight = 294
     object lblHotWaterPrev: TLabel
       Left = 24
-      Top = 184
+      Top = 187
       Width = 98
       Height = 19
       Caption = #1043#1086#1088#1103#1095#1072#1103' '#1074#1086#1076#1072
@@ -302,7 +373,7 @@ object frmInputData: TfrmInputData
     end
     object lblColdWaterPrev: TLabel
       Left = 24
-      Top = 124
+      Top = 123
       Width = 109
       Height = 19
       Caption = #1061#1086#1083#1086#1076#1085#1072#1103' '#1074#1086#1076#1072
@@ -358,7 +429,7 @@ object frmInputData: TfrmInputData
     end
     object dbedtColdWaterPrev: TDBEdit
       Left = 158
-      Top = 124
+      Top = 120
       Width = 120
       Height = 27
       DataField = 'WaterColdPrev'
@@ -387,7 +458,7 @@ object frmInputData: TfrmInputData
     end
     object btnStart: TButton
       Left = 158
-      Top = 244
+      Top = 236
       Width = 120
       Height = 27
       Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
@@ -405,5 +476,10 @@ object frmInputData: TfrmInputData
     DataSet = dmPayment.fmTabPayAndRecord
     Left = 16
     Top = 24
+  end
+  object dsSummaryTable: TDataSource
+    DataSet = dmPayment.fmTabSummaryTable
+    Left = 64
+    Top = 32
   end
 end

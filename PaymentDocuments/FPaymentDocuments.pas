@@ -68,6 +68,7 @@ type
     procedure mniPayAndRecordClick(Sender: TObject);
     procedure mniInputDataClick(Sender: TObject);
     procedure mniEditDataClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
 
@@ -87,6 +88,12 @@ implementation
 {$R *.dfm}
 
 
+
+procedure TfrmPaymentDocuments.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  dmPayment.fmTabSummaryTable.Close;
+  dmPayment.fmTabPayAndRecord.Close;
+end;
 
 procedure TfrmPaymentDocuments.FormCreate(Sender: TObject);
 var

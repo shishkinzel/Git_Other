@@ -23,9 +23,6 @@ type
     fmTabPayAndRecordWaterHotPrev: TIntegerField;
     fmTabPayAndRecordWaterHotNext: TIntegerField;
     fmTabPayAndRecordWaterHotExpense: TIntegerField;
-    fmTabPayAndRecordDezSum: TIntegerField;
-    fmTabPayAndRecordMosEn: TIntegerField;
-    fmTabPayAndRecordonLime: TIntegerField;
     fmTabSummaryTablenumber: TIntegerField;
     fmTabSummaryTabledate: TDateField;
     fmTabSummaryTablelightMeterReading: TIntegerField;
@@ -35,6 +32,9 @@ type
     fmTabSummaryTablewaterHotMeterReading: TIntegerField;
     fmTabSummaryTablewaterHotExpense: TIntegerField;
     jsonFileDb: TFDStanStorageJSONLink;
+    crncyfldTabPayAndRecordDezSum: TCurrencyField;
+    crncyfldTabPayAndRecordMosEn: TCurrencyField;
+    crncyfldTabPayAndRecordonLime: TCurrencyField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

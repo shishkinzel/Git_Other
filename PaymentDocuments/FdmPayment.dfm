@@ -53,15 +53,18 @@ object dmPayment: TdmPayment
       end
       item
         Name = 'DezSum'
-        DataType = ftInteger
+        DataType = ftCurrency
+        Precision = 19
       end
       item
         Name = 'MosEn'
-        DataType = ftInteger
+        DataType = ftCurrency
+        Precision = 19
       end
       item
         Name = 'onLime'
-        DataType = ftInteger
+        DataType = ftCurrency
+        Precision = 19
       end>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
@@ -110,13 +113,13 @@ object dmPayment: TdmPayment
     object fmTabPayAndRecordWaterHotExpense: TIntegerField
       FieldName = 'WaterHotExpense'
     end
-    object fmTabPayAndRecordDezSum: TIntegerField
+    object crncyfldTabPayAndRecordDezSum: TCurrencyField
       FieldName = 'DezSum'
     end
-    object fmTabPayAndRecordMosEn: TIntegerField
+    object crncyfldTabPayAndRecordMosEn: TCurrencyField
       FieldName = 'MosEn'
     end
-    object fmTabPayAndRecordonLime: TIntegerField
+    object crncyfldTabPayAndRecordonLime: TCurrencyField
       FieldName = 'onLime'
     end
   end

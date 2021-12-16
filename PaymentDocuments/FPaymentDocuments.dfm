@@ -14,6 +14,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
   OldCreateOrder = False
   Position = poScreenCenter
   StyleName = 'Payment Documents'
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
