@@ -77,7 +77,8 @@ type
   end;
 
 const
-  fJsonFile = 'payment_documents.fdc';
+  fJsonFile = 'payment_documents.fds';
+  fJsonFileAll = 'db_allTable.fds';
 
 var
   frmPaymentDocuments: TfrmPaymentDocuments;
@@ -91,8 +92,8 @@ implementation
 
 procedure TfrmPaymentDocuments.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  dmPayment.fmTabSummaryTable.Close;
-  dmPayment.fmTabPayAndRecord.Close;
+//  dmPayment.fmTabSummaryTable.Close;
+//  dmPayment.fmTabPayAndRecord.Close;
 end;
 
 procedure TfrmPaymentDocuments.FormCreate(Sender: TObject);

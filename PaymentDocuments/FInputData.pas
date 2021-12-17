@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Data.DB,
-  Vcl.ComCtrls, Vcl.Samples.Spin;
+  Vcl.ComCtrls, Vcl.Samples.Spin, DateUtils;
 
 type
   TfrmInputData = class(TForm)
@@ -21,9 +21,6 @@ type
     dbedtEle: TDBEdit;
     dbedtColdWater: TDBEdit;
     dbedtHotWater: TDBEdit;
-    dbedtElePrev: TDBEdit;
-    dbedtHotWaterPrev: TDBEdit;
-    dbedtColdWaterPrev: TDBEdit;
     lblHotWaterPrev: TLabel;
     lblColdWaterPrev: TLabel;
     lblElPrev: TLabel;
@@ -44,12 +41,21 @@ type
     dbedtUseEle: TDBEdit;
     dbedtUseColdWater: TDBEdit;
     dbedtUseHotWater: TDBEdit;
+    edtEle: TEdit;
+    edtColdWater: TEdit;
+    edtHotWater: TEdit;
+    btnClose: TButton;
+    lblTEle: TLabel;
+    lblECold: TLabel;
+    lblTHot: TLabel;
     procedure FormShow(Sender: TObject);
     procedure btnStartClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnApplyClick(Sender: TObject);
+    procedure btnCloseClick(Sender: TObject);
   private
     { Private declarations }
+    fdbEmpty : Boolean;      // флаг пустой базы - поумолчанию False
     stepNub : Integer;
   public
     { Public declarations }
@@ -62,86 +68,153 @@ implementation
 
 uses
   FPaymentDocuments, FdmPayment;
-
 {$R *.dfm}
 
+// процедура показа формы
 procedure TfrmInputData.FormShow(Sender: TObject);
+var
+fday : Integer;
+fdayCorr : TDate;
 begin
   dmPayment.fmTabPayAndRecord.Open;
   if dsPayAndRecord.DataSet.IsEmpty then
   begin
+    btnStart.Visible := True;
+    fdbEmpty := False;
     ShowMessage('У Вас пустая база данных');
-    dbedtElePrev.Text := '0';
-    dbedtColdWaterPrev.Text := '0';
-    dbedtHotWaterPrev.Text := '0';
+    edtEle.Text := '0';
+    edtColdWater.Text := '0';
+    edtHotWater.Text := '0';
     pnlInData.Enabled := False;
     stepNub := 1;
+ // работа с датой
+    dtpDate.Date := Now;
+     fday := DayOf(dtpDate.Date);
+    if fday < 15 then
+    begin
+     fdayCorr := IncMonth(dtpDate.Date, -1);
+     fdayCorr := RecodeDay(fdayCorr,15)
+    end
+    else
+    begin
+      fdayCorr :=  dtpDate.Date;
+      fdayCorr := RecodeDay(fdayCorr, 15);
+    end;
+    dtpDate.Date := fdayCorr ;
   end
   else
   begin
+
     dsPayAndRecord.DataSet.Last;
+    dtpDate.Date := dsPayAndRecord.DataSet.FieldByName('date').AsDateTime;
+    fdayCorr := dtpDate.DateTime;
+    fdayCorr := IncMonth(fdayCorr, 1);
+    dtpDate.Date := fdayCorr;
+
     stepNub := dsPayAndRecord.DataSet.FieldByName('number').AsInteger;
     Inc(stepNub);
 // загрузка предшествующих данных
-   dbedtElePrev.Text := dsPayAndRecord.DataSet.FieldByName('lightPrev').AsString;
-    dbedtColdWaterPrev.Text := dsPayAndRecord.DataSet.FieldByName('WaterColdPrev').AsString;
-    dbedtHotWaterPrev.Text := dsPayAndRecord.DataSet.FieldByName('WaterHotPrev').AsString;
-
+    edtEle.Text := dsPayAndRecord.DataSet.FieldByName('lightNext').AsString;
+    edtColdWater.Text := dsPayAndRecord.DataSet.FieldByName('WaterColdNext').AsString;
+    edtHotWater.Text := dsPayAndRecord.DataSet.FieldByName('WaterHotNext').AsString;
     dmPayment.fmTabPayAndRecord.Append;
   end;
 end;
 
-
-// ввод начальных значений в таблицу
-procedure TfrmInputData.btnApplyClick(Sender: TObject);
-var
-s : string;
-begin
-
-  dmPayment.fmTabPayAndRecord.FieldByName('number').AsInteger := stepNub;
-  dmPayment.fmTabPayAndRecord.FieldByName('date').AsDateTime := dtpDate.Date;
-  dmPayment.fmTabPayAndRecord.Refresh;
-  dmPayment.fmTabPayAndRecord.Next;
-
-
-// запись в таблицу fmTabSummaryTable - dsSummaryTable
-  dmPayment.fmTabSummaryTable.Open;
-  dmPayment.fmTabSummaryTable.Append;
-  dmPayment.fmTabSummaryTable.FieldByName('number').AsInteger := stepNub;
-  dmPayment.fmTabSummaryTable.FieldByName('date').AsDateTime := dtpDate.Date;
-  dmPayment.fmTabSummaryTable.FieldByName('lightMeterReading').AsInteger :=StrToInt(dbedtEle.Text);
-   dmPayment.fmTabSummaryTable.FieldByName('waterColdMeterReading').AsInteger :=StrToInt(dbedtColdWater.Text);
-    dmPayment.fmTabSummaryTable.FieldByName('waterHotMeterReading').AsInteger :=StrToInt(dbedtHotWater.Text);
-  frmInputData.Close;
-end;
-
-// ввод начальных данных в пустую таблицу
-procedure TfrmInputData.btnStartClick(Sender: TObject);
-begin
-if dbedtElePrev.Text = '' then
-
-  pnlRight.Enabled := False;
-  pnlInData.Enabled := True;
-  pnldown.Enabled := True;
-  dmPayment.fmTabPayAndRecord.FieldByName('number').AsInteger := stepNub;
-  dmPayment.fmTabPayAndRecord.FieldByName('date').AsDateTime := dtpDate.Date;
-  dmPayment.fmTabPayAndRecord.Refresh;
-
-end;
-
+// процедура активации формы
 procedure TfrmInputData.FormActivate(Sender: TObject);
 begin
   if dsPayAndRecord.DataSet.IsEmpty then
   begin
     ShowMessage('Пожалуйста введите данные в правую колонку');
+
     pnlRight.Enabled := True;
     pnlInData.Enabled := False;
     pnldown.Enabled := False;
   end
   else
   begin
+    fdbEmpty := True;
     pnlRight.Enabled := False;
   end;
+end;
+
+// ввод начальных данных в пустую таблиц
+procedure TfrmInputData.btnStartClick(Sender: TObject);
+begin
+  btnStart.Visible := False;
+  pnlRight.Enabled := False;
+  pnlInData.Enabled := True;
+  pnldown.Enabled := True;
+  dsPayAndRecord.DataSet.Append;
+  dmPayment.fmTabPayAndRecord.FieldByName('number').AsInteger := stepNub;
+  dmPayment.fmTabPayAndRecord.FieldByName('date').AsDateTime := dtpDate.Date;
+  dmPayment.fmTabPayAndRecord.FieldByName('lightPrev').AsString := edtEle.Text;
+  dmPayment.fmTabPayAndRecord.FieldByName('WaterColdPrev').AsString := edtColdWater.Text;
+  dmPayment.fmTabPayAndRecord.FieldByName('WaterHotPrev').AsString := edtHotWater.Text;
+  ShowMessage('Установите начальную дату');
+  dtpDate.Enabled := True;
+
+end;
+
+// ввод начальных значений в таблицу с данными
+procedure TfrmInputData.btnApplyClick(Sender: TObject);
+var
+fEle, fWaterCold, fWaterHot : Integer;
+begin
+
+  dmPayment.fmTabPayAndRecord.FieldByName('number').AsInteger := stepNub;
+  dmPayment.fmTabPayAndRecord.FieldByName('date').AsDateTime := dtpDate.Date;
+
+// заполнение таблицы предидущими данными если таблица была не пустая
+if fdbEmpty then
+    with dsPayAndRecord.DataSet  do
+    begin
+      FieldByName('lightPrev').AsString := edtEle.Text;
+      FieldByName('WaterColdPrev').AsString := edtColdWater.Text;
+      FieldByName('WaterHotPrev').AsString := edtHotWater.Text;
+    end;
+
+// вычисляемые поля
+    fEle := StrToInt(dbedtEle.Text) - StrToInt(edtEle.Text);
+    fWaterCold := StrToInt(dbedtColdWater.Text) - StrToInt(edtColdWater.Text);
+    fWaterHot := StrToInt(dbedtHotWater.Text) - StrToInt(edtHotWater.Text);
+
+     with dsPayAndRecord.DataSet  do
+    begin
+      FieldByName('lightExpense').AsInteger := fEle;
+      FieldByName('WaterColdExpense').AsInteger := fWaterCold ;
+      FieldByName('WaterHotExpense').AsInteger :=  fWaterHot;
+    end;
+
+// запись в таблицу fmTabSummaryTable - dsSummaryTable
+  with dsSummaryTable.DataSet do
+  begin
+
+    Open;
+    Append;
+    FieldByName('number').AsInteger := stepNub;
+    FieldByName('date').AsDateTime := dtpDate.Date;
+    FieldByName('lightMeterReading').AsString := dbedtEle.Text;
+    FieldByName('waterColdMeterReading').AsString := dbedtColdWater.Text;
+    FieldByName('waterHotMeterReading').AsString := dbedtHotWater.Text;
+    FieldByName('lightExpense').AsInteger := fEle;
+    FieldByName('WaterColdExpense').AsInteger := fWaterCold;
+    FieldByName('WaterHotExpense').AsInteger := fWaterHot;
+
+  end;
+//  frmInputData.Close;
+
+  dbedtUseEle.Text := fEle.ToString;
+  dbedtUseColdWater.Text := fWaterCold.ToString;
+  dbedtUseHotWater.Text := fWaterHot.ToString;
+end;
+
+
+// закрытие формы
+procedure TfrmInputData.btnCloseClick(Sender: TObject);
+begin
+ frmInputData.Close;
 end;
 
 end.

@@ -1,9 +1,10 @@
 object frmPaymentDocuments: TfrmPaymentDocuments
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = #1055#1083#1072#1090#1077#1078#1085#1099#1077' '#1076#1086#1082#1091#1084#1077#1085#1090#1099
-  ClientHeight = 508
-  ClientWidth = 634
+  ClientHeight = 518
+  ClientWidth = 644
   Color = 16759225
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,31 +22,37 @@ object frmPaymentDocuments: TfrmPaymentDocuments
   object pnlTitle: TPanel
     Left = 0
     Top = 36
-    Width = 634
-    Height = 472
+    Width = 644
+    Height = 482
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 634
+    ExplicitHeight = 472
     object pnlShow: TPanel
       Left = 1
       Top = 42
-      Width = 632
-      Height = 249
+      Width = 642
+      Height = 259
       Align = alClient
       BorderStyle = bsSingle
       Color = 15767290
       ParentBackground = False
       TabOrder = 2
+      ExplicitWidth = 632
+      ExplicitHeight = 249
       object pnlShowDate: TPanel
         Left = 153
         Top = 89
-        Width = 474
-        Height = 155
+        Width = 484
+        Height = 165
         Align = alClient
         BevelInner = bvRaised
         BevelKind = bkTile
         Color = 449414
         ParentBackground = False
         TabOrder = 3
+        ExplicitWidth = 474
+        ExplicitHeight = 155
         object lblEprev: TLabel
           Left = 64
           Top = 8
@@ -168,13 +175,14 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Left = 1
         Top = 89
         Width = 152
-        Height = 155
+        Height = 165
         Align = alLeft
         BevelInner = bvRaised
         BevelKind = bkTile
         Color = 5962490
         ParentBackground = False
         TabOrder = 2
+        ExplicitHeight = 155
         object lblElectric: TLabel
           Left = 12
           Top = 8
@@ -219,7 +227,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         AlignWithMargins = True
         Left = 21
         Top = 4
-        Width = 586
+        Width = 596
         Height = 30
         Margins.Left = 20
         Margins.Right = 20
@@ -241,12 +249,13 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         ParentColor = False
         ParentFont = False
         TabOrder = 0
+        ExplicitWidth = 586
       end
       object pnlShowTitle: TPanel
         AlignWithMargins = True
         Left = 4
         Top = 40
-        Width = 620
+        Width = 630
         Height = 46
         Align = alTop
         BevelInner = bvRaised
@@ -254,6 +263,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Color = clYellow
         ParentBackground = False
         TabOrder = 1
+        ExplicitWidth = 620
         object lblSource: TLabel
           Left = 12
           Top = 10
@@ -315,13 +325,14 @@ object frmPaymentDocuments: TfrmPaymentDocuments
     object pnlDate: TPanel
       Left = 1
       Top = 1
-      Width = 632
+      Width = 642
       Height = 41
       Align = alTop
       BorderStyle = bsSingle
       Color = 6219504
       ParentBackground = False
       TabOrder = 0
+      ExplicitWidth = 632
       object dtpPay: TDateTimePicker
         Left = 170
         Top = 3
@@ -369,23 +380,26 @@ object frmPaymentDocuments: TfrmPaymentDocuments
     end
     object pnlApply: TPanel
       Left = 1
-      Top = 291
-      Width = 632
+      Top = 301
+      Width = 642
       Height = 180
       Align = alBottom
       BorderStyle = bsSingle
       Color = 15767290
       ParentBackground = False
       TabOrder = 1
+      ExplicitTop = 291
+      ExplicitWidth = 632
       object pnlApplyTitle: TPanel
         Left = 1
         Top = 37
-        Width = 626
+        Width = 636
         Height = 37
         Align = alTop
         Color = clYellow
         ParentBackground = False
         TabOrder = 1
+        ExplicitWidth = 626
         object lblAppPay: TLabel
           Left = 12
           Top = 10
@@ -482,7 +496,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
       object pnlApplyDate: TPanel
         Left = 153
         Top = 74
-        Width = 474
+        Width = 484
         Height = 101
         Align = alClient
         BevelInner = bvRaised
@@ -490,6 +504,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Color = 449414
         ParentBackground = False
         TabOrder = 3
+        ExplicitWidth = 474
         object lblDezAmount: TLabel
           Left = 400
           Top = 10
@@ -573,7 +588,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         AlignWithMargins = True
         Left = 16
         Top = 4
-        Width = 596
+        Width = 606
         Height = 30
         Margins.Left = 15
         Margins.Right = 15
@@ -593,6 +608,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         ParentColor = False
         ParentFont = False
         TabOrder = 0
+        ExplicitWidth = 596
       end
     end
   end
@@ -600,7 +616,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
     AlignWithMargins = True
     Left = 20
     Top = 0
-    Width = 594
+    Width = 604
     Height = 33
     Margins.Left = 20
     Margins.Top = 0
@@ -623,6 +639,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
     ParentColor = False
     ParentFont = False
     TabOrder = 1
+    ExplicitWidth = 594
   end
   object mmPayment: TMainMenu
     Left = 8

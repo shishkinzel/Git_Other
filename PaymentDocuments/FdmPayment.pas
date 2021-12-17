@@ -59,13 +59,19 @@ procedure TdmPayment.DataModuleCreate(Sender: TObject);
 begin
 if FileExists(fJsonFile) then
 fmTabPayAndRecord.LoadFromFile(fJsonFile, sfJSON);
+
+if FileExists(fJsonFileAll) then
+fmTabSummaryTable.LoadFromFile(fJsonFileAll, sfJSON);
 end;
 
 procedure TdmPayment.DataModuleDestroy(Sender: TObject);
 var
 i : Integer;
 begin
-//fmTabPayAndRecord.SaveToFile(fJsonFile, sfJSON);
+fmTabPayAndRecord.SaveToFile(fJsonFile, sfJSON);
+fmTabSummaryTable.SaveToFile(fJsonFileAll, sfJSON);
+  dmPayment.fmTabSummaryTable.Close;
+  dmPayment.fmTabPayAndRecord.Close;
 end;
 
 end.
