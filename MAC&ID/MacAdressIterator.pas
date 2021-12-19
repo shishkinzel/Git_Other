@@ -84,6 +84,9 @@ type
     mniPDFBarCode: TMenuItem;
     mniXMLBarCode: TMenuItem;
     intgrfldTitleStepPrintBarCode: TIntegerField;
+    fdBarCodeLong: TFDMemTable;
+    fdBarCodeLongnumber: TIntegerField;
+    fdBarCodeLongBarCodeLong: TBlobField;
     procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mnifrViewClick(Sender: TObject);
@@ -113,6 +116,7 @@ type
       idNumber: Integer;             // начальный номер устройства
       fileId: TextFile;              // для хранения данные двух утилит
       fileBarCode : TextFile;        // для хранения данных формирования штрих-кода
+      fileBarCodeLong : TextFile;    // для хранения данных формирования длинного штрих-кода
       utilityMAC: Boolean;
       fnameDevice: string;           // наименование устройства
       ffirstOrderBit: string;        // начальный МАС-адрес для итерации
@@ -122,13 +126,16 @@ type
       stepPrintBarCode : Integer;     // шаг печати штрих-кода
       numberDeviceHigh : string;     // три старших разряда серийного номера
       fbitBarCode : string;           // для печати mac в barcode
+      fbitBarCodeLong : string;       // для печати длинного mac & id barcode
       ffirstIdDeviceBarCode : string; // для печати id в barcode
+      ffirstIdDeveceBarCodeLong : string; // для печат длинного mac & id barcode
 //      rangeBarCode : Integer;         // шаг итерации mac адресов для BarCode
   public
   { Public declarations }
     const
       nameFile = 'id_mac_iterator.txt';
       nameBarCodeFile = 'bar_code.txt';
+      nameFileBarCodeLong = 'bar_code_long.txt';
     var
       barCodeStream : TMemoryStream;
       idMAC: array[0..2] of Byte;
@@ -150,6 +157,7 @@ begin
   utilityMAC := True;
   AssignFile(fileId, nameFile);
   AssignFile(fileBarCode, nameBarCodeFile);
+  AssignFile(fileBarCodeLong, nameFileBarCodeLong);
   if not FileExists(nameFile) then
   begin
     Rewrite(fileId);
@@ -160,6 +168,12 @@ begin
   begin
     Rewrite(fileBarCode);
     CloseFile(fileBarCode);
+  end;
+
+      if not FileExists(nameFileBarCodeLong) then
+  begin
+    Rewrite(fileBarCodeLong);
+    CloseFile(fileBarCodeLong);
   end;
 
 end;
@@ -264,6 +278,7 @@ begin
   bit0 := IntToHex(idMAC[2]) + '';
   bit2 := bit2 + ' : ' + bit1 + ' : ' + bit0;
   fbitBarCode := '68:EB:C5:' + bit2 + ':' + bit1 + ':' + bit0;
+  fbitBarCodeLong := '--mac:' + fbitBarCode;
 //************************************************************
 // установка системных переменных для формирования отчета
   fnameDevice := edtDevice.Text;
@@ -273,6 +288,7 @@ begin
   fquantityDevice := seQuantity.Text;
   numberDeviceHigh :=  medtModule.Text + medtDate.Text + medtGroup.Text;
   ffirstIdDeviceBarCode := numberDeviceHigh + medtNumber.Text;
+//  ffirstIdDeveceBarCodeLong := '--serial:' +  ffirstIdDeviceBarCode;
 //*******************************************************
 
 //  highOrderBit := lblHighOrderBit.Caption;    ???????? - зачем нужен 68:EB:C5
@@ -502,7 +518,7 @@ procedure TfrmMAC.ApplyBarCodeClick(Sender: TObject);
 var
   beginNumberDevice, range, stepMac, stepBarCode, numberBarCode: Integer;
   numBarCodeFR: Integer;
-  s, numberS, rangeLast: string;
+  s, numberS, numberSLong, rangeLast: string;
   s1, tmp, tmp1 : string;
 begin
     // открываем таблицу для заполниния **************************************
@@ -534,15 +550,20 @@ begin
 
 //   формирование файла
   Rewrite(fileBarCode);
+  Rewrite(fileBarCodeLong); // добавляем для длинного barcode
   while numberBarCode <= quantity do
   begin
     beginNumberDevice := idNumber + (numberBarCode - 1);
     numberS := Format(numberDeviceHigh + '%.3d', [beginNumberDevice]);
+    numberSLong := Format(' --serial:' + numberDeviceHigh + '%.3d', [beginNumberDevice]);
     s := Format('%.3d', [numBarCodeFR]) + '|';
 // запись в файл
     Write(fileBarCode, s);
+    Write(fileBarCodeLong, s);  // добавляем для длинного barcode
     Write(fileBarCode, DataModuleMacIterator.ArrayToStringlong(idMACBarCode));
+    Write(fileBarCodeLong, DataModuleMacIterator.ArrayToStringlongMAC(idMACBarCode));  // добавляем для длинного barcode
     Write(fileBarCode, numberS);
+    Write(fileBarCodeLong, numberSLong);   // добавляем для длинного barcode
     while stepBarCode <= stepPrintBarCode do
     begin
       while stepMac <= stepIteration do
@@ -557,10 +578,11 @@ begin
     stepBarCode := 1;
     Inc(numBarCodeFR);
     Writeln(fileBarCode);
+    Writeln(fileBarCodeLong);
   end;
 // закрытие файла
   CloseFile(fileBarCode);
-
+  CloseFile(fileBarCodeLong);
 // чтение из файла и получение BarCode и запись в таблицу ******************
   barCodeStream := TMemoryStream.Create;
   Reset(fileBarCode);

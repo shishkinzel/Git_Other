@@ -8054,4 +8054,24 @@ object frmMAC: TfrmMAC
       FieldName = 'BarCodeId'
     end
   end
+  object fdBarCodeLong: TFDMemTable
+    FieldDefs = <>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 400
+    Top = 16
+    object fdBarCodeLongnumber: TIntegerField
+      FieldName = 'number'
+    end
+    object fdBarCodeLongBarCodeLong: TBlobField
+      FieldName = 'BarCodeLong'
+    end
+  end
 end
