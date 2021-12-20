@@ -96,6 +96,7 @@ type
     mniiDOCBarCodeLong: TMenuItem;
     mniPDFBarCodeLong: TMenuItem;
     mniXMLBarCodeLong: TMenuItem;
+    strngfldBarCodeLongMacAndId: TStringField;
     procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mnifrViewClick(Sender: TObject);
@@ -653,6 +654,7 @@ begin
 // создаем поток и трансоформируем в barcode
 
     brcdMAC.InputText :=s1;
+    fdBarCodeLong.FieldByName('MacAndId').AsString := s1;
     brcdMAC.Bitmap.SaveToStream(barCodeStream);
     barCodeStream.Position := 0;
     (fdBarCodeLong.FieldByName('BarCodeLong') as TBlobField).LoadFromStream(barCodeStream);

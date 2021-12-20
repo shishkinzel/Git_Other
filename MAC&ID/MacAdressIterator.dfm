@@ -8108,5 +8108,9 @@ object frmMAC: TfrmMAC
     object fdBarCodeLongBarCodeLong: TBlobField
       FieldName = 'BarCodeLong'
     end
+    object strngfldBarCodeLongMacAndId: TStringField
+      FieldName = 'MacAndId'
+      Size = 60
+    end
   end
 end
