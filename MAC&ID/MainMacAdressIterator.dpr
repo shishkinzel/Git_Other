@@ -7,7 +7,8 @@ uses
   frmFastReportMac in 'frmFastReportMac.pas' {frmFReport},
   frmFastReportList in 'frmFastReportList.pas' {frmFRList},
   frmFReportBarCode in 'frmFReportBarCode.pas' {frmFRBarCode},
-  fTest in 'fTest.pas' {frmTestGrid};
+  fTest in 'fTest.pas' {frmTestGrid},
+  frmFReportBarCodeLong in 'frmFReportBarCodeLong.pas' {frmFRBarCodeLong};
 
 {$R *.res}
 
@@ -20,5 +21,6 @@ begin
   Application.CreateForm(TfrmFRList, frmFRList);
   Application.CreateForm(TfrmFRBarCode, frmFRBarCode);
   Application.CreateForm(TfrmTestGrid, frmTestGrid);
+  Application.CreateForm(TfrmFRBarCodeLong, frmFRBarCodeLong);
   Application.Run;
 end.

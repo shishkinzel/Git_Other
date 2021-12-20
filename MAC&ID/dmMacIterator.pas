@@ -96,7 +96,7 @@ s := '';
 
    end;
         Delete(s, 9, 1);
-   Result := '--mac:' + '68:EB:C5:' + s;
+   Result := '--mac ' + '68:EB:C5:' + s;
 end;
 
  procedure TDataModuleMacIterator.IncArrayOne(var inArray: array of Byte);

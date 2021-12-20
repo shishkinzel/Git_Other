@@ -7817,14 +7817,14 @@ object frmMAC: TfrmMAC
         Enabled = False
         OnClick = mniIteratorClick
       end
-      object N8: TMenuItem
+      object mniSeparator1: TMenuItem
         Caption = '-'
       end
       object mniApply: TMenuItem
         Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
         OnClick = btnApplyClick
       end
-      object N2: TMenuItem
+      object mniSeparator2: TMenuItem
         Caption = '-'
       end
       object mniReset: TMenuItem
@@ -7862,7 +7862,7 @@ object frmMAC: TfrmMAC
         Caption = #1055#1077#1095#1072#1090#1100
         OnClick = mnifrPrintClick
       end
-      object N9: TMenuItem
+      object mniSeparator3: TMenuItem
         Caption = '-'
       end
       object mniQuit: TMenuItem
@@ -7871,11 +7871,11 @@ object frmMAC: TfrmMAC
       end
     end
     object mniBarCode: TMenuItem
-      Caption = #1064#1090#1088#1080#1093'-'#1082#1086#1076
+      Caption = #1064#1090#1088#1080#1093'-'#1082#1086#1076' '#1084#1072#1083#1099#1081
       Enabled = False
-      object ApplyBarCode: TMenuItem
+      object mniApplyBarCode: TMenuItem
         Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
-        OnClick = ApplyBarCodeClick
+        OnClick = mniApplyBarCodeClick
       end
       object mniPreview: TMenuItem
         Caption = #1055#1088#1077#1076#1086#1089#1084#1086#1090#1088
@@ -7905,6 +7905,42 @@ object frmMAC: TfrmMAC
         Caption = #1055#1077#1095#1072#1090#1100
         Enabled = False
         OnClick = mniPrintBarCodeClick
+      end
+    end
+    object mniBarCodeLong: TMenuItem
+      Caption = #1064#1090#1088#1080#1093'-'#1082#1086#1076' '#1073#1086#1083#1100#1096#1086#1081
+      Enabled = False
+      object mniApplyBarCodeLong: TMenuItem
+        Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
+        OnClick = mniApplyBarCodeClick
+      end
+      object mniPreviewLong: TMenuItem
+        Caption = #1055#1088#1077#1076#1086#1089#1084#1086#1090#1088
+        Enabled = False
+        OnClick = mniPreviewLongClick
+      end
+      object mniSeparator4: TMenuItem
+        Caption = '-'
+        Enabled = False
+      end
+      object mniExportBarCodeLong: TMenuItem
+        Caption = #1069#1082#1089#1087#1086#1088#1090' '#1086#1090#1095#1077#1090#1072
+        Enabled = False
+        object mniiDOCBarCodeLong: TMenuItem
+          Caption = 'DOC'
+        end
+        object mniPDFBarCodeLong: TMenuItem
+          Caption = 'PDF'
+          OnClick = mniPDFBarCodeLongClick
+        end
+        object mniXMLBarCodeLong: TMenuItem
+          Caption = 'XML'
+        end
+      end
+      object mniPrintBarCodeLong: TMenuItem
+        Caption = #1055#1077#1095#1072#1090#1100
+        Enabled = False
+        OnClick = mniPrintBarCodeLongClick
       end
     end
   end
@@ -8008,9 +8044,8 @@ object frmMAC: TfrmMAC
     end
   end
   object brcdMAC: TBarcode
-    Height = 20.000000000000000000
     OutputOptions = [opBpp1, opStdout, opCompliantHeight]
-    Symbology = syCode128
+    Ultracode = ucCompress
     Left = 72
     Top = 16
   end

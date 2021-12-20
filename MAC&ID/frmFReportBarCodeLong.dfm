@@ -1,7 +1,7 @@
-object frmFRBarCode: TfrmFRBarCode
+object frmFRBarCodeLong: TfrmFRBarCodeLong
   Left = 0
   Top = 0
-  Caption = #1052#1072#1083#1099#1081' '#1096#1090#1088#1080#1093' '#1082#1086#1076
+  Caption = #1041#1086#1083#1100#1096#1086#1081' '#1096#1090#1088#1080#1093' '#1082#1086#1076
   ClientHeight = 781
   ClientWidth = 949
   Color = clBtnFace
@@ -13,7 +13,7 @@ object frmFRBarCode: TfrmFRBarCode
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object frxprvwBarCode: TfrxPreview
+  object frPrevBarCodeLong: TfrxPreview
     Left = 0
     Top = 0
     Width = 949
@@ -27,29 +27,29 @@ object frmFRBarCode: TfrmFRBarCode
     OutlineTreeSortType = dtsUnsorted
     HideScrolls = False
   end
-  object frxrprtBarCode: TfrxReport
+  object reportBarCodeLong: TfrxReport
     Version = '6.9.3'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
-    Preview = frxprvwBarCode
+    Preview = frPrevBarCodeLong
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44539.637803541700000000
-    ReportOptions.LastChange = 44550.464068796300000000
+    ReportOptions.LastChange = 44550.736600729160000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
       'begin'
       ''
       'end.')
-    Left = 24
+    Left = 16
     Top = 64
     Datasets = <
       item
-        DataSet = frxdbdtstBarCode
-        DataSetName = 'frxDBDatasetBarCode'
+        DataSet = dbBarCodeLong
+        DataSetName = 'frxDBDatasetBarCodeLong'
       end
       item
         DataSet = frmFReport.frxdbdtstTitle
@@ -69,7 +69,7 @@ object frmFRBarCode: TfrmFRBarCode
       RightMargin = 10.000000000000000000
       TopMargin = 10.000000000000000000
       BottomMargin = 10.000000000000000000
-      Frame.Typ = []
+      Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
       MirrorMode = []
       object MasterData1: TfrxMasterData
         FillType = ftBrush
@@ -131,7 +131,7 @@ object frmFRBarCode: TfrmFRBarCode
         FillType = ftBrush
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 309.921460000000000000
+        Top = 306.141930000000000000
         Width = 718.110700000000000000
         object Page: TfrxMemoView
           AllowVectorExport = True
@@ -147,59 +147,46 @@ object frmFRBarCode: TfrmFRBarCode
       object DetailData1: TfrxDetailData
         FillType = ftBrush
         Frame.Typ = []
-        Height = 105.826820470000000000
+        Height = 102.047310000000000000
         Top = 143.622140000000000000
         Width = 718.110700000000000000
-        DataSet = frxdbdtstBarCode
-        DataSetName = 'frxDBDatasetBarCode'
+        DataSet = dbBarCodeLong
+        DataSetName = 'frxDBDatasetBarCodeLong'
         RowCount = 0
-        object Number: TfrxMemoView
+        object BarCodeMAC: TfrxPictureView
+          AllowVectorExport = True
+          Left = 90.708720000000000000
+          Top = 15.118120000000000000
+          Width = 56.692913390000000000
+          Height = 56.692913390000000000
+          Center = True
+          DataField = 'BarCodeLong'
+          DataSet = dbBarCodeLong
+          DataSetName = 'frxDBDatasetBarCodeLong'
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HightQuality = False
+          Transparent = False
+          TransparentColor = clWhite
+        end
+        object frxDBDatasetBarCodeLongnumber: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
           Width = 79.370130000000000000
-          Height = 102.047290470000000000
-          DataField = 'Number'
-          DataSet = frxdbdtstBarCode
-          DataSetName = 'frxDBDatasetBarCode'
+          Height = 102.047310000000000000
+          DataField = 'number'
+          DataSet = dbBarCodeLong
+          DataSetName = 'frxDBDatasetBarCodeLong'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -19
+          Font.Height = -16
           Font.Name = 'Tahoma'
           Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
           Memo.UTF8W = (
-            '[frxDBDatasetBarCode."Number"]')
+            '[frxDBDatasetBarCodeLong."number"]')
           ParentFont = False
-        end
-        object BarCodeMAC: TfrxPictureView
-          AllowVectorExport = True
-          Left = 83.149660000000000000
-          Top = 18.897650000000000000
-          Width = 340.157480310000000000
-          Height = 56.692913390000000000
-          Center = True
-          DataField = 'BarCodeMAC'
-          DataSet = frxdbdtstBarCode
-          DataSetName = 'frxDBDatasetBarCode'
-          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-          HightQuality = False
-          Transparent = False
-          TransparentColor = clWhite
-        end
-        object BarCodeId: TfrxPictureView
-          AllowVectorExport = True
-          Left = 548.031850000000000000
-          Top = 18.897650000000000000
-          Width = 170.078740160000000000
-          Height = 56.692913385826770000
-          Center = True
-          DataField = 'BarCodeId'
-          DataSet = frxdbdtstBarCode
-          DataSetName = 'frxDBDatasetBarCode'
-          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-          HightQuality = False
-          Transparent = False
-          TransparentColor = clWhite
+          VAlign = vaCenter
         end
       end
       object Header1: TfrxHeader
@@ -225,7 +212,7 @@ object frmFRBarCode: TfrmFRBarCode
         object MAC: TfrxMemoView
           AllowVectorExport = True
           Left = 79.370130000000000000
-          Width = 427.086890000000000000
+          Width = 83.149660000000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -233,37 +220,24 @@ object frmFRBarCode: TfrmFRBarCode
           Font.Name = 'Arial'
           Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
           Memo.UTF8W = (
-            #1052#1040#1057' - '#1072#1076#1088#1077#1089' '#1091#1089#1090#1088#1086#1081#1089#1090#1074#1072)
+            'QR-'#1050#1054#1044)
           ParentFont = False
-        end
-        object ID: TfrxMemoView
-          AllowVectorExport = True
-          Left = 506.457020000000000000
-          Width = 211.653680000000000000
-          Height = 22.677180000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-          Memo.UTF8W = (
-            #1053#1086#1084#1077#1088' '#1082#1086#1084#1087#1083#1077#1082#1090#1072)
-          ParentFont = False
+          VAlign = vaCenter
         end
       end
     end
   end
-  object frxdbdtstBarCode: TfrxDBDataset
-    UserName = 'frxDBDatasetBarCode'
+  object dbBarCodeLong: TfrxDBDataset
+    UserName = 'frxDBDatasetBarCodeLong'
     CloseDataSource = False
-    DataSet = frmMAC.fdmtblBarCode
+    DataSet = frmMAC.fdBarCodeLong
     BCDToCurrency = False
-    Left = 16
-    Top = 128
+    Left = 24
+    Top = 174
   end
-  object frexBarCodeDOC: TfrxDOCXExport
+  object frDOC: TfrxDOCXExport
     UseFileCache = True
     ShowProgress = True
     OverwritePrompt = False
@@ -271,20 +245,23 @@ object frmFRBarCode: TfrmFRBarCode
     OpenAfterExport = False
     PictureType = gpPNG
     Left = 8
-    Top = 192
+    Top = 246
   end
-  object frexBarCodeXL: TfrxXLSXExport
+  object frXML: TfrxXMLExport
     UseFileCache = True
     ShowProgress = True
     OverwritePrompt = False
     DataOnly = False
-    ChunkSize = 0
-    OpenAfterExport = False
-    PictureType = gpPNG
+    Background = True
+    Creator = 'FastReport'
+    EmptyLines = True
+    SuppressPageHeadersFooters = False
+    RowsCount = 0
+    Split = ssNotSplit
     Left = 8
-    Top = 238
+    Top = 302
   end
-  object frexBarCodePDF: TfrxPDFExport
+  object frPDF: TfrxPDFExport
     UseFileCache = True
     ShowProgress = True
     OverwritePrompt = False
@@ -310,6 +287,6 @@ object frmFRBarCode: TfrmFRBarCode
     PDFStandard = psNone
     PDFVersion = pv17
     Left = 8
-    Top = 278
+    Top = 366
   end
 end
