@@ -14,6 +14,8 @@ type
     img2: TImage;
     dbgrd2: TDBGrid;
     ds2: TDataSource;
+    dsLoad: TDataSource;
+    grdLoad: TDBGrid;
     procedure img1Click(Sender: TObject);
   private
     { Private declarations }

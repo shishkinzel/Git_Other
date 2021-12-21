@@ -127,6 +127,14 @@
             <Form>frmFRBarCodeLong</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="FShowSoft.pas">
+            <Form>frmShowSoft</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="FLoadSoft.pas">
+            <Form>frmFReportLoadSoft</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

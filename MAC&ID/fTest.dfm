@@ -44,9 +44,22 @@ object frmTestGrid: TfrmTestGrid
     Left = 0
     Top = 79
     Width = 887
-    Height = 162
+    Height = 90
     DataSource = ds2
     TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object grdLoad: TDBGrid
+    Left = 8
+    Top = 175
+    Width = 879
+    Height = 120
+    DataSource = dsLoad
+    TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -62,5 +75,10 @@ object frmTestGrid: TfrmTestGrid
     DataSet = frmMAC.fdmtblTitle
     Left = 40
     Top = 312
+  end
+  object dsLoad: TDataSource
+    DataSet = frmMAC.fdmtblLoadSoft
+    Left = 584
+    Top = 504
   end
 end

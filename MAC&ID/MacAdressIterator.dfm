@@ -7943,6 +7943,37 @@ object frmMAC: TfrmMAC
         OnClick = mniPrintBarCodeLongClick
       end
     end
+    object mniLoadSoft: TMenuItem
+      Caption = #1047#1072#1075#1088#1091#1079#1082#1072' '#1087#1088#1086#1096#1080#1074#1082#1080
+      Enabled = False
+      object mniShowWindow: TMenuItem
+        Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1086#1082#1085#1086
+        OnClick = mniShowWindowClick
+      end
+      object mniSeparator6: TMenuItem
+        Caption = '-'
+      end
+      object mniShowApply: TMenuItem
+        Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
+        Enabled = False
+        OnClick = mniShowApplyClick
+      end
+      object mniShowPrev: TMenuItem
+        Caption = #1055#1088#1077#1076#1086#1089#1084#1086#1090#1088
+        Enabled = False
+        OnClick = mniShowPrevClick
+      end
+      object mnimniSeparator7: TMenuItem
+        Caption = '-'
+      end
+      object mniExportLoadSoft: TMenuItem
+        Caption = #1069#1082#1089#1087#1086#1088#1090
+      end
+      object mniPrintLoadSoft: TMenuItem
+        Caption = #1055#1077#1095#1072#1090#1100
+        OnClick = mniPrintLoadSoftClick
+      end
+    end
   end
   object fdmtblMac: TFDMemTable
     FieldDefs = <>
@@ -8044,7 +8075,9 @@ object frmMAC: TfrmMAC
     end
   end
   object brcdMAC: TBarcode
+    Height = 20.000000000000000000
     OutputOptions = [opBpp1, opStdout, opCompliantHeight]
+    Symbology = syCode128
     Ultracode = ucCompress
     Left = 72
     Top = 16
@@ -8109,6 +8142,44 @@ object frmMAC: TfrmMAC
       FieldName = 'BarCodeLong'
     end
     object strngfldBarCodeLongMacAndId: TStringField
+      FieldName = 'MacAndId'
+      Size = 60
+    end
+  end
+  object fdmtblLoadSoft: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'number'
+        DataType = ftInteger
+      end
+      item
+        Name = 'LoadSoft'
+        DataType = ftBlob
+      end
+      item
+        Name = 'MacAndId'
+        DataType = ftString
+        Size = 60
+      end>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 520
+    Top = 112
+    object fdmtblLoadSoftnumber: TIntegerField
+      FieldName = 'number'
+    end
+    object fdmtblLoadSoftLoadSoft: TBlobField
+      FieldName = 'LoadSoft'
+    end
+    object fdmtblLoadSoftMacAndId: TStringField
       FieldName = 'MacAndId'
       Size = 60
     end

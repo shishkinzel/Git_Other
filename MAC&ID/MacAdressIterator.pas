@@ -8,7 +8,7 @@ uses
   Vcl.StdCtrls, Vcl.Mask, Vcl.Samples.Spin, dmMacIterator, frmFastReportMac, frmFReportBarCodeLong, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.StorageBin, Data.DB, Barcode, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.Menus, frmFReportBarCode ,
+  FireDAC.Comp.Client, Vcl.Menus, frmFReportBarCode , FShowSoft, FLoadSoft,
   FireDAC.Stan.StorageJSON, frmFastReportList, fTest;
 
 
@@ -97,6 +97,18 @@ type
     mniPDFBarCodeLong: TMenuItem;
     mniXMLBarCodeLong: TMenuItem;
     strngfldBarCodeLongMacAndId: TStringField;
+    mniLoadSoft: TMenuItem;
+    mniShowWindow: TMenuItem;
+    mniSeparator6: TMenuItem;
+    mniShowApply: TMenuItem;
+    mniShowPrev: TMenuItem;
+    fdmtblLoadSoft: TFDMemTable;
+    fdmtblLoadSoftnumber: TIntegerField;
+    fdmtblLoadSoftLoadSoft: TBlobField;
+    fdmtblLoadSoftMacAndId: TStringField;
+    mnimniSeparator7: TMenuItem;
+    mniExportLoadSoft: TMenuItem;
+    mniPrintLoadSoft: TMenuItem;
     procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mnifrViewClick(Sender: TObject);
@@ -118,6 +130,10 @@ type
     procedure mniPreviewLongClick(Sender: TObject);
     procedure mniPrintBarCodeLongClick(Sender: TObject);
     procedure mniPDFBarCodeLongClick(Sender: TObject);
+    procedure mniShowWindowClick(Sender: TObject);
+    procedure mniShowApplyClick(Sender: TObject);
+    procedure mniShowPrevClick(Sender: TObject);
+    procedure mniPrintLoadSoftClick(Sender: TObject);
   private
     { Private declarations }
     var
@@ -139,9 +155,9 @@ type
       stepPrintBarCode : Integer;     // шаг печати штрих-кода
       numberDeviceHigh : string;     // три старших разряда серийного номера
       fbitBarCode : string;           // для печати mac в barcode
-      fbitBarCodeLong : string;       // для печати длинного mac & id barcode
+//      fbitBarCodeLong : string;       // для печати длинного mac & id barcode
       ffirstIdDeviceBarCode : string; // для печати id в barcode
-      ffirstIdDeveceBarCodeLong : string; // для печат длинного mac & id barcode
+//      ffirstIdDeveceBarCodeLong : string; // для печат длинного mac & id barcode
 //      rangeBarCode : Integer;         // шаг итерации mac адресов для BarCode
   public
   { Public declarations }
@@ -246,6 +262,11 @@ begin
 end;
 
 
+procedure TfrmMAC.mniShowWindowClick(Sender: TObject);
+begin
+frmShowSoft.ShowModal;
+end;
+
 // приминение выбора  *********************************************
 
 procedure TfrmMAC.btnApplyClick(Sender: TObject);
@@ -257,6 +278,7 @@ var
   bit0, bit1, bit2: string;
   img: BITMAP;
 begin
+  mniLoadSoft.Enabled := True;
   mniBarCode.Enabled := True;
   mniBarCodeLong.Enabled := True;
   btnStart.Enabled := True;
@@ -292,7 +314,7 @@ begin
   bit0 := IntToHex(idMAC[2]) + '';
   bit2 := bit2 + ' : ' + bit1 + ' : ' + bit0;
   fbitBarCode := '68:EB:C5:' + bit2 + ':' + bit1 + ':' + bit0;
-  fbitBarCodeLong := '--mac:' + fbitBarCode;
+//  fbitBarCodeLong := '--mac:' + fbitBarCode;     удалить!!!!!!
 //************************************************************
 // установка системных переменных для формирования отчета
   fnameDevice := edtDevice.Text;
@@ -368,6 +390,7 @@ begin
       fdmtblMac.FieldByName('MAC - adress').AsString := tmp1;
       fdmtblMac.FieldByName('id - number').AsString := s1;
       fdmtblMac.Post;
+      fdmtblMac.Next;
     end;
     CloseFile(fileId);
   end
@@ -418,6 +441,7 @@ begin
       Readln(fileId, s);
       fdmtblMac.FieldByName('MAC - adress').AsString := s;
       fdmtblMac.Post;
+      fdmtblMac.Next;
     end;
     CloseFile(fileId);
   end;
@@ -459,6 +483,10 @@ begin
   mniPreviewLong.Enabled := False;
   mniExportBarCodeLong.Enabled := False;
   mniPrintBarCodeLong.Enabled := False;
+// для ShowSoft
+  mniBarCode.Enabled := False;
+  mniShowApply.Enabled := False;
+  mniShowPrev.Enabled := False;
 
   medtModule.Text := '000';
   medtDate.Text := '000';
@@ -466,14 +494,6 @@ begin
   medtNumber.Text := '000';
 end;
 
-
-
-
-// процедура закрытия формы
-procedure TfrmMAC.mniExitClick(Sender: TObject);
-begin
-  frmMAC.Close;
-end;
 
 // обработка кнопок главного меню
 procedure TfrmMAC.mnifrViewClick(Sender: TObject);
@@ -537,7 +557,6 @@ begin
   frmFRBarCodeLong.reportBarCodeLong.Print;
 end;
 
-
 // печать штрих кода *******************************************************
 procedure TfrmMAC.mniApplyBarCodeClick(Sender: TObject);
 var
@@ -553,6 +572,9 @@ begin
   stepBarCode := 1;
   numberBarCode := 1;
   numBarCodeFR := 1;
+// активируем окна для работы с LoadSoft
+  mniShowApply.Enabled := True;
+
   stepPrintBarCode := StrToIntDef(InputBox('Шаг печати штрих-кода', 'Введите шаг печати от 1 до 5', '5'), 5);
   if not (stepPrintBarCode in [1..5]) then
   begin
@@ -639,9 +661,10 @@ begin
   //  fdmtblBarCode.Next;
   end;
 
-// работа с длинным штрх-кодом
+// работа с длинным штрих-кодом
   Reset(fileBarCodeLong);
   fdBarCodeLong.Open;
+  fdmtblLoadSoft.Open;
   fdBarCodeLong.Table.Clear;
 
     while (not EOF(fileBarCodeLong)) do
@@ -654,6 +677,8 @@ begin
 // создаем поток и трансоформируем в barcode
 
     brcdMAC.InputText :=s1;
+    brcdMAC.Height := 50;
+    brcdMAC.Symbology := syQRCode;
     fdBarCodeLong.FieldByName('MacAndId').AsString := s1;
     brcdMAC.Bitmap.SaveToStream(barCodeStream);
     barCodeStream.Position := 0;
@@ -662,7 +687,7 @@ begin
     fdBarCodeLong.Post;
   //  fdBarCodeLong.Next;
   end;
-
+    CloseFile(fileBarCodeLong);
 // разрушение потока
   barCodeStream.Free;
 //
@@ -677,6 +702,47 @@ begin
 end;
 
 
+// работа с qr-кодом полной загрузки прошивки LoadSoft
+procedure TfrmMAC.mniShowApplyClick(Sender: TObject);
+var
+  i: Integer;
+  tmp, s1: string;
+begin
+  mniShowPrev.Enabled := True;
+
+  barCodeStream := TMemoryStream.Create;
+
+  Reset(fileBarCodeLong);
+  fdmtblLoadSoft.Open;
+  brcdMAC.Height := 50;
+  brcdMAC.Symbology := syQRCode;
+
+    while (not EOF(fileBarCodeLong)) do
+  begin
+    fdmtblLoadSoft.Append;
+    Readln(fileBarCodeLong, s1);
+    tmp := Trim(Fetch(s1, '|'));
+
+    fdmtblLoadSoft.FieldByName('Number').AsString := tmp;
+// создаем поток и трансоформируем в barcode
+
+    brcdMAC.InputText := frmShowSoft.fTextSoft + '     ' + s1;
+//    brcdMAC.Height := 50;
+//    brcdMAC.Symbology := syQRCode;
+    fdmtblLoadSoft.FieldByName('MacAndId').AsString := s1;
+    brcdMAC.Bitmap.SaveToStream(barCodeStream);
+    barCodeStream.Position := 0;
+    (fdmtblLoadSoft.FieldByName('LoadSoft') as TBlobField).LoadFromStream(barCodeStream);
+    barCodeStream.Clear;
+    fdmtblLoadSoft.Post;
+  //  fdBarCodeLong.Next;
+  end;
+
+// разрушение потока
+  barCodeStream.Free;
+  CloseFile(fileBarCodeLong);
+//  frmTestGrid.Show;
+end;
 
 
 // предосмотр BarCode
@@ -695,6 +761,20 @@ end;
 
 //********************************************************************************
 
+// процедура предосмотра LoadSoft
+procedure TfrmMAC.mniShowPrevClick(Sender: TObject);
+begin
+  frmFReportLoadSoft.Show;
+  frmFReportLoadSoft.frPrevLoadSoft.Clear;
+  frmFReportLoadSoft.reportLoadSoft.ShowReport();
+end;
+
+// процедура печати LoadSoft
+procedure TfrmMAC.mniPrintLoadSoftClick(Sender: TObject);
+begin
+  frmFReportLoadSoft.reportLoadSoft.ShowReport;
+  frmFReportLoadSoft.reportLoadSoft.Print;
+end;
 // экспорт для barcode ************************************************************
 
 procedure TfrmMAC.mniXMLBarCodeClick(Sender: TObject);
@@ -724,7 +804,11 @@ end;
 // *******************************************************************************
 
 
-
+// процедура закрытия формы
+procedure TfrmMAC.mniExitClick(Sender: TObject);
+begin
+  frmMAC.Close;
+end;
 
 // закрытие формы
 procedure TfrmMAC.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -732,6 +816,8 @@ begin
   fdmtblMac.Close;
   fdmtblTitle.Close;
   fdmtblBarCode.Close;
+//  CloseFile(fileBarCode);
+//  CloseFile(fileBarCodeLong);
 end;
 
 end.
