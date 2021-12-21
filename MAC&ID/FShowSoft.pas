@@ -4,14 +4,25 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus;
 
 type
   TfrmShowSoft = class(TForm)
     mmoShowSoft: TMemo;
     btnCount: TButton;
     btnApply: TButton;
+    mmLoadSoft: TMainMenu;
+    mniFileLoadSoft: TMenuItem;
+    mniOpenLoadSoft: TMenuItem;
+    mniSaveLoadSoft: TMenuItem;
+    mniSeparator1: TMenuItem;
+    mniExitLoadSoft: TMenuItem;
+    mniApplyLoadSoft: TMenuItem;
+    mniReadingLostSoft: TMenuItem;
+    dlgSaveLoadSoft: TSaveDialog;
+    dlgOpenLostSoft: TOpenDialog;
     procedure btnCountClick(Sender: TObject);
+    procedure mniExitLoadSoftClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,6 +54,11 @@ end;
     ShowMessage('Информация считана' + #13 + 'Можно закрыть окно')
   else
   ShowMessage('Вы ничего не ввели' + #13 + 'Можно закрыть окно')
+end;
+
+procedure TfrmShowSoft.mniExitLoadSoftClick(Sender: TObject);
+begin
+frmShowSoft.Close;
 end;
 
 end.

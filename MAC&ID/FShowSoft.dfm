@@ -10,6 +10,7 @@ object frmShowSoft: TfrmShowSoft
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  Menu = mmLoadSoft
   OldCreateOrder = False
   Position = poScreenCenter
   PixelsPerInch = 96
@@ -50,5 +51,36 @@ object frmShowSoft: TfrmShowSoft
     ModalResult = 8
     ParentFont = False
     TabOrder = 2
+  end
+  object mmLoadSoft: TMainMenu
+    object mniFileLoadSoft: TMenuItem
+      Caption = #1060#1072#1081#1083
+      object mniOpenLoadSoft: TMenuItem
+        Caption = #1054#1090#1082#1088#1099#1090#1100
+      end
+      object mniSaveLoadSoft: TMenuItem
+        Caption = #1047#1072#1087#1080#1089#1072#1090#1100
+      end
+      object mniSeparator1: TMenuItem
+        Caption = '-'
+      end
+      object mniExitLoadSoft: TMenuItem
+        Caption = #1042#1099#1093#1086#1076
+        OnClick = mniExitLoadSoftClick
+      end
+    end
+    object mniApplyLoadSoft: TMenuItem
+      Caption = #1044#1077#1081#1089#1090#1074#1080#1103
+      object mniReadingLostSoft: TMenuItem
+        Caption = #1057#1095#1080#1090#1072#1090#1100
+        OnClick = btnCountClick
+      end
+    end
+  end
+  object dlgSaveLoadSoft: TSaveDialog
+    Left = 32
+  end
+  object dlgOpenLostSoft: TOpenDialog
+    Left = 64
   end
 end
