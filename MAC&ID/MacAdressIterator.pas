@@ -677,8 +677,8 @@ begin
 // создаем поток и трансоформируем в barcode
 
     brcdMAC.InputText :=s1;
-    brcdMAC.Height := 50;
-    brcdMAC.Symbology := syQRCode;
+    brcdMAC.Height := 30;
+//    brcdMAC.Symbology := syQRCode;
     fdBarCodeLong.FieldByName('MacAndId').AsString := s1;
     brcdMAC.Bitmap.SaveToStream(barCodeStream);
     barCodeStream.Position := 0;

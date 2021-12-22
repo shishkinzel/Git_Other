@@ -37,7 +37,7 @@ object frmFRBarCode: TfrmFRBarCode
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44539.637803541700000000
-    ReportOptions.LastChange = 44550.464068796300000000
+    ReportOptions.LastChange = 44552.642395555560000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -176,7 +176,7 @@ object frmFRBarCode: TfrmFRBarCode
           Left = 83.149660000000000000
           Top = 18.897650000000000000
           Width = 340.157480310000000000
-          Height = 56.692913390000000000
+          Height = 45.354330708661420000
           Center = True
           DataField = 'BarCodeMAC'
           DataSet = frxdbdtstBarCode
@@ -191,7 +191,7 @@ object frmFRBarCode: TfrmFRBarCode
           Left = 548.031850000000000000
           Top = 18.897650000000000000
           Width = 170.078740160000000000
-          Height = 56.692913385826770000
+          Height = 45.354330708661420000
           Center = True
           DataField = 'BarCodeId'
           DataSet = frxdbdtstBarCode
