@@ -57,15 +57,19 @@ object frmShowSoft: TfrmShowSoft
       Caption = #1060#1072#1081#1083
       object mniOpenLoadSoft: TMenuItem
         Caption = #1054#1090#1082#1088#1099#1090#1100
+        ShortCut = 16463
       end
       object mniSaveLoadSoft: TMenuItem
         Caption = #1047#1072#1087#1080#1089#1072#1090#1100
+        ShortCut = 16467
+        OnClick = mniSaveLoadSoftClick
       end
       object mniSeparator1: TMenuItem
         Caption = '-'
       end
       object mniExitLoadSoft: TMenuItem
         Caption = #1042#1099#1093#1086#1076
+        ShortCut = 16465
         OnClick = mniExitLoadSoftClick
       end
     end
@@ -73,14 +77,25 @@ object frmShowSoft: TfrmShowSoft
       Caption = #1044#1077#1081#1089#1090#1074#1080#1103
       object mniReadingLostSoft: TMenuItem
         Caption = #1057#1095#1080#1090#1072#1090#1100
+        ShortCut = 16449
         OnClick = btnCountClick
+      end
+      object mniClear: TMenuItem
+        Caption = #1054#1095#1080#1089#1090#1080#1090#1100
+        ShortCut = 16466
       end
     end
   end
   object dlgSaveLoadSoft: TSaveDialog
+    Filter = 
+      ' '#1060#1072#1081#1083' '#1076#1083#1103' '#1079#1072#1075#1088#1091#1079#1082#1080' (*.load_txt)|*.load_txt|'#1058#1077#1082#1089#1090#1086#1074#1099#1081' '#1092#1072#1081#1083' (*.txt' +
+      ')|*.txt|'#1042#1089#1077' '#1092#1072#1081#1083#1099' (*.*)| *.*'
     Left = 32
   end
   object dlgOpenLostSoft: TOpenDialog
+    Filter = 
+      ' '#1060#1072#1081#1083' '#1076#1083#1103' '#1079#1072#1075#1088#1091#1079#1082#1080' (*.load_txt)|*.load_txt|'#1058#1077#1082#1089#1090#1086#1074#1099#1081' '#1092#1072#1081#1083' (*.txt' +
+      ')|*.txt|'#1042#1089#1077' '#1092#1072#1081#1083#1099' (*.*)| *.*'
     Left = 64
   end
 end

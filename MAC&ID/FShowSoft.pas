@@ -21,8 +21,10 @@ type
     mniReadingLostSoft: TMenuItem;
     dlgSaveLoadSoft: TSaveDialog;
     dlgOpenLostSoft: TOpenDialog;
+    mniClear: TMenuItem;
     procedure btnCountClick(Sender: TObject);
     procedure mniExitLoadSoftClick(Sender: TObject);
+    procedure mniSaveLoadSoftClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -59,6 +61,12 @@ end;
 procedure TfrmShowSoft.mniExitLoadSoftClick(Sender: TObject);
 begin
 frmShowSoft.Close;
+end;
+
+procedure TfrmShowSoft.mniSaveLoadSoftClick(Sender: TObject);
+begin
+if dlgSaveLoadSoft.Execute then
+
 end;
 
 end.

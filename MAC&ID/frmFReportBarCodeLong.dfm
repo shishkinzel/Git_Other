@@ -37,7 +37,7 @@ object frmFRBarCodeLong: TfrmFRBarCodeLong
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44539.637803541700000000
-    ReportOptions.LastChange = 44552.646750462960000000
+    ReportOptions.LastChange = 44553.699500856480000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -131,23 +131,30 @@ object frmFRBarCodeLong: TfrmFRBarCodeLong
         FillType = ftBrush
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 309.921460000000000000
+        Top = 306.141930000000000000
         Width = 718.110700000000000000
         object Page: TfrxMemoView
           AllowVectorExport = True
-          Left = 642.520100000000000000
+          Left = 302.362400000000000000
           Width = 75.590600000000000000
           Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
           Frame.Typ = []
-          HAlign = haRight
+          HAlign = haCenter
           Memo.UTF8W = (
             '[Page#]')
+          ParentFont = False
+          VAlign = vaCenter
         end
       end
       object DetailData1: TfrxDetailData
         FillType = ftBrush
         Frame.Typ = []
-        Height = 105.826840000000000000
+        Height = 102.047310000000000000
         Top = 143.622140000000000000
         Width = 718.110700000000000000
         DataSet = dbBarCodeLong
@@ -155,15 +162,15 @@ object frmFRBarCodeLong: TfrmFRBarCodeLong
         RowCount = 0
         object BarCodeMAC: TfrxPictureView
           AllowVectorExport = True
-          Left = 177.637910000000000000
-          Top = 15.118120000000000000
-          Width = 396.850650000000000000
-          Height = 56.692913385826770000
+          Left = 90.708720000000000000
+          Top = 22.677180000000000000
+          Width = 45.354330710000000000
+          Height = 45.354330710000000000
           Center = True
           DataField = 'BarCodeLong'
           DataSet = dbBarCodeLong
           DataSetName = 'frxDBDatasetBarCodeLong'
-          Frame.Typ = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HightQuality = False
           Transparent = False
           TransparentColor = clWhite
@@ -172,7 +179,7 @@ object frmFRBarCodeLong: TfrmFRBarCodeLong
           IndexTag = 1
           AllowVectorExport = True
           Width = 79.370130000000000000
-          Height = 105.826840000000000000
+          Height = 102.047310000000000000
           DataField = 'number'
           DataSet = dbBarCodeLong
           DataSetName = 'frxDBDatasetBarCodeLong'
@@ -185,6 +192,28 @@ object frmFRBarCodeLong: TfrmFRBarCodeLong
           HAlign = haCenter
           Memo.UTF8W = (
             '[frxDBDatasetBarCodeLong."number"]')
+          ParentFont = False
+          VAlign = vaCenter
+        end
+        object frxDBDatasetBarCodeLongMacAndId: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 177.637910000000000000
+          Top = 26.456710000000000000
+          Width = 529.134200000000000000
+          Height = 34.015770000000000000
+          DataField = 'MacAndId'
+          DataSet = dbBarCodeLong
+          DataSetName = 'frxDBDatasetBarCodeLong'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[frxDBDatasetBarCodeLong."MacAndId"]')
           ParentFont = False
           VAlign = vaCenter
         end
@@ -212,17 +241,36 @@ object frmFRBarCodeLong: TfrmFRBarCodeLong
         object MAC: TfrxMemoView
           AllowVectorExport = True
           Left = 79.370130000000000000
-          Width = 638.740570000000000000
+          Width = 83.149660000000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
-          Font.Name = 'Arial'
+          Font.Name = 'Tahoma'
           Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
           Memo.UTF8W = (
-            #1064#1090#1088#1080#1093'-'#1082#1086#1076' '#1076#1083#1103' '#1087#1088#1086#1096#1080#1074#1082#1080' - long')
+            'QR-'#1050#1054#1044)
           ParentFont = False
+          VAlign = vaCenter
+        end
+        object Memo2: TfrxMemoView
+          AllowVectorExport = True
+          Left = 162.519790000000000000
+          Width = 544.252320000000000000
+          Height = 22.677180000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Mac&Id')
+          ParentFont = False
+          VAlign = vaCenter
         end
       end
     end
