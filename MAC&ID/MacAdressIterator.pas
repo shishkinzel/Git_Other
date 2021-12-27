@@ -109,6 +109,10 @@ type
     mnimniSeparator7: TMenuItem;
     mniExportLoadSoft: TMenuItem;
     mniPrintLoadSoft: TMenuItem;
+    mniFrReset: TMenuItem;
+    mniResetBarCode: TMenuItem;
+    mniResetBarCodeLong: TMenuItem;
+    mniResetLoadSoft: TMenuItem;
     procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mnifrViewClick(Sender: TObject);
@@ -285,7 +289,14 @@ begin
   mniApply.Enabled := False;
   btnApply.Enabled := False;
   btnRestart.Enabled := True;
+// разрешения пунктов "Сброс" в главном меню
   mniReset.Enabled := True;
+  mniResetBarCode.Enabled := True;
+  mniResetBarCodeLong.Enabled := True;
+  mniResetLoadSoft.Enabled := True;
+  mniFrReset.Enabled := True;
+
+
   stepMac := 1;
   stepIteration := StrToIntDef(seStepIterator.Text, 0);
   quantity := StrToIntDef(seQuantity.Text, 0);
@@ -459,7 +470,6 @@ begin
   mniApply.Enabled := True;
   btnApply.Enabled := True;
   btnRestart.Enabled := False;
-  mniReset.Enabled := False;
   btnStart.Enabled := False;
 // сбрасываем все окна
   edtDevice.Clear;
@@ -471,6 +481,8 @@ begin
   medtGroup.Clear;
   medtNumber.Clear;
   mniBarCode.Enabled := False;
+  mniBarCodeLong.Enabled := False;
+  mniLoadSoft.Enabled := False;
   seStepIterator.Value := 1;
   seQuantity.Value := 1;
   medtBit_4.Text := '00';
@@ -492,7 +504,18 @@ begin
   medtDate.Text := '000';
   medtGroup.Text := '000';
   medtNumber.Text := '000';
+// сброс команды прошивки из модуля FShowSoft
+  frmShowSoft.fTextSoft := '';
+// запрещение пунктов "Сброс" в главном меню
+  mniReset.Enabled := False;
+  mniResetBarCode.Enabled := False;
+  mniResetBarCodeLong.Enabled := False;
+  mniResetLoadSoft.Enabled := False;
+  mniFrReset.Enabled := False;
+
 end;
+
+
 
 
 // обработка кнопок главного меню

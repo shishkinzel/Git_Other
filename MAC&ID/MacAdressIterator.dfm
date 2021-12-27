@@ -7869,6 +7869,11 @@ object frmMAC: TfrmMAC
         Caption = #1042#1099#1093#1086#1076
         OnClick = mniExitClick
       end
+      object mniFrReset: TMenuItem
+        Caption = #1057#1073#1088#1086#1089
+        Enabled = False
+        OnClick = btnRestartClick
+      end
     end
     object mniBarCode: TMenuItem
       Caption = #1064#1090#1088#1080#1093'-'#1082#1086#1076' '#1084#1072#1083#1099#1081
@@ -7906,6 +7911,11 @@ object frmMAC: TfrmMAC
         Enabled = False
         OnClick = mniPrintBarCodeClick
       end
+      object mniResetBarCode: TMenuItem
+        Caption = #1057#1073#1088#1086#1089
+        Enabled = False
+        OnClick = btnRestartClick
+      end
     end
     object mniBarCodeLong: TMenuItem
       Caption = #1064#1090#1088#1080#1093'-'#1082#1086#1076' '#1073#1086#1083#1100#1096#1086#1081
@@ -7942,6 +7952,11 @@ object frmMAC: TfrmMAC
         Enabled = False
         OnClick = mniPrintBarCodeLongClick
       end
+      object mniResetBarCodeLong: TMenuItem
+        Caption = #1057#1073#1088#1086#1089
+        Enabled = False
+        OnClick = btnRestartClick
+      end
     end
     object mniLoadSoft: TMenuItem
       Caption = #1047#1072#1075#1088#1091#1079#1082#1072' '#1087#1088#1086#1096#1080#1074#1082#1080
@@ -7972,6 +7987,11 @@ object frmMAC: TfrmMAC
       object mniPrintLoadSoft: TMenuItem
         Caption = #1055#1077#1095#1072#1090#1100
         OnClick = mniPrintLoadSoftClick
+      end
+      object mniResetLoadSoft: TMenuItem
+        Caption = #1057#1073#1088#1086#1089
+        Enabled = False
+        OnClick = btnRestartClick
       end
     end
   end
