@@ -44,9 +44,6 @@ object frmInputData: TfrmInputData
     Color = 15958140
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -5
-    ExplicitTop = -5
-    ExplicitHeight = 288
     object lblEl: TLabel
       Left = 16
       Top = 123
@@ -286,8 +283,6 @@ object frmInputData: TfrmInputData
     Color = 6091532
     ParentBackground = False
     TabOrder = 1
-    ExplicitTop = 289
-    ExplicitWidth = 761
     object lblDez: TLabel
       Left = 16
       Top = 24
@@ -413,8 +408,6 @@ object frmInputData: TfrmInputData
     Enabled = False
     ParentBackground = False
     TabOrder = 2
-    ExplicitWidth = 311
-    ExplicitHeight = 288
     object lblHotWaterPrev: TLabel
       Left = 24
       Top = 187

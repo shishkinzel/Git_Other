@@ -26,8 +26,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
     Height = 482
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 634
-    ExplicitHeight = 472
     object pnlShow: TPanel
       Left = 1
       Top = 42
@@ -38,8 +36,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
       Color = 15767290
       ParentBackground = False
       TabOrder = 2
-      ExplicitWidth = 632
-      ExplicitHeight = 249
       object pnlShowDate: TPanel
         Left = 153
         Top = 89
@@ -51,8 +47,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Color = 449414
         ParentBackground = False
         TabOrder = 3
-        ExplicitWidth = 474
-        ExplicitHeight = 155
         object lblEprev: TLabel
           Left = 64
           Top = 8
@@ -182,7 +176,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Color = 5962490
         ParentBackground = False
         TabOrder = 2
-        ExplicitHeight = 155
         object lblElectric: TLabel
           Left = 12
           Top = 8
@@ -249,7 +242,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         ParentColor = False
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 586
       end
       object pnlShowTitle: TPanel
         AlignWithMargins = True
@@ -263,7 +255,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Color = clYellow
         ParentBackground = False
         TabOrder = 1
-        ExplicitWidth = 620
         object lblSource: TLabel
           Left = 12
           Top = 10
@@ -332,7 +323,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
       Color = 6219504
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 632
       object dtpPay: TDateTimePicker
         Left = 170
         Top = 3
@@ -388,8 +378,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
       Color = 15767290
       ParentBackground = False
       TabOrder = 1
-      ExplicitTop = 291
-      ExplicitWidth = 632
       object pnlApplyTitle: TPanel
         Left = 1
         Top = 37
@@ -399,7 +387,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Color = clYellow
         ParentBackground = False
         TabOrder = 1
-        ExplicitWidth = 626
         object lblAppPay: TLabel
           Left = 12
           Top = 10
@@ -504,7 +491,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Color = 449414
         ParentBackground = False
         TabOrder = 3
-        ExplicitWidth = 474
         object lblDezAmount: TLabel
           Left = 400
           Top = 10
@@ -608,7 +594,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         ParentColor = False
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 596
       end
     end
   end
@@ -639,7 +624,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
     ParentColor = False
     ParentFont = False
     TabOrder = 1
-    ExplicitWidth = 594
   end
   object mmPayment: TMainMenu
     Left = 8
@@ -681,6 +665,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
       Caption = #1054#1090#1095#1105#1090#1099
       object mniFRPayAndRecord: TMenuItem
         Caption = #1051#1080#1089#1090#1086#1082' '#1091#1095#1105#1090#1072
+        OnClick = mniFRPayAndRecordClick
       end
       object mniFRTableAll: TMenuItem
         Caption = #1057#1074#1086#1076#1085#1072#1103' '#1090#1072#1073#1083#1080#1094#1072

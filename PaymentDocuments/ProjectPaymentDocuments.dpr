@@ -9,7 +9,10 @@ uses
   FTableMeteringDevice in 'FTableMeteringDevice.pas' {frmMeteringDevice},
   FFRMeteringDevice in 'FFRMeteringDevice.pas' {frmFRMeteringDevice},
   FFRTableAll in 'FFRTableAll.pas' {frmFRTableAll},
-  FInputData in 'FInputData.pas' {frmInputData};
+  FInputData in 'FInputData.pas' {frmInputData},
+  FFRListReport in 'FFRListReport.pas' {frmListReport},
+  FSelectDate in 'FSelectDate.pas' {frmSelectionDate},
+  FTestForm in 'FTestForm.pas' {frmTestForm};
 
 {$R *.res}
 
@@ -18,5 +21,7 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPaymentDocuments, frmPaymentDocuments);
   Application.CreateForm(TdmPayment, dmPayment);
+  Application.CreateForm(TfrmListReport, frmListReport);
+  Application.CreateForm(TfrmTestForm, frmTestForm);
   Application.Run;
 end.

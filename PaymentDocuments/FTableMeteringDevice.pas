@@ -11,6 +11,7 @@ type
     grdMeteringDevice: TDBGrid;
     nvgMeteringDevice: TDBNavigator;
     dsMeteringDevice: TDataSource;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -26,5 +27,10 @@ uses
   FPaymentDocuments, FdmPayment;
 
 {$R *.dfm}
+
+procedure TfrmMeteringDevice.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+frmMeteringDevice.Action.Free;
+end;
 
 end.

@@ -11,6 +11,7 @@ type
     grdTableAll: TDBGrid;
     nvgTableAll: TDBNavigator;
     dsTableAll: TDataSource;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -26,5 +27,10 @@ uses
   FPaymentDocuments, FdmPayment;
 
 {$R *.dfm}
+
+procedure TfrmTableAll.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+frmTableAll.Action.Free;
+end;
 
 end.

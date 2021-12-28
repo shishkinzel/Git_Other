@@ -3,9 +3,10 @@ unit FInputData;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Data.DB,
-  Vcl.ComCtrls, Vcl.Samples.Spin, DateUtils;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Data.DB,
+  System.DateUtils,
+  Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Mask, Vcl.DBCtrls, Vcl.Controls, Vcl.ExtCtrls, Vcl.Graphics,
+   Vcl.Forms, Vcl.Dialogs, Vcl.Samples.Spin;
 
 type
   TfrmInputData = class(TForm)
@@ -215,6 +216,7 @@ end;
 procedure TfrmInputData.btnCloseClick(Sender: TObject);
 begin
  frmInputData.Close;
+ frmInputData.Release;
 end;
 
 end.

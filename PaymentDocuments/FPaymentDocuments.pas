@@ -3,9 +3,13 @@ unit FPaymentDocuments;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-   FdmPayment, funUntil, FTableAll, FTableMeteringDevice, FFRMeteringDevice, FFRTableAll, FInputData,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls,
+  Vcl.ComCtrls,
+  FdmPayment, funUntil, FTableAll, FTableMeteringDevice, FFRMeteringDevice,
+  FFRTableAll, FSelectDate,
+  FInputData, FFRListReport,
   FireDAC.Stan.StorageJSON;
 
 type
@@ -69,6 +73,7 @@ type
     procedure mniInputDataClick(Sender: TObject);
     procedure mniEditDataClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure mniFRPayAndRecordClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -85,22 +90,19 @@ var
 
 implementation
 
-
 {$R *.dfm}
 
-
-
-procedure TfrmPaymentDocuments.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TfrmPaymentDocuments.FormClose(Sender: TObject;
+  var Action: TCloseAction);
 begin
-//  dmPayment.fmTabSummaryTable.Close;
-//  dmPayment.fmTabPayAndRecord.Close;
+  // dmPayment.fmTabSummaryTable.Close;
+  // dmPayment.fmTabPayAndRecord.Close;
 end;
 
 procedure TfrmPaymentDocuments.FormCreate(Sender: TObject);
 var
-i : Integer;
+  i: Integer;
 begin
-
 
 end;
 
@@ -116,6 +118,7 @@ begin
   frmInputData.ShowModal;
 end;
 
+
 procedure TfrmPaymentDocuments.mniInputDataClick(Sender: TObject);
 begin
   frmInputData := TfrmInputData.Create(nil);
@@ -126,6 +129,15 @@ procedure TfrmPaymentDocuments.mniPayAndRecordClick(Sender: TObject);
 begin
   frmMeteringDevice := TfrmMeteringDevice.Create(nil);
   frmMeteringDevice.ShowModal;
+end;
+
+// отчет - "Листок учета и оплаты услуг"
+procedure TfrmPaymentDocuments.mniFRPayAndRecordClick(Sender: TObject);
+var
+  i: Integer;
+begin
+  frmSelectionDate := TfrmSelectionDate.Create(nil);
+  frmSelectionDate.ShowModal;
 end;
 
 end.

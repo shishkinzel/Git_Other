@@ -12,6 +12,7 @@ object frmTableAll: TfrmTableAll
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object grdTableAll: TDBGrid
@@ -36,8 +37,6 @@ object frmTableAll: TfrmTableAll
     DataSource = dsTableAll
     Align = alTop
     TabOrder = 1
-    ExplicitTop = 32
-    ExplicitWidth = 960
   end
   object dsTableAll: TDataSource
     DataSet = dmPayment.fmTabSummaryTable

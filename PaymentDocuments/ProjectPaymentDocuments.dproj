@@ -130,6 +130,18 @@
             <Form>frmInputData</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="FFRListReport.pas">
+            <Form>frmListReport</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="FSelectDate.pas">
+            <Form>frmSelectionDate</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="FTestForm.pas">
+            <Form>frmTestForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -151,10 +163,11 @@
                     <Source Name="MainSource">ProjectPaymentDocuments.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 6 VCL Enterprise\LibD27\dclfrxTee27.bpl">FastReport 6.0 Tee Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 6 VCL Enterprise\LibD27\dclfsTee27.bpl">FastScript 1.9 Tee Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp270.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 6 VCL Enterprise\LibD27\dclfrxTee27.bpl">FastReport 6.0 Tee Components</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 6 VCL Enterprise\LibD27\dclfsTee27.bpl">FastScript 1.9 Tee Components</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\combit\LL27\Samples\Delphi\FireDAC\Component\ListLabel27Components.bpl">File C:\Program Files (x86)\combit\LL27\Samples\Delphi\FireDAC\Component\ListLabel27Components.bpl not found</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
