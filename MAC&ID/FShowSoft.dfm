@@ -13,6 +13,7 @@ object frmShowSoft: TfrmShowSoft
   Menu = mmLoadSoft
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object mmoShowSoft: TMemo
@@ -58,6 +59,7 @@ object frmShowSoft: TfrmShowSoft
       object mniOpenLoadSoft: TMenuItem
         Caption = #1054#1090#1082#1088#1099#1090#1100
         ShortCut = 16463
+        OnClick = mniOpenLoadSoftClick
       end
       object mniSaveLoadSoft: TMenuItem
         Caption = #1047#1072#1087#1080#1089#1072#1090#1100
@@ -83,6 +85,18 @@ object frmShowSoft: TfrmShowSoft
       object mniClear: TMenuItem
         Caption = #1054#1095#1080#1089#1090#1080#1090#1100
         ShortCut = 16466
+        OnClick = mniClearClick
+      end
+    end
+    object mniSettings: TMenuItem
+      Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
+      object mniFont: TMenuItem
+        Caption = #1064#1088#1080#1092#1090
+        OnClick = mniFontClick
+      end
+      object mniColorBackGround: TMenuItem
+        Caption = #1062#1074#1077#1090' '#1092#1086#1085#1072
+        OnClick = mniColorBackGroundClick
       end
     end
   end
@@ -90,6 +104,7 @@ object frmShowSoft: TfrmShowSoft
     Filter = 
       ' '#1060#1072#1081#1083' '#1076#1083#1103' '#1079#1072#1075#1088#1091#1079#1082#1080' (*.load_txt)|*.load_txt|'#1058#1077#1082#1089#1090#1086#1074#1099#1081' '#1092#1072#1081#1083' (*.txt' +
       ')|*.txt|'#1042#1089#1077' '#1092#1072#1081#1083#1099' (*.*)| *.*'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Left = 32
   end
   object dlgOpenLostSoft: TOpenDialog
@@ -97,5 +112,16 @@ object frmShowSoft: TfrmShowSoft
       ' '#1060#1072#1081#1083' '#1076#1083#1103' '#1079#1072#1075#1088#1091#1079#1082#1080' (*.load_txt)|*.load_txt|'#1058#1077#1082#1089#1090#1086#1074#1099#1081' '#1092#1072#1081#1083' (*.txt' +
       ')|*.txt|'#1042#1089#1077' '#1092#1072#1081#1083#1099' (*.*)| *.*'
     Left = 64
+  end
+  object dlgFont: TFontDialog
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Left = 104
+  end
+  object dlgColor: TColorDialog
+    Left = 152
   end
 end
