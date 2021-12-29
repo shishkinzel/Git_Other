@@ -17,6 +17,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
   StyleName = 'Payment Documents'
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlTitle: TPanel
@@ -47,9 +48,11 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Color = 449414
         ParentBackground = False
         TabOrder = 3
+        ExplicitLeft = 159
+        ExplicitTop = 92
         object lblEprev: TLabel
-          Left = 64
-          Top = 8
+          Left = 30
+          Top = 9
           Width = 56
           Height = 19
           Caption = #1050#1074#1090'/'#1095#1072#1089
@@ -61,7 +64,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
           ParentFont = False
         end
         object lblEnext: TLabel
-          Left = 243
+          Left = 192
           Top = 8
           Width = 56
           Height = 19
@@ -74,8 +77,8 @@ object frmPaymentDocuments: TfrmPaymentDocuments
           ParentFont = False
         end
         object lblWGoldPrev: TLabel
-          Left = 49
-          Top = 50
+          Left = 30
+          Top = 58
           Width = 71
           Height = 19
           Caption = #1050#1091#1073#1086#1084#1077#1090#1088
@@ -87,34 +90,8 @@ object frmPaymentDocuments: TfrmPaymentDocuments
           ParentFont = False
         end
         object lblWGoldNext: TLabel
-          Left = 228
-          Top = 50
-          Width = 71
-          Height = 19
-          Caption = #1050#1091#1073#1086#1084#1077#1090#1088
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblWhotPrev: TLabel
-          Left = 49
-          Top = 100
-          Width = 71
-          Height = 19
-          Caption = #1050#1091#1073#1086#1084#1077#1090#1088
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblWhotNext: TLabel
-          Left = 228
-          Top = 100
+          Left = 192
+          Top = 58
           Width = 71
           Height = 19
           Caption = #1050#1091#1073#1086#1084#1077#1090#1088
@@ -126,21 +103,8 @@ object frmPaymentDocuments: TfrmPaymentDocuments
           ParentFont = False
         end
         object lblWGoldExpense: TLabel
-          Left = 387
-          Top = 50
-          Width = 71
-          Height = 19
-          Caption = #1050#1091#1073#1086#1084#1077#1090#1088
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lblWhotExpense: TLabel
-          Left = 384
-          Top = 100
+          Left = 370
+          Top = 58
           Width = 71
           Height = 19
           Caption = #1050#1091#1073#1086#1084#1077#1090#1088
@@ -152,11 +116,50 @@ object frmPaymentDocuments: TfrmPaymentDocuments
           ParentFont = False
         end
         object lblEexpense: TLabel
-          Left = 402
+          Left = 370
           Top = 8
           Width = 56
           Height = 19
           Caption = #1050#1074#1090'/'#1095#1072#1089
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblWHotPrev: TLabel
+          Left = 30
+          Top = 110
+          Width = 71
+          Height = 19
+          Caption = #1050#1091#1073#1086#1084#1077#1090#1088
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblWHotNext: TLabel
+          Left = 192
+          Top = 110
+          Width = 71
+          Height = 19
+          Caption = #1050#1091#1073#1086#1084#1077#1090#1088
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblWHotExpense: TLabel
+          Left = 370
+          Top = 110
+          Width = 71
+          Height = 19
+          Caption = #1050#1091#1073#1086#1084#1077#1090#1088
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -16
@@ -191,7 +194,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         end
         object lblWhot: TLabel
           Left = 12
-          Top = 100
+          Top = 110
           Width = 98
           Height = 19
           Caption = #1043#1086#1088#1103#1095#1072#1103' '#1074#1086#1076#1072
@@ -204,7 +207,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         end
         object lblWcold: TLabel
           Left = 12
-          Top = 50
+          Top = 58
           Width = 109
           Height = 19
           Caption = #1061#1086#1083#1086#1076#1085#1072#1103' '#1074#1086#1076#1072
@@ -270,7 +273,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
           ParentFont = False
         end
         object lblPrev: TLabel
-          Left = 178
+          Left = 164
           Top = 10
           Width = 91
           Height = 19
@@ -284,7 +287,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
           ParentFont = False
         end
         object lblNext: TLabel
-          Left = 358
+          Left = 326
           Top = 10
           Width = 90
           Height = 19
@@ -298,7 +301,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
           ParentFont = False
         end
         object lblExpense: TLabel
-          Left = 551
+          Left = 520
           Top = 10
           Width = 50
           Height = 19
@@ -336,6 +339,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Time = 0.470083738422545100
         Color = clBlue
         DateMode = dmUpDown
+        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -16
@@ -504,8 +508,8 @@ object frmPaymentDocuments: TfrmPaymentDocuments
           Font.Style = []
           ParentFont = False
         end
-        object lblDezApply: TLabel
-          Left = 194
+        object lblDezApp: TLabel
+          Left = 149
           Top = 10
           Width = 43
           Height = 19
@@ -531,7 +535,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
           ParentFont = False
         end
         object lblMosEnApp: TLabel
-          Left = 194
+          Left = 149
           Top = 40
           Width = 43
           Height = 19
@@ -557,7 +561,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
           ParentFont = False
         end
         object lblOnLineApp: TLabel
-          Left = 194
+          Left = 149
           Top = 70
           Width = 43
           Height = 19
@@ -594,6 +598,7 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         ParentColor = False
         ParentFont = False
         TabOrder = 0
+        ExplicitLeft = 17
       end
     end
   end
@@ -671,5 +676,15 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Caption = #1057#1074#1086#1076#1085#1072#1103' '#1090#1072#1073#1083#1080#1094#1072
       end
     end
+  end
+  object dsPayAndRecord: TDataSource
+    DataSet = dmPayment.fmTabPayAndRecord
+    Left = 545
+    Top = 5
+  end
+  object dsListReport: TDataSource
+    DataSet = dmPayment.fmTabListReport
+    Left = 592
+    Top = 8
   end
 end

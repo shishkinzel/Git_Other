@@ -31,9 +31,6 @@ object frmSelectionDate: TfrmSelectionDate
     Font.Style = [fsBold, fsItalic]
     ParentFont = False
     TabOrder = 0
-    ExplicitLeft = 0
-    ExplicitTop = 0
-    ExplicitWidth = 371
   end
   object pnlTitle: TPanel
     Left = 0
@@ -42,10 +39,6 @@ object frmSelectionDate: TfrmSelectionDate
     Height = 99
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = 152
-    ExplicitTop = 80
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object dtpSelectDate: TDateTimePicker
       Left = 127
       Top = 12

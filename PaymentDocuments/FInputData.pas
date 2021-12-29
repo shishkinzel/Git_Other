@@ -86,7 +86,10 @@ begin
     edtEle.Text := '0';
     edtColdWater.Text := '0';
     edtHotWater.Text := '0';
+    pnlRight.Enabled := True;
+    edtEle.SetFocus;
     pnlInData.Enabled := False;
+    pnldown.Enabled := False;
     stepNub := 1;
  // работа с датой
     dtpDate.Date := Now;
@@ -163,53 +166,64 @@ procedure TfrmInputData.btnApplyClick(Sender: TObject);
 var
 fEle, fWaterCold, fWaterHot : Integer;
 begin
-
-  dmPayment.fmTabPayAndRecord.FieldByName('number').AsInteger := stepNub;
-  dmPayment.fmTabPayAndRecord.FieldByName('date').AsDateTime := dtpDate.Date;
+  if (dbedtEle.Text <> '') and (dbedtColdWater.Text <> '') and (dbedtHotWater.Text <> '')
+  and (dbedtDez.Text <> '') and  (dbedtMEle.Text <> '') and (dbedtOnLime.Text <> '')
+  then
+  begin
+    dmPayment.fmTabPayAndRecord.FieldByName('number').AsInteger := stepNub;
+    dmPayment.fmTabPayAndRecord.FieldByName('date').AsDateTime := dtpDate.Date;
 
 // заполнение таблицы предидущими данными если таблица была не пустая
-if fdbEmpty then
-    with dsPayAndRecord.DataSet  do
-    begin
-      FieldByName('lightPrev').AsString := edtEle.Text;
-      FieldByName('WaterColdPrev').AsString := edtColdWater.Text;
-      FieldByName('WaterHotPrev').AsString := edtHotWater.Text;
-    end;
+    if fdbEmpty then
+      with dsPayAndRecord.DataSet do
+      begin
+        FieldByName('lightPrev').AsString := edtEle.Text;
+        FieldByName('WaterColdPrev').AsString := edtColdWater.Text;
+        FieldByName('WaterHotPrev').AsString := edtHotWater.Text;
+      end;
 
 // вычисляемые поля
     fEle := StrToInt(dbedtEle.Text) - StrToInt(edtEle.Text);
     fWaterCold := StrToInt(dbedtColdWater.Text) - StrToInt(edtColdWater.Text);
     fWaterHot := StrToInt(dbedtHotWater.Text) - StrToInt(edtHotWater.Text);
 
-     with dsPayAndRecord.DataSet  do
+    with dsPayAndRecord.DataSet do
     begin
       FieldByName('lightExpense').AsInteger := fEle;
-      FieldByName('WaterColdExpense').AsInteger := fWaterCold ;
-      FieldByName('WaterHotExpense').AsInteger :=  fWaterHot;
+      FieldByName('WaterColdExpense').AsInteger := fWaterCold;
+      FieldByName('WaterHotExpense').AsInteger := fWaterHot;
     end;
 
 // запись в таблицу fmTabSummaryTable - dsSummaryTable
-  with dsSummaryTable.DataSet do
-  begin
+    with dsSummaryTable.DataSet do
+    begin
 
-    Open;
-    Append;
-    FieldByName('number').AsInteger := stepNub;
-    FieldByName('date').AsDateTime := dtpDate.Date;
-    FieldByName('lightMeterReading').AsString := dbedtEle.Text;
-    FieldByName('waterColdMeterReading').AsString := dbedtColdWater.Text;
-    FieldByName('waterHotMeterReading').AsString := dbedtHotWater.Text;
-    FieldByName('lightExpense').AsInteger := fEle;
-    FieldByName('WaterColdExpense').AsInteger := fWaterCold;
-    FieldByName('WaterHotExpense').AsInteger := fWaterHot;
+      Open;
+      Append;
+      FieldByName('number').AsInteger := stepNub;
+      FieldByName('date').AsDateTime := dtpDate.Date;
+      FieldByName('lightMeterReading').AsString := dbedtEle.Text;
+      FieldByName('waterColdMeterReading').AsString := dbedtColdWater.Text;
+      FieldByName('waterHotMeterReading').AsString := dbedtHotWater.Text;
+      FieldByName('lightExpense').AsInteger := fEle;
+      FieldByName('WaterColdExpense').AsInteger := fWaterCold;
+      FieldByName('WaterHotExpense').AsInteger := fWaterHot;
 
-  end;
+    end;
 //  frmInputData.Close;
 
-  dbedtUseEle.Text := fEle.ToString;
-  dbedtUseColdWater.Text := fWaterCold.ToString;
-  dbedtUseHotWater.Text := fWaterHot.ToString;
+    dbedtUseEle.Text := fEle.ToString;
+    dbedtUseColdWater.Text := fWaterCold.ToString;
+    dbedtUseHotWater.Text := fWaterHot.ToString;
+    btnApply.Enabled := False;
+  end
+  else
+  begin
+    ShowMessage('Заполните все поля');
+  end;
 end;
+
+
 
 
 // закрытие формы

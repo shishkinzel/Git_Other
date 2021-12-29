@@ -10,7 +10,7 @@ uses
   FdmPayment, funUntil, FTableAll, FTableMeteringDevice, FFRMeteringDevice,
   FFRTableAll, FSelectDate,
   FInputData, FFRListReport,
-  FireDAC.Stan.StorageJSON;
+  FireDAC.Stan.StorageJSON, Data.DB;
 
 type
   TfrmPaymentDocuments = class(TForm)
@@ -45,7 +45,7 @@ type
     lblExecute: TLabel;
     lblAmount: TLabel;
     lblDezAmount: TLabel;
-    lblDezApply: TLabel;
+    lblDezApp: TLabel;
     lblDez: TLabel;
     lblMosEn: TLabel;
     lblMosEnAmount: TLabel;
@@ -67,6 +67,11 @@ type
     mniSetting: TMenuItem;
     mniFRPayAndRecord: TMenuItem;
     mniFRTableAll: TMenuItem;
+    dsPayAndRecord: TDataSource;
+    dsListReport: TDataSource;
+    lblWHotPrev: TLabel;
+    lblWHotNext: TLabel;
+    lblWHotExpense: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure mniAllTableClick(Sender: TObject);
     procedure mniPayAndRecordClick(Sender: TObject);
@@ -74,6 +79,7 @@ type
     procedure mniEditDataClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure mniFRPayAndRecordClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
 
@@ -92,18 +98,57 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmPaymentDocuments.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-  // dmPayment.fmTabSummaryTable.Close;
-  // dmPayment.fmTabPayAndRecord.Close;
-end;
 
-procedure TfrmPaymentDocuments.FormCreate(Sender: TObject);
+
+procedure TfrmPaymentDocuments.FormCreate(Sender: TObject);    // ?????????? зачем
 var
   i: Integer;
 begin
 
+
+end;
+
+procedure TfrmPaymentDocuments.FormShow(Sender: TObject);
+begin
+     dmPayment.fmTabPayAndRecord.Open;
+   if not(dsPayAndRecord.DataSet.IsEmpty) then
+  begin
+    // устанавливаем последние переданные показания
+    dsPayAndRecord.DataSet.Last;
+//    dtpPay.Enabled := False;
+    dtpPay.Date := dmPayment.fmTabPayAndRecord.FieldByName('date').AsDateTime;
+
+    lblEprev.Caption := dmPayment.fmTabPayAndRecord.FieldByName('lightPrev').AsString + ' Квт/час';
+    lblEnext.Caption := dmPayment.fmTabPayAndRecord.FieldByName('lightNext').AsString + ' Квт/час';
+    lblEexpense.Caption := dmPayment.fmTabPayAndRecord.FieldByName('lightExpense').AsString + ' Квт/час';
+
+    lblWGoldPrev.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterColdPrev').AsString + ' Куб.';
+    lblWGoldNext.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterColdNext').AsString + ' Куб.';
+    lblWGoldExpense.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterColdExpense').AsString + ' Куб.';
+
+    lblWHotPrev.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterHotPrev').AsString + ' Куб.';
+    lblWHotNext.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterHotNext').AsString + ' Куб.';
+    lblWHotExpense.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterHotExpense').AsString + ' Куб.';
+
+    lblDezAmount.Caption := CurrToStr(dmPayment.fmTabPayAndRecord.FieldByName('DezSum').AsCurrency) + ' руб.';
+    lblMosEnAmount.Caption := CurrToStr(dmPayment.fmTabPayAndRecord.FieldByName('MosEn').AsCurrency) + ' руб.';
+    lblOnLineAmount.Caption := CurrToStr(dmPayment.fmTabPayAndRecord.FieldByName('OnLime').AsCurrency) + ' руб.';
+  // выполнение оплаты
+    if lblDezAmount.Caption = '0' then
+      lblDezApp.Caption := 'Отложен'
+    else
+      lblDezApp.Caption := 'Исполнен';
+
+    if lblMosEnApp.Caption = '0' then
+      lblMosEnApp.Caption := 'Отложен'
+    else
+      lblMosEnApp.Caption := 'Исполнен';
+
+    if lblOnLineApp.Caption = '0' then
+      lblOnLineApp.Caption := 'Отложен'
+    else
+      lblOnLineApp.Caption := 'Исполнен';
+  end;
 end;
 
 procedure TfrmPaymentDocuments.mniAllTableClick(Sender: TObject);
@@ -138,6 +183,13 @@ var
 begin
   frmSelectionDate := TfrmSelectionDate.Create(nil);
   frmSelectionDate.ShowModal;
+end;
+// закрытие формы
+procedure TfrmPaymentDocuments.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  // dmPayment.fmTabSummaryTable.Close;
+  // dmPayment.fmTabPayAndRecord.Close;
 end;
 
 end.
