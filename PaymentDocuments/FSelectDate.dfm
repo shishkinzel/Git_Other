@@ -83,4 +83,9 @@ object frmSelectionDate: TfrmSelectionDate
     Left = 32
     Top = 57
   end
+  object dsPayAndRecord: TDataSource
+    DataSet = dmPayment.fmTabPayAndRecord
+    Left = 328
+    Top = 49
+  end
 end
