@@ -173,7 +173,7 @@ begin
     dmPayment.fmTabPayAndRecord.FieldByName('number').AsInteger := stepNub;
     dmPayment.fmTabPayAndRecord.FieldByName('date').AsDateTime := dtpDate.Date;
 
-// заполнение таблицы предидущими данными если таблица была не пустая
+// заполнение таблицы предыдущими данными если таблица была не пустая
     if fdbEmpty then
       with dsPayAndRecord.DataSet do
       begin

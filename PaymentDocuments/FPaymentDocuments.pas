@@ -85,6 +85,7 @@ type
 
   public
     { Public declarations }
+    fStatusList : Boolean;      // флаг для печати Листка учета - умолчание false
   end;
 
 const
@@ -100,55 +101,61 @@ implementation
 
 
 
-procedure TfrmPaymentDocuments.FormCreate(Sender: TObject);    // ?????????? зачем
+procedure TfrmPaymentDocuments.FormCreate(Sender: TObject);
 var
   i: Integer;
 begin
-
+ fStatusList := False;
 
 end;
 
 procedure TfrmPaymentDocuments.FormShow(Sender: TObject);
 begin
-     dmPayment.fmTabPayAndRecord.Open;
-   if not(dsPayAndRecord.DataSet.IsEmpty) then
-  begin
+    dmPayment.fmTabPayAndRecord.Open;
+    if not (dsPayAndRecord.DataSet.IsEmpty) then
+    begin
     // устанавливаем последние переданные показания
-    dsPayAndRecord.DataSet.Last;
-//    dtpPay.Enabled := False;
-    dtpPay.Date := dmPayment.fmTabPayAndRecord.FieldByName('date').AsDateTime;
+      dsPayAndRecord.DataSet.Last;
+    //    dtpPay.Enabled := False;
+      dtpPay.Date := dmPayment.fmTabPayAndRecord.FieldByName('date').AsDateTime;
 
-    lblEprev.Caption := dmPayment.fmTabPayAndRecord.FieldByName('lightPrev').AsString + ' Квт/час';
-    lblEnext.Caption := dmPayment.fmTabPayAndRecord.FieldByName('lightNext').AsString + ' Квт/час';
-    lblEexpense.Caption := dmPayment.fmTabPayAndRecord.FieldByName('lightExpense').AsString + ' Квт/час';
+      lblEprev.Caption := dmPayment.fmTabPayAndRecord.FieldByName('lightPrev').AsString + ' Квт/час';
+      lblEnext.Caption := dmPayment.fmTabPayAndRecord.FieldByName('lightNext').AsString + ' Квт/час';
+      lblEexpense.Caption := dmPayment.fmTabPayAndRecord.FieldByName('lightExpense').AsString + ' Квт/час';
 
-    lblWGoldPrev.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterColdPrev').AsString + ' Куб.';
-    lblWGoldNext.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterColdNext').AsString + ' Куб.';
-    lblWGoldExpense.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterColdExpense').AsString + ' Куб.';
+      lblWGoldPrev.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterColdPrev').AsString + ' Куб.';
+      lblWGoldNext.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterColdNext').AsString + ' Куб.';
+      lblWGoldExpense.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterColdExpense').AsString + ' Куб.';
 
-    lblWHotPrev.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterHotPrev').AsString + ' Куб.';
-    lblWHotNext.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterHotNext').AsString + ' Куб.';
-    lblWHotExpense.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterHotExpense').AsString + ' Куб.';
+      lblWHotPrev.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterHotPrev').AsString + ' Куб.';
+      lblWHotNext.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterHotNext').AsString + ' Куб.';
+      lblWHotExpense.Caption := dmPayment.fmTabPayAndRecord.FieldByName('WaterHotExpense').AsString + ' Куб.';
 
-    lblDezAmount.Caption := CurrToStr(dmPayment.fmTabPayAndRecord.FieldByName('DezSum').AsCurrency) + ' руб.';
-    lblMosEnAmount.Caption := CurrToStr(dmPayment.fmTabPayAndRecord.FieldByName('MosEn').AsCurrency) + ' руб.';
-    lblOnLineAmount.Caption := CurrToStr(dmPayment.fmTabPayAndRecord.FieldByName('OnLime').AsCurrency) + ' руб.';
-  // выполнение оплаты
-    if lblDezAmount.Caption = '0' then
-      lblDezApp.Caption := 'Отложен'
-    else
-      lblDezApp.Caption := 'Исполнен';
+      lblDezAmount.Caption := CurrToStr(dmPayment.fmTabPayAndRecord.FieldByName('DezSum').AsCurrency) + ' руб.';
+      lblMosEnAmount.Caption := CurrToStr(dmPayment.fmTabPayAndRecord.FieldByName('MosEn').AsCurrency) + ' руб.';
+      lblOnLineAmount.Caption := CurrToStr(dmPayment.fmTabPayAndRecord.FieldByName('OnLime').AsCurrency) + ' руб.';
+    // выполнение оплаты
+      if dmPayment.fmTabPayAndRecord.FieldByName('DezSum').AsCurrency = 0 then
+        lblDezApp.Caption := 'Отложен'
+      else
+        lblDezApp.Caption := 'Исполнен';
 
-    if lblMosEnApp.Caption = '0' then
-      lblMosEnApp.Caption := 'Отложен'
-    else
-      lblMosEnApp.Caption := 'Исполнен';
+      if dmPayment.fmTabPayAndRecord.FieldByName('MosEn').AsCurrency = 0 then
+        lblMosEnApp.Caption := 'Отложен'
+      else
+        lblMosEnApp.Caption := 'Исполнен';
 
-    if lblOnLineApp.Caption = '0' then
-      lblOnLineApp.Caption := 'Отложен'
-    else
-      lblOnLineApp.Caption := 'Исполнен';
-  end;
+      if dmPayment.fmTabPayAndRecord.FieldByName('OnLime').AsCurrency = 0 then
+        lblOnLineApp.Caption := 'Отложен'
+      else
+        lblOnLineApp.Caption := 'Исполнен';
+    end;
+
+// // формирование Листа учета
+//  fStatusList := False;
+//  ShowMessage('Вы заказали распечатать листок учета и оплаты услуг');
+
+
 end;
 
 procedure TfrmPaymentDocuments.mniAllTableClick(Sender: TObject);
@@ -185,6 +192,7 @@ begin
   frmSelectionDate.ShowModal;
 end;
 // закрытие формы
+
 procedure TfrmPaymentDocuments.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin

@@ -78,4 +78,9 @@ object frmSelectionDate: TfrmSelectionDate
       OnClick = btnStartClick
     end
   end
+  object dsListReport: TDataSource
+    DataSet = dmPayment.fmTabListReport
+    Left = 32
+    Top = 57
+  end
 end

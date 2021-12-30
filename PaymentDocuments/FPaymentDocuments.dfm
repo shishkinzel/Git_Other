@@ -48,8 +48,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         Color = 449414
         ParentBackground = False
         TabOrder = 3
-        ExplicitLeft = 159
-        ExplicitTop = 92
         object lblEprev: TLabel
           Left = 30
           Top = 9
@@ -598,7 +596,6 @@ object frmPaymentDocuments: TfrmPaymentDocuments
         ParentColor = False
         ParentFont = False
         TabOrder = 0
-        ExplicitLeft = 17
       end
     end
   end
