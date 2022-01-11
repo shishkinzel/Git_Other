@@ -12,7 +12,8 @@ uses
   FInputData in 'FInputData.pas' {frmInputData},
   FFRListReport in 'FFRListReport.pas' {frmListReport},
   FSelectDate in 'FSelectDate.pas' {frmSelectionDate},
-  FTestForm in 'FTestForm.pas' {frmTestForm};
+  FTestForm in 'FTestForm.pas' {frmTestForm},
+  FTableEditing in 'FTableEditing.pas' {frmEditing};
 
 {$R *.res}
 

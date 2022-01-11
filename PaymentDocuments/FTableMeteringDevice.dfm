@@ -35,6 +35,7 @@ object frmMeteringDevice: TfrmMeteringDevice
     Width = 940
     Height = 20
     DataSource = dsMeteringDevice
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
     Align = alTop
     TabOrder = 1
   end

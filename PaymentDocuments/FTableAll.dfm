@@ -35,6 +35,7 @@ object frmTableAll: TfrmTableAll
     Width = 957
     Height = 20
     DataSource = dsTableAll
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
     Align = alTop
     TabOrder = 1
   end

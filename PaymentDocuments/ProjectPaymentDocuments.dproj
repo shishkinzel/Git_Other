@@ -142,6 +142,10 @@
             <Form>frmTestForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="FTableEditing.pas">
+            <Form>frmEditing</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls,
   Vcl.ComCtrls,
-  FdmPayment, funUntil, FTableAll, FTableMeteringDevice, FFRMeteringDevice,
+  FdmPayment, funUntil, FTableAll, FTableMeteringDevice, FFRMeteringDevice, FTableEditing,
   FFRTableAll, FSelectDate,
   FInputData, FFRListReport,
   FireDAC.Stan.StorageJSON, Data.DB;
@@ -166,8 +166,8 @@ end;
 
 procedure TfrmPaymentDocuments.mniEditDataClick(Sender: TObject);
 begin
-  frmInputData := TfrmInputData.Create(nil);
-  frmInputData.ShowModal;
+  frmEditing := TfrmEditing.Create(nil);
+  frmEditing.ShowModal;
 end;
 
 
