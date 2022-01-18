@@ -657,11 +657,16 @@ object frmPaymentDocuments: TfrmPaymentDocuments
       end
       object mniEditData: TMenuItem
         Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1077' '#1076#1072#1085#1085#1099#1093
+        Enabled = False
         OnClick = mniEditDataClick
       end
     end
     object mniSetting: TMenuItem
       Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
+      object mniAdmin: TMenuItem
+        Caption = #1040#1076#1084#1080#1085#1080#1089#1090#1088#1080#1088#1086#1074#1072#1085#1080#1077
+        OnClick = mniAdminClick
+      end
     end
     object mniReport: TMenuItem
       Caption = #1054#1090#1095#1105#1090#1099

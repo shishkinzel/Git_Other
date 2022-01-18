@@ -13,7 +13,8 @@ uses
   FFRListReport in 'FFRListReport.pas' {frmListReport},
   FSelectDate in 'FSelectDate.pas' {frmSelectionDate},
   FTestForm in 'FTestForm.pas' {frmTestForm},
-  FTableEditing in 'FTableEditing.pas' {frmEditing};
+  FTableEditing in 'FTableEditing.pas' {frmEditing},
+  FAdmin in 'FAdmin.pas' {frmAdmin};
 
 {$R *.res}
 

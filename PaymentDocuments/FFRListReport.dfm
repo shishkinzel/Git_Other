@@ -26,10 +26,6 @@ object frmListReport: TfrmListReport
     UseReportHints = True
     OutlineTreeSortType = dtsUnsorted
     HideScrolls = False
-    ExplicitLeft = 144
-    ExplicitTop = 192
-    ExplicitWidth = 100
-    ExplicitHeight = 100
   end
   object rListReport: TfrxReport
     Version = '6.9.3'
