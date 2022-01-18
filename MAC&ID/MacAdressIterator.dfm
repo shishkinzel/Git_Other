@@ -7876,7 +7876,7 @@ object frmMAC: TfrmMAC
       end
     end
     object mniBarCode: TMenuItem
-      Caption = #1064#1090#1088#1080#1093'-'#1082#1086#1076' '#1084#1072#1083#1099#1081
+      Caption = #1064#1090#1088#1080#1093'-'#1082#1086#1076' '
       Enabled = False
       object mniApplyBarCode: TMenuItem
         Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
@@ -7918,7 +7918,7 @@ object frmMAC: TfrmMAC
       end
     end
     object mniBarCodeLong: TMenuItem
-      Caption = #1064#1090#1088#1080#1093'-'#1082#1086#1076' '#1073#1086#1083#1100#1096#1086#1081
+      Caption = 'QR-'#1082#1086#1076' '#1084#1072#1083#1099#1081
       Enabled = False
       object mniApplyBarCodeLong: TMenuItem
         Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
@@ -7959,7 +7959,7 @@ object frmMAC: TfrmMAC
       end
     end
     object mniLoadSoft: TMenuItem
-      Caption = #1047#1072#1075#1088#1091#1079#1082#1072' '#1087#1088#1086#1096#1080#1074#1082#1080
+      Caption = 'QR-'#1082#1086#1076' '#1089' '#1087#1088#1086#1096#1080#1074#1082#1086#1081
       Enabled = False
       object mniShowWindow: TMenuItem
         Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1086#1082#1085#1086
