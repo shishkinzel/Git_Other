@@ -44,7 +44,6 @@ object frmAdmin: TfrmAdmin
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 284
   end
   object lbledtLogin: TLabeledEdit
     Left = 88

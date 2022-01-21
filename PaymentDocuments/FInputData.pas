@@ -49,15 +49,18 @@ type
     lblTEle: TLabel;
     lblECold: TLabel;
     lblTHot: TLabel;
+    btnVerification: TButton;
     procedure FormShow(Sender: TObject);
     procedure btnStartClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnApplyClick(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
+    procedure btnVerificationClick(Sender: TObject);
   private
     { Private declarations }
     fdbEmpty : Boolean;      // флаг пустой базы - поумолчанию False
     stepNub : Integer;
+
   public
     { Public declarations }
   end;
@@ -68,15 +71,18 @@ var
 implementation
 
 uses
-  FPaymentDocuments, FdmPayment;
+  FPaymentDocuments, FdmPayment, FAdmin;
 {$R *.dfm}
 
 // процедура показа формы
 procedure TfrmInputData.FormShow(Sender: TObject);
 var
-fday : Integer;
-fdayCorr : TDate;
+  fday: Integer;
+  fdayCorr: TDate;
 begin
+  if frmPaymentDocuments.fVerification then
+    btnVerification.Enabled := True;
+
   dmPayment.fmTabPayAndRecord.Open;
   if dsPayAndRecord.DataSet.IsEmpty then
   begin
@@ -161,6 +167,12 @@ begin
 
 end;
 
+procedure TfrmInputData.btnVerificationClick(Sender: TObject);
+begin
+pnlRight.Enabled := True;
+btnStart.Visible := True;
+end;
+
 // ввод начальных значений в таблицу с данными
 procedure TfrmInputData.btnApplyClick(Sender: TObject);
 var
@@ -234,4 +246,3 @@ begin
 end;
 
 end.
-

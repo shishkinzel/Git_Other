@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, FInputData;
 
 type
   TfrmAdmin = class(TForm)
@@ -43,6 +43,7 @@ begin
   if (lbledtLogin.Text = 'admin') and (lbledtPassoword.Text = 'admin') then
   begin
     frmPaymentDocuments.mniEditData.Enabled := True;
+    frmPaymentDocuments.fVerification := True;
     ShowMessage('Добро пожаловать администратор');
   end
   else

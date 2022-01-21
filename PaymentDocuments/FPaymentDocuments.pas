@@ -85,9 +85,9 @@ type
   private
     { Private declarations }
 
-  public
-    { Public declarations }
-    fStatusList : Boolean;      // флаг для печати Листка учета - умолчание false
+  public { Public declarations }
+    fStatusList: Boolean; // флаг для печати Листка учета - умолчание false
+    fVerification: Boolean; // флаг поверки счетчиков
   end;
 
 const
@@ -108,7 +108,7 @@ var
   i: Integer;
 begin
  fStatusList := False;
-
+fVerification := False;
 end;
 
 procedure TfrmPaymentDocuments.FormShow(Sender: TObject);
@@ -209,4 +209,3 @@ begin
 end;
 
 end.
-
