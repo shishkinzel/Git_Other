@@ -19,7 +19,7 @@ object frmInputData: TfrmInputData
   TextHeight = 13
   object spl1: TSplitter
     Left = 0
-    Top = 298
+    Top = 437
     Width = 771
     Height = 1
     Cursor = crVSplit
@@ -276,16 +276,17 @@ object frmInputData: TfrmInputData
   end
   object pnldown: TPanel
     Left = 0
-    Top = 299
+    Top = 298
     Width = 771
     Height = 139
     Align = alBottom
     Color = 6091532
     ParentBackground = False
     TabOrder = 1
+    ExplicitTop = 100
     object lblDez: TLabel
       Left = 16
-      Top = 24
+      Top = 26
       Width = 33
       Height = 19
       Caption = #1046#1050#1059
@@ -324,7 +325,7 @@ object frmInputData: TfrmInputData
     end
     object dbedtDez: TDBEdit
       Left = 150
-      Top = 16
+      Top = 20
       Width = 120
       Height = 27
       DataField = 'DezSum'
@@ -338,8 +339,8 @@ object frmInputData: TfrmInputData
       TabOrder = 0
     end
     object dbedtMEle: TDBEdit
-      Left = 149
-      Top = 56
+      Left = 150
+      Top = 60
       Width = 120
       Height = 27
       DataField = 'MosEn'
@@ -353,8 +354,8 @@ object frmInputData: TfrmInputData
       TabOrder = 1
     end
     object dbedtOnLime: TDBEdit
-      Left = 149
-      Top = 96
+      Left = 150
+      Top = 100
       Width = 120
       Height = 27
       DataField = 'onLime'
@@ -368,8 +369,8 @@ object frmInputData: TfrmInputData
       TabOrder = 2
     end
     object btnApply: TButton
-      Left = 312
-      Top = 96
+      Left = 310
+      Top = 100
       Width = 120
       Height = 27
       Caption = #1042#1099#1087#1086#1083#1085#1080#1090#1100
@@ -383,8 +384,8 @@ object frmInputData: TfrmInputData
       OnClick = btnApplyClick
     end
     object btnClose: TButton
-      Left = 608
-      Top = 96
+      Left = 470
+      Top = 100
       Width = 120
       Height = 27
       Caption = #1047#1072#1082#1088#1099#1090#1100' '#1092#1086#1088#1084#1091
@@ -396,6 +397,22 @@ object frmInputData: TfrmInputData
       ParentFont = False
       TabOrder = 4
       OnClick = btnCloseClick
+    end
+    object btnVerification: TButton
+      Left = 620
+      Top = 100
+      Width = 120
+      Height = 27
+      Caption = #1055#1086#1074#1077#1088#1082#1072
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+      OnClick = btnVerificationClick
     end
   end
   object pnlRight: TPanel
@@ -448,7 +465,7 @@ object frmInputData: TfrmInputData
       ParentFont = False
     end
     object edtHotWater: TEdit
-      Left = 159
+      Left = 167
       Top = 184
       Width = 120
       Height = 27
@@ -463,7 +480,7 @@ object frmInputData: TfrmInputData
       TabOrder = 3
     end
     object edtEle: TEdit
-      Left = 159
+      Left = 167
       Top = 61
       Width = 120
       Height = 27
@@ -478,7 +495,7 @@ object frmInputData: TfrmInputData
       TabOrder = 2
     end
     object edtColdWater: TEdit
-      Left = 159
+      Left = 167
       Top = 120
       Width = 120
       Height = 27
@@ -507,7 +524,7 @@ object frmInputData: TfrmInputData
       TabOrder = 0
     end
     object btnStart: TButton
-      Left = 158
+      Left = 166
       Top = 236
       Width = 120
       Height = 27

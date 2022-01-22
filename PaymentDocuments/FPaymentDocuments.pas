@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls,
   Vcl.ComCtrls,
   FdmPayment, funUntil, FTableAll, FTableMeteringDevice, FFRMeteringDevice, FTableEditing,
-  FFRTableAll, FSelectDate,
+  FFRTableAll, FSelectDate, FAdmin,
   FInputData, FFRListReport,
   FireDAC.Stan.StorageJSON, Data.DB;
 
@@ -72,6 +72,7 @@ type
     lblWHotPrev: TLabel;
     lblWHotNext: TLabel;
     lblWHotExpense: TLabel;
+    mniAdmin: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure mniAllTableClick(Sender: TObject);
     procedure mniPayAndRecordClick(Sender: TObject);
@@ -80,12 +81,13 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure mniFRPayAndRecordClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure mniAdminClick(Sender: TObject);
   private
     { Private declarations }
 
-  public
-    { Public declarations }
-    fStatusList : Boolean;      // флаг для печати Листка учета - умолчание false
+  public { Public declarations }
+    fStatusList: Boolean; // флаг для печати Листка учета - умолчание false
+    fVerification: Boolean; // флаг поверки счетчиков
   end;
 
 const
@@ -106,7 +108,7 @@ var
   i: Integer;
 begin
  fStatusList := False;
-
+fVerification := False;
 end;
 
 procedure TfrmPaymentDocuments.FormShow(Sender: TObject);
@@ -158,6 +160,12 @@ begin
 
 end;
 
+procedure TfrmPaymentDocuments.mniAdminClick(Sender: TObject);
+begin
+frmAdmin := TfrmAdmin.Create(nil);
+frmAdmin.ShowModal;
+end;
+
 procedure TfrmPaymentDocuments.mniAllTableClick(Sender: TObject);
 begin
   frmTableAll := TfrmTableAll.Create(nil);
@@ -201,4 +209,3 @@ begin
 end;
 
 end.
-
