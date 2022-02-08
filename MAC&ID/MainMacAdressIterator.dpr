@@ -10,7 +10,8 @@ uses
   fTest in 'fTest.pas' {frmTestGrid},
   frmFReportBarCodeLong in 'frmFReportBarCodeLong.pas' {frmFRBarCodeLong},
   FShowSoft in 'FShowSoft.pas' {frmShowSoft},
-  FLoadSoft in 'FLoadSoft.pas' {frmFReportLoadSoft};
+  FLoadSoft in 'FLoadSoft.pas' {frmFReportLoadSoft},
+  frmFReportIDandMAC in 'frmFReportIDandMAC.pas' {frmFR_IDandMAC};
 
 {$R *.res}
 
@@ -26,5 +27,6 @@ begin
   Application.CreateForm(TfrmFRBarCodeLong, frmFRBarCodeLong);
   Application.CreateForm(TfrmShowSoft, frmShowSoft);
   Application.CreateForm(TfrmFReportLoadSoft, frmFReportLoadSoft);
+  Application.CreateForm(TfrmFR_IDandMAC, frmFR_IDandMAC);
   Application.Run;
 end.

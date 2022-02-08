@@ -13,20 +13,6 @@ object frmTestGrid: TfrmTestGrid
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object img1: TImage
-    Left = 80
-    Top = 343
-    Width = 465
-    Height = 90
-    OnClick = img1Click
-  end
-  object img2: TImage
-    Left = 80
-    Top = 455
-    Width = 465
-    Height = 90
-    OnClick = img1Click
-  end
   object dbgrd1: TDBGrid
     Left = 0
     Top = 0
@@ -54,7 +40,7 @@ object frmTestGrid: TfrmTestGrid
     TitleFont.Style = []
   end
   object grdLoad: TDBGrid
-    Left = 8
+    Left = 0
     Top = 175
     Width = 879
     Height = 120
@@ -66,19 +52,37 @@ object frmTestGrid: TfrmTestGrid
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
+  object grdIDandMAC: TDBGrid
+    Left = 0
+    Top = 301
+    Width = 887
+    Height = 120
+    DataSource = dsIDandMAC
+    TabOrder = 3
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
   object dstt: TDataSource
     DataSet = frmMAC.fdmtblBarCode
-    Left = 32
-    Top = 368
+    Left = 120
+    Top = 520
   end
   object ds2: TDataSource
     DataSet = frmMAC.fdmtblTitle
-    Left = 40
-    Top = 312
+    Left = 8
+    Top = 512
   end
   object dsLoad: TDataSource
     DataSet = frmMAC.fdmtblLoadSoft
-    Left = 584
-    Top = 504
+    Left = 64
+    Top = 512
+  end
+  object dsIDandMAC: TDataSource
+    DataSet = frmMAC.fdIDandMAC
+    Left = 192
+    Top = 528
   end
 end

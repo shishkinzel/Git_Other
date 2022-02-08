@@ -10,13 +10,12 @@ type
   TfrmTestGrid = class(TForm)
     dbgrd1: TDBGrid;
     dstt: TDataSource;
-    img1: TImage;
-    img2: TImage;
     dbgrd2: TDBGrid;
     ds2: TDataSource;
     dsLoad: TDataSource;
     grdLoad: TDBGrid;
-    procedure img1Click(Sender: TObject);
+    dsIDandMAC: TDataSource;
+    grdIDandMAC: TDBGrid;
   private
     { Private declarations }
   public
@@ -32,11 +31,5 @@ uses
   MacAdressIterator;
 
 {$R *.dfm}
-
-procedure TfrmTestGrid.img1Click(Sender: TObject);
-begin
-img1.Picture.Assign(dstt.DataSet.FieldByName('BarCodeMAC'));
-img2.Picture.Assign(dstt.DataSet.FieldByName('BarCodeId'));
-end;
 
 end.

@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls, Vcl.Mask, Vcl.Samples.Spin, dmMacIterator, frmFastReportMac, frmFReportBarCodeLong, FireDAC.Stan.Intf,
+  Vcl.StdCtrls, Vcl.Mask, Vcl.Samples.Spin, dmMacIterator, frmFastReportMac,
+  frmFReportIDandMAC, frmFReportBarCodeLong, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.StorageBin, Data.DB, Barcode, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, Vcl.Menus, frmFReportBarCode , FShowSoft, FLoadSoft,
@@ -113,6 +114,19 @@ type
     mniResetBarCode: TMenuItem;
     mniResetBarCodeLong: TMenuItem;
     mniResetLoadSoft: TMenuItem;
+    mniQRIDMAC: TMenuItem;
+    mniApplay_IDandMAC: TMenuItem;
+    mniIDandMAC: TMenuItem;
+    mniShow_IDandMAC: TMenuItem;
+    mniExport_IDandMAC: TMenuItem;
+    mniPrint_IDandMAC: TMenuItem;
+    mniReset_IDandMAC: TMenuItem;
+    fdIDandMAC: TFDMemTable;
+    fdIDandMACnumber: TIntegerField;
+    fdIDandMACQR_ID: TBlobField;
+    fdIDandMACQR_MAC: TBlobField;
+    fdIDandMACText_IDMAC: TStringField;
+    blbfldTitlehardWare: TBlobField;
     procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mnifrViewClick(Sender: TObject);
@@ -138,6 +152,9 @@ type
     procedure mniShowApplyClick(Sender: TObject);
     procedure mniShowPrevClick(Sender: TObject);
     procedure mniPrintLoadSoftClick(Sender: TObject);
+    procedure mniApplay_IDandMACClick(Sender: TObject);
+    procedure mniShow_IDandMACClick(Sender: TObject);
+    procedure mniPrint_IDandMACClick(Sender: TObject);
   private
     { Private declarations }
     var
@@ -289,6 +306,7 @@ begin
   mniApply.Enabled := False;
   btnApply.Enabled := False;
   btnRestart.Enabled := True;
+  mniQRIDMAC.Enabled := True;
 // разрешения пунктов "Сброс" в главном меню
   mniReset.Enabled := True;
   mniResetBarCode.Enabled := True;
@@ -461,16 +479,18 @@ end;
 // окончание блока выбора  **********************************************************
 
 // процедура сброса
+
 procedure TfrmMAC.btnRestartClick(Sender: TObject);
 begin
-   if utilityMAC then
-   edtDevice.SetFocus
-   else
+  if utilityMAC then
+    edtDevice.SetFocus
+  else
     medtBit_4.SetFocus;
   mniApply.Enabled := True;
   btnApply.Enabled := True;
   btnRestart.Enabled := False;
   btnStart.Enabled := False;
+  mniQRIDMAC.Enabled := False;
 // сбрасываем все окна
   edtDevice.Clear;
   medtBit_4.Clear;
@@ -499,6 +519,11 @@ begin
   mniBarCode.Enabled := False;
   mniShowApply.Enabled := False;
   mniShowPrev.Enabled := False;
+// для ID&MAC
+  mniShow_IDandMAC.Enabled := False;
+  mniExport_IDandMAC.Enabled := False;
+  mniPrint_IDandMAC.Enabled := False;
+  mniReset_IDandMAC.Enabled := False;
 
   medtModule.Text := '000';
   medtDate.Text := '000';
@@ -518,67 +543,6 @@ end;
 
 
 
-// обработка кнопок главного меню
-procedure TfrmMAC.mnifrViewClick(Sender: TObject);
-begin
-  if utilityMAC then
-  begin
-    frmFReport.Show;
-    frmFReport.frxprvwMac.Clear;
-    frmFReport.frxrprtMac.ShowReport();
-  end
-  else
-  begin
-    frmFRList.Show;
-    frmFRList.frxprvwList.Clear;
-    frmFRList.frxrprtList.ShowReport();
-  end;
-end;
-
-procedure TfrmMAC.mnifrPrintClick(Sender: TObject);
-begin
-  if utilityMAC then
-  begin
-    frmFReport.frxrprtMac.ShowReport();
-    frmFReport.frxrprtMac.Print;
-  end
-  else
-  begin
-    frmFRList.frxrprtList.ShowReport();
-    frmFRList.frxrprtList.Print;
-  end;
-end;
-
-procedure TfrmMAC.pdf1Click(Sender: TObject);
-begin
-  frmFReport.frxrprtMac.ShowReport();
-  frmFReport.frxrprtMac.Export(frmFReport.frxpdfxprtMac);
-end;
-
-procedure TfrmMAC.xml1Click(Sender: TObject);
-begin
-  frmFReport.frxrprtMac.ShowReport();
-  frmFReport.frxrprtMac.Export(frmFReport.frxmlxprtMac);
-end;
-
-procedure TfrmMAC.doc1Click(Sender: TObject);
-begin
-  frmFReport.frxrprtMac.ShowReport();
-  frmFReport.frxrprtMac.Export(frmFReport.frxdcxprtMac);
-end;
-
- // печать BarCode
-procedure TfrmMAC.mniPrintBarCodeClick(Sender: TObject);
-begin
-  frmFRBarCode.frxrprtBarCode.ShowReport;
-  frmFRBarCode.frxprvwBarCode.Print;
-end;
-
-procedure TfrmMAC.mniPrintBarCodeLongClick(Sender: TObject);
-begin
-  frmFRBarCodeLong.reportBarCodeLong.ShowReport;
-  frmFRBarCodeLong.reportBarCodeLong.Print;
-end;
 
 // печать штрих кода *******************************************************
 procedure TfrmMAC.mniApplyBarCodeClick(Sender: TObject);
@@ -595,6 +559,8 @@ begin
   stepBarCode := 1;
   numberBarCode := 1;
   numBarCodeFR := 1;
+// блокируем окно для Топаза
+   mniQRIDMAC.Enabled := False;
 // активируем окна для работы с LoadSoft
   mniShowApply.Enabled := True;
 
@@ -605,9 +571,9 @@ begin
     mniApplyBarCodeClick(nil);
   end;
   ShowMessage('Все хорошо');
+// Заполняем титульную таблицу *************************************************
   fdmtblTitle.Close;
   fdmtblTitle.Open;
-//  fdmtblTitle.Table.Clear;
   fdmtblTitle.Append;
   fdmtblTitle.FieldByName('nameDevice').AsString := fnameDevice;
   fdmtblTitle.FieldByName('firstOrderBit').AsString := ffirstOrderBit;
@@ -616,6 +582,8 @@ begin
   fdmtblTitle.FieldByName('quantityDevice').AsString := fquantityDevice;
   fdmtblTitle.FieldByName('StepPrintBarCode').AsInteger := stepPrintBarCode;
   fdmtblTitle.Post;
+// *****************************************************************************
+
 //блок выбора mac & id номеров ******************************************************
 
 //   формирование файла
@@ -724,6 +692,165 @@ begin
 
 end;
 
+// печать qr-кода и серийного номера для изделий семейства Топаз
+procedure TfrmMAC.mniApplay_IDandMACClick(Sender: TObject);
+var
+  beginNumberDevice, range, stepMac, stepBarCode, numberBarCode: Integer;
+  number, numBarCodeFR: Integer;
+  numberS, numberSLong, rangeLast: string;
+  s, s1, tmp, tmp1: string;
+  hardWare: string;
+begin
+// открываем таблицу для заполниния **************************************
+
+  range := stepIteration;
+  stepMac := 1;
+  stepBarCode := 1;
+  numberBarCode := 1;
+  numBarCodeFR := 1;
+ // блокируем окно для QR-код малый
+
+   mniBarCodeLong.Enabled := False;
+
+// активируем окна для работы с LoadSoft
+  mniShow_IDandMAC.Enabled := True;
+  mniExport_IDandMAC.Enabled := True;
+  mniPrint_IDandMAC.Enabled := True;
+  mniReset_IDandMAC.Enabled := True;
+
+// настраиваем шрифт
+  brcdMAC.Height := 50;
+  brcdMAC.Symbology := syQRCode;
+
+// забиваем hardWare для Топаза
+
+  hardWare := InputBox('Введите Hard Ware модуля Топаз', 'Введите HW ', '00.01.10');
+
+  stepPrintBarCode := StrToIntDef(InputBox('Шаг печати штрих-кода', 'Введите шаг печати от 5 до 10', '10'), 10);
+  if not (stepPrintBarCode in [5..10]) then
+  begin
+    ShowMessage('Введите корректное значение из диапазона 5-10');
+    mniApplyBarCodeClick(nil);
+  end;
+  ShowMessage('Все хорошо');
+
+// Заполняем титульную таблицу *************************************************
+  fdmtblTitle.Close;
+  fdmtblTitle.Open;
+  fdmtblTitle.Append;
+  fdmtblTitle.FieldByName('nameDevice').AsString := fnameDevice;
+  fdmtblTitle.FieldByName('firstOrderBit').AsString := ffirstOrderBit;
+  fdmtblTitle.FieldByName('stepIterator').AsString := fstepIterator;
+  fdmtblTitle.FieldByName('firstIdDevice').AsString := ffirstIdDevice;
+  fdmtblTitle.FieldByName('quantityDevice').AsString := fquantityDevice;
+  fdmtblTitle.FieldByName('StepPrintBarCode').AsInteger := stepPrintBarCode;
+// вносим QR-код HardWare
+  barCodeStream := TMemoryStream.Create;
+  brcdMAC.InputText := hardWare;
+  brcdMAC.Bitmap.SaveToStream(barCodeStream);
+  barCodeStream.Position := 0;
+  (fdmtblTitle.Fields[6] as TBlobField).LoadFromStream(barCodeStream);
+  barCodeStream.Free;
+  fdmtblTitle.Post;
+// *****************************************************************************
+//блок выбора mac & id номеров ******************************************************
+
+//   формирование файла
+  Rewrite(fileBarCode);
+  Rewrite(fileBarCodeLong); // добавляем для длинного barcode
+  while numberBarCode <= quantity do
+  begin
+    beginNumberDevice := idNumber + (numberBarCode - 1);
+    numberS := Format(numberDeviceHigh + '%.3d', [beginNumberDevice]);
+    numberSLong := Format(' --serial ' + numberDeviceHigh + '%.3d', [beginNumberDevice]);
+    s := Format('%.3d', [numBarCodeFR]) + '|';
+// запись в файл
+    Write(fileBarCode, s);
+    Write(fileBarCodeLong, s);  // добавляем для длинного barcode
+    Write(fileBarCode, DataModuleMacIterator.ArrayToStringlong(idMACBarCode));
+    Write(fileBarCodeLong, DataModuleMacIterator.ArrayToStringlongMAC(idMACBarCode));  // добавляем для длинного barcode
+    Write(fileBarCode, numberS);
+    Write(fileBarCodeLong, numberSLong);   // добавляем для длинного barcode
+    while stepBarCode <= stepPrintBarCode do
+    begin
+      while stepMac <= stepIteration do
+      begin
+        DataModuleMacIterator.IncArrayOne(idMACBarCode);
+        Inc(stepMac);
+      end;
+      Inc(stepBarCode);
+      Inc(numberBarCode);
+      stepMac := 1;
+    end;
+    stepBarCode := 1;
+    Inc(numBarCodeFR);
+    Writeln(fileBarCode);
+    Writeln(fileBarCodeLong);
+  end;
+// закрытие файла
+  CloseFile(fileBarCode);
+  CloseFile(fileBarCodeLong);
+
+// чтение из файла и получение BarCode и запись в таблицу для Топаз ******************
+  barCodeStream := TMemoryStream.Create;
+  Reset(fileBarCode);
+  fdIDandMAC.Open;
+  fdIDandMAC.Table.Clear;
+
+// формируем данные для таблицы fdIDandMAC
+  while (not EOF(fileBarCode)) do
+  begin
+    fdIDandMAC.Append;
+    Readln(fileBarCode, s1);
+    tmp := Trim(Fetch(s1, '|'));
+    tmp1 := Trim(Fetch(s1, '|'));
+
+    fdIDandMAC.Fields[0].AsInteger := StrToInt(tmp);
+// создаем поток и трансоформируем в barcode
+
+    brcdMAC.InputText :=AnsiLowerCase(tmp1);
+    brcdMAC.Bitmap.SaveToStream(barCodeStream);
+    barCodeStream.Position := 0;
+    (fdIDandMAC.Fields[2] as TBlobField).LoadFromStream(barCodeStream);
+    barCodeStream.Clear;
+
+    brcdMAC.InputText := s1;
+    brcdMAC.Bitmap.SaveToStream(barCodeStream);
+    barCodeStream.Position := 0;
+    (fdIDandMAC.Fields[1] as TBlobField).LoadFromStream(barCodeStream);
+    barCodeStream.Clear;
+    fdIDandMAC.Next;
+  end;
+
+// работа с длинным штрих-кодом
+  Reset(fileBarCodeLong);
+  fdIDandMAC.First;
+
+    while (not EOF(fileBarCodeLong)) do
+  begin
+    fdIDandMAC.Edit;
+    Readln(fileBarCodeLong, s1);
+    tmp := Trim(Fetch(s1, '|'));
+    fdIDandMAC.Fields[3].AsString := s1;
+    fdIDandMAC.Post;
+    fdIDandMAC.Next;
+  end;
+    CloseFile(fileBarCodeLong);
+// разрушение потока
+  barCodeStream.Free;
+//
+//   frmTestGrid.Show;
+  mniPreview.Enabled := True;
+  mniExportBarCode.Enabled := True;
+  mniPrintBarCode.Enabled := True;
+  mniPreviewLong.Enabled := True;
+  mniExportBarCodeLong.Enabled := True;
+  mniPrintBarCodeLong.Enabled := True;
+
+  frmTestGrid.Show;
+end;
+
+//**************************************************************************************************
 
 // работа с qr-кодом полной загрузки прошивки LoadSoft
 procedure TfrmMAC.mniShowApplyClick(Sender: TObject);
@@ -766,6 +893,86 @@ begin
   CloseFile(fileBarCodeLong);
 //  frmTestGrid.Show;
 end;
+
+
+// обработка кнопок главного меню  ************************************************************
+procedure TfrmMAC.mnifrViewClick(Sender: TObject);
+begin
+  if utilityMAC then
+  begin
+    frmFReport.Show;
+    frmFReport.frxprvwMac.Clear;
+    frmFReport.frxrprtMac.ShowReport();
+  end
+  else
+  begin
+    frmFRList.Show;
+    frmFRList.frxprvwList.Clear;
+    frmFRList.frxrprtList.ShowReport();
+  end;
+end;
+
+procedure TfrmMAC.mnifrPrintClick(Sender: TObject);
+begin
+  if utilityMAC then
+  begin
+    frmFReport.frxrprtMac.ShowReport();
+    frmFReport.frxrprtMac.Print;
+  end
+  else
+  begin
+    frmFRList.frxrprtList.ShowReport();
+    frmFRList.frxrprtList.Print;
+  end;
+end;
+
+procedure TfrmMAC.pdf1Click(Sender: TObject);
+begin
+  frmFReport.frxrprtMac.ShowReport();
+  frmFReport.frxrprtMac.Export(frmFReport.frxpdfxprtMac);
+end;
+
+procedure TfrmMAC.xml1Click(Sender: TObject);
+begin
+  frmFReport.frxrprtMac.ShowReport();
+  frmFReport.frxrprtMac.Export(frmFReport.frxmlxprtMac);
+end;
+
+procedure TfrmMAC.doc1Click(Sender: TObject);
+begin
+  frmFReport.frxrprtMac.ShowReport();
+  frmFReport.frxrprtMac.Export(frmFReport.frxdcxprtMac);
+end;
+
+ // печать BarCode
+procedure TfrmMAC.mniPrintBarCodeClick(Sender: TObject);
+begin
+  frmFRBarCode.frxrprtBarCode.ShowReport;
+  frmFRBarCode.frxprvwBarCode.Print;
+end;
+
+procedure TfrmMAC.mniPrintBarCodeLongClick(Sender: TObject);
+begin
+  frmFRBarCodeLong.reportBarCodeLong.ShowReport;
+  frmFRBarCodeLong.reportBarCodeLong.Print;
+end;
+
+//*************************************************************************************
+// открытие отчета для Топаза
+procedure TfrmMAC.mniShow_IDandMACClick(Sender: TObject);
+begin
+  frmFR_IDandMAC.Show;
+  frmFR_IDandMAC.frPrevIDandMAC.Clear;
+  frmFR_IDandMAC.reportIDandMAC.ShowReport();
+end;
+// печать отчета для Топаза
+procedure TfrmMAC.mniPrint_IDandMACClick(Sender: TObject);
+begin
+  frmFR_IDandMAC.reportIDandMAC.ShowReport;
+  frmFR_IDandMAC.reportIDandMAC.Print;
+end;
+
+
 
 
 // предосмотр BarCode

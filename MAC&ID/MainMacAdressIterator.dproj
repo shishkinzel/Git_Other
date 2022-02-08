@@ -4,7 +4,7 @@
         <ProjectVersion>19.2</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -133,6 +133,10 @@
         </DCCReference>
         <DCCReference Include="FLoadSoft.pas">
             <Form>frmFReportLoadSoft</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="frmFReportIDandMAC.pas">
+            <Form>frmFR_IDandMAC</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
