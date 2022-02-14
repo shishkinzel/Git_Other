@@ -9,7 +9,7 @@ uses
   frmFReportIDandMAC, frmFReportBarCodeLong, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.StorageBin, Data.DB, Barcode, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.Menus, frmFReportBarCode , FShowSoft, FLoadSoft,
+  FireDAC.Comp.Client, Vcl.Menus, frmFReportBarCode , FShowSoft, FLoadSoft, frmFReportGen_QR,
   FireDAC.Stan.StorageJSON, frmFastReportList, fTest;
 
 
@@ -130,6 +130,22 @@ type
     mniDOC_IDandMAC: TMenuItem;
     mniXML_IDandMAC: TMenuItem;
     mniPDF_IDandMAC: TMenuItem;
+    mniGen_QR: TMenuItem;
+    mniShow_OR: TMenuItem;
+    mniSeparatorGen_QR: TMenuItem;
+    mniGen_QR_Apply: TMenuItem;
+    mniGen_QR_ShowPrev: TMenuItem;
+    mniSeparatorGen_QR2: TMenuItem;
+    mniGen_QR_Print: TMenuItem;
+    mniGen_QR_Export: TMenuItem;
+    mniGen_QR_Reset: TMenuItem;
+    fmTab_Gen_OR: TFDMemTable;
+    fmTab_Gen_ORnumber: TIntegerField;
+    fmTab_Gen_ORQR_Text_string: TStringField;
+    fmTab_Gen_ORQR_Text_Blob: TBlobField;
+    fmTab_Gen_OROther: TStringField;
+    blbfldTab_Gen_ORusb: TBlobField;
+    blbfldTab_Gen_ORpyton: TBlobField;
     procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mnifrViewClick(Sender: TObject);
@@ -161,6 +177,11 @@ type
     procedure mniDOC_IDandMACClick(Sender: TObject);
     procedure mniXML_IDandMACClick(Sender: TObject);
     procedure mniPDF_IDandMACClick(Sender: TObject);
+    procedure mniGen_QR_ApplyClick(Sender: TObject);
+    procedure mniGen_QR_ShowPrevClick(Sender: TObject);
+    procedure mniGen_QR_PrintClick(Sender: TObject);
+    procedure mniShow_ORClick(Sender: TObject);
+    procedure mniGen_QR_ResetClick(Sender: TObject);
   private
     { Private declarations }
     var
@@ -883,8 +904,8 @@ begin
 // создаем поток и трансоформируем в barcode
 
     brcdMAC.InputText := frmShowSoft.fTextSoft + '     ' + s1;
-    brcdMAC.Height := 50;
-    brcdMAC.Symbology := syQRCode;
+//    brcdMAC.Height := 50;                             ? Зачем это повторять строка 883
+//    brcdMAC.Symbology := syQRCode;
     fdmtblLoadSoft.FieldByName('MacAndId').AsString := s1;
     brcdMAC.Bitmap.SaveToStream(barCodeStream);
     barCodeStream.Position := 0;
@@ -900,8 +921,98 @@ begin
 //  frmTestGrid.Show;
 end;
 
+// процедура обработки генерации QR-кода
+//начало блока *************************************************************************************
 
-// обработка кнопок главного меню  ************************************************************
+// процедура открытия окна для генератора QR-кода с выбором РМП
+procedure TfrmMAC.mniShow_ORClick(Sender: TObject);
+begin
+  frmShowSoft.cbb_rmp.Visible := True;
+  frmShowSoft.mmoShowSoft.Enabled := False;
+  frmShowSoft.btnCount.Enabled :=False;
+  frmShowSoft.btnApply.Enabled :=False;
+  frmShowSoft.ShowModal;
+
+
+
+end;
+
+procedure TfrmMAC.mniGen_QR_ApplyClick(Sender: TObject);
+var
+  i: Integer;
+  tmp, s1: string;
+begin
+// активируем инструменты для  QR-кода
+  mniGen_QR_ShowPrev.Enabled := True;
+  mniGen_QR_Export.Enabled := True;
+  mniGen_QR_Print.Enabled := True;
+  mniGen_QR_Reset.Enabled := True;
+
+  fmTab_Gen_OR.Open;
+  barCodeStream := TMemoryStream.Create;
+// настраиваем barcode
+  brcdMAC.Height := 50;
+  brcdMAC.Symbology := syQRCode;
+
+// создаем поток и трансоформируем в barcode
+  fmTab_Gen_OR.Append;
+  fmTab_Gen_OR.Fields[1].AsString := frmShowSoft.fTextSoft;
+    fmTab_Gen_OR.Fields[5].AsString := frmShowSoft.fText_rmp;
+  brcdMAC.InputText := frmShowSoft.fTextSoft;
+  brcdMAC.Bitmap.SaveToStream(barCodeStream);
+  barCodeStream.Position := 0;
+  (fmTab_Gen_OR.Fields[2] as TBlobField).LoadFromStream(barCodeStream);
+  barCodeStream.Clear;
+// доработать
+  brcdMAC.InputText := 'ap map';
+  brcdMAC.Bitmap.SaveToStream(barCodeStream);
+  barCodeStream.Position := 0;
+  (fmTab_Gen_OR.Fields[3] as TBlobField).LoadFromStream(barCodeStream);
+  barCodeStream.Clear;
+
+  brcdMAC.InputText := 'pyenv activate ap-dev';
+  brcdMAC.Bitmap.SaveToStream(barCodeStream);
+  barCodeStream.Position := 0;
+  (fmTab_Gen_OR.Fields[4] as TBlobField).LoadFromStream(barCodeStream);
+  barCodeStream.Clear;
+
+  fmTab_Gen_OR.Post;
+
+
+// разрушение потока
+  barCodeStream.Free;
+//  frmTestGrid.Show;
+end;
+
+
+// предосмотр отчета генератора QR-кода
+procedure TfrmMAC.mniGen_QR_ShowPrevClick(Sender: TObject);
+begin
+  frmGen_OR.Show;
+  frmGen_OR.frP_Gen_QR.Clear;
+  frmGen_OR.frR_Gen_QR.ShowReport();
+end;
+
+// печать  отчета для QR-кода
+procedure TfrmMAC.mniGen_QR_PrintClick(Sender: TObject);
+begin
+  frmGen_OR.frR_Gen_QR.ShowReport;
+  frmGen_OR.frR_Gen_QR.Print;
+end;
+
+// сброс для  генератора QR-кода
+procedure TfrmMAC.mniGen_QR_ResetClick(Sender: TObject);
+begin
+  fmTab_Gen_OR.Close;
+  mniGen_QR_ShowPrev.Enabled := False;
+  mniGen_QR_Export.Enabled := False;
+  mniGen_QR_Print.Enabled := False;
+  mniGen_QR_Reset.Enabled := False;
+  frmShowSoft.cbb_rmp.ItemIndex := 0;
+end;
+// окончание блока генератора QR-кода **************************************************************
+
+// обработка кнопок главного меню  *****************************************************************
 procedure TfrmMAC.mnifrViewClick(Sender: TObject);
 begin
   if utilityMAC then
@@ -971,14 +1082,13 @@ begin
   frmFR_IDandMAC.frPrevIDandMAC.Clear;
   frmFR_IDandMAC.reportIDandMAC.ShowReport();
 end;
+
 // печать отчета для Топаза
 procedure TfrmMAC.mniPrint_IDandMACClick(Sender: TObject);
 begin
   frmFR_IDandMAC.reportIDandMAC.ShowReport;
   frmFR_IDandMAC.reportIDandMAC.Print;
 end;
-
-
 
 
 // предосмотр BarCode

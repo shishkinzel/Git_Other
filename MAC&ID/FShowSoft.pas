@@ -27,6 +27,7 @@ type
     mniColorBackGround: TMenuItem;
     dlgFont: TFontDialog;
     dlgColor: TColorDialog;
+    cbb_rmp: TComboBox;
     procedure btnCountClick(Sender: TObject);
     procedure mniExitLoadSoftClick(Sender: TObject);
     procedure mniSaveLoadSoftClick(Sender: TObject);
@@ -35,11 +36,13 @@ type
     procedure mniClearClick(Sender: TObject);
     procedure mniFontClick(Sender: TObject);
     procedure mniColorBackGroundClick(Sender: TObject);
+    procedure cbb_rmpChange(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    fTextSoft: string;
+    fTextSoft: string;         // текст в окне
+    fText_rmp : string;        // выбор рабочего места программирования
   end;
 
 var
@@ -60,6 +63,7 @@ begin
   for i := 0 to mmoShowSoft.Lines.Count - 1 do
   begin
     fTextSoft := fTextSoft + mmoShowSoft.Lines.Strings[i];
+    fText_rmp := cbb_rmp.Text;
   end;
   if fTextSoft <> '' then
     ShowMessage('Информация считана' + #13 + 'Можно закрыть окно')
@@ -118,11 +122,22 @@ begin
 if dlgFont.Execute then
   mmoShowSoft.Font := dlgFont.Font;
 end;
-
 // закрытие окна
+procedure TfrmShowSoft.cbb_rmpChange(Sender: TObject);
+begin
+ShowMessage('Вы выбрали "Рабочее место программирования"' + #10#13 + cbb_rmp.Text);
+  cbb_rmp.Enabled := False;
+  mmoShowSoft.Enabled := True;
+  btnCount.Enabled :=True;
+  btnApply.Enabled :=True;
+
+end;
+
 procedure TfrmShowSoft.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  cbb_rmp.Visible := False;
   mniExitLoadSoftClick(nil);
+
 end;
 procedure TfrmShowSoft.mniExitLoadSoftClick(Sender: TObject);
 begin

@@ -16,6 +16,8 @@ type
     grdLoad: TDBGrid;
     dsIDandMAC: TDataSource;
     grdIDandMAC: TDBGrid;
+    dsGen_OR: TDataSource;
+    grdGen_OR: TDBGrid;
   private
     { Private declarations }
   public

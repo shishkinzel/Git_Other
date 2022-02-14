@@ -3,7 +3,7 @@ object frmMAC: TfrmMAC
   Top = 0
   Caption = 'MacAdress'
   ClientHeight = 402
-  ClientWidth = 584
+  ClientWidth = 704
   Color = clHighlight
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -7413,7 +7413,7 @@ object frmMAC: TfrmMAC
   PixelsPerInch = 96
   TextHeight = 13
   object lblTitle: TLabel
-    Left = 163
+    Left = 230
     Top = 32
     Width = 194
     Height = 23
@@ -7440,7 +7440,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
   end
   object lblID: TLabel
-    Left = 358
+    Left = 473
     Top = 120
     Width = 150
     Height = 23
@@ -7467,7 +7467,7 @@ object frmMAC: TfrmMAC
     StyleName = 'lblName'
   end
   object lblModule: TLabel
-    Left = 358
+    Left = 473
     Top = 180
     Width = 141
     Height = 16
@@ -7480,7 +7480,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
   end
   object lblDate: TLabel
-    Left = 358
+    Left = 473
     Top = 222
     Width = 90
     Height = 16
@@ -7493,7 +7493,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
   end
   object lblNumber: TLabel
-    Left = 358
+    Left = 473
     Top = 301
     Width = 115
     Height = 16
@@ -7506,7 +7506,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
   end
   object lblGruop: TLabel
-    Left = 358
+    Left = 473
     Top = 259
     Width = 149
     Height = 16
@@ -7584,7 +7584,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
   end
   object lblPrintMac: TLabel
-    Left = 178
+    Left = 245
     Top = 52
     Width = 159
     Height = 19
@@ -7598,7 +7598,7 @@ object frmMAC: TfrmMAC
     Visible = False
   end
   object edtDevice: TEdit
-    Left = 279
+    Left = 394
     Top = 77
     Width = 297
     Height = 27
@@ -7611,7 +7611,7 @@ object frmMAC: TfrmMAC
     TabOrder = 0
   end
   object medtModule: TMaskEdit
-    Left = 541
+    Left = 656
     Top = 174
     Width = 35
     Height = 27
@@ -7627,7 +7627,7 @@ object frmMAC: TfrmMAC
     Text = '000'
   end
   object medtDate: TMaskEdit
-    Left = 541
+    Left = 656
     Top = 216
     Width = 35
     Height = 27
@@ -7643,7 +7643,7 @@ object frmMAC: TfrmMAC
     Text = '000'
   end
   object medtGroup: TMaskEdit
-    Left = 541
+    Left = 656
     Top = 253
     Width = 35
     Height = 27
@@ -7659,7 +7659,7 @@ object frmMAC: TfrmMAC
     Text = '000'
   end
   object medtNumber: TMaskEdit
-    Left = 541
+    Left = 656
     Top = 295
     Width = 35
     Height = 27
@@ -7723,7 +7723,7 @@ object frmMAC: TfrmMAC
     Text = '00'
   end
   object btnStart: TButton
-    Left = 426
+    Left = 541
     Top = 340
     Width = 150
     Height = 25
@@ -7788,7 +7788,7 @@ object frmMAC: TfrmMAC
     Value = 1
   end
   object btnRestart: TButton
-    Left = 215
+    Left = 287
     Top = 340
     Width = 150
     Height = 25
@@ -7804,7 +7804,7 @@ object frmMAC: TfrmMAC
     OnClick = btnRestartClick
   end
   object mmMAC: TMainMenu
-    Left = 24
+    Left = 16
     Top = 8
     object mniChoice: TMenuItem
       Caption = #1042#1099#1073#1086#1088' '#1091#1090#1080#1083#1080#1090#1099
@@ -8036,9 +8036,61 @@ object frmMAC: TfrmMAC
         OnClick = btnRestartClick
       end
     end
+    object mniGen_QR: TMenuItem
+      Caption = #1043#1077#1085#1077#1088#1072#1090#1086#1088' QR-'#1082#1086#1076#1072
+      object mniShow_OR: TMenuItem
+        Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1086#1082#1085#1086
+        OnClick = mniShow_ORClick
+      end
+      object mniSeparatorGen_QR: TMenuItem
+        Caption = '-'
+      end
+      object mniGen_QR_Apply: TMenuItem
+        Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
+        OnClick = mniGen_QR_ApplyClick
+      end
+      object mniGen_QR_ShowPrev: TMenuItem
+        Caption = #1055#1088#1077#1076#1086#1089#1084#1086#1090#1088
+        Enabled = False
+        OnClick = mniGen_QR_ShowPrevClick
+      end
+      object mniSeparatorGen_QR2: TMenuItem
+        Caption = '-'
+      end
+      object mniGen_QR_Export: TMenuItem
+        Caption = #1069#1082#1089#1087#1086#1088#1090
+        Enabled = False
+      end
+      object mniGen_QR_Print: TMenuItem
+        Caption = #1055#1077#1095#1072#1090#1100
+        Enabled = False
+        OnClick = mniGen_QR_PrintClick
+      end
+      object mniGen_QR_Reset: TMenuItem
+        Caption = #1057#1073#1088#1086#1089
+        Enabled = False
+        OnClick = mniGen_QR_ResetClick
+      end
+    end
   end
   object fdmtblMac: TFDMemTable
-    FieldDefs = <>
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'Number'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'MAC - adress'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'id - number'
+        DataType = ftString
+        Size = 20
+      end>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
@@ -8049,8 +8101,43 @@ object frmMAC: TfrmMAC
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 488
-    Top = 16
+    Left = 576
+    Top = 8
+    Content = {
+      414442530F000000CC010000FF00010001FF02FF03040012000000660064006D
+      00740062006C004D006100630005000A0000005400610062006C006500060000
+      000000070000080032000000090000FF0AFF0B04000C0000004E0075006D0062
+      006500720005000C0000004E0075006D006200650072000C00010000000E000D
+      000F001400000010000111000112000113000114000115000116000C0000004E
+      0075006D00620065007200170014000000FEFF0B0400180000004D0041004300
+      20002D0020006100640072006500730073000500180000004D00410043002000
+      2D0020006100640072006500730073000C00020000000E000D000F0014000000
+      1000011100011200011300011400011500011600180000004D00410043002000
+      2D002000610064007200650073007300170014000000FEFF0B04001600000069
+      00640020002D0020006E0075006D006200650072000500160000006900640020
+      002D0020006E0075006D006200650072000C00030000000E000D000F00140000
+      001000011100011200011300011400011500011600160000006900640020002D
+      0020006E0075006D00620065007200170014000000FEFEFF18FEFF19FEFF1AFE
+      FEFEFF1BFEFF1CFF1DFEFEFE0E004D0061006E0061006700650072001E005500
+      7000640061007400650073005200650067006900730074007200790012005400
+      610062006C0065004C006900730074000A005400610062006C00650008004E00
+      61006D006500140053006F0075007200630065004E0061006D0065000A005400
+      6100620049004400240045006E0066006F0072006300650043006F006E007300
+      74007200610069006E00740073001E004D0069006E0069006D0075006D004300
+      6100700061006300690074007900180043006800650063006B004E006F007400
+      4E0075006C006C00140043006F006C0075006D006E004C006900730074000C00
+      43006F006C0075006D006E00100053006F007500720063006500490044001800
+      6400740041006E007300690053007400720069006E0067001000440061007400
+      610054007900700065000800530069007A006500140053006500610072006300
+      6800610062006C006500120041006C006C006F0077004E0075006C006C000800
+      420061007300650014004F0041006C006C006F0077004E0075006C006C001200
+      4F0049006E0055007000640061007400650010004F0049006E00570068006500
+      720065001A004F0072006900670069006E0043006F006C004E0061006D006500
+      140053006F007500720063006500530069007A0065001C0043006F006E007300
+      74007200610069006E0074004C00690073007400100056006900650077004C00
+      6900730074000E0052006F0077004C006900730074001800520065006C006100
+      740069006F006E004C006900730074001C005500700064006100740065007300
+      4A006F00750072006E0061006C000E004300680061006E00670065007300}
     object fdmtblMacNumber: TStringField
       FieldName = 'Number'
       Origin = 'Number'
@@ -8065,7 +8152,41 @@ object frmMAC: TfrmMAC
     end
   end
   object fdmtblTitle: TFDMemTable
-    FieldDefs = <>
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'nameDevice'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'firstOrderBit'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'stepIterator'
+        DataType = ftString
+        Size = 5
+      end
+      item
+        Name = 'firstIdDevice'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'quantityDevice'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'StepPrintBarCode'
+        DataType = ftInteger
+      end
+      item
+        Name = 'hardWare'
+        DataType = ftBlob
+      end>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
@@ -8075,8 +8196,8 @@ object frmMAC: TfrmMAC
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 528
-    Top = 16
+    Left = 616
+    Top = 8
     object fdmtblTitlenameDevice: TStringField
       DisplayWidth = 9
       FieldName = 'nameDevice'
@@ -8113,8 +8234,8 @@ object frmMAC: TfrmMAC
     OutputOptions = [opBoldText, opBpp1, opStdout, opCompliantHeight]
     Symbology = syCode128
     Ultracode = ucCompress
-    Left = 72
-    Top = 16
+    Left = 64
+    Top = 8
   end
   object fdmtblBarCode: TFDMemTable
     Active = True
@@ -8140,8 +8261,8 @@ object frmMAC: TfrmMAC
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 448
-    Top = 16
+    Left = 536
+    Top = 8
     object smlntfldBarCodeNumber: TSmallintField
       FieldName = 'Number'
       MaxValue = 999
@@ -8157,7 +8278,21 @@ object frmMAC: TfrmMAC
     end
   end
   object fdBarCodeLong: TFDMemTable
-    FieldDefs = <>
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'number'
+        DataType = ftInteger
+      end
+      item
+        Name = 'BarCodeLong'
+        DataType = ftBlob
+      end
+      item
+        Name = 'MacAndId'
+        DataType = ftString
+        Size = 60
+      end>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
@@ -8167,8 +8302,8 @@ object frmMAC: TfrmMAC
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 400
-    Top = 16
+    Left = 488
+    Top = 8
     object fdBarCodeLongnumber: TIntegerField
       FieldName = 'number'
     end
@@ -8205,8 +8340,8 @@ object frmMAC: TfrmMAC
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 224
-    Top = 120
+    Left = 408
+    Top = 8
     object fdmtblLoadSoftnumber: TIntegerField
       FieldName = 'number'
     end
@@ -8219,7 +8354,25 @@ object frmMAC: TfrmMAC
     end
   end
   object fdIDandMAC: TFDMemTable
-    FieldDefs = <>
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'number'
+        DataType = ftInteger
+      end
+      item
+        Name = 'QR_ID'
+        DataType = ftBlob
+      end
+      item
+        Name = 'QR_MAC'
+        DataType = ftBlob
+      end
+      item
+        Name = 'Text_ID&MAC'
+        DataType = ftString
+        Size = 70
+      end>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
@@ -8229,8 +8382,8 @@ object frmMAC: TfrmMAC
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
     StoreDefs = True
-    Left = 296
-    Top = 120
+    Left = 448
+    Top = 8
     object fdIDandMACnumber: TIntegerField
       FieldName = 'number'
     end
@@ -8243,6 +8396,73 @@ object frmMAC: TfrmMAC
     object fdIDandMACText_IDMAC: TStringField
       FieldName = 'Text_ID&MAC'
       Size = 70
+    end
+  end
+  object fmTab_Gen_OR: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'number'
+        DataType = ftInteger
+      end
+      item
+        Name = 'QR_Text_string'
+        DataType = ftString
+        Size = 1500
+      end
+      item
+        Name = 'QR_Text_Blob'
+        DataType = ftBlob
+      end
+      item
+        Name = 'usb'
+        DataType = ftBlob
+      end
+      item
+        Name = 'pyton'
+        DataType = ftBlob
+      end
+      item
+        Name = 'Other'
+        DataType = ftString
+        Size = 500
+      end>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 656
+    Top = 8
+    object fmTab_Gen_ORnumber: TIntegerField
+      DisplayWidth = 7
+      FieldName = 'number'
+    end
+    object fmTab_Gen_ORQR_Text_string: TStringField
+      DisplayWidth = 32
+      FieldName = 'QR_Text_string'
+      Size = 1500
+    end
+    object fmTab_Gen_ORQR_Text_Blob: TBlobField
+      DisplayWidth = 9
+      FieldName = 'QR_Text_Blob'
+    end
+    object blbfldTab_Gen_ORusb: TBlobField
+      DisplayWidth = 9
+      FieldName = 'usb'
+    end
+    object blbfldTab_Gen_ORpyton: TBlobField
+      DisplayWidth = 9
+      FieldName = 'pyton'
+    end
+    object fmTab_Gen_OROther: TStringField
+      DisplayWidth = 32
+      FieldName = 'Other'
+      Size = 500
     end
   end
 end

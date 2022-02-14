@@ -11,7 +11,8 @@ uses
   frmFReportBarCodeLong in 'frmFReportBarCodeLong.pas' {frmFRBarCodeLong},
   FShowSoft in 'FShowSoft.pas' {frmShowSoft},
   FLoadSoft in 'FLoadSoft.pas' {frmFReportLoadSoft},
-  frmFReportIDandMAC in 'frmFReportIDandMAC.pas' {frmFR_IDandMAC};
+  frmFReportIDandMAC in 'frmFReportIDandMAC.pas' {frmFR_IDandMAC},
+  frmFReportGen_QR in 'frmFReportGen_QR.pas' {frmGen_OR};
 
 {$R *.res}
 
@@ -28,5 +29,6 @@ begin
   Application.CreateForm(TfrmShowSoft, frmShowSoft);
   Application.CreateForm(TfrmFReportLoadSoft, frmFReportLoadSoft);
   Application.CreateForm(TfrmFR_IDandMAC, frmFR_IDandMAC);
+  Application.CreateForm(TfrmGen_OR, frmGen_OR);
   Application.Run;
 end.

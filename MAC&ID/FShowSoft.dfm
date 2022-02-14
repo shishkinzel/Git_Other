@@ -21,11 +21,11 @@ object frmShowSoft: TfrmShowSoft
     Top = 32
     Width = 538
     Height = 233
-    TabOrder = 0
+    TabOrder = 1
   end
   object btnCount: TButton
     Left = 8
-    Top = 292
+    Top = 290
     Width = 120
     Height = 27
     Caption = #1057#1095#1080#1090#1072#1090#1100
@@ -35,12 +35,12 @@ object frmShowSoft: TfrmShowSoft
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 2
     OnClick = btnCountClick
   end
   object btnApply: TButton
     Left = 426
-    Top = 288
+    Top = 290
     Width = 120
     Height = 27
     Caption = #1047#1072#1082#1088#1099#1090#1100
@@ -51,7 +51,29 @@ object frmShowSoft: TfrmShowSoft
     Font.Style = []
     ModalResult = 8
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 3
+  end
+  object cbb_rmp: TComboBox
+    Left = 216
+    Top = 290
+    Width = 120
+    Height = 27
+    Style = csDropDownList
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ItemIndex = 0
+    ParentFont = False
+    TabOrder = 0
+    Text = #1056#1052#1055' '#8470'1'
+    Visible = False
+    OnChange = cbb_rmpChange
+    Items.Strings = (
+      #1056#1052#1055' '#8470'1'
+      #1056#1052#1055' '#8470'2'
+      #1056#1052#1055' '#8470'3')
   end
   object mmLoadSoft: TMainMenu
     object mniFileLoadSoft: TMenuItem

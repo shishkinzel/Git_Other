@@ -139,6 +139,10 @@
             <Form>frmFR_IDandMAC</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="frmFReportGen_QR.pas">
+            <Form>frmGen_OR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -161,6 +165,12 @@
                 </Source>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="Win32\Release\MainMacAdressIterator.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>MainMacAdressIterator.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Win32\Debug\MainMacAdressIterator.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>MainMacAdressIterator.exe</RemoteName>
