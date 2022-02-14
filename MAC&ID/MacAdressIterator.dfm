@@ -7976,6 +7976,18 @@ object frmMAC: TfrmMAC
       object mniExport_IDandMAC: TMenuItem
         Caption = #1069#1082#1089#1087#1086#1088#1090' '#1086#1090#1095#1077#1090#1072
         Enabled = False
+        object mniDOC_IDandMAC: TMenuItem
+          Caption = 'DOC'
+          OnClick = mniDOC_IDandMACClick
+        end
+        object mniXML_IDandMAC: TMenuItem
+          Caption = 'XML'
+          OnClick = mniXML_IDandMACClick
+        end
+        object mniPDF_IDandMAC: TMenuItem
+          Caption = 'PDF'
+          OnClick = mniPDF_IDandMACClick
+        end
       end
       object mniPrint_IDandMAC: TMenuItem
         Caption = #1055#1077#1095#1072#1090#1100

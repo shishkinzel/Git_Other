@@ -127,6 +127,9 @@ type
     fdIDandMACQR_MAC: TBlobField;
     fdIDandMACText_IDMAC: TStringField;
     blbfldTitlehardWare: TBlobField;
+    mniDOC_IDandMAC: TMenuItem;
+    mniXML_IDandMAC: TMenuItem;
+    mniPDF_IDandMAC: TMenuItem;
     procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mnifrViewClick(Sender: TObject);
@@ -155,6 +158,9 @@ type
     procedure mniApplay_IDandMACClick(Sender: TObject);
     procedure mniShow_IDandMACClick(Sender: TObject);
     procedure mniPrint_IDandMACClick(Sender: TObject);
+    procedure mniDOC_IDandMACClick(Sender: TObject);
+    procedure mniXML_IDandMACClick(Sender: TObject);
+    procedure mniPDF_IDandMACClick(Sender: TObject);
   private
     { Private declarations }
     var
@@ -847,7 +853,7 @@ begin
   mniExportBarCodeLong.Enabled := True;
   mniPrintBarCodeLong.Enabled := True;
 
-  frmTestGrid.Show;
+//  frmTestGrid.Show;
 end;
 
 //**************************************************************************************************
@@ -1013,6 +1019,7 @@ begin
   frmFRBarCode.frxrprtBarCode.Export(frmFRBarCode.frexBarCodeXL);
 end;
 
+
 procedure TfrmMAC.mniPDFBarCodeClick(Sender: TObject);
 begin
   frmFRBarCode.frxrprtBarCode.ShowReport();
@@ -1025,12 +1032,31 @@ begin
   frmFRBarCodeLong.reportBarCodeLong.Export(frmFRBarCodeLong.frPDF);
 end;
 
+
 procedure TfrmMAC.mniDOCBarCodeClick(Sender: TObject);
 begin
   frmFRBarCode.frxrprtBarCode.ShowReport();
   frmFRBarCode.frxrprtBarCode.Export(frmFRBarCode.frexBarCodeDOC);
 end;
 
+// экспорт для Топаз
+procedure TfrmMAC.mniDOC_IDandMACClick(Sender: TObject);
+begin
+  frmFR_IDandMAC.reportIDandMAC.ShowReport();
+  frmFR_IDandMAC.reportIDandMAC.Export(frmFR_IDandMAC.frxDOCXExport_IDandMAC);
+end;
+
+procedure TfrmMAC.mniXML_IDandMACClick(Sender: TObject);
+begin
+ frmFR_IDandMAC.reportIDandMAC.ShowReport();
+  frmFR_IDandMAC.reportIDandMAC.Export(frmFR_IDandMAC.frxXMLExport_IDandMAC);
+end;
+
+procedure TfrmMAC.mniPDF_IDandMACClick(Sender: TObject);
+begin
+  frmFR_IDandMAC.reportIDandMAC.ShowReport();
+  frmFR_IDandMAC.reportIDandMAC.Export(frmFR_IDandMAC.frxPDFExport_IDandMAC);
+end;
 // *******************************************************************************
 
 

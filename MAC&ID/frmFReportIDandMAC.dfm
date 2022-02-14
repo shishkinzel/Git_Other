@@ -26,10 +26,6 @@ object frmFR_IDandMAC: TfrmFR_IDandMAC
     UseReportHints = True
     OutlineTreeSortType = dtsUnsorted
     HideScrolls = False
-    ExplicitLeft = 144
-    ExplicitTop = 216
-    ExplicitWidth = 100
-    ExplicitHeight = 100
   end
   object reportIDandMAC: TfrxReport
     Version = '6.9.3'
@@ -41,15 +37,15 @@ object frmFR_IDandMAC: TfrmFR_IDandMAC
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44539.637803541700000000
-    ReportOptions.LastChange = 44600.704969780090000000
+    ReportOptions.LastChange = 44601.417100798610000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
       'begin'
       ''
       'end.')
-    Left = 56
-    Top = 104
+    Left = 8
+    Top = 56
     Datasets = <
       item
         DataSet = dbIDandMAC
@@ -156,8 +152,8 @@ object frmFR_IDandMAC: TfrmFR_IDandMAC
         end
         object Memo7: TfrxMemoView
           AllowVectorExport = True
-          Left = 453.543600000000000000
-          Top = 34.015770000000000000
+          Left = 377.953000000000000000
+          Top = 30.236240000000000000
           Width = 124.724490000000000000
           Height = 26.456710000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -174,9 +170,11 @@ object frmFR_IDandMAC: TfrmFR_IDandMAC
         end
         object Picture3: TfrxPictureView
           AllowVectorExport = True
-          Left = 608.504330000000000000
-          Width = 102.047310000000000000
-          Height = 56.692950000000000000
+          Left = 653.858690000000000000
+          Top = 18.897650000000000000
+          Width = 34.015748030000000000
+          Height = 34.015748030000000000
+          Center = True
           DataField = 'hardWare'
           DataSet = frmFReport.frxdbdtstTitle
           DataSetName = 'frxDBDatasetTitle'
@@ -185,12 +183,29 @@ object frmFR_IDandMAC: TfrmFR_IDandMAC
           Transparent = False
           TransparentColor = clWhite
         end
+        object Memo4: TfrxMemoView
+          AllowVectorExport = True
+          Left = 653.858690000000000000
+          Width = 34.015748030000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'HW')
+          ParentFont = False
+          VAlign = vaCenter
+        end
       end
       object PageFooter1: TfrxPageFooter
         FillType = ftBrush
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 283.464750000000000000
+        Top = 272.126160000000000000
         Width = 718.110700000000000000
         object Page: TfrxMemoView
           AllowVectorExport = True
@@ -213,7 +228,7 @@ object frmFR_IDandMAC: TfrmFR_IDandMAC
       object DetailData1: TfrxDetailData
         FillType = ftBrush
         Frame.Typ = []
-        Height = 79.370130000000000000
+        Height = 68.031540000000000000
         Top = 143.622140000000000000
         Width = 718.110700000000000000
         DataSet = dbIDandMAC
@@ -223,26 +238,31 @@ object frmFR_IDandMAC: TfrmFR_IDandMAC
           IndexTag = 1
           AllowVectorExport = True
           Left = 3.779530000000000000
-          Width = 75.590600000000000000
-          Height = 75.590600000000000000
+          Top = 7.559060000000000000
+          Width = 56.692913390000000000
+          Height = 52.913383390000000000
           DataField = 'number'
           DataSet = dbIDandMAC
           DataSetName = 'frxDB_IDandMAC'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
+          Font.Height = -16
+          Font.Name = 'Tahoma'
           Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
           Memo.UTF8W = (
             '[frxDB_IDandMAC."number"]')
           ParentFont = False
+          VAlign = vaCenter
         end
         object Picture1: TfrxPictureView
           AllowVectorExport = True
-          Left = 79.370130000000000000
-          Width = 83.149660000000000000
-          Height = 75.590600000000000000
+          Left = 90.708720000000000000
+          Top = 15.118120000000000000
+          Width = 37.795275590000000000
+          Height = 37.795275590000000000
+          Center = True
           DataField = 'QR_ID'
           DataSet = dbIDandMAC
           DataSetName = 'frxDB_IDandMAC'
@@ -255,7 +275,7 @@ object frmFR_IDandMAC: TfrmFR_IDandMAC
           IndexTag = 1
           AllowVectorExport = True
           Left = 162.519790000000000000
-          Top = 7.559060000000000000
+          Top = 15.118120000000000000
           Width = 449.764070000000000000
           Height = 37.795300000000000000
           DataField = 'Text_ID&MAC'
@@ -263,19 +283,23 @@ object frmFR_IDandMAC: TfrmFR_IDandMAC
           DataSetName = 'frxDB_IDandMAC'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
+          Font.Height = -16
+          Font.Name = 'Tahoma'
           Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          HAlign = haCenter
           Memo.UTF8W = (
             '[frxDB_IDandMAC."Text_ID&MAC"]')
           ParentFont = False
+          VAlign = vaCenter
         end
         object Picture2: TfrxPictureView
           AllowVectorExport = True
-          Left = 612.283860000000000000
-          Width = 102.047310000000000000
-          Height = 68.031540000000000000
+          Left = 642.520100000000000000
+          Top = 15.118120000000000000
+          Width = 37.795275590000000000
+          Height = 37.795275590000000000
+          Center = True
           DataField = 'QR_MAC'
           DataSet = dbIDandMAC
           DataSetName = 'frxDB_IDandMAC'
@@ -293,7 +317,7 @@ object frmFR_IDandMAC: TfrmFR_IDandMAC
         Width = 718.110700000000000000
         object Num: TfrxMemoView
           AllowVectorExport = True
-          Width = 79.370130000000000000
+          Width = 60.472480000000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -309,8 +333,8 @@ object frmFR_IDandMAC: TfrmFR_IDandMAC
         end
         object MAC: TfrxMemoView
           AllowVectorExport = True
-          Left = 79.370130000000000000
-          Width = 83.149660000000000000
+          Left = 60.472480000000000000
+          Width = 102.047310000000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -366,7 +390,59 @@ object frmFR_IDandMAC: TfrmFR_IDandMAC
     CloseDataSource = False
     DataSet = frmMAC.fdIDandMAC
     BCDToCurrency = False
+    Left = 8
+    Top = 110
+  end
+  object frxXMLExport_IDandMAC: TfrxXMLExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    Background = True
+    Creator = 'FastReport'
+    EmptyLines = True
+    SuppressPageHeadersFooters = False
+    RowsCount = 0
+    Split = ssNotSplit
+    Left = 8
+    Top = 190
+  end
+  object frxDOCXExport_IDandMAC: TfrxDOCXExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    OpenAfterExport = False
+    PictureType = gpPNG
     Left = 56
-    Top = 198
+    Top = 190
+  end
+  object frxPDFExport_IDandMAC: TfrxPDFExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    InteractiveFormsFontSubset = 'A-Z,a-z,0-9,#43-#47 '
+    OpenAfterExport = False
+    PrintOptimized = False
+    Outline = False
+    Background = False
+    HTMLTags = True
+    Quality = 95
+    Transparency = False
+    Author = 'FastReport'
+    Subject = 'FastReport PDF export'
+    ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
+    HideToolbar = False
+    HideMenubar = False
+    HideWindowUI = False
+    FitWindow = False
+    CenterWindow = False
+    PrintScaling = False
+    PdfA = False
+    PDFStandard = psNone
+    PDFVersion = pv17
+    Left = 8
+    Top = 246
   end
 end
