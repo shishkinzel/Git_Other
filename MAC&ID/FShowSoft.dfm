@@ -14,6 +14,7 @@ object frmShowSoft: TfrmShowSoft
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object mmoShowSoft: TMemo
@@ -108,6 +109,13 @@ object frmShowSoft: TfrmShowSoft
         Caption = #1054#1095#1080#1089#1090#1080#1090#1100
         ShortCut = 16466
         OnClick = mniClearClick
+      end
+      object mniSeparator3: TMenuItem
+        Caption = '-'
+      end
+      object mniReset: TMenuItem
+        Caption = #1057#1073#1088#1086#1089#1080#1090#1100
+        OnClick = mniResetClick
       end
     end
     object mniSettings: TMenuItem

@@ -7625,6 +7625,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
     TabOrder = 6
     Text = '000'
+    OnChange = medtModuleChange
   end
   object medtDate: TMaskEdit
     Left = 656
@@ -7641,6 +7642,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
     TabOrder = 7
     Text = '000'
+    OnChange = medtDateChange
   end
   object medtGroup: TMaskEdit
     Left = 656
@@ -7657,6 +7659,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
     TabOrder = 8
     Text = '000'
+    OnChange = medtGroupChange
   end
   object medtNumber: TMaskEdit
     Left = 656
@@ -7673,6 +7676,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
     TabOrder = 9
     Text = '000'
+    OnChange = medtNumberChange
   end
   object medtBit_4: TMaskEdit
     Left = 116
@@ -7689,6 +7693,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
     TabOrder = 1
     Text = '00'
+    OnChange = medtBit_4Change
   end
   object medtBit_5: TMaskEdit
     Left = 152
@@ -7705,6 +7710,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
     TabOrder = 2
     Text = '00'
+    OnChange = medtBit_5Change
   end
   object medtBit_6: TMaskEdit
     Left = 188
@@ -7721,6 +7727,7 @@ object frmMAC: TfrmMAC
     ParentFont = False
     TabOrder = 3
     Text = '00'
+    OnChange = medtBit_6Change
   end
   object btnStart: TButton
     Left = 541
@@ -8047,6 +8054,7 @@ object frmMAC: TfrmMAC
       end
       object mniGen_QR_Apply: TMenuItem
         Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
+        Enabled = False
         OnClick = mniGen_QR_ApplyClick
       end
       object mniGen_QR_ShowPrev: TMenuItem
@@ -8060,6 +8068,18 @@ object frmMAC: TfrmMAC
       object mniGen_QR_Export: TMenuItem
         Caption = #1069#1082#1089#1087#1086#1088#1090
         Enabled = False
+        object mniGen_QR_PDF: TMenuItem
+          Caption = 'PDF'
+          OnClick = mniGen_QR_PDFClick
+        end
+        object mniGen_QR_DOC: TMenuItem
+          Caption = 'DOC'
+          OnClick = mniGen_QR_DOCClick
+        end
+        object mniGen_QR_XML: TMenuItem
+          Caption = 'XML'
+          OnClick = mniGen_QR_XMLClick
+        end
       end
       object mniGen_QR_Print: TMenuItem
         Caption = #1055#1077#1095#1072#1090#1100

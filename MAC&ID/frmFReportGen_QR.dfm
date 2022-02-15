@@ -26,10 +26,6 @@ object frmGen_OR: TfrmGen_OR
     UseReportHints = True
     OutlineTreeSortType = dtsUnsorted
     HideScrolls = False
-    ExplicitLeft = 192
-    ExplicitTop = 104
-    ExplicitWidth = 100
-    ExplicitHeight = 100
   end
   object frR_Gen_QR: TfrxReport
     Version = '6.9.3'
@@ -41,7 +37,7 @@ object frmGen_OR: TfrmGen_OR
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44539.637803541700000000
-    ReportOptions.LastChange = 44606.665516423610000000
+    ReportOptions.LastChange = 44607.719738425930000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       ''
@@ -74,7 +70,7 @@ object frmGen_OR: TfrmGen_OR
       object MasterData1: TfrxMasterData
         FillType = ftBrush
         Frame.Typ = []
-        Height = 245.669450000000000000
+        Height = 298.582870000000000000
         Top = 18.897650000000000000
         Width = 718.110700000000000000
         DataSet = dbfr_Gen_QR
@@ -82,7 +78,8 @@ object frmGen_OR: TfrmGen_OR
         RowCount = 0
         object NameDevice: TfrxMemoView
           AllowVectorExport = True
-          Left = 11.338590000000000000
+          Left = 15.118120000000000000
+          Top = 3.779530000000000000
           Width = 151.181200000000000000
           Height = 26.456710000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -100,6 +97,7 @@ object frmGen_OR: TfrmGen_OR
         object Memo7: TfrxMemoView
           AllowVectorExport = True
           Left = 540.472790000000000000
+          Top = 3.779530000000000000
           Width = 124.724490000000000000
           Height = 26.456710000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -117,7 +115,8 @@ object frmGen_OR: TfrmGen_OR
         object frxDB_Gen_QROther: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 170.078850000000000000
+          Left = 173.858380000000000000
+          Top = 3.779530000000000000
           Width = 257.008040000000000000
           Height = 26.456710000000000000
           DataField = 'Other'
@@ -138,7 +137,7 @@ object frmGen_OR: TfrmGen_OR
         object Memo3: TfrxMemoView
           AllowVectorExport = True
           Left = 15.118120000000000000
-          Top = 37.795300000000000000
+          Top = 52.913420000000000000
           Width = 287.244280000000000000
           Height = 64.252010000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -156,10 +155,11 @@ object frmGen_OR: TfrmGen_OR
         end
         object Picture2: TfrxPictureView
           AllowVectorExport = True
-          Left = 370.393940000000000000
-          Top = 45.354360000000000000
-          Width = 45.354330710000000000
-          Height = 45.354330710000000000
+          Left = 374.173470000000000000
+          Top = 52.913420000000000000
+          Width = 52.913385830000000000
+          Height = 52.913385830000000000
+          AutoSize = True
           Center = True
           DataField = 'usb'
           DataSet = dbfr_Gen_QR
@@ -172,7 +172,7 @@ object frmGen_OR: TfrmGen_OR
         object Memo4: TfrxMemoView
           AllowVectorExport = True
           Left = 15.118120000000000000
-          Top = 162.519790000000000000
+          Top = 204.094620000000000000
           Width = 287.244280000000000000
           Height = 64.251968500000000000
           Font.Charset = DEFAULT_CHARSET
@@ -190,10 +190,11 @@ object frmGen_OR: TfrmGen_OR
         end
         object Picture3: TfrxPictureView
           AllowVectorExport = True
-          Left = 370.393940000000000000
-          Top = 170.078850000000000000
-          Width = 45.354330710000000000
-          Height = 45.354330710000000000
+          Left = 374.173470000000000000
+          Top = 211.653680000000000000
+          Width = 52.913385830000000000
+          Height = 52.913385830000000000
+          AutoSize = True
           Center = True
           DataField = 'pyton'
           DataSet = dbfr_Gen_QR
@@ -208,7 +209,7 @@ object frmGen_OR: TfrmGen_OR
         FillType = ftBrush
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 895.748610000000000000
+        Top = 978.898270000000000000
         Width = 718.110700000000000000
         object Page: TfrxMemoView
           AllowVectorExport = True
@@ -231,8 +232,8 @@ object frmGen_OR: TfrmGen_OR
       object DetailData1: TfrxDetailData
         FillType = ftBrush
         Frame.Typ = []
-        Height = 502.677490000000000000
-        Top = 332.598640000000000000
+        Height = 532.913730000000000000
+        Top = 385.512060000000000000
         Width = 718.110700000000000000
         DataSet = dbfr_Gen_QR
         DataSetName = 'frxDB_Gen_QR'
@@ -258,7 +259,7 @@ object frmGen_OR: TfrmGen_OR
         object Picture1: TfrxPictureView
           AllowVectorExport = True
           Left = 434.645950000000000000
-          Top = 60.472480000000000000
+          Top = 113.385900000000000000
           Width = 275.905690000000000000
           Height = 302.362400000000000000
           AutoSize = True
@@ -276,7 +277,7 @@ object frmGen_OR: TfrmGen_OR
         FillType = ftBrush
         Frame.Typ = []
         Height = 22.677180000000000000
-        Top = 287.244280000000000000
+        Top = 340.157700000000000000
         Width = 718.110700000000000000
         object Memo1: TfrxMemoView
           AllowVectorExport = True
@@ -323,5 +324,57 @@ object frmGen_OR: TfrmGen_OR
     BCDToCurrency = False
     Left = 24
     Top = 150
+  end
+  object fr_Gen_QR_Ex_DOC: TfrxDOCXExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    OpenAfterExport = False
+    PictureType = gpPNG
+    Left = 24
+    Top = 230
+  end
+  object fr_Gen_QR_Ex_PDF: TfrxPDFExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    InteractiveFormsFontSubset = 'A-Z,a-z,0-9,#43-#47 '
+    OpenAfterExport = False
+    PrintOptimized = False
+    Outline = False
+    Background = False
+    HTMLTags = True
+    Quality = 95
+    Transparency = False
+    Author = 'FastReport'
+    Subject = 'FastReport PDF export'
+    ProtectionFlags = [ePrint, eModify, eCopy, eAnnot]
+    HideToolbar = False
+    HideMenubar = False
+    HideWindowUI = False
+    FitWindow = False
+    CenterWindow = False
+    PrintScaling = False
+    PdfA = False
+    PDFStandard = psNone
+    PDFVersion = pv17
+    Left = 32
+    Top = 310
+  end
+  object fr_Gen_QR_Ex_XML: TfrxXMLExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    Background = True
+    Creator = 'FastReport'
+    EmptyLines = True
+    SuppressPageHeadersFooters = False
+    RowsCount = 0
+    Split = ssNotSplit
+    Left = 32
+    Top = 390
   end
 end

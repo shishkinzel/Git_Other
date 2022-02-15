@@ -146,6 +146,9 @@ type
     fmTab_Gen_OROther: TStringField;
     blbfldTab_Gen_ORusb: TBlobField;
     blbfldTab_Gen_ORpyton: TBlobField;
+    mniGen_QR_PDF: TMenuItem;
+    mniGen_QR_DOC: TMenuItem;
+    mniGen_QR_XML: TMenuItem;
     procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mnifrViewClick(Sender: TObject);
@@ -182,6 +185,16 @@ type
     procedure mniGen_QR_PrintClick(Sender: TObject);
     procedure mniShow_ORClick(Sender: TObject);
     procedure mniGen_QR_ResetClick(Sender: TObject);
+    procedure medtBit_4Change(Sender: TObject);
+    procedure medtBit_5Change(Sender: TObject);
+    procedure medtBit_6Change(Sender: TObject);
+    procedure medtModuleChange(Sender: TObject);
+    procedure medtDateChange(Sender: TObject);
+    procedure medtGroupChange(Sender: TObject);
+    procedure medtNumberChange(Sender: TObject);
+    procedure mniGen_QR_PDFClick(Sender: TObject);
+    procedure mniGen_QR_DOCClick(Sender: TObject);
+    procedure mniGen_QR_XMLClick(Sender: TObject);
   private
     { Private declarations }
     var
@@ -194,7 +207,7 @@ type
       fileId: TextFile;              // для хранения данные двух утилит
       fileBarCode : TextFile;        // для хранения данных формирования штрих-кода
       fileBarCodeLong : TextFile;    // для хранения данных формирования длинного штрих-кода
-      utilityMAC: Boolean;
+      utilityMAC: Boolean;           // флаг утилиты false - Печать МАС- адресов
       fnameDevice: string;           // наименование устройства
       ffirstOrderBit: string;        // начальный МАС-адрес для итерации
       fstepIterator: string;         // шаг итерации МАС-адреса
@@ -278,6 +291,7 @@ begin
   mniExport.Visible := True;
   mniBarCode.Visible := True;
   btnRestartClick(nil);
+  edtDevice.SetFocus;
 end;
 
 procedure TfrmMAC.mniPrintMacClick(Sender: TObject);
@@ -287,6 +301,9 @@ begin
 
   mniPrintMac.Enabled := False;
   mniIterator.Enabled := True;
+// сбрасываем все окна
+
+  btnRestartClick(nil);
 
 // отключение ненужных окон
 
@@ -305,8 +322,7 @@ begin
   medtNumber.Enabled := False;
   mniExport.Visible := False;
   mniBarCode.Visible := False;
-
-  btnRestartClick(nil);
+  medtBit_4.SetFocus;
 end;
 
 
@@ -551,11 +567,14 @@ begin
   mniExport_IDandMAC.Enabled := False;
   mniPrint_IDandMAC.Enabled := False;
   mniReset_IDandMAC.Enabled := False;
-
-  medtModule.Text := '000';
-  medtDate.Text := '000';
-  medtGroup.Text := '000';
-  medtNumber.Text := '000';
+// для серийного номера
+  if utilityMAC then
+  begin
+    medtModule.Text := '000';
+    medtDate.Text := '000';
+    medtGroup.Text := '000';
+    medtNumber.Text := '000';
+  end;
 // сброс команды прошивки из модуля FShowSoft
   frmShowSoft.fTextSoft := '';
 // запрещение пунктов "Сброс" в главном меню
@@ -564,7 +583,9 @@ begin
   mniResetBarCodeLong.Enabled := False;
   mniResetLoadSoft.Enabled := False;
   mniFrReset.Enabled := False;
-
+    if utilityMAC then
+    edtDevice.SetFocus
+    else medtBit_4.SetFocus;
 end;
 
 
@@ -720,6 +741,7 @@ begin
 end;
 
 // печать qr-кода и серийного номера для изделий семейства Топаз
+
 procedure TfrmMAC.mniApplay_IDandMACClick(Sender: TObject);
 var
   beginNumberDevice, range, stepMac, stepBarCode, numberBarCode: Integer;
@@ -927,10 +949,13 @@ end;
 // процедура открытия окна для генератора QR-кода с выбором РМП
 procedure TfrmMAC.mniShow_ORClick(Sender: TObject);
 begin
+   mniGen_QR_Apply.Enabled := True;
+//  ShowMessage('открываю второе окно');
   frmShowSoft.cbb_rmp.Visible := True;
   frmShowSoft.mmoShowSoft.Enabled := False;
   frmShowSoft.btnCount.Enabled :=False;
   frmShowSoft.btnApply.Enabled :=False;
+
   frmShowSoft.ShowModal;
 
 
@@ -983,6 +1008,24 @@ begin
   barCodeStream.Free;
 //  frmTestGrid.Show;
 end;
+// экспорт для  генератора QR-кода
+procedure TfrmMAC.mniGen_QR_DOCClick(Sender: TObject);
+begin
+  frmGen_OR.frR_Gen_QR.ShowReport();
+  frmGen_OR.frR_Gen_QR.Export(frmGen_OR.fr_Gen_QR_Ex_DOC);
+end;
+
+procedure TfrmMAC.mniGen_QR_XMLClick(Sender: TObject);
+begin
+  frmGen_OR.frR_Gen_QR.ShowReport();
+  frmGen_OR.frR_Gen_QR.Export(frmGen_OR.fr_Gen_QR_Ex_XML);
+end;
+
+procedure TfrmMAC.mniGen_QR_PDFClick(Sender: TObject);
+begin
+  frmGen_OR.frR_Gen_QR.ShowReport();
+  frmGen_OR.frR_Gen_QR.Export(frmGen_OR.fr_Gen_QR_Ex_PDF);
+end;
 
 
 // предосмотр отчета генератора QR-кода
@@ -994,6 +1037,7 @@ begin
 end;
 
 // печать  отчета для QR-кода
+
 procedure TfrmMAC.mniGen_QR_PrintClick(Sender: TObject);
 begin
   frmGen_OR.frR_Gen_QR.ShowReport;
@@ -1009,6 +1053,7 @@ begin
   mniGen_QR_Print.Enabled := False;
   mniGen_QR_Reset.Enabled := False;
   frmShowSoft.cbb_rmp.ItemIndex := 0;
+   mniGen_QR_Apply.Enabled := False;
 end;
 // окончание блока генератора QR-кода **************************************************************
 
@@ -1186,8 +1231,51 @@ begin
 //  CloseFile(fileBarCodeLong);
 end;
 
-end.
+// процедура перехода фокуса- проработка
+// mac - адресс
+procedure TfrmMAC.medtBit_4Change(Sender: TObject);
+begin
+  if (StrToIntDef('$' + medtBit_4.Text, -1) >= 0) and (Length(medtBit_4.Text) = 2) then
+    medtBit_5.SetFocus
+end;
 
+procedure TfrmMAC.medtBit_5Change(Sender: TObject);
+begin
+   if (StrToIntDef('$' + medtBit_5.Text, -1) >= 0) and (Length(medtBit_5.Text) = 2) then
+    medtBit_6.SetFocus
+end;
+
+procedure TfrmMAC.medtBit_6Change(Sender: TObject);
+begin
+   if (StrToIntDef('$' + medtBit_6.Text, -1) >= 0) and (Length(medtBit_6.Text) = 2) then
+    seStepIterator.SetFocus
+end;
+
+// серийный номер
+procedure TfrmMAC.medtModuleChange(Sender: TObject);
+begin
+  if (StrToIntDef(medtModule.Text, -1) >= 0) and (Length(medtModule.Text) = 3) then
+    medtDate.SetFocus
+end;
+
+procedure TfrmMAC.medtDateChange(Sender: TObject);
+begin
+  if (StrToIntDef(medtDate.Text, -1) >= 0) and (Length(medtDate.Text) = 3) then
+    medtGroup.SetFocus
+end;
+
+procedure TfrmMAC.medtGroupChange(Sender: TObject);
+begin
+  if (StrToIntDef(medtGroup.Text, -1) >= 0) and (Length(medtGroup.Text) = 3) then
+    medtNumber.SetFocus
+end;
+
+procedure TfrmMAC.medtNumberChange(Sender: TObject);
+begin
+  if (StrToIntDef(medtNumber.Text, -1) >= 0) and (Length(medtNumber.Text) = 3) then
+    btnApply.SetFocus
+end;
+end.
 
 
 

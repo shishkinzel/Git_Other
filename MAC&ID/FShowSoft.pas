@@ -28,6 +28,8 @@ type
     dlgFont: TFontDialog;
     dlgColor: TColorDialog;
     cbb_rmp: TComboBox;
+    mniReset: TMenuItem;
+    mniSeparator3: TMenuItem;
     procedure btnCountClick(Sender: TObject);
     procedure mniExitLoadSoftClick(Sender: TObject);
     procedure mniSaveLoadSoftClick(Sender: TObject);
@@ -37,6 +39,8 @@ type
     procedure mniFontClick(Sender: TObject);
     procedure mniColorBackGroundClick(Sender: TObject);
     procedure cbb_rmpChange(Sender: TObject);
+    procedure mniResetClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,7 +75,7 @@ begin
     ShowMessage('Вы ничего не ввели' + #13 + 'Можно закрыть окно');
 // Сброс Memo после считывания
   mmoShowSoft.Clear;
-
+ fTextSoft := TrimLeft(fTextSoft);
 end;
 
 procedure TfrmShowSoft.mniOpenLoadSoftClick(Sender: TObject);
@@ -85,6 +89,15 @@ begin
   begin
     ShowMessage('Вы отказались от выбора конфигурации командной строки!!!');
   end;
+end;
+
+procedure TfrmShowSoft.mniResetClick(Sender: TObject);
+begin
+mmoShowSoft.Enabled := False;
+btnCount.Enabled := False;
+btnApply.Enabled := False;
+cbb_rmp.Enabled := True;
+cbb_rmp.ItemIndex := 0;
 end;
 
 procedure TfrmShowSoft.mniSaveLoadSoftClick(Sender: TObject);
@@ -139,6 +152,11 @@ begin
   mniExitLoadSoftClick(nil);
 
 end;
+procedure TfrmShowSoft.FormShow(Sender: TObject);
+begin
+cbb_rmp.Enabled := True;
+end;
+
 procedure TfrmShowSoft.mniExitLoadSoftClick(Sender: TObject);
 begin
   mmoShowSoft.Clear;
